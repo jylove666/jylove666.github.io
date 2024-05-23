@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>绕过姿势收藏 | f4k3r&#39;s blog</title>
-  <meta name="keywords" content=" Web ">
-  <meta name="description" content="绕过姿势收藏 | f4k3r&#39;s blog">
+  <title>Linux操作系统学习 | f4k3r&#39;s blog</title>
+  <meta name="keywords" content=" Web , Linux ">
+  <meta name="description" content="Linux操作系统学习 | f4k3r&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="网站搭建前置知识域名，子域名，DNS，HTTP&#x2F;HTTPS,证书等如何搭建一个网站：1、准备一个域名（阿里云购买）2、购买一个服务器（阿里云）3、宝塔一键部署 WEB应用架构类理解不同WEB应用组成角色功能架构：开发语言，程序源码，中间件容器，数据库类型，服务器操作系统，第三方软件等开发语言：asp，php，aspx，jsp，java，python，ruby，go，html，javasc">
 <meta property="og:type" content="article">
@@ -260,9 +260,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-绕过姿势收藏" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-linux操作系统学习" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">绕过姿势收藏</h1>
+        <h1 class="article-title">Linux操作系统学习</h1>
     
     <div class="article-meta">
         
@@ -274,12 +274,14 @@
             
             <a class="color4">Web</a>
             
+            <a class="color1">Linux</a>
+            
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-04-28 19:57:38'>2024-04-28 19:55</time>
+            发布时间 : <time class="date" title='最后更新: 2024-05-23 19:32:00'>2024-04-29 15:35</time>
         
     </div>
     <div class="article-meta">
@@ -290,7 +292,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#flag%E5%AD%97%E7%AC%A6%E8%A2%AB%E8%BF%87%E6%BB%A4%E6%97%B6"><span class="toc-text">flag字符被过滤时</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-text">Linux操作系统的目录结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8"><span class="toc-text">Linux命令入门</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%91%BD%E4%BB%A4%E3%80%81%E5%91%BD%E4%BB%A4%E8%A1%8C%EF%BC%9A"><span class="toc-text">什么是命令、命令行：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Linux%E5%91%BD%E4%BB%A4%E7%9A%84%E9%80%9A%E7%94%A8%E6%A0%BC%E5%BC%8F%EF%BC%9A"><span class="toc-text">Linux命令的通用格式：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ls%E5%91%BD%E4%BB%A4"><span class="toc-text">ls命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#cd-pwd%E5%91%BD%E4%BB%A4"><span class="toc-text">cd-pwd命令</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -306,8 +308,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="flag字符被过滤时"><a href="#flag字符被过滤时" class="headerlink" title="flag字符被过滤时"></a>flag字符被过滤时</h2><p>①：[^e]表示除了e以外的所有字母，这样可以顺利匹配到flag</p>
-
+        <p>为了更好的了解CTF的一些基础知识，我决定从今天开始系统的学习一下Linux的操作系统。知识点取材自B站黑马程序员的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1n84y1i7td?p=1&vd_source=5b734e7d401335144478ef398743ff0f">课程</a></p>
+<h4 id="Linux操作系统的目录结构"><a href="#Linux操作系统的目录结构" class="headerlink" title="Linux操作系统的目录结构"></a>Linux操作系统的目录结构</h4><p>1、Linux只有一个顶级目录，称之为：根目录<br>2、出现在开头的&#x2F;表示：根目录<br>3、出现在后面的&#x2F;表示：层次关系<br>4、反斜杠”&quot;一般在windows中的路径中使用，不要与Linux系统混淆</p>
+<h4 id="Linux命令入门"><a href="#Linux命令入门" class="headerlink" title="Linux命令入门"></a>Linux命令入门</h4><h5 id="什么是命令、命令行："><a href="#什么是命令、命令行：" class="headerlink" title="什么是命令、命令行："></a>什么是命令、命令行：</h5><p>命令行：即Linux终端（Terminal），是一种命令提示符页面，以纯字符的形式操作系统，可以使用命令对系统发出操作指令。<br>命令：即Linux程序，一个命令就是一个Linux的程序。命令没有图形化页面，可以在命令行（终端中）提供字符化的反馈。</p>
+<h5 id="Linux命令的通用格式："><a href="#Linux命令的通用格式：" class="headerlink" title="Linux命令的通用格式："></a>Linux命令的通用格式：</h5><p><code>command [-options] [parameter]</code><br>1、命令本体，即命令本身<br>2、可选选项，控制命令的行为细节<br>3、可选参数，控制命令的指向目标</p>
+<h5 id="ls命令"><a href="#ls命令" class="headerlink" title="ls命令"></a>ls命令</h5><p>ls命令的作用是列出目录下的内容，语法细节如下：<br><code>ls [-a -l -h] [Linux路径]</code><br><strong>·</strong>	 -a -l -h是可选的选择<br><strong>·</strong>	Linux路径是此命令可选的参数<br>当不使用选项和参数，直接使用ls命令本体，表示：以平铺形式，列出当前工作目录下的内容</p>
+<p>总结：<br>1、ls命令的作用是？<br>在命令行中，以平铺的形式，展示当前工作目录（默认HOME目录）下的内容（文件或文件夹）<br><img src="/2024/04/29/linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0/Git\Git\my-blog\source_posts\linux操作系统学习\image-20240429162658583.png"><br>2、HOME目录是？<br>每一个用户在Linux系统的专属目录，默认在：&#x2F;home&#x2F;用户名<br>3、当前工作目录？<br>Linux命令行在执行命令的时候，需要一个工作目录，打开命令行程序（终端）默认设置工作目录在用户的HOME目录</p>
+<p><strong>·</strong>	-a选项，表示：all的意思，即列出全部文件（包含隐藏的文件&#x2F;文件夹）<br><strong>·</strong>	-l选项，表示：以列表（<strong>竖向排列</strong>）的形式展示内容，并展示更多信息</p>
+<p><strong>·</strong>	-h选项，需要和-l选项搭配使用，以更加人性化的方式显示文件的大小单位<br><strong>·</strong>	命令的选项是可以组合使用的，比如： ls -lah，等同于 ls -l -a -h</p>
+<h5 id="cd-pwd命令"><a href="#cd-pwd命令" class="headerlink" title="cd-pwd命令"></a>cd-pwd命令</h5>
       
        
     </div>
