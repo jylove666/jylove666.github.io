@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Web学习4 | f4k3r&#39;s blog</title>
+  <meta name="keywords" content=" Web ">
+  <meta name="description" content="Web学习4 | f4k3r&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="知识点1、打点-Web架构-语言&amp;中间件&amp;数据库&amp;系统等2、打点-Web源码-CMS开源&amp;闭源售卖&amp;自主研发等3、打点-Web源码获取-泄露安全&amp;资源监控&amp;其他等4、打点-Web域名-子域名&amp;相似域名&amp;反查域名&amp;旁注等 站库分离：就是网站和数据库不在同一台服务器中。 服务器我们放置网站的文件，数据库单独放到云数据库或者">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web学习6">
+<meta property="og:url" content="http://example.com/2024/05/26/Web%E5%AD%A6%E4%B9%A06/index.html">
+<meta property="og:site_name" content="f4k3r&#39;s blog">
+<meta property="og:description" content="知识点1、打点-Web架构-语言&amp;中间件&amp;数据库&amp;系统等2、打点-Web源码-CMS开源&amp;闭源售卖&amp;自主研发等3、打点-Web源码获取-泄露安全&amp;资源监控&amp;其他等4、打点-Web域名-子域名&amp;相似域名&amp;反查域名&amp;旁注等 站库分离：就是网站和数据库不在同一台服务器中。 服务器我们放置网站的文件，数据库单独放到云数据库或者">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/05/26/Web%E5%AD%A6%E4%B9%A06/image-20240526191145544.png">
+<meta property="og:image" content="http://example.com/2024/05/26/Web%E5%AD%A6%E4%B9%A06/image-20240526202834274.png">
+<meta property="og:image" content="http://example.com/2024/05/26/Web%E5%AD%A6%E4%B9%A06/image-20240526203027962.png">
+<meta property="og:image" content="http://example.com/2024/05/26/Web%E5%AD%A6%E4%B9%A06/image-20240526203202869.png">
+<meta property="og:image" content="http://example.com/2024/05/26/Web%E5%AD%A6%E4%B9%A06/image-20240527125523419.png">
+<meta property="og:image" content="http://example.com/2024/05/26/Web%E5%AD%A6%E4%B9%A06/image-20240527125621972.png">
+<meta property="og:image" content="http://example.com/2024/05/26/Web%E5%AD%A6%E4%B9%A06/image-20240527125835272.png">
+<meta property="og:image" content="http://example.com/2024/05/26/Web%E5%AD%A6%E4%B9%A06/image-20240527125945978.png">
+<meta property="og:image" content="http://example.com/2024/05/26/Web%E5%AD%A6%E4%B9%A06/image-20240527154114201.png">
+<meta property="og:image" content="http://example.com/2024/05/26/Web%E5%AD%A6%E4%B9%A06/image-20240527154251974.png">
+<meta property="og:image" content="http://example.com/2024/05/26/Web%E5%AD%A6%E4%B9%A06/image-20240527154841019.png">
+<meta property="og:image" content="http://example.com/2024/05/26/Web%E5%AD%A6%E4%B9%A06/image-20240527155210057.png">
+<meta property="og:image" content="http://example.com/2024/05/26/Web%E5%AD%A6%E4%B9%A06/image-20240527155446710.png">
+<meta property="og:image" content="http://example.com/2024/05/26/Web%E5%AD%A6%E4%B9%A06/image-20240526194957503.png">
+<meta property="article:published_time" content="2024-05-26T10:36:19.000Z">
+<meta property="article:modified_time" content="2024-05-27T08:07:24.385Z">
+<meta property="article:author" content="f4k3r">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/05/26/Web%E5%AD%A6%E4%B9%A06/image-20240526191145544.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>f4k3r</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(11)</small>
+            
+        </div>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        <a 
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="11">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://www.blog.st4rr.top/">St4rr</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>随想</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Web</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WP</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/26/Web%E5%AD%A6%E4%B9%A06/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习6">Web学习6</span>
+            <span class="post-date" title="2024-05-26 18:36:19">2024/05/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/26/Web%E5%AD%A6%E4%B9%A05/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习5">Web学习5</span>
+            <span class="post-date" title="2024-05-26 13:10:51">2024/05/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习4">Web学习4</span>
+            <span class="post-date" title="2024-05-25 16:12:43">2024/05/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/23/Web%E5%AD%A6%E4%B9%A03/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习3">Web学习3</span>
+            <span class="post-date" title="2024-05-23 19:38:49">2024/05/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/23/Web%E5%AD%A6%E4%B9%A02/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习2">Web学习2</span>
+            <span class="post-date" title="2024-05-23 12:34:18">2024/05/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/22/Web%E5%AD%A6%E4%B9%A01/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习1">Web学习1</span>
+            <span class="post-date" title="2024-05-22 20:44:54">2024/05/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/29/linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0/"
+           data-tag="Web,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux操作系统学习">Linux操作系统学习</span>
+            <span class="post-date" title="2024-04-29 15:35:19">2024/04/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/28/%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF%E6%94%B6%E8%97%8F/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="绕过姿势收藏">绕过姿势收藏</span>
+            <span class="post-date" title="2024-04-28 19:55:29">2024/04/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/23/XYCTF-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="XYCTF_WP">XYCTF_WP</span>
+            <span class="post-date" title="2024-04-23 12:54:05">2024/04/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/14/faker%E7%9A%84%E5%BF%83%E9%AD%94/"
+           data-tag="随想"
+           data-author="" >
+            <span class="post-title" title="faker的心魔">faker的心魔</span>
+            <span class="post-date" title="2024-04-14 21:23:39">2024/04/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/03/14/sql%E6%B3%A8%E5%85%A5/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="sql注入">sql注入</span>
+            <span class="post-date" title="2024-03-14 19:31:21">2024/03/14</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Web学习4" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Web学习4</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">Web</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-05-26 16:25:56'>2024-05-25 16:12</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A"><span class="toc-text">知识点：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E7%8E%B0"><span class="toc-text">复现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE"><span class="toc-text">思维导图</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h2><p>1、存储密码加密-Web&amp;数据库&amp;系统<br>2、传输数据编码-各类组合传输参数值<br>3、代码特性加密、JS&amp;PHP&amp;NET&amp;JAVA<br>4、数据显示编码-字符串数据显示编码</p>
+<p>本课意义：<br>1、了解加密编码进制在安全测试中的存在<br>2、掌握常见的加密解密编码解码进制互转的操作<br>3、了解常见的加密解密编码解密进制互转的影响<br>旨在解决类似疑问，提供思路：<br>你是否碰到不知道的加密方式？<br>你是否碰到无法找到的解密平台?<br>你是否碰到不知道如何解密的字符串？<br>你是否准备参加CTF比赛补充此类知识点？</p>
+<p>详细点<br>密码存储加密：<br>MD5 SHA1 NTLM AES DES RC4<br>MD5值是32位或16位由数字“0-9”和字母“a-f”所组成的字符串<br>SHA1这种加密的密文特征和MD5差不多，只不过位数是40<br>NTLM这种加密是Windows的哈希密码，标准通讯安全协议<br>AES，DES，RC4这些都是对称性加密算法，引入密钥，密文特征与Base64类似<br>应用场景：各类应用密文，自定义算法，代码分析，CTF安全比赛等。</p>
+<p>传输数据编码：<br>Base64 URL HEX ASCII<br>BASE64值是由数字“0-9”和字母“a-f”所组成的字符串，大小写敏感，结尾通常有符号&#x3D;<br>URL编码是由数字“0-9”和字母“a-f”所组成的字符串，大小写敏感，通常以%数字字母间隔<br>HEX编码是计算机中数据的一种表示方法，将数据进行十六进制转换，它由0-9，A-F，组成<br>ASCII编码是将128个字符进行进制数来表示，常见ASCII码表大小规则：0<del>9&lt;A</del>Z&lt;a~Z<br>举例:<br>个人博客-URL解码<br>国外WEB-BASE64解码<br>搜狐视频-BASE64解码<br>应用场景：参数传递（如注入影响），后期WAF绕过干扰写法应用，视频地址还原等。</p>
+<p>JS前端代码加密：<br>JS颜文字 jother JSFUCK<br>颜文字特征：一堆颜文字构成的js代码，在F12中可直接解密执行<br>jother特征：只用！÷ （ ） [ ] { } 这八个字符就能完成对任意字符串的编码。也可在F12中解密执行<br>JSFUCK特征：与jother很像，只是少了{ }</p>
+<p>后端代码加密：<br>PHP .NET JAVA<br>PHP：乱码，头部有信息<br>.NET：DLL封装代码文件<br>JAVA：JAR&amp;CLASS文件<br>举例：Zend ILSpy IDEA<br>应用场景：版权代码加密，开发特性，CTF比赛等</p>
+<p>数据库密文加密：<br>MYSQL，MSSQL等</p>
+<p>数据显示编码：<br>UTF-8 GBK2312等</p>
+<p>识别算法编码类型：<br>1、看位数<br>2、看密文的特征（数字，字母，大小写，符号等）<br>3、看当前密文存在的地方（WEB，数据库，操作系统等应用）</p>
+<h2 id="复现"><a href="#复现" class="headerlink" title="复现"></a>复现</h2><p>演示案例：<br>Web-ZZCMS-密文-MD5<br>Web-Discuz-密文-MD5&amp;Salt<br>系统-Windows-密文-NTLM&amp;HASH<br>综合-参数-密文传输-AES&amp;BASE64<br>CTF赛题-buuoj-single dog-JS颜文字<br>CTF赛题-xuenixiang-Jsfuck-JSFUCK</p>
+<p>1、<strong>Web-ZZCMS-密文-MD5</strong></p>
+<p><img src="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/image-20240526110057805.png"></p>
+<p>phpstudy搭建环境后，在本地的网站里注册一个账号，连接数据库后，在表单的zzcms_user一栏里看到了自己最新注册的账号。</p>
+<p><img src="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/image-20240526110422870.png">可以看到密码进入数据库后被自动加密了，我们尝试去网站进行解密操作</p>
+<p><img src="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/image-20240526110514568.png"></p>
+<p>设置的简单密码被网站直接解密出来了，但是小迪演示的那个密码xiao8是要会员才能查询的，不想充钱了，所以密码设简单点</p>
+<p>PS：如果密文足够的复杂的话，网站是很难解密出来的。这就是加密的意义</p>
+<p>2、<strong>Web-Discuz-密文-MD5&amp;Salt</strong></p>
+<p>记录搭网站时候踩的坑：</p>
+<p><img src="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/image-20240526114943549.png"></p>
+<p>他说要将压缩包里upload目录内的文件上传到域名绑定的目录中，不能直接把upload放进去，而是要把upload文件夹剥掉，把里面的东西放进去……其实以前也遇到过，但是就是不长记性。</p>
+<p><img src="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/image-20240526114702832.png"></p>
+<p><img src="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/image-20240526114853697.png"></p>
+<p>在这张表里发现了我刚刚注册的用户和被加密过的密码，这个密码的原文就是123456</p>
+<p><img src="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/image-20240526114643278.png"></p>
+<p>Discuz论坛的加密方式</p>
+<p><img src="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/image-20240526120904849.png"></p>
+<p>你正常查是查不到的，得知道它的算法后再查</p>
+<p><img src="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/image-20240526120941191.png"></p>
+<p><img src="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/image-20240526121210378.png"></p>
+<p>成功查到密码是admin</p>
+<p>3、<strong>系统-Windows-密文-NTLM&amp;HASH</strong></p>
+<p>坑：要以管理员权限运行mimikatz才可以抓取密码</p>
+<p><img src="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/image-20240526162243003.png"></p>
+<p>由于我刚装的虚拟机，还没有设置密码呢，所以密码那里写的null……</p>
+<p>4、<strong>综合-参数-密文传输-AES&amp;BASE64</strong></p>
+<p>就简单的aes和base64</p>
+<p><img src="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/image-20240526122944208.png"></p>
+<p>5、<strong>CTF赛题-buuoj-single dog-JS颜文字</strong><br>拿到一张图片，先用foremost提取文件</p>
+<p><img src="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/image-20240525185855309.png"></p>
+<p>得到一个压缩包，解压后里面的txt文件是JS颜文字，找网站解密</p>
+<p><img src="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/image-20240525185931546.png"></p>
+<p><img src="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/image-20240525190248003.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">aaencode是一种基于JavaScript的文本加密工具。其原理主要是通过执行混淆算法，将可执行的代码转换成为ASCII字符形式的字符串，并在字符串中插入一些不可见字符、注释以及字符串操作指令指令。</span><br><span class="line"></span><br><span class="line">首先，aaencode会先把要加密的代码转换成字节数组，然后再对这个字节数组的每一个元素执行加密运算。最后，它把结果转换成一组ASCII字符形式的字符串，进行输出。</span><br><span class="line"></span><br><span class="line">aaencode是一个加密工具，能够将可执行的文本编码成绝大部分ASCII字符的形式，其中少数字符需要解码后才能运行原来的程序。它的出现可以使我们在部分情况下大大提高文本的安全性。</span><br></pre></td></tr></table></figure>
+<p>直接一把梭得到flag   SUCTF{happy double eleven}</p>
+<p>6、<strong>CTF赛题-xuenixiang-Jsfuck-JSFUCK</strong></p>
+<p><img src="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/image-20240525191058306.png"></p>
+<p><img src="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/image-20240525191151391.png"></p>
+<p>查看网页源代码发现一串JSFUCK的字符</p>
+<p><img src="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/image-20240525191524982.png"></p>
+<p>找个网站运行一下，找到flag ctf{whatfk}</p>
+<h2 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h2><p><img src="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/image-20240526160429765.png"></p>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2024 f4k3r
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
