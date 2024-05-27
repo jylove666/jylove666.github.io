@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>sql注入 | f4k3r&#39;s blog</title>
+  <title>Web学习7 | f4k3r&#39;s blog</title>
   <meta name="keywords" content=" Web ">
-  <meta name="description" content="sql注入 | f4k3r&#39;s blog">
+  <meta name="description" content="Web学习7 | f4k3r&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="知识点1、打点-Web架构-语言&amp;中间件&amp;数据库&amp;系统等2、打点-Web源码-CMS开源&amp;闭源售卖&amp;自主研发等3、打点-Web源码获取-泄露安全&amp;资源监控&amp;其他等4、打点-Web域名-子域名&amp;相似域名&amp;反查域名&amp;旁注等 站库分离：就是网站和数据库不在同一台服务器中。 服务器我们放置网站的文件，数据库单独放到云数据库或者">
 <meta property="og:type" content="article">
@@ -323,9 +323,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-sql注入" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Web学习7" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">sql注入</h1>
+        <h1 class="article-title">Web学习7</h1>
     
     <div class="article-meta">
         
@@ -342,7 +342,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-05-23 19:32:16'>2024-03-14 19:31</time>
+            发布时间 : <time class="date" title='最后更新: 2024-05-27 20:14:59'>2024-05-27 16:27</time>
         
     </div>
     <div class="article-meta">
@@ -353,7 +353,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5%E5%AE%9A%E4%B9%89"><span class="toc-text">sql注入定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5%E5%88%86%E7%B1%BB"><span class="toc-text">sql注入分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E6%98%AF%E5%AD%97%E7%AC%A6%E5%9E%8B%E6%B3%A8%E5%85%A5%E8%BF%98%E6%98%AF%E6%95%B0%E5%AD%97%E5%9E%8B%E6%B3%A8%E5%85%A5"><span class="toc-text">如何判断是字符型注入还是数字型注入</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5%E7%82%B9"><span class="toc-text">注入点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AD%E5%90%88%E6%96%B9%E5%BC%8F"><span class="toc-text">闭合方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E9%97%AD%E5%90%88%E6%96%B9%E5%BC%8F"><span class="toc-text">如何判断闭合方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%90%88%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">闭合的作用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#union%E8%81%94%E5%90%88%E6%B3%A8%E5%85%A5"><span class="toc-text">union联合注入</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E7%82%B9%EF%BC%9A"><span class="toc-text">详细点：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-text">案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE"><span class="toc-text">思维导图</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -369,15 +369,60 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="sql注入定义"><a href="#sql注入定义" class="headerlink" title="sql注入定义"></a>sql注入定义</h1><p>通过把SQL命令插入到WEB表单提交或输入域名或页面请求的查询字符串，最终到达欺骗服务器执行恶意的SQL命令，从而进一步得到相应的数据信息。</p>
-<h1 id="sql注入分类"><a href="#sql注入分类" class="headerlink" title="sql注入分类"></a>sql注入分类</h1><p>数字型、字符型</p>
-<h2 id="如何判断是字符型注入还是数字型注入"><a href="#如何判断是字符型注入还是数字型注入" class="headerlink" title="如何判断是字符型注入还是数字型注入"></a>如何判断是字符型注入还是数字型注入</h2><p>使用and 1&#x3D;1 和 and 1&#x3D;2来判断，如果是数字型，and 1&#x3D;2会报错，两者都能正常显示，即为字符型注入(此时and在引号中被闭合了，无法发挥正常的功能)</p>
-<p>Union注入，报错注入，布尔注入，时间注入</p>
-<h1 id="注入点"><a href="#注入点" class="headerlink" title="注入点"></a>注入点</h1><p>可以实行注入的地方，通常是一个访问数据库的连接。</p>
-<h1 id="闭合方式"><a href="#闭合方式" class="headerlink" title="闭合方式"></a>闭合方式</h1><p>‘  ‘’  ‘)  ‘’)</p>
-<h2 id="如何判断闭合方式"><a href="#如何判断闭合方式" class="headerlink" title="如何判断闭合方式"></a>如何判断闭合方式</h2><p>例如输入?id&#x3D;1’’’报错为near 1’’’’多一个’，说明闭合符号为’</p>
-<h2 id="闭合的作用"><a href="#闭合的作用" class="headerlink" title="闭合的作用"></a>闭合的作用</h2><p>手工提交闭合符号，结束前一段查询语句，后面可以加入其他语句，查询需要的参数，不需要的语句可以用注释符号’–+’或’#’或’%23’注释掉</p>
-<h1 id="union联合注入"><a href="#union联合注入" class="headerlink" title="union联合注入"></a>union联合注入</h1>
+        <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>1、CMS指纹识别源码获取方式<br>2、习惯&amp;配置&amp;特性等获取方式<br>3、托管资产平台资源搜索监控</p>
+<h2 id="详细点："><a href="#详细点：" class="headerlink" title="详细点："></a>详细点：</h2><p>源码泄露原因：<br>1、从源码本身的特性入口<br>2、从管理员不好的习惯入口<br>3、从管理员不好的配置入口<br>4、从管理员不好的意识入口<br>5、从管理员资源信息搜集入口<br>源码泄露集合：<br>composer.json<br>git源码泄露<br>svn源码泄露<br>hg源码泄露<br>网络备份压缩文件<br>WEB-INF&#x2F;web.xml 泄露<br>DS_Store文件泄露<br>SWP 文件泄露<br>CVS泄露<br>Bzr泄露<br>GitHub源码泄露</p>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p><strong>直接获取-CMS识别-云悉指纹识别平台</strong>（要钱）<a target="_blank" rel="noopener" href="https://yunsee.cn/">https://yunsee.cn/</a></p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527165641250.png"></p>
+<p>管理员不好的备份习惯，在根目录下面备份了一个压缩包，就很有可能被扫描到，造成源码泄露</p>
+<p>备份：敏感目录文件扫描-7kbscan-WebPathBrute<br>dirsearch也可以用来扫描目录，命令dirsearch -u +ip</p>
+<p><strong>git源码泄露</strong></p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527170338753.png"></p>
+<img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527170635231.png" style="zoom: 33%;">
+
+<p>博客作者跑路了，没法复现了捏</p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527170801401.png"></p>
+<p>403状态码就是有这个文件，但是没有权限访问</p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527171011002.png"></p>
+<p>利用Githack工具获取到了源码</p>
+<p><strong>svn源码泄露</strong></p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527171119091.png"></p>
+<p>老外的网站也没了……</p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527171404736.png"></p>
+<p>存在svn泄露</p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527171615857.png"></p>
+<p>成功获取到源码</p>
+<p><strong>DS_Store泄露</strong></p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527171824766.png"></p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527172112324.png"></p>
+<p><strong>PHP特性-composer.json泄露</strong> 是php语言的特性</p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527172530872.png"></p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527172455917.png"></p>
+<p>被修了，访问不了一点</p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527172551343.png"></p>
+<p>反正就是可以知道一些框架插件信息，得到当前程序的信息，可能存在的cms名称，能更好的进行攻击。</p>
+<p><strong>下载配合-WEB-INF泄露-RoarCTF-2019-EasyJava</strong></p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527173139549.png"></p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527173217396.png"></p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527173933686.png"></p>
+<p>这样可以实现下载任意的文件（任意文件下载漏洞）的功能，先尝试下载help.docx这个文件，里面没有flag，再看阅读资料，可以下载配置文件，寻找class文件的路径<img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527174136070.png"></p>
+<p>访问class文件，再反编译，就可以得到源码了</p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527174408330.png"></p>
+<p>下载class文件，当然这题想得到flag，class文件在下面</p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527174536716.png"></p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527174945481.png"></p>
+<p>网上搜索一下java反编译的命令，看到一串base64字符解密一下就是flag，完事</p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527174924408.png"></p>
+<p><strong>github泄露</strong></p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527195633204.png"></p>
+<p>观察js文件，例如小迪的博客，里面就能查看到他是用的zblog搭建的</p>
+<p><a target="_blank" rel="noopener" href="http://www.yiwuku.com查询一下这个网站,发现里面就提供了zblog的源码,这样小迪博客的源码就相当于泄露了/">www.yiwuku.com查询一下这个网站，发现里面就提供了zblog的源码，这样小迪博客的源码就相当于泄露了</a></p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527200017978.png"></p>
+<p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527200137545.png"></p>
+<p>github上也能找到相关的源码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">GITHUB 资源搜索：</span><br><span class="line">in:name test #仓库标题搜索含有关键字</span><br><span class="line">in:descripton test #仓库描述搜索含有关键字</span><br><span class="line">in:readme test #Readme 文件搜素含有关键字</span><br><span class="line">stars:&gt;3000 test #stars 数量大于 3000 的搜索关键字</span><br><span class="line">stars:1000..3000 test #stars 数 量 大 于 1000 小 于 3000 的 搜 索 关 键 字</span><br><span class="line">forks:&gt;1000 test</span><br><span class="line">\#forks 数量大于 1000 的搜索关键字</span><br><span class="line">forks:1000..3000 test #forks 数 量 大 于 1000 小 于 3000 的 搜 索 关 键 字</span><br><span class="line">size:&gt;=5000 test</span><br><span class="line">\#指定仓库大于 5000k(5M)的搜索关键字 pushed:&gt;2019-02-12 test #发布时间大于 2019-02-12 的</span><br><span class="line">搜 索 关 键 字 created:&gt;2019-02-12 test # 创 建 时 间 大 于 2019-02-12 的 搜 索 关 键</span><br><span class="line">字 user:test</span><br><span class="line">\#用户名搜素</span><br><span class="line">license:apache-2.0 test #明确仓库的 LICENSE 搜索关键字 language:java test #在 java 语</span><br><span class="line">言的代码中搜索关键字</span><br><span class="line">user:test in:name test #组合搜索,用户名 test 的标题含有 test 的</span><br><span class="line">关键字配合谷歌搜索：</span><br><span class="line">site:Github.com smtp</span><br><span class="line">site:Github.com smtp @qq.com</span><br><span class="line">site:Github.com smtp @126.com</span><br><span class="line">site:Github.com smtp @163.com</span><br><span class="line">site:Github.com smtp @sina.com.cn</span><br><span class="line">site:Github.com smtp password</span><br><span class="line">site:Github.com String password smtp</span><br></pre></td></tr></table></figure>
+
+<h2 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h2><p><img src="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/image-20240527201436507.png"></p>
+
       
        
     </div>
