@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>sql注入 | f4k3r&#39;s blog</title>
+  <title>Web学习8 | f4k3r&#39;s blog</title>
   <meta name="keywords" content=" Web ">
-  <meta name="description" content="sql注入 | f4k3r&#39;s blog">
+  <meta name="description" content="Web学习8 | f4k3r&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="知识点1、获取网络信息-服务厂商&amp;网络架构2、获取服务信息-应用协议（Web应用 FTP SSH redis 各种服务）&amp;内网资产3、获取阻碍信息-CDN&amp;WAF&amp;负载&amp;防火墙 详细点查询ip，可以了解到使用的是什么服务器，用的是什么网站来购买的域名，子域名之类的有用的信息    这个Registrar URL 说明域名是在阿里云买的  web服务器本身的i">
 <meta property="og:type" content="article">
@@ -336,9 +336,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-sql注入" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Web学习8" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">sql注入</h1>
+        <h1 class="article-title">Web学习8</h1>
     
     <div class="article-meta">
         
@@ -355,7 +355,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-05-23 19:32:16'>2024-03-14 19:31</time>
+            发布时间 : <time class="date" title='最后更新: 2024-05-28 17:08:36'>2024-05-28 10:48</time>
         
     </div>
     <div class="article-meta">
@@ -366,7 +366,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5%E5%AE%9A%E4%B9%89"><span class="toc-text">sql注入定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5%E5%88%86%E7%B1%BB"><span class="toc-text">sql注入分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E6%98%AF%E5%AD%97%E7%AC%A6%E5%9E%8B%E6%B3%A8%E5%85%A5%E8%BF%98%E6%98%AF%E6%95%B0%E5%AD%97%E5%9E%8B%E6%B3%A8%E5%85%A5"><span class="toc-text">如何判断是字符型注入还是数字型注入</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5%E7%82%B9"><span class="toc-text">注入点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AD%E5%90%88%E6%96%B9%E5%BC%8F"><span class="toc-text">闭合方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E9%97%AD%E5%90%88%E6%96%B9%E5%BC%8F"><span class="toc-text">如何判断闭合方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%90%88%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">闭合的作用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#union%E8%81%94%E5%90%88%E6%B3%A8%E5%85%A5"><span class="toc-text">union联合注入</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E7%82%B9"><span class="toc-text">详细点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE"><span class="toc-text">思维导图</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -382,15 +382,44 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="sql注入定义"><a href="#sql注入定义" class="headerlink" title="sql注入定义"></a>sql注入定义</h1><p>通过把SQL命令插入到WEB表单提交或输入域名或页面请求的查询字符串，最终到达欺骗服务器执行恶意的SQL命令，从而进一步得到相应的数据信息。</p>
-<h1 id="sql注入分类"><a href="#sql注入分类" class="headerlink" title="sql注入分类"></a>sql注入分类</h1><p>数字型、字符型</p>
-<h2 id="如何判断是字符型注入还是数字型注入"><a href="#如何判断是字符型注入还是数字型注入" class="headerlink" title="如何判断是字符型注入还是数字型注入"></a>如何判断是字符型注入还是数字型注入</h2><p>使用and 1&#x3D;1 和 and 1&#x3D;2来判断，如果是数字型，and 1&#x3D;2会报错，两者都能正常显示，即为字符型注入(此时and在引号中被闭合了，无法发挥正常的功能)</p>
-<p>Union注入，报错注入，布尔注入，时间注入</p>
-<h1 id="注入点"><a href="#注入点" class="headerlink" title="注入点"></a>注入点</h1><p>可以实行注入的地方，通常是一个访问数据库的连接。</p>
-<h1 id="闭合方式"><a href="#闭合方式" class="headerlink" title="闭合方式"></a>闭合方式</h1><p>‘  ‘’  ‘)  ‘’)</p>
-<h2 id="如何判断闭合方式"><a href="#如何判断闭合方式" class="headerlink" title="如何判断闭合方式"></a>如何判断闭合方式</h2><p>例如输入?id&#x3D;1’’’报错为near 1’’’’多一个’，说明闭合符号为’</p>
-<h2 id="闭合的作用"><a href="#闭合的作用" class="headerlink" title="闭合的作用"></a>闭合的作用</h2><p>手工提交闭合符号，结束前一段查询语句，后面可以加入其他语句，查询需要的参数，不需要的语句可以用注释符号’–+’或’#’或’%23’注释掉</p>
-<h1 id="union联合注入"><a href="#union联合注入" class="headerlink" title="union联合注入"></a>union联合注入</h1>
+        <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>1、获取网络信息-服务厂商&amp;网络架构<br>2、获取服务信息-应用协议（Web应用 FTP SSH redis 各种服务）&amp;内网资产<br>3、获取阻碍信息-CDN&amp;WAF&amp;负载&amp;防火墙</p>
+<h2 id="详细点"><a href="#详细点" class="headerlink" title="详细点"></a>详细点</h2><p><strong>查询ip</strong>，可以了解到使用的是什么服务器，用的是什么网站来购买的域名，子域名之类的有用的信息</p>
+<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/image-20240528111607362.png"></p>
+<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/image-20240528111910055.png"></p>
+<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/image-20240528112120598.png"></p>
+<p>这个Registrar URL 说明域名是在阿里云买的</p>
+<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/image-20240528112528498.png"></p>
+<p>web服务器本身的ip是192.168.1.13,但是你在扫描时会自动映射到171.40.78.83时的公网ip，所以啥也扫不到</p>
+<p><strong>端口渗透总结</strong><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/MSB_WLAQ/article/details/120640304">https://blog.csdn.net/MSB_WLAQ/article/details/120640304</a></p>
+<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/image-20240528121637192.png"></p>
+<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/image-20240528122805726.png"></p>
+<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/image-20240528123007223.png"></p>
+<p><strong>namp和masscan扫描开放的端口</strong></p>
+<p>旁注：同服务器下面的不同WEB应用查询技术<br>C段：同网段下面的不同服务器IP下的WEB应用查询技术  </p>
+<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/image-20240528124109641.png"></p>
+<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/image-20240528124419414.png"></p>
+<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/image-20240528124507228.png"></p>
+<p>有很多网站以前都在这个域名建过站</p>
+<p>开通了cdn服务（访问加速）安全测试相当于在对节点进行测试<br>北京：北京IP<br>南京：江苏IP</p>
+<p><strong>超级ping识别是否开启cdn服务</strong></p>
+<p>小迪的网站没有开cdn服务，所以全国各地都是传香港服务器的节点</p>
+<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/image-20240528125359571.png"></p>
+<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/image-20240528125923862.png"></p>
+<p>百度就开了cdn服务，用户登录时会选择就近的服务器提供服务，保障延迟</p>
+<p><strong>看图识WAF</strong><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/charon1937/p/13799467.html">https://www.cnblogs.com/charon1937/p/13799467.html</a><br>多个waf图片收集</p>
+<p><strong>waf狗识别防火墙类型</strong></p>
+<p>配置方式文章<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_61533538/article/details/137720493?ops_request_misc=&request_id=&biz_id=102&utm_term=wafw00f&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-137720493.nonecase&spm=1018.2226.3001.4187">https://blog.csdn.net/m0_61533538/article/details/137720493?ops_request_misc=&amp;request_id=&amp;biz_id=102&amp;utm_term=wafw00f&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-137720493.nonecase&amp;spm=1018.2226.3001.4187</a></p>
+<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/image-20240528163525109.png"></p>
+<p>小迪的网站没有装waf</p>
+<p><strong>识别有无负载均衡</strong></p>
+<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/image-20240528164611243.png"></p>
+<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/image-20240528165016088.png"></p>
+<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/image-20240528165110031.png"></p>
+<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/image-20240528165127997.png"></p>
+<p>百度有负载均衡，小迪的和我的垃圾网站都没有。</p>
+<p><strong>防火墙</strong><br>系统自带防火墙，各种公司制作的防火墙<br>nmap可以识别防火墙，但是意义不大</p>
+<h2 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h2><p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/image-20240528170806340.png"></p>
+
       
        
     </div>
