@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>sql注入 | f4k3r&#39;s blog</title>
+  <title>LitCTF2023_WP | f4k3r&#39;s blog</title>
   <meta name="keywords" content=" Web ">
-  <meta name="description" content="sql注入 | f4k3r&#39;s blog">
+  <meta name="description" content="LitCTF2023_WP | f4k3r&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Web我Flag呢？ 查看源代码就可以找到flag PHP是世界上最好的语言！！ 直接命令执行就可以直接得到flag 导弹迷踪  找到game.js将代码复制到记事本里，找到了flag Follow me and hack me 简单的get post传参题 Ping 尝试ping，弹出了js弹窗，我们将js关闭 常用浏览器禁用JavaScript方法：https:&#x2F;&#x2F;blog.csdn.net&#x2F;">
 <meta property="og:type" content="article">
@@ -378,9 +378,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-sql注入" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-LitCTF2023_WP" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">sql注入</h1>
+        <h1 class="article-title">LitCTF2023_WP</h1>
     
     <div class="article-meta">
         
@@ -397,7 +397,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-05-23 19:32:16'>2024-03-14 19:31</time>
+            发布时间 : <time class="date" title='最后更新: 2024-05-30 19:50:23'>2024-05-30 17:33</time>
         
     </div>
     <div class="article-meta">
@@ -408,7 +408,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5%E5%AE%9A%E4%B9%89"><span class="toc-text">sql注入定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5%E5%88%86%E7%B1%BB"><span class="toc-text">sql注入分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E6%98%AF%E5%AD%97%E7%AC%A6%E5%9E%8B%E6%B3%A8%E5%85%A5%E8%BF%98%E6%98%AF%E6%95%B0%E5%AD%97%E5%9E%8B%E6%B3%A8%E5%85%A5"><span class="toc-text">如何判断是字符型注入还是数字型注入</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5%E7%82%B9"><span class="toc-text">注入点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AD%E5%90%88%E6%96%B9%E5%BC%8F"><span class="toc-text">闭合方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E9%97%AD%E5%90%88%E6%96%B9%E5%BC%8F"><span class="toc-text">如何判断闭合方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%90%88%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">闭合的作用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#union%E8%81%94%E5%90%88%E6%B3%A8%E5%85%A5"><span class="toc-text">union联合注入</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91Flag%E5%91%A2%EF%BC%9F"><span class="toc-text">我Flag呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP%E6%98%AF%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E8%AF%AD%E8%A8%80%EF%BC%81%EF%BC%81"><span class="toc-text">PHP是世界上最好的语言！！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%BC%B9%E8%BF%B7%E8%B8%AA"><span class="toc-text">导弹迷踪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Follow-me-and-hack-me"><span class="toc-text">Follow me and hack me</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ping"><span class="toc-text">Ping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1zjs"><span class="toc-text">1zjs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Http-pro-max-plus"><span class="toc-text">Http pro max plus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vim-yyds"><span class="toc-text">Vim yyds</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%B1%E5%BD%93%E6%97%A0%E4%BA%8B%E5%8F%91%E7%94%9F"><span class="toc-text">就当无事发生</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -424,15 +424,52 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="sql注入定义"><a href="#sql注入定义" class="headerlink" title="sql注入定义"></a>sql注入定义</h1><p>通过把SQL命令插入到WEB表单提交或输入域名或页面请求的查询字符串，最终到达欺骗服务器执行恶意的SQL命令，从而进一步得到相应的数据信息。</p>
-<h1 id="sql注入分类"><a href="#sql注入分类" class="headerlink" title="sql注入分类"></a>sql注入分类</h1><p>数字型、字符型</p>
-<h2 id="如何判断是字符型注入还是数字型注入"><a href="#如何判断是字符型注入还是数字型注入" class="headerlink" title="如何判断是字符型注入还是数字型注入"></a>如何判断是字符型注入还是数字型注入</h2><p>使用and 1&#x3D;1 和 and 1&#x3D;2来判断，如果是数字型，and 1&#x3D;2会报错，两者都能正常显示，即为字符型注入(此时and在引号中被闭合了，无法发挥正常的功能)</p>
-<p>Union注入，报错注入，布尔注入，时间注入</p>
-<h1 id="注入点"><a href="#注入点" class="headerlink" title="注入点"></a>注入点</h1><p>可以实行注入的地方，通常是一个访问数据库的连接。</p>
-<h1 id="闭合方式"><a href="#闭合方式" class="headerlink" title="闭合方式"></a>闭合方式</h1><p>‘  ‘’  ‘)  ‘’)</p>
-<h2 id="如何判断闭合方式"><a href="#如何判断闭合方式" class="headerlink" title="如何判断闭合方式"></a>如何判断闭合方式</h2><p>例如输入?id&#x3D;1’’’报错为near 1’’’’多一个’，说明闭合符号为’</p>
-<h2 id="闭合的作用"><a href="#闭合的作用" class="headerlink" title="闭合的作用"></a>闭合的作用</h2><p>手工提交闭合符号，结束前一段查询语句，后面可以加入其他语句，查询需要的参数，不需要的语句可以用注释符号’–+’或’#’或’%23’注释掉</p>
-<h1 id="union联合注入"><a href="#union联合注入" class="headerlink" title="union联合注入"></a>union联合注入</h1>
+        <h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="我Flag呢？"><a href="#我Flag呢？" class="headerlink" title="我Flag呢？"></a>我Flag呢？</h3><p><img src="/2024/05/30/LitCTF2023_WP/image-20240530173915564.png"></p>
+<p>查看源代码就可以找到flag</p>
+<h3 id="PHP是世界上最好的语言！！"><a href="#PHP是世界上最好的语言！！" class="headerlink" title="PHP是世界上最好的语言！！"></a>PHP是世界上最好的语言！！</h3><p><img src="/2024/05/30/LitCTF2023_WP/image-20240530174023169.png"></p>
+<p>直接命令执行就可以直接得到flag</p>
+<h3 id="导弹迷踪"><a href="#导弹迷踪" class="headerlink" title="导弹迷踪"></a>导弹迷踪</h3><p><img src="/2024/05/30/LitCTF2023_WP/image-20240530174146219.png"></p>
+<p><img src="/2024/05/30/LitCTF2023_WP/image-20240530174208141.png"></p>
+<p>找到game.js将代码复制到记事本里，找到了flag</p>
+<h3 id="Follow-me-and-hack-me"><a href="#Follow-me-and-hack-me" class="headerlink" title="Follow me and hack me"></a>Follow me and hack me</h3><p><img src="/2024/05/30/LitCTF2023_WP/image-20240530174338317.png"></p>
+<p>简单的get post传参题</p>
+<h3 id="Ping"><a href="#Ping" class="headerlink" title="Ping"></a>Ping</h3><p><img src="/2024/05/30/LitCTF2023_WP/image-20240530174436941.png"></p>
+<p>尝试ping，弹出了js弹窗，我们将js关闭</p>
+<p>常用浏览器禁用JavaScript方法：<a target="_blank" rel="noopener" href="https://blog.csdn.net/2301_76773796/article/details/138292629">https://blog.csdn.net/2301_76773796/article/details/138292629</a></p>
+<p><img src="/2024/05/30/LitCTF2023_WP/image-20240530174621509.png"></p>
+<p>将靶场禁用js，这样就可以成功得到回显，有回显就尝试命令执行</p>
+<p><img src="/2024/05/30/LitCTF2023_WP/image-20240530174703162.png"></p>
+<p><img src="/2024/05/30/LitCTF2023_WP/image-20240530174742501.png"></p>
+<p>直接执行命令127.0.0.1&amp;cat &#x2F;flag 就得到了flag</p>
+<h3 id="1zjs"><a href="#1zjs" class="headerlink" title="1zjs"></a>1zjs</h3><p>进来看到一个魔方，F12打开控制台</p>
+<p><img src="/2024/05/30/LitCTF2023_WP/image-20240530175125761.png"></p>
+<p>查看index.umd.js的内容</p>
+<p><img src="/2024/05/30/LitCTF2023_WP/image-20240530175219144.png"></p>
+<p>在这行文字尾部发现了关键，查看这个网址</p>
+<p><img src="/2024/05/30/LitCTF2023_WP/image-20240530175249594.png"></p>
+<p>很明显的jsfuck，直接拖到控制台执行就可以了</p>
+<p><img src="/2024/05/30/LitCTF2023_WP/image-20240530175317090.png"></p>
+<h3 id="Http-pro-max-plus"><a href="#Http-pro-max-plus" class="headerlink" title="Http pro max plus"></a>Http pro max plus</h3><p>就考一些简单的http知识</p>
+<p><img src="/2024/05/30/LitCTF2023_WP/image-20240530175445012.png"></p>
+<p><img src="/2024/05/30/LitCTF2023_WP/image-20240530175809510.png"></p>
+<p>得到一个地址</p>
+<p><img src="/2024/05/30/LitCTF2023_WP/image-20240530175909719.png"></p>
+<p>观看p站三部曲QAQ</p>
+<p><img src="/2024/05/30/LitCTF2023_WP/image-20240530180015453.png"></p>
+<p>查看源码又得到一个地址</p>
+<p><img src="/2024/05/30/LitCTF2023_WP/image-20240530180046067.png"></p>
+<p>得到flag</p>
+<h3 id="Vim-yyds"><a href="#Vim-yyds" class="headerlink" title="Vim yyds"></a>Vim yyds</h3><p><img src="/2024/05/30/LitCTF2023_WP/image-20240530180132456.png"></p>
+<p><img src="/2024/05/30/LitCTF2023_WP/image-20240530180146026.png"></p>
+<p>根据提示说漏了，应该是源码泄露了，我们尝试扫一下后台</p>
+<p><img src="/2024/05/30/LitCTF2023_WP/image-20240530180352027.png"></p>
+<p>扫出来源码了</p>
+<p><img src="/2024/05/30/LitCTF2023_WP/image-20240530180531359.png"></p>
+<p>打开进行代码审计，cmd函数用来命令执行，同时要输入密码即Give_Me_Your_Flag的base64编码才行</p>
+<p><img src="/2024/05/30/LitCTF2023_WP/image-20240530180816232.png"></p>
+<h3 id="就当无事发生"><a href="#就当无事发生" class="headerlink" title="就当无事发生"></a>就当无事发生</h3><p>emmm这题的环境好像已经没了，看别人的wp就是去找一下探姬的github主页就能社工到flag了</p>
+<p><img src="/2024/05/30/LitCTF2023_WP/image-20240530181000365.png"></p>
+
       
        
     </div>
