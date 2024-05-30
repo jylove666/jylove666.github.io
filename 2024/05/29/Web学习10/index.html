@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Web学习2 | f4k3r&#39;s blog</title>
+  <title>Web学习10 | f4k3r&#39;s blog</title>
   <meta name="keywords" content=" Web ">
-  <meta name="description" content="Web学习2 | f4k3r&#39;s blog">
+  <meta name="description" content="Web学习10 | f4k3r&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="知识点：1、网络空间四大引擎-Fofa&amp;Quake&amp;Shodan&amp;Zoomeye2、自动化信息收集项目-ARL灯塔&amp;Suize水泽&amp;Kunyu坤舆3、单点功能信息收集项目-企查&amp;子域名&amp;指纹识别&amp;社工信息 黑暗引擎：https:&#x2F;&#x2F;fofa.sohttps:&#x2F;&#x2F;quake.360.cnwww.shodan.iowww.zoomeye.">
 <meta property="og:type" content="article">
@@ -344,9 +344,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Web学习2" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Web学习10" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Web学习2</h1>
+        <h1 class="article-title">Web学习10</h1>
     
     <div class="article-meta">
         
@@ -363,7 +363,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-05-23 19:21:16'>2024-05-23 12:34</time>
+            发布时间 : <time class="date" title='最后更新: 2024-05-29 20:12:27'>2024-05-29 18:34</time>
         
     </div>
     <div class="article-meta">
@@ -374,7 +374,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-text">网站搭建前置知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WEB%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84%E7%B1%BB"><span class="toc-text">WEB应用架构类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WEB%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E5%88%86%E7%B1%BB"><span class="toc-text">WEB应用安全漏洞分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WEB%E8%AF%B7%E6%B1%82%E8%BF%94%E5%9B%9E%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-text">WEB请求返回的过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http%E6%95%B0%E6%8D%AE%E5%8C%85%E7%AE%80%E5%8D%95%E7%9F%A5%E8%AF%86"><span class="toc-text">http数据包简单知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E7%8E%B0"><span class="toc-text">复现</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-text">案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE"><span class="toc-text">思维导图</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -390,34 +390,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="网站搭建前置知识"><a href="#网站搭建前置知识" class="headerlink" title="网站搭建前置知识"></a>网站搭建前置知识</h2><p>域名，子域名，DNS，HTTP&#x2F;HTTPS,证书等<br>如何搭建一个网站：<br>1、准备一个域名（阿里云购买）<br>2、购买一个服务器（阿里云）<br>3、宝塔一键部署</p>
-<h2 id="WEB应用架构类"><a href="#WEB应用架构类" class="headerlink" title="WEB应用架构类"></a>WEB应用架构类</h2><p>理解不同WEB应用组成角色功能架构：<br>开发语言，程序源码，中间件容器，数据库类型，服务器操作系统，第三方软件等<br><strong>开发语言</strong>：asp，php，aspx，jsp，java，python，ruby，go，html，javascript等<br><strong>程序源码</strong>：根据开发语言分类；应用类型分类；开源CMS分类；开发框架（一些提前封装好的功能，避免自己造轮子）分类等<br><strong>中间件容器</strong>（支持网站运行的东西）：IIS，Apache，Nginx，Tomcat，Weblogic，Jboos，glasshfish等<br><strong>数据库类型</strong>（用来存储数据，储存一些用户的信息，例如用户的数据，管理员的数据）：Access，Mysql，Mssql，Oracle，db2，Sybase，Redis，MongoDB等<br><strong>服务器操作系统</strong>：Windows系列，Linux系列，Mac系列等<br><strong>第三方软件</strong>（可有可无）：phpmyadmin，vs-ftpd，VNC，ELK，Openssh等 在搭建网站的时候可以实现更多别的功能，以更好的管理网站</p>
-<p>注：1、语言不同，产生的漏洞也不同。2、不同的程序容易产生的漏洞也不同。<br>3、知道程序的名字（cms），相应的漏洞能直接对应，框架同理</p>
-<h2 id="WEB应用安全漏洞分类"><a href="#WEB应用安全漏洞分类" class="headerlink" title="WEB应用安全漏洞分类"></a>WEB应用安全漏洞分类</h2><p>SQL注入，文件安全（文件的上传，下载，打开，关闭），RCE执行，XSS跨站，CSRF&#x2F;SSRF&#x2F;CRLF,反序列化，逻辑越权，未授权访问，XXE&#x2F;XML，弱口令安全等</p>
-<h2 id="WEB请求返回的过程"><a href="#WEB请求返回的过程" class="headerlink" title="WEB请求返回的过程"></a>WEB请求返回的过程</h2><p><img src="/2024/05/23/Web%E5%AD%A6%E4%B9%A02/image-20240523152418149.png"></p>
-<p><img src="/2024/05/23/Web%E5%AD%A6%E4%B9%A02/image-20240523152429989.png"></p>
-<p>burpsuit就是将数据包拦截进行代理（Proxy），进行一系列的操作</p>
-<p><img src="/2024/05/23/Web%E5%AD%A6%E4%B9%A02/image-20240523152446715.png"></p>
-<h2 id="http数据包简单知识"><a href="#http数据包简单知识" class="headerlink" title="http数据包简单知识"></a>http数据包简单知识</h2><p>Accept：指浏览器或其他客户可以接受的MIME文件格式，Servlet可以根据它判断并返回适当的文件格式。<br>User-Agent：是客户浏览器名称<br>Host：对应网址URL中的Web名称和端口号（访问的网站地址）<br>Accept-Language：指出浏览器可以接受的语言种类，如en或en-us，指英语<br>connection：用来告诉服务器是否可以维持固定的HTTP连接。http是无连接的，HTTP&#x2F;1.1使用Keep-Alive为默认值，这样，当浏览器需要多个文件时(比如一个HTML文件和相关的图形文件)，不需要每次都建立连接<br>Cookie：浏览器用这个属性向服务器发送Cookie。Cookie是浏览器中寄存的小型数据体，它可以记载和服务器相关的用户信息，也可以用来实现会话功能。<br>Referer：表明产生请求的网页URL。比如从网页&#x2F;icconcept&#x2F;index.jsp中点击一个链接到网页&#x2F;icwork&#x2F;search，在向服务器发送的GET&#x2F;icwork&#x2F;search中的请求中，Referer是<a target="_blank" rel="noopener" href="http://hostname:8080/icconcept/index.jsp%E3%80%82%E8%BF%99%E4%B8%AA%E5%B1%9E%E6%80%A7%E5%8F%AF%E4%BB%A5%E7%94%A8%E6%9D%A5%E8%B7%9F%E8%B8%AAWeb%E8%AF%B7%E6%B1%82%E6%98%AF%E4%BB%8E%E4%BB%80%E4%B9%88%E7%BD%91%E7%AB%99%E6%9D%A5%E7%9A%84%E3%80%82">http://hostname:8080/icconcept/index.jsp。这个属性可以用来跟踪Web请求是从什么网站来的。</a><br>Content-Type：用来表明request的内容类型。可以用HttpServletRequest的getContentType（）方法取得。<br>Accept-Charset：指出浏览器可以接受的字符编码。英文浏览器的默认值是ISO-8859-1<br>Accept-Encoding：指出浏览器可以接受的编码方式。编码方式不同于文件格式，它是为了压缩文件并加速文件传递速度。浏览器在接收到Web相应之后先解码，然后再检查文件格式。</p>
-<p>文件夹 403存在 404不存在<br>文件 200存在 404不存在<br>3XX 跳转 处置过程 判断可有可无 无法判断文件是否存在<br>5XX 内部错误 服务器问题 判断可有可无 无法判断文件是否存在</p>
-<h2 id="复现"><a href="#复现" class="headerlink" title="复现"></a>复现</h2><p>1、抓包实现新浪新闻刷赞功能，似乎burpsuit已经无法抓到点赞的数据包了，bug被修复了……当尝试点赞抓包的时候，burp没啥反应，QAQ。当然这个刷赞其他网站基本都不行，因为要登录才能点赞，登录后会记录你的cookie值，一个用户只能点赞一次。</p>
-<p>2、抓取电脑访问百度的数据包，浏览器为火狐</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GET /su?ie=utf-8&amp;action=opensearch&amp;wd=baidu HTTP/1.1</span><br><span class="line">Host: www.baidu.com</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0</span><br><span class="line">Accept: */*</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: close</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2024/05/23/Web%E5%AD%A6%E4%B9%A02/image-20240523162642585.png"></p>
-<p>当用模拟器访问时，传递的数据包会泄露你是安卓系统的，所以两个系统访问所展现的界面是有所不同的。可以通过改包在网页上运行安卓的页面。</p>
-<p><strong>实现在浏览器页面打开安卓系统呈现的页面：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">火狐浏览器访问数据包</span><br><span class="line">GET /?src=so.com HTTP/1.1</span><br><span class="line">Host: www.so.com</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Sec-Fetch-Dest: document</span><br><span class="line">Sec-Fetch-Mode: navigate</span><br><span class="line">Sec-Fetch-Site: none</span><br><span class="line">Sec-Fetch-User: ?1</span><br><span class="line">Priority: u=1</span><br><span class="line"></span><br><span class="line">安卓系统访问数据包</span><br><span class="line">GET /?src=so.com HTTP/1.1</span><br><span class="line">Host: m.so.com</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">User-Agent: Mozilla/5.0 (Linux; Android 9; ASUS_I005DA Build/PI) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.70 Mobile Safari/537.36</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line">Cookie: QiHooGUID=A379DDD83D2D8B552EE941AE14E8E66E.1716456575214; __guid=71247813.5119415814913980108.1716456575328.3118; env_webp=1; stc_ls_sa=aV806RbYA(; _S=d1ge2i24p0bsq7jdg2s6v2909p</span><br></pre></td></tr></table></figure>
-<p><img src="/2024/05/23/Web%E5%AD%A6%E4%B9%A02/image-20240523185717748.png"></p>
-<p><img src="/2024/05/23/Web%E5%AD%A6%E4%B9%A02/image-20240523185742359.png"></p>
-<p>先在burp上设置一个ip和端口进行监听，然后在安卓模拟器上手动设置同样的 ip端口，将数据包导入到burp上</p>
-<img src="/2024/05/23/Web%E5%AD%A6%E4%B9%A02/image-20240523185845439.png" style="zoom: 33%;">
-
-
-
-<p><img src="/2024/05/23/Web%E5%AD%A6%E4%B9%A02/image-20240523185428030.png"></p>
-<p>将浏览器的UA改为安卓的UA然后再进行放包，成功实现在浏览器上显示安卓页面的效果</p>
-<p><img src="/2024/05/23/Web%E5%AD%A6%E4%B9%A02/image-20240523185325626.png"></p>
+        <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>1、小程序-外在-资产收集<br>2、APP-外在&amp;内在-资产收集</p>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p><strong>安卓瑟琴软件抓包</strong></p>
+<p>通过抓包收集到了瑟琴软件的php版本以及ip地址</p>
+<p><img src="/2024/05/29/Web%E5%AD%A6%E4%B9%A010/image-20240529190816312.png"></p>
+<p>知道ip地址后就可以查看有哪些开放的端口</p>
+<p><img src="/2024/05/29/Web%E5%AD%A6%E4%B9%A010/image-20240529191006622.png"></p>
+<p><img src="/2024/05/29/Web%E5%AD%A6%E4%B9%A010/image-20240529191103370.png"></p>
+<p>提供服务的地址</p>
+<p><img src="/2024/05/29/Web%E5%AD%A6%E4%B9%A010/image-20240529191351155.png"></p>
+<p>壳为了防止被逆向破解</p>
+<p><img src="/2024/05/29/Web%E5%AD%A6%E4%B9%A010/image-20240529200748561.png"></p>
+<p><img src="/2024/05/29/Web%E5%AD%A6%E4%B9%A010/image-20240529200851965.png"></p>
+<p><img src="/2024/05/29/Web%E5%AD%A6%E4%B9%A010/image-20240529200908367.png"></p>
+<p><strong>关于壳</strong>，一般在CTF比赛里都是放在re里面考，之前就做过一道用nspack加壳的题目，反正就是在网上找工具就可以脱壳</p>
+<p>APP 安卓入手<br>1、外在-抓包封包-资产<br>资产收集-资产提取-ICO,MD5-黑暗引擎搜索相关资产(fofa.so)<br>1.1、外在-功能逻辑（播放次数的修改）<br>2、内在-反编译-JAVA代码-代码审计<br>2.1、内在-反编译-提取RES资源-黑暗资产收集</p>
+<p><strong>微信小程序抓包</strong></p>
+<p><img src="/2024/05/29/Web%E5%AD%A6%E4%B9%A010/image-20240529194729381.png"></p>
+<p>前面的课已经详细操作过小程序抓包的流程，就不再搞了。</p>
+<h2 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h2><p><img src="/2024/05/29/Web%E5%AD%A6%E4%B9%A010/image-20240529201220552.png"></p>
 
       
        
