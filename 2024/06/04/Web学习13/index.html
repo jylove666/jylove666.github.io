@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Web学习9 | f4k3r&#39;s blog</title>
+  <title>Web学习13 | f4k3r&#39;s blog</title>
   <meta name="keywords" content=" Web ">
-  <meta name="description" content="Web学习9 | f4k3r&#39;s blog">
+  <meta name="description" content="Web学习13 | f4k3r&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="&lt;!DOCTYPE html&gt; &lt;html&gt; &lt;head&gt; &lt;meta charset&#x3D;&quot;utf-8&quot;&gt; &lt;title&gt;tommmy4&lt;&#x2F;title&gt; &lt;style type&#x3D;&quot;text&#x2F;css&quot;&gt; ul&amp;#123;&#x2F;*设置导航栏的框框*&#x2F; margin: 30px auto">
 <meta property="og:type" content="article">
@@ -389,9 +389,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Web学习9" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Web学习13" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Web学习9</h1>
+        <h1 class="article-title">Web学习13</h1>
     
     <div class="article-meta">
         
@@ -408,7 +408,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-05-29 17:21:39'>2024-05-28 17:22</time>
+            发布时间 : <time class="date" title='最后更新: 2024-06-04 14:07:33'>2024-06-04 12:16</time>
         
     </div>
     <div class="article-meta">
@@ -419,7 +419,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-text">案例</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-text">案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4"><span class="toc-text">文件删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="toc-text">文件读取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5"><span class="toc-text">文件写入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-text">文件包含</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -435,35 +435,77 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>0、CDN知识-工作原理及阻碍<br>1、CDN配置-域名&amp;区域&amp;类型<br>2、CDN绕过-靠谱十余种技战法<br>3、CDN绑定-HOSTS绑定指向访问</p>
-<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A09/image-20240528172702800.png"></p>
-<p>相关知识：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/33440472">https://zhuanlan.zhihu.com/p/33440472</a></p>
-<p>前置知识：<br>1、传统访问：用户访问域名-&gt;解析服务器IP-&gt;访问目标主机<br>2、普通CDN：用户访问域名-&gt;CDN节点-&gt;真实服务器IP-&gt;访问目标主机<br>3、带WAF的CDN：用户访问域名-&gt;CDN节点（WAF）-&gt;真实服务器IP-&gt;访问目标主机</p>
-<p>CDN配置：<br>配置1：加速域名-需要启用加速的域名<br>配置2：加速区域-需要启用加速的地区<br>配置3：加速类型-需要启用加速的资源</p>
-<p>判定标准：<br>nslookup，各地ping（出现多个IP即启用CDN服务）</p>
-<p>案例资源：<br>超级 Ping：<a target="_blank" rel="noopener" href="https://www.17ce.com/">https://www.17ce.com/</a><br>接口查询：<a target="_blank" rel="noopener" href="https://get-site-ip.com/">https://get-site-ip.com/</a><br>国外请求：<a target="_blank" rel="noopener" href="https://tools.ipip.net/cdn.php">https://tools.ipip.net/cdn.php</a><br>全网扫描：<a target="_blank" rel="noopener" href="https://github.com/Tai7sy/fuckcdn">https://github.com/Tai7sy/fuckcdn</a></p>
-<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p><strong>CDN绕过-漏洞&amp;遗留文件</strong><br><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A09/image-20240529132135607.png"></p>
-<p>phpinfo配置页面可以看到服务器内网的ip地址</p>
-<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A09/image-20240529132510807.png"></p>
-<p>ping或请求网站 你自己的请求的 所有CDN节点<br>对方自己的服务器去请求你设置资源 所以暴露真实IP</p>
-<p>利用ssrf漏洞获得真实ip地址<br>47.94.236.117开了一个web服务 记录日志<br><a target="_blank" rel="noopener" href="http://www.yansiqi.com/">www.yansiqi.com</a> ssrf漏洞（会接受用户的数据并利用服务器去请求）</p>
-<p>漏洞去请求 47.96.236.117<br>日志就会记录访问的ip 访问的服务器IP</p>
-<p><strong>CDN绕过-子域名查询操作</strong></p>
-<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A09/image-20240529153222550.png"></p>
-<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A09/image-20240529153426523.png"></p>
-<p>第一个ping <a target="_blank" rel="noopener" href="http://www.sp910.com/">www.sp910.com</a> ,第二个ping sp910.com，一个存在CDN一个不存在，第二个找到了真实的ip，他只加速了<a target="_blank" rel="noopener" href="http://www.sp910.com/">www.sp910.com</a></p>
-<p><strong>CDN绕过-接口查询国外访问</strong></p>
-<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A09/image-20240529154101516.png"></p>
-<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A09/image-20240529154932618.png"></p>
-<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A09/image-20240529155029802.png"></p>
-<p>查不到真实ip了，人家貌似有防备了，改成cdn加速全球了捏</p>
-<p><strong>CDN绕过-主动邮件配合备案</strong></p>
-<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A09/image-20240529155958185.png"></p>
-<p>反正让网站给你发个邮件就可以看到他的ip了，但这个返回的应该不是真实ip，只是个子域名……</p>
-<p><strong>CDN绕过-全网扫描FuckCDN</strong><br>先社工一下，根据备案号等信息缩小ip的范围，再用FuckCDN扫就完事</p>
-<p><strong>找到真实ip后修改host进行安全测试</strong></p>
-<p><img src="/2024/05/28/Web%E5%AD%A6%E4%B9%A09/image-20240529172035457.png"></p>
-<p>找到真实ip后把ip写到下面就行了，这样他就不会给你cdn的ip而是直接ping到真实ip，像我之前配置的discuz和hadsky网站就是搭在本地的，所以他们的真实ip就是本地ip</p>
+        <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>文件上传类-任意文件上传<br>1、代码自主写<br>2、编辑器引用<br>文件下载类-任意文件下载<br>1、直连URL访问<br>2、传参头部修改<br>文件删除类-任意文件删除<br>1、文件删除<br>2、文件夹删除<br>文件内容操作类-任意文件读取&amp;写入<br>1、文件读取<br>2、文件写入<br>文件包含-任意文件包含<br>1、本地文件包含<br>2、远程文件包含</p>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><h3 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a><strong>文件上传</strong></h3><p><img src="/2024/06/04/Web%E5%AD%A6%E4%B9%A013/image-20240604123638624.png"></p>
+<p>直连下载是安全的，传参下载有安全隐患，直连下载只能下载常规的支持下载协议的，像zip，exe文件。但是传参下载也会尝试下载php代码，会造成源码泄露</p>
+<p><img src="/2024/06/04/Web%E5%AD%A6%E4%B9%A013/image-20240604124020637.png" alt="第一行直连，第二行传参"></p>
+<p><img src="/2024/06/04/Web%E5%AD%A6%E4%B9%A013/image-20240604124057555.png"></p>
+<p>具体的直连地址实例，必须要有传参地址才能进行进一步的操作</p>
+<pre><code class="php">&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;文件下载&lt;/title&gt;
+&lt;/head&gt;
+&lt;h1&gt;直连下载&lt;/h1&gt;
+&lt;?php getfilename();?&gt;
+&lt;form id=&quot;upload-form&quot; action=&quot;&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot; &gt;
+    需要下载的文件：&lt;input type=&quot;text&quot; name=&quot;name&quot; /&gt; &lt;br /&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;下载&quot; /&gt;
+&lt;/form&gt;
+&lt;?php $name=$_POST[&#39;name&#39;];geturldown($name);?&gt;
+
+&lt;h1&gt;传参下载&lt;/h1&gt;
+&lt;?php getfilename();?&gt;
+&lt;form id=&quot;upload-form&quot; action=&quot;&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot; &gt;
+    需要下载的文件：&lt;input type=&quot;text&quot; name=&quot;name&quot; /&gt; &lt;br /&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;下载&quot; /&gt;
+&lt;/form&gt;
+&lt;?php $name=$_POST[&#39;name&#39;];filenameget($name);?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="文件删除"><a href="#文件删除" class="headerlink" title="文件删除"></a><strong>文件删除</strong></h3><pre><code class="php">funtion delfilename($name)&#123;
+    unlink($name)
+&#125;
+//删除文件
+function delfiledir($dir)&#123;
+    unlink($dir)
+&#125;
+//删除文件夹
+</code></pre>
+<h3 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a><strong>文件读取</strong></h3><pre><code class="php">function fileread($name)&#123;
+    $myfile = fopen($name,&quot;r&quot;) or die(&quot;Unable to open file!&quot;);
+    echofread($myfile,filesize($name));
+    fclose($myfile);
+&#125;
+</code></pre>
+<pre><code>知识点补充
+r：打开文件为只读。文件指针在文件的开头开始。
+w：打开文件为只写。删除文件的内容或创建一个新的文件，如果它不存在。文件指针在文件的开头开始。
+a：打开文件为只写。文件中的现有数据会被保留。文件指针在文件结尾开始。创建新的文件，如果文件不存在。
+x：创建新文件为只写。返回FALSE和错误，如果文件已存在。
+r+：打开文件为读/写、文件指针在文件开头开始。
+w+：打开文件为读/写。删除文件内容或创建新文件，如果它不存在。文件指针在文件开头开始。
+a+：打开文件为读/写。文件中已有数据会被保留。文件指针在文件结尾开始。创建新文件，如果它不存在。
+x+：创建新文件为读/写。返回FALSE和错误，如果文件已存在
+</code></pre>
+<h3 id="文件写入"><a href="#文件写入" class="headerlink" title="文件写入"></a><strong>文件写入</strong></h3><pre><code class="php">function filewrite($name,$txt)&#123;
+    $myfile = fopen($name,&quot;a+&quot;) or die(&quot;Unable to write file&quot;);
+    fwrite($myfile,$txt);
+    fclose($myfile);
+&#125;
+</code></pre>
+<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a><strong>总结：</strong></h4><p>Web漏洞核心：<br>1、可控变量<br>2、特定函数-函数的多样化</p>
+<h3 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a><strong>文件包含</strong></h3><pre><code class="php">include(&#39;1.txt&#39;);
+//包含代表执行，脚本执行
+//1.txt换成变量
+//变量值 本地文件 远程文件
+$file=$_GET[&#39;X&#39;];
+include($file);  //require也会造成文件包含
+//我上传一个图片，得到图片地址，尝试包含图片，图片里面有后门代码
+&lt;?php phpinfo();?&gt;
+</code></pre>
 
       
        
