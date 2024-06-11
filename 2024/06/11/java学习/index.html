@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>java学习 | f4k3r&#39;s blog</title>
+  <meta name="keywords" content=" java ">
+  <meta name="description" content="java学习 | f4k3r&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="知识点1、过滤函数缺陷绕过2、CTF考点与代码审计 详细点&#x3D;&#x3D;与&#x3D;&#x3D;&#x3D;md5intvalstrposin_arraypreg_matchstr_replace 案例&#x3D;&#x3D;与&#x3D;&#x3D;&#x3D;&#x3D;赋值 &#x3D;&#x3D;弱类型对比 &#x3D;&#x3D;&#x3D;还会比较类型 &lt;?php h">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web学习20">
+<meta property="og:url" content="http://example.com/2024/06/11/Web%E5%AD%A6%E4%B9%A020/index.html">
+<meta property="og:site_name" content="f4k3r&#39;s blog">
+<meta property="og:description" content="知识点1、过滤函数缺陷绕过2、CTF考点与代码审计 详细点&#x3D;&#x3D;与&#x3D;&#x3D;&#x3D;md5intvalstrposin_arraypreg_matchstr_replace 案例&#x3D;&#x3D;与&#x3D;&#x3D;&#x3D;&#x3D;赋值 &#x3D;&#x3D;弱类型对比 &#x3D;&#x3D;&#x3D;还会比较类型 &lt;?php h">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/06/11/Web%E5%AD%A6%E4%B9%A020/image-20240611005916568.png">
+<meta property="og:image" content="http://example.com/2024/06/11/Web%E5%AD%A6%E4%B9%A020/image-20240611010825686.png">
+<meta property="og:image" content="http://example.com/2024/06/11/Web%E5%AD%A6%E4%B9%A020/image-20240611010940560.png">
+<meta property="og:image" content="http://example.com/2024/06/11/Web%E5%AD%A6%E4%B9%A020/image-20240611011709961.png">
+<meta property="og:image" content="http://example.com/2024/06/11/Web%E5%AD%A6%E4%B9%A020/image-20240611012039510.png">
+<meta property="og:image" content="http://example.com/2024/06/11/Web%E5%AD%A6%E4%B9%A020/image-20240611012726891.png">
+<meta property="og:image" content="http://example.com/2024/06/11/Web%E5%AD%A6%E4%B9%A020/image-20240611012830363.png">
+<meta property="og:image" content="http://example.com/2024/06/11/Web%E5%AD%A6%E4%B9%A020/image-20240611140233079.png">
+<meta property="og:image" content="http://example.com/2024/06/11/Web%E5%AD%A6%E4%B9%A020/image-20240611141019101.png">
+<meta property="og:image" content="http://example.com/2024/06/11/Web%E5%AD%A6%E4%B9%A020/image-20240611142312081.png">
+<meta property="og:image" content="http://example.com/2024/06/11/Web%E5%AD%A6%E4%B9%A020/image-20240611142849050.png">
+<meta property="article:published_time" content="2024-06-10T16:24:56.000Z">
+<meta property="article:modified_time" content="2024-06-11T06:28:56.980Z">
+<meta property="article:author" content="f4k3r">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/06/11/Web%E5%AD%A6%E4%B9%A020/image-20240611005916568.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-dark.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>f4k3r</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(29)</small>
+            
+        </div>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        <a 
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="29">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://www.blog.st4rr.top/">St4rr</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>随想</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Web</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WP</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/11/java%E5%AD%A6%E4%B9%A0/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="java学习">java学习</span>
+            <span class="post-date" title="2024-06-11 18:46:57">2024/06/11</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/11/Web%E5%AD%A6%E4%B9%A020/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习20">Web学习20</span>
+            <span class="post-date" title="2024-06-11 00:24:56">2024/06/11</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/10/Web%E5%AD%A6%E4%B9%A019/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习19">Web学习19</span>
+            <span class="post-date" title="2024-06-10 00:42:13">2024/06/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/08/Web%E5%AD%A6%E4%B9%A018/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习18">Web学习18</span>
+            <span class="post-date" title="2024-06-08 21:20:44">2024/06/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/08/Web%E5%AD%A6%E4%B9%A017/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习17">Web学习17</span>
+            <span class="post-date" title="2024-06-08 19:16:10">2024/06/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/06/Web%E5%AD%A6%E4%B9%A016/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习16">Web学习16</span>
+            <span class="post-date" title="2024-06-06 18:55:59">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/05/Web%E5%AD%A6%E4%B9%A015/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习15">Web学习15</span>
+            <span class="post-date" title="2024-06-05 15:56:07">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/04/Web%E5%AD%A6%E4%B9%A014/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习14">Web学习14</span>
+            <span class="post-date" title="2024-06-04 14:04:03">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/04/Web%E5%AD%A6%E4%B9%A013/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习13">Web学习13</span>
+            <span class="post-date" title="2024-06-04 12:16:20">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/02/Web%E5%AD%A6%E4%B9%A012/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习12">Web学习12</span>
+            <span class="post-date" title="2024-06-02 18:38:10">2024/06/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/02/LitCTF2024-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="LitCTF2024_WP">LitCTF2024_WP</span>
+            <span class="post-date" title="2024-06-02 12:18:25">2024/06/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/30/LitCTF2023_WP/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="LitCTF2023_WP">LitCTF2023_WP</span>
+            <span class="post-date" title="2024-05-30 17:33:08">2024/05/30</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/29/Web%E5%AD%A6%E4%B9%A011/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习11">Web学习11</span>
+            <span class="post-date" title="2024-05-29 20:24:16">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/29/Web%E5%AD%A6%E4%B9%A010/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习10">Web学习10</span>
+            <span class="post-date" title="2024-05-29 18:34:51">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/28/Web%E5%AD%A6%E4%B9%A09/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习9">Web学习9</span>
+            <span class="post-date" title="2024-05-28 17:22:39">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习8">Web学习8</span>
+            <span class="post-date" title="2024-05-28 10:48:57">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习7">Web学习7</span>
+            <span class="post-date" title="2024-05-27 16:27:52">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/27/%E5%85%B3%E4%BA%8EWindows%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A0%E6%B3%95%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5%E4%B9%8B%E9%97%AE/"
+           data-tag="Web,服务器"
+           data-author="" >
+            <span class="post-title" title="关于Windows服务器无法远程桌面连接之问">关于Windows服务器无法远程桌面连接之问</span>
+            <span class="post-date" title="2024-05-27 16:24:10">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/26/Web%E5%AD%A6%E4%B9%A06/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习6">Web学习6</span>
+            <span class="post-date" title="2024-05-26 18:36:19">2024/05/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/26/Web%E5%AD%A6%E4%B9%A05/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习5">Web学习5</span>
+            <span class="post-date" title="2024-05-26 13:10:51">2024/05/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习4">Web学习4</span>
+            <span class="post-date" title="2024-05-25 16:12:43">2024/05/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/23/Web%E5%AD%A6%E4%B9%A03/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习3">Web学习3</span>
+            <span class="post-date" title="2024-05-23 19:38:49">2024/05/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/23/Web%E5%AD%A6%E4%B9%A02/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习2">Web学习2</span>
+            <span class="post-date" title="2024-05-23 12:34:18">2024/05/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/22/Web%E5%AD%A6%E4%B9%A01/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习1">Web学习1</span>
+            <span class="post-date" title="2024-05-22 20:44:54">2024/05/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/29/linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0/"
+           data-tag="Web,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux操作系统学习">Linux操作系统学习</span>
+            <span class="post-date" title="2024-04-29 15:35:19">2024/04/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/28/%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF%E6%94%B6%E8%97%8F/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="绕过姿势收藏">绕过姿势收藏</span>
+            <span class="post-date" title="2024-04-28 19:55:29">2024/04/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/23/XYCTF-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="XYCTF_WP">XYCTF_WP</span>
+            <span class="post-date" title="2024-04-23 12:54:05">2024/04/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/14/faker%E7%9A%84%E5%BF%83%E9%AD%94/"
+           data-tag="随想"
+           data-author="" >
+            <span class="post-title" title="faker的心魔">faker的心魔</span>
+            <span class="post-date" title="2024-04-14 21:23:39">2024/04/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/03/14/sql%E6%B3%A8%E5%85%A5/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="sql注入">sql注入</span>
+            <span class="post-date" title="2024-03-14 19:31:21">2024/03/14</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-java学习" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">java学习</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">java</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-06-11 23:39:06'>2024-06-11 18:46</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E9%A2%98-%E5%A1%AB%E7%A9%BA%E9%A2%98"><span class="toc-text">选择题&#x2F;填空题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E9%A2%98"><span class="toc-text">编程题</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为了让期末考试通过QAQ</p>
+<h2 id="选择题-填空题"><a href="#选择题-填空题" class="headerlink" title="选择题&#x2F;填空题"></a>选择题&#x2F;填空题</h2><p><strong>1</strong>、对于可以独立运行的java应用程序，下列（D）说法是正确的。<br>A、无须main方法	B、必须有两个main方法<br>C、可以有多个或零个main方法	D、只能有一个main方法<br><strong>解析</strong>：没什么好说的，public static void main每个java程序都要有，所以必须也只能有一个main方法</p>
+<p><strong>2</strong>、Java#中程序的入口方法明是（B）<br>A Main	B main	C Begin	D using</p>
+<p><strong>3</strong>、Java源文件和编译后的文件扩展名分别为（B）<br>A、.class和java	B、.java和.class<br>C、.class和.class	  D、.java和.java</p>
+<p><strong>4</strong>、编译一个Java程序“MyJava”的方法是（D），运行程序的 方法是（C）<br>A、运行：“java MyJava.java”	B、运行：”java Myjava.class”<br>C、运行：“java Myjava”	      D、运行：“javac MyJava.java”</p>
+<p><strong>5</strong>、要给Java源文件中只能有（B）个public类，且文件名和类名一致。<br>A、0	B、1	C、2	D、不确定</p>
+<p><strong>6</strong>、Java中数据类型有（B）<br>A、基本类型和调用类型	B、基本类型和引用类型<br>C、引用类型和关系类型	D、关系类型和调用类型</p>
+<p><strong>7</strong>、下列哪个是合法的Java标识符（B）？<br>A、Test&amp;Glasses	B、First_JavaApplet<br>C、5$theLastOne   D、synchronized<br><strong>解析</strong>：合法的Java标识符必须遵循以下规则：<br>标识符可以包含字母、数字、下划线（_）和美元符号（$）。<br>标识符不能以数字开头。<br>标识符不能是Java的保留字。<br>根据这些规则，我们可以分析给定的选项：<br>A、Test&amp;Glasses - 包含非法字符”&amp;”，不合法。<br>B、First_JavaApplet - 符合规则，合法。<br>C、5$theLastOne - 以数字开头，不合法。<br>D、synchronized - 是Java的保留字，不合法。<br>因此，正确答案是 B、First_JavaApplet。</p>
+<p><strong>8</strong>、下列变量定义与赋值正确的是（CDEF）（多选）<br>A、int a&#x3D;”a”; 	B、float a &#x3D;12.5;<br>C、double a &#x3D;12 D、int a &#x3D; ‘a’;<br>E、 char c &#x3D;97     F、double d &#x3D;1.2e3<br>这个B应该是对的吧？<br><strong>解析</strong>：在Java中，变量定义和赋值需要遵循数据类型的规则。下面是对每个选项的分析：</p>
+<p>A、int a&#x3D;”a”; - 错误。int类型不能直接赋值为字符串。<br>B、float a &#x3D;12.5; - 错误。float类型可以赋值为浮点数，但是后面得加个f即12.5f。<br>C、double a &#x3D;12; - 正确。double类型可以赋值为整数，Java会自动将其转换为double类型。<br>D、int a &#x3D; ‘a’; - 正确。int类型可以赋值为字符，因为字符在Java中会被隐式转换为其对应的ASCII值。<br>E、char c &#x3D;97 - 正确。char类型可以赋值为整数，如果该整数是有效的Unicode字符的ASCII值。<br>F、double d &#x3D;1.2e3 - 正确。double类型可以赋值为科学记数法表示的浮点数。<br>因此，正确的选项是C、D、E 和 F。</p>
+<p><strong>9</strong>、定义初始化一维数组的语句，其中不正确的 是（D）。<br>A. int a[]&#x3D;{1,2,3,4,5};<br>B. int[] a&#x3D;new int[5]<br>C. int[] a &#x3D;new int[]{1,2,3,4,5}<br>D. int[] a; a&#x3D;{1,2,3};<br><strong>解析</strong>：A. int a[]&#x3D;{1,2,3,4,5}; - 正确。这是数组的声明和初始化的组合，数组a被初始化为包含元素1, 2, 3, 4, 5。<br>B. int[] a&#x3D;new int[5] - 正确。这是声明一个名为a的整型数组，并使用new关键字分配了一个长度为5的数组，但此时数组元素尚未初始化，它们将被默认初始化为0。<br>C. int[] a &#x3D;new int[]{1,2,3,4,5} - 正确。这是声明一个名为a的整型数组，并使用new关键字分配了一个数组，同时初始化了数组的元素。<br>D. int[] a; a&#x3D;{1,2,3}; - 不正确。在Java中，不能这样赋值数组。数组的初始化必须在声明时完成，或者使用new关键字后立即进行初始化。此外，即使在声明时初始化，也不能使用花括号{}，而是应该使用方括号[]。<br>因此，不正确的选项是 D。</p>
+<p><strong>10</strong>、有如下的语句：C</p>
+<p><img src="/2024/06/11/java%E5%AD%A6%E4%B9%A0/image-20240611233850440.png"></p>
+<p><strong>11</strong>、Java程序中如何获得数组的长度（D）。<br>A、利用全局函数getArrayLen（）<br>B、利用数组的getLength（）函数<br>C、利用数组的length（）函数<br>D、利用数组的length字段<br><strong>解析</strong>：A. 利用全局函数 getArrayLen() - 错误。Java中没有这样的全局函数。<br>B. 利用数组的 getLength() 函数 - 错误。Java中数组没有名为 getLength 的方法。<br>C. 利用数组的 length() 函数 - 错误。虽然 length 是数组的一个属性，但它没有括号，不应该被当作函数调用。<br>D. 利用数组的 length 字段 - 正确。这是获取Java数组长度的正确方式。例如，如果你有一个数组 int[] myArray，你可以使用 myArray.length 来获取它的长度。<br>因此，正确答案是 D。</p>
+<p><strong>12</strong>、为Test类的一个无形式参数无返回值的方法method书写方法头，使得使用类名Test作为前缀就可以调用它，该方法头的形式为（A）<br>A. static void method()	B. public void method()<br>C. final void method()	D. abstract void method()<br><strong>解析</strong>：A. static void method() - 正确。静态方法可以通过类名直接调用，不需要创建类的实例。<br>B. public void method() - 错误。这是一个公共方法，它需要通过类的实例来调用。<br>C. final void method() - 错误。尽管 final 关键字可以用来防止方法被子类覆盖，但这并不改变方法的调用方式，它仍然需要通过类的实例来调用。<br>D. abstract void method() - 错误。这是一个抽象方法，它必须在抽象类中定义，并且没有方法体。抽象方法也需要通过类的实例来调用，但因为抽象类不能实例化，所以不能直接调用。<br>因此，正确答案是 A。</p>
+<p><strong>13</strong>、对类进行实例化的时候，系统会自动调用（B）<br>A、main方法	B、构造方法	C、析构方法	D、都可以<br><strong>解析</strong>：A. main方法 - 错误。main 方法是Java程序的入口点，但它不是在实例化类时自动调用的。<br>B. 构造方法 - 正确。构造方法在创建类的实例时被调用，用于初始化对象的状态。<br>C. 析构方法 - 错误。Java语言不支持析构方法。析构方法在其他一些语言中存在，用于在对象生命周期结束时执行清理工作，但Java使用垃圾回收机制来自动管理内存。<br>D. 都可以 - 错误。根据上述分析，只有构造方法在实例化类时被调用。<br>因此，正确答案是 B、构造方法。</p>
+<p><strong>14</strong>、当数据类型为引用类型，当引用类型的值为（B）时，表明没有引用任何对象。<br>A. Empty	B. null		C. Nothing	D. 0</p>
+<p><strong>15</strong>、关于super（），下列叙述错误的是（D）。<br>A、super（）调用必须是方法第一条语句<br>B、当一个类没有构造方法时，默认调用super（）执行父类的无参构造方法<br>C、子类的构造方法中没有用super（）或this（），Java将默认执行super（）<br>D、什么时候都会自动调用super（）</p>
+<p>emm，这个题目太脑残了，一看就选D</p>
+<p><strong>16</strong>、下面的是关于类及其修饰符的一些描述，错误的是（B）<br>A、abstract类只能用来派生子类，不能用来创建abstract类的对象<br>B、final类不但可以用来派生子类，也可以用来创建final类的对象<br>C、abstract不能与final同时修饰一个类<br>D、abstract方法必须在abstract类中声明，但abstract类定义中可以没有abstract方法<br><strong>解析</strong>：A. abstract 类只能用来派生子类，不能用来创建 abstract 类的对象 - 正确。abstract 类不能被实例化，它必须被继承，并且它的子类需要提供所有抽象方法的实现。<br>B. final 类不但可以用来派生子类，也可以用来创建 final 类的对象 - 错误。final 类不能被继承，但可以被实例化。<br>C. abstract 不能与 final 同时修饰一个类 - 正确。abstract 类设计为可以被继承，而 final 类则不可以被继承，因此这两个修饰符不能同时应用于同一个类。<br>D. abstract 方法必须在 abstract 类中声明，但 abstract 类定义中可以没有 abstract 方法 - 正确。abstract 类可以包含抽象方法，也可以不包含。即使没有抽象方法，abstract 类仍然不能被实例化，它可能被设计为一个框架，强制要求其子类覆盖某些方法或实现某些行为。</p>
+<p><strong>17</strong>、以下哪一选项正确描述了synchronized关键字的作用（D）。<br>A、允许两个并行运行的进程相互通信<br>B、确保两个或多个线程同时启动或终止<br>C、确保两个或多个进程同时启动或终止<br>D、确保同一时间只有一个线程访问一个方法或对象<br><strong>解析</strong>：synchronized 关键字在Java中用于控制多线程环境下对共享资源的访问，以确保在同一时间只有一个线程能够执行特定代码段。下面是对每个选项的分析：<br>A. 允许两个并行运行的进程相互通信 - 错误。synchronized 不是用来进行进程间通信的，而是用于同步线程。<br>B. 确保两个或多个线程同时启动或终止 - 错误。synchronized 不负责线程的启动或终止，它只确保线程在访问共享资源时的同步。<br>C. 确保两个或多个进程同时启动或终止 - 错误。synchronized 是Java中的关键字，用于线程同步，而不是用于进程同步。<br>D. 确保同一时间只有一个线程访问一个方法或对象 - 正确。synchronized 确保了当一个线程访问某个对象的同步方法或同步代码块时，其他线程不能访问该对象的任何其他同步方法或同步代码块。<br>因此，正确答案是 D。synchronized 关键字通常用于避免多线程环境下的竞态条件，确保线程安全。</p>
+<p><strong>18</strong>、以下字符串函数的描述中，错误的是（A）<br>A、charAt函数返回一个字符，如charAt（1）返回字符串中的第一个字符<br>B、indexof函数从前往后搜索字符第一次出现的位置<br>C、substring函数返回字符串的一个子串<br>D、String类和StringBuffer类都有length函数，它们的形式和功能是一致的<br>gpt貌似发癫了？A的错误地方我猜是charAt（1）会返回字符串的第二个字符吧。</p>
+<p><strong>19</strong>、下面哪个语句会发生编译错误（C）。<br>A、int[]a;	B、int [] b&#x3D;new int[10];<br>C、int c[]&#x3D;new int[];	D、 int d&#x3D;[]&#x3D;null;<br><strong>解析</strong>：C. int c[] &#x3D; new int[]; - 编译错误。这个语句试图声明并初始化一个名为 c 的整型数组，但是没有指定数组的长度，这是不允许的。正确的初始化应该指定数组的长度，例如 int c[] &#x3D; new int[10];。</p>
+<p><strong>20</strong>、关于异常处理，正确的 是（D）。<br>A、try，catch，finally三个子句必须同时出现，才能正确处理异常<br>B、catch子句只能出现一次<br>C、try子句中所抛出的异常一定能被catch子句捕获<br>D、无论异常是否抛出，finally子句中的内容都会被执行<br>这个finally子句在python中也是这样的 ，反正你只要写了这个他都是会执行的 </p>
+<p><strong>21</strong>、实现一个继承接口Runnable的类需要实现下面的哪个方法（B）。<br>A、start	B、run<br>C、wait   D、paint<br><strong>解析</strong>：</p>
+<pre><code class="java">public interface Runnable &#123;
+    void run();
+&#125;
+</code></pre>
+<p>A. start - 错误。start 是 Thread 类的一个方法，用于启动一个线程。<br>B. run - 正确。Runnable 接口只包含一个未实现的方法 run，任何实现 Runnable 接口的类都必须提供 run 方法的具体实现。<br>C. wait - 错误。wait 是 Object 类的一个方法，用于使当前线程等待，直到另一个线程调用了 notify 或 notifyAll 方法。<br>D. paint - 错误。paint 通常是 Component 类的一个方法，用于组件的绘制操作，与 Runnable 接口无关。</p>
+<p><strong>22</strong>、以下多线程程序的设计步骤，其中错误的是（C）。<br>A、在主程序中创建线程对象<br>B、调用线程对象的 start函数来启动线程<br>C、在Windows中注册一个线程<br>D、由Thread类派生出一个线程类<br><strong>解析</strong>：A. 在主程序中创建线程对象 - 正确。首先，你需要创建一个线程对象。这可以通过继承 Thread 类或实现 Runnable 接口来完成。</p>
+<p>B. 调用线程对象的 start() 函数来启动线程 - 正确。一旦线程对象被创建，你可以调用它的 start() 方法来启动线程。这将导致线程的 run() 方法被执行。</p>
+<p>C. 在Windows中注册一个线程 - 错误。在Java中，线程的创建和管理是由Java运行时环境处理的，而不是在操作系统级别（如Windows）注册线程。Java提供了自己的线程调度和管理机制。</p>
+<p>D. 由 Thread 类派生出一个线程类 - 正确。你可以通过继承 Thread 类并重写其 run() 方法来创建自定义线程类。</p>
+<p>因此，错误的步骤是 C。在Java中，不需要在操作系统中注册线程。Java的线程是由Java虚拟机（JVM）管理的。</p>
+<p><strong>23</strong>、对于可以随着窗口的宽度变化而改变相应的控件的位置的布局对象是（A）<br>A、FlowLayout	B、GridLayout<br>C、BordyLayout	D、CardLayout<br><strong>解析</strong>：A. FlowLayout - 流式布局管理器按照添加组件的顺序，从左到右，从上到下排列组件。它不会随着窗口宽度的变化而改变组件的位置。</p>
+<p>B. GridLayout - 网格布局管理器将容器分割成大小相等的矩形网格，每个组件占据一个或多个网格。它也不会随着窗口宽度的变化而改变单个组件的位置，但整体网格会随着窗口大小的变化而缩放。</p>
+<p>C. BorderLayout - 边界布局管理器将容器分为五个区域：北、南、东、西和中心。组件可以添加到这些区域之一，但它们的位置不会随着窗口宽度的变化而动态调整。</p>
+<p>D. CardLayout - 卡片布局管理器允许在一个容器中堆叠组件，每次只能显示一个组件，类似于一系列卡片。它允许动态地在组件之间切换，但组件的位置不会随着窗口宽度的变化而改变。</p>
+<p>没有一个选项是完全符合“随着窗口的宽度变化而改变相应控件的位置”的描述。然而，如果考虑到动态调整控件位置的能力，FlowLayout 是最接近这个描述的，因为它允许组件在窗口宽度变化时重新排列。但是，这种排列是线性的，而不是网格状或其他复杂的布局方式。</p>
+<p>在Swing中，要实现更复杂的动态布局，通常会使用 LayoutManager 的子类或实现自定义的布局管理器。但根据给出的选项，最合适的答案是 A、FlowLayout，尽管它可能不是完美的解决方案</p>
+<p><strong>24</strong>、以下关于继承的叙述正确的是（B）。<br>A、在Java中一个类只能实现一个接口<br>B、在Java中类只允许单一继承<br>C、在Java中一个类不能同时继承一个类或实现一个接口<br>D、在Java中接口只允许单一继承<br><strong>解析</strong>：在Java中，继承是面向对象编程的一个基本概念，它允许一个类（称为子类或派生类）继承另一个类（称为基类或父类）的属性和方法。以下是对每个选项的分析：</p>
+<p>A. 在Java中一个类只能实现一个接口 - 错误。Java允许一个类实现多个接口。</p>
+<p>B. 在Java中类只允许单一继承 - 正确。Java不支持多重类继承，即一个类不能直接继承多个类。</p>
+<p>C. 在Java中一个类不能同时继承一个类或实现一个接口 - 错误。Java允许一个类继承一个类的同时实现多个接口。</p>
+<p>D. 在Java中接口只允许单一继承 - 错误。Java中的接口可以多继承，即一个接口可以继承多个其他接口。</p>
+<p>因此，正确答案是 B、在Java中类只允许单一继承。这是Java语言设计的一个关键特点，它避免了多重继承可能带来的复杂性和歧义。</p>
+<p><strong>25</strong>、关于方法重载的说法正确的是（C）。<br>A、如果两个方法名字不同，参数的数量不同，那么它们可以构成方法重载<br>B、如果两个方法名字相同，而返回值的 数据类型不同，那么它们可以构成方法重载<br>C、如果两个方法名字相同，而参数的数据类型或个数不同那么它们可以构成方法重载<br>D、如果两个方法名字不同，参数个数相同，那么它们可以构成方法重载<br>方法重载是Java中允许一个类中存在多个同名方法，但它们的参数列表必须不同的特性。下面是一个简单的例子来说明方法重载的概念：</p>
+<p>假设我们有一个名为 Calculator 的类，它提供了几个重载的 add 方法来处理不同类型的参数：</p>
+<p>public class Calculator {</p>
+<pre><code class="java">// 第一个重载的 add 方法，接受两个 int 类型的参数
+public int add(int a, int b) &#123;
+    return a + b;
+&#125;
+
+// 第二个重载的 add 方法，接受三个 int 类型的参数
+public int add(int a, int b, int c) &#123;
+    return a + b + c;
+&#125;
+
+// 第三个重载的 add 方法，接受两个 double 类型的参数
+public double add(double a, double b) &#123;
+    return a + b;
+&#125;
+</code></pre>
+<p>}<br>在这个例子中，Calculator 类有三个 add 方法，它们的名字相同，但是参数列表不同：</p>
+<p>第一个 add 方法接受两个 int 类型的参数。<br>第二个 add 方法接受三个 int 类型的参数。<br>第三个 add 方法接受两个 double 类型的参数。<br>由于参数列表不同，Java编译器能够区分这些方法调用。当你创建 Calculator 类的实例并调用 add 方法时，你需要提供正确数量和类型的参数，编译器会根据这些信息调用相应的重载方法。</p>
+<p>例如：</p>
+<p>Calculator calc &#x3D; new Calculator();</p>
+<p>&#x2F;&#x2F; 调用第一个重载的 add 方法<br>int sum1 &#x3D; calc.add(5, 10); &#x2F;&#x2F; 返回 15</p>
+<p>&#x2F;&#x2F; 调用第二个重载的 add 方法<br>int sum2 &#x3D; calc.add(5, 10, 15); &#x2F;&#x2F; 返回 30</p>
+<p>&#x2F;&#x2F; 调用第三个重载的 add 方法<br>double sum3 &#x3D; calc.add(5.5, 10.5); &#x2F;&#x2F; 返回 16.0<br>每个 add 方法调用都根据提供的参数数量和类型被正确地解析到对应的方法实现。这就是方法重载的基本概念。</p>
+<p><strong>26</strong>、对于构造函数，下列叙述正确的是（D）。<br>A、构造函数不允许重载。<br>B、子类无条件地继承父类地构造函数。<br>C、子类不允许调用父类地构造函数。<br>D、在同一个类中定义地重载构造函数可以相互调用</p>
+<p><strong>27</strong>、以下正确地描述是（B）<br>A、构造函数名不必和类名相同<br>B、一个类可以声明多个构造函数<br>C、构造函数可以有返回值<br>D、编译器可以提供一个默认的带一个参数的构造函数<br><strong>解析</strong>：A. 构造函数名不必和类名相同 - 错误。构造函数的名称必须与类名完全相同，包括大小写。</p>
+<p>B. 一个类可以声明多个构造函数 - 正确。这是方法重载的概念，类可以有多个构造函数，只要它们的参数列表不同。</p>
+<p>C. 构造函数可以有返回值 - 错误。构造函数不能有返回类型，即使是 void 也不可以。它们的主要目的是在创建对象时初始化对象的状态。</p>
+<p>D. 编译器可以提供一个默认的带一个参数的构造函数 - 错误。如果类中没有定义任何构造函数，编译器会提供一个无参数的默认构造函数。如果类中定义了任何构造函数，即使是无参数的，编译器就不会提供默认构造函数。</p>
+<p>因此，正确答案是 B。</p>
+<p><strong>名词解释</strong>-构造函数：<br>构造函数是一种特殊的方法，用于在创建对象时初始化对象的状态。以下是构造函数的一些关键特性：</p>
+<p>名称：构造函数的名称必须与类名完全相同，包括大小写。</p>
+<p>返回类型：构造函数没有返回类型，甚至不使用 void。它们的主要目的是初始化新创建的对象。</p>
+<p>初始化：构造函数可以初始化对象的属性，设置初始值，分配资源，或者执行其他必要的启动任务。</p>
+<p>重载：类可以有多个构造函数，只要它们的参数列表不同。这称为构造函数的重载。</p>
+<p>自动调用：当使用 new 关键字创建类的实例时，构造函数会自动被调用。</p>
+<p>继承：如果子类没有定义自己的构造函数，它将继承父类的一个构造函数（通常是无参数的构造函数）。如果父类没有无参数的构造函数，子类必须通过 super 关键字显式调用一个父类的构造函数。</p>
+<p>不能被继承：虽然子类可以调用父类的构造函数，但构造函数本身不能被子类继承。每个类都有自己的构造函数。</p>
+<p>不能被声明为 static：构造函数不是类的方法，因此不能被声明为 static。它们的作用是初始化类的对象。</p>
+<p>调用顺序：在Java中，如果子类构造函数中没有显式地调用父类的构造函数，Java编译器会自动插入对父类无参数构造函数的调用（super()），这发生在子类构造函数的第一行。</p>
+<p>下面是一个简单的构造函数示例：</p>
+<p>public class Car {<br>    private String model;<br>    private int year;</p>
+<pre><code class="java">// 构造函数
+public Car(String model, int year) &#123;
+    this.model = model;
+    this.year = year;
+&#125;
+</code></pre>
+<p>}<br>在这个例子中，Car 类有两个属性：model 和 year。构造函数接受两个参数，用于初始化这些属性。当你创建 Car 类的实例时，你需要提供模型和年份，构造函数会使用这些值来初始化新创建的对象。例如：</p>
+<p>Car myCar &#x3D; new Car(“Toyota Corolla”, 2021);<br>这行代码创建了一个 Car 对象，并调用了 Car 类的构造函数，传递了 “Toyota Corolla” 和 2021 作为参数。</p>
+<p><strong>28</strong>、在使用interface（接口）声明一个接口时，只可以使用（D）修饰符修饰该接口。<br>A、private	B、protected		C、private protected	D、public<br><strong>解析</strong>：在Java中，接口（interface）是一种特殊的抽象类型，它不能被实例化，但可以被类实现（implement）。接口的访问修饰符限制了其他类或接口访问接口的可见性。以下是对每个选项的分析：</p>
+<p>A. private - 错误。接口不能声明为 private，因为 private 接口只能在定义它的顶层类或接口中被访问，这限制了接口的用途。</p>
+<p>B. protected - 错误。接口可以声明为 protected，但这同样限制了接口的可见性，只能在同一个包中的类或不同包的子类中访问。</p>
+<p>C. private protected - 错误。这不是Java中有效的访问修饰符组合。</p>
+<p>D. public - 正确。接口默认的访问修饰符是 public，并且通常显式地声明为 public。声明为 public 的接口可以在任何地方被访问和实现。</p>
+<p>因此，正确答案是 D、public。接口通常被声明为 public，以确保它们可以被不同的类实现，无论这些类位于哪个包中。</p>
+<p><strong>29</strong>、类Myclass中有下列方法定义：</p>
+<pre><code class="java">class MyClass&#123;
+    public void testParams(int... arr) &#123;
+        System.out.print(&quot;使用不定长参数！&quot;);
+    &#125;
+    public void testParams(int x, int y) &#123;
+        System.out.print(&quot;使用两个整型参数！&quot;);
+    &#125;
+&#125;
+public class Test &#123;
+    public static void main(String[] args) &#123;
+        int a[]=&#123;1,2,3&#125;;
+        MyClass x = new MyClass();
+        x.testParams(a);
+        x.testParams(0,1);
+        x.testParams(0,1,2);
+    &#125;
+&#125;
+</code></pre>
+<p>请问上述句的输出为（B）。<br>A、有语义二义性；<br>B、使用不定长参数！使用两个整型参数！使用不定长参数！<br>C、使用不定长参数！使用不定长参数！使用不定长参数！<br>D、使用不定长参数！使用两个整型参数！使用两个整型参数！</p>
+<p><strong>解析</strong>：在Java中，方法重载意味着可以在同一个类中拥有多个同名方法，只要它们的参数列表不同。参数列表的不同可以是参数的数量、类型不同，或者是参数数量和类型都不同。</p>
+<p>在给出的代码中，MyClass 类有两个重载的 testParams 方法：</p>
+<p>第一个 testParams 方法接受一个不定长参数（varargs），使用语法 int… arr 表示。<br>第二个 testParams 方法接受两个 int 类型的参数。<br>当调用 testParams 方法时，编译器会根据传递的参数数量和类型来确定调用哪个重载方法。</p>
+<p>在 Test 类的 main 方法中，有三次调用 testParams：</p>
+<p>x.testParams(a); 这里 a 是一个数组，传递给接受不定长参数的 testParams 方法，因为数组可以作为不定长参数的替代。<br>x.testParams(0,1); 这里传递了两个整型参数，匹配第二个 testParams 方法。<br><strong>x.testParams(0,1,2); 这里传递了三个参数，根据Java的varargs语法规则，当传递的参数数量超过方法定义的固定参数数量时，多余的参数会被视为不定长参数数组的一部分。因此，这将调用第一个 testParams 方法。</strong><br>所以，程序的输出将是：</p>
+<p>使用不定长参数！使用两个整型参数！使用不定长参数！</p>
+<p><strong>30</strong>、 在JAVA中，com包中某类的方法使用下列（B）访问修饰符修饰后，可以被com.db包中的子类访问，但不能被com.db中其他类访问。<br>A、private<br>B、protected<br>C、public<br>D、friendly<br><strong>解析</strong>：在Java中，访问修饰符控制了类、接口、方法和变量的可见性。以下是对每个选项的分析：</p>
+<p>A. private - 错误。private 修饰的成员只能在定义它的类内部访问，不能被同一个包中的其他类或子类访问。</p>
+<p>B. protected - 正确。protected 修饰的成员可以被同一个包中的其他类访问，也可以被不同包中的子类访问。但是，不能被不同包中的非子类访问。</p>
+<p>C. public - 错误。public 修饰的成员可以被任何其他类访问，没有限制。</p>
+<p>D. friendly - 错误。Java中没有 friendly 这个访问修饰符。</p>
+<p>因此，正确答案是 B、protected。使用 protected 访问修饰符，可以确保 com 包中的类的方法可以被子类（即使子类在不同的包中，如 com.db）访问，但不能被 com.db 包中的其他非子类访问。</p>
+<p><strong>31</strong>、下列程序的运行结果是（D）</p>
+<pre><code class="java">public static void main(String[] args) &#123;
+    int[] num = new int[]&#123;1,2,3,4,5&#125;;
+    ArrayList arr = new ArrayList();
+    for(int i = 0 ; i&lt;num.length ; i++)&#123;
+        arr.add(num[i]);
+    &#125;
+    arr.remove(2);
+    System.out.println(arr.get(2));
+&#125;
+</code></pre>
+<p>A. 1	B. 2	C. 3	D.4</p>
+<p><strong>32</strong>、一个异常对象可以由Java虚拟机抛出，也可以由程序主动抛出。Java提供给程序主动抛出异常的语句是（C）。<br>A、catch	B、throws	C、throw	D、try<br>只能死记硬背，貌似这题没有别的办法 </p>
+<p><strong>33</strong>、JFrame缺省搭配是什么布局管理器（A），Jpanel默认的 布局管理器是（D）？<br>A、边界布局管理器<br>B、盒式布局管理器<br>C、表格型布局管理器<br>D、流式布局管理器<br>JF 边界 JP 流式</p>
+<p><strong>34</strong>、下列哪一个容器不属于顶级容器（C）。<br>A、Frame	B、JDialog	C、JPanel	D、Applet<br>死记硬背</p>
+<p><strong>35</strong>、以下哪条语句可以将面板的布局管理器设置为网格式布局（B）：<br>A. setLayoutManager(new GridLayout());<br>B. setLayout(new GridLayout(2,2));<br>C. setGridLayout(2,2);<br>D.setBorderLayout();<br><strong>解析</strong>：在Java的Swing图形用户界面编程中，GridLayout 类是用来创建网格布局管理器的。以下是对每个选项的分析：</p>
+<p>A. setLayoutManager(new GridLayout()); - <strong>这个语句创建了一个新的 GridLayout 对象，但没有指定行数和列数</strong>，因此它将创建一个默认的网格布局，其中所有组件都会放在一个单一的行和列中。</p>
+<p>B. setLayout(new GridLayout(2,2)); - 这个语句正确地创建了一个具有指定行数和列数的网格布局管理器，这里是2行2列。这是设置面板为网格式布局的正确方式。</p>
+<p>C. setGridLayout(2,2); - 这个语句是错误的，因为 <strong>setGridLayout 方法不存在</strong>。正确的方法是 setLayout，它接受一个布局管理器作为参数。</p>
+<p>D. setBorderLayout(); - 这个语句是错误的，<strong>因为它尝试调用一个不存在的方法 setBorderLayout。正确的方法应该是 setLayout</strong>，并且需要传递一个 BorderLayout 对象作为参数。</p>
+<p>因此，正确答案是 B. setLayout(new GridLayout(2,2));。这条语句将面板的布局管理器设置为2行2列的网格式布局。</p>
+<p><strong>36</strong>、要实现集合中里的元素进行自定义排序，要实现哪个接口（B）。<br>A. Serializable（可序列化）	B. Comparator（比较器）	C. Runnable（可运行的）	D. Cloneable（可克隆的）<br>只要看这些单词的意思就行了，比较器说明他会将元素进行比较再排序所以肯定选B</p>
+<p><strong>37</strong>、如果希望一个类不能被继承，应该用下面的（A）关键字定义类。<br>A. final	B. static	C.abstract	D. protected<br>这题我在课上听到过，所以我是会做的</p>
+<p><strong>38</strong>、如果希望一个方法不能被重写，应该用下面的（A）关键字定义方法。<br>A. final	B. static	C.abstract	D. protected</p>
+<p><strong>39</strong>、下面类中属于字节输入抽象类的 是（C)，属于字符输入抽象类的是（D）。<br>A、FileInputStream	B、ObjectInputStream	C、InputStream	D、Reader</p>
+<p><strong>40</strong>、下面（A）事件监听器是用来处理动作事件的，（B）事件监听器是用来处理键盘时间的，（C）事件监听器是用来处理鼠标时间的。<br>A、ActionListener	B、KeyListener	C、MouseListener	D、WindowListener<br>这题也是的，看看单词的意思就很容易做出来了</p>
+<p><strong>41</strong>、写出下面表达式的 执行结果：<br>System,out.println(“1”+”2”); &#x2F;&#x2F;12<br>System,out.println(“1”+ 2); &#x2F;&#x2F;12<br>System,out.println(1+2+”a”); &#x2F;&#x2F;3a<br>System,out.println(“a”+1+2); &#x2F;&#x2F;a12<br>System,out.println(‘a’+2);; &#x2F;&#x2F;99<br>System,out.println(1+2); &#x2F;&#x2F;3</p>
+<p><strong>42</strong>、写出下面的表达式a≤x≤b	a&lt;&#x3D;x &amp;&amp; x &lt;&#x3D; b<br>非常简单的操作，和c语言一样的</p>
+<p><strong>43</strong>、在默认情况下，equals方法是比较两个对象的地址是否相等，如果要比较两个对象的 属性是否相等，应该重写（equals）方法。</p>
+<p><strong>44</strong>、下面程序运行后，i的值为（0）</p>
+<pre><code class="java">int a = 50, i =0;
+if(a&gt;60) , i=1;
+if(a&gt;70) , i=2;
+if(a&gt;80) , i=3;
+if(a&gt;90) , i=4;
+</code></pre>
+<p>纯纯送分题，走人。</p>
+<p><strong>45</strong>、下面程序运行后，i的值为（1）</p>
+<pre><code class="java">int a=75,i=0;
+if(a&gt;60);
+i=1;
+else if(a&gt;70)
+i=2;
+else if(a&gt;80)
+i=3;
+else if(a&gt;90)
+i=4;
+</code></pre>
+<p>还是送分题，就是一个if的简单知识，从上往下运行程序，只要有一个分支为true，下面的分支就不会再运行了，所以这题在第一个分支就停掉了，i&#x3D;1.</p>
+<p><strong>46</strong>、判断题：一个类文件中，有import语句，也有package语句，则（package）语句写在第一行。 &#x2F;&#x2F;对</p>
+<p><strong>47</strong>、有如下程序	注：这题貌似有点难，先放一放，等会研究</p>
+<pre><code class="java">class A&#123;
+    public A() &#123;
+        System.out.println(&quot;类A无参构造函数&quot;)：
+    &#125;
+    public A(String s)&#123;
+        System.out.println(&quot;类A带有1一个参数的构造函数&quot;);
+    &#125;
+&#125;
+class B extends A &#123;
+    public B() &#123;
+        System.out.pringln(&quot;类B无参构造函数&quot;);
+    &#125;
+    public B(String s) &#123;
+        System.out.println(&quot;类B带有1个参数的构造函数&quot;);
+    &#125;
+&#125;
+class C extends A &#123;
+    public C() &#123;
+        System.out.println(&quot;类C无参构造函数&quot;);
+    &#125;
+    public C(String s) &#123;
+        super(s);
+        System.out.println(&quot;类C带有1个参数的构造函数&quot;);
+    &#125;
+&#125;
+
+public class Test&#123;
+    public static void main(Sting[] args) &#123;
+        new B();//语句1
+    &#125;
+&#125;
+</code></pre>
+<p>则程序的执行结果是：<br>    类A无参构造函数<br>    类B无参构造函数<br>如果把语句1换成new B(“hello”);则运行结果为：<br>    类A无参构造函数<br>    类B带有1个参数的构造函数<br>如果把语句1换成new C(“hello”);则运行结果为：<br>    类A带有1个参数的构造函数<br>    类C带有1个参数的构造函数</p>
+<p><strong>48</strong>、下面程序的运行结果是（7）。</p>
+<pre><code class="java">public static void main(String[] args) &#123;
+    int a=2;
+    switch(a)&#123;
+    case 1:
+        a+=1;
+        break;
+    case 2:
+        a+=2;
+    case 3:
+        a+=3;
+        break
+    &#125;
+    System,out.println(a);
+&#125;
+</code></pre>
+<p><strong>解析</strong>：因为a的初始值是2，所以执行case 2，2+2&#x3D;4，由于case2不存在break语句，所以继续运行case 3，4+3等于7，所以最终的结果是7。</p>
+<p><strong>49</strong>、</p>
+<pre><code class="java">for(int i = 1;i&lt;=3;i++)&#123;
+    if(i==2)
+        return;
+    System.out.println(&quot;i=&quot;+i);
+&#125;
+System.out.println(&quot;hello&quot;);
+</code></pre>
+<p>上面程序的运行 结果是（i&#x3D;1)<br>如果把return换成break，则程序的运行结果是（i&#x3D;1 hello）<br>如果把return换成continue，则程序的运行结果是（i&#x3D;1 i&#x3D;3 hello)</p>
+<h2 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h2><p><strong>50</strong>、定义个抽象类Student，通过Student类的基础上派生出小学生类Pupil，要求：<br>1）Student 类有学号啥图ID（string）和姓名stuName（string）；<br>2）Student类提供抽象方法totalScore（）来获得学生的总成绩；<br>3）Pupil类还有语文chinese（double）和数学math（double）这两门课的成绩；<br>4）体现字段的封装性；<br>5）通过构造方法对所有字段赋值，通过重写toString（）方法显示字段的值；<br>6）并提供Test类进行测试，测试时使用自己的学号和姓名。</p>
+<pre><code class="java">abstract class Student &#123;
+    private String stuID;
+    private String stuName;
+    public String getStuID() &#123;
+        return stuID;
+    &#125;
+    public void setStuID(String stuID) &#123;
+        this.stuID = stuID;
+    &#125;
+    public String getStuName() &#123;
+        return stuName;
+    &#125;
+    public void setStuName(String stuName) &#123;
+        this.stuName = stuName;
+    &#125;
+   public Student()&#123;
+   
+   &#125;
+   public Student(String stuID, String stuName) &#123;
+           setStuID(stuID);
+           setStuName(stuName);
+   &#125;
+   public abstract double totalScore();
+   
+   @Override
+   public String toString() &#123;
+           return &quot;stuID=&quot; + stuID+&quot;, stuName=&quot; + stuName;&quot;
+   &#125;
+&#125;
+
+class Pupil extends Student &#123;
+    private double chinese, math;
+    
+    public double getChinese() &#123;
+        return chinese;
+    &#125;
+    public void setChinese(double chinese) &#123;
+        this.chinese =chinese;
+    &#125;
+    public double getMath() &#123;
+        return math;
+    &#125;
+    public void setMath(double math) &#123;
+        this.math = math;
+    &#125;
+    public Pupil() &#123;
+    
+    &#125;
+    public Pupil(String stuID, String stuName, double chinese ,double math)&#123;
+        super(stuID,stuName);
+        setChinese(chinese);
+        setMath(math)；
+    &#125;
+    @Override
+    public double totalScore()&#123;
+        return this.chinese + this.math;
+    &#125;
+    @Override
+    public String toString() &#123;
+        return super.toString()+&quot;chinese=&quot;+chinese+&quot;,math=&quot;+math;
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">class Test &#123;
+    public static void main(String[] args) &#123;
+        Student student = new Pupil(&quot;1001&quot;,&quot;jack&quot;,90,95);
+            System.out.println(student+&quot;,totalScore=&quot;+student.totalScore());
+    &#125;
+&#125;
+</code></pre>
+<p><strong>51</strong>、假设售票厅有3个窗口（窗口A，窗口B，窗口C），可以发售某日某列车的20张车票，请用3个线程模拟这3个窗口的售票情况，需要保证不能售出同号车票，输出各个售票点的售票情况（要求：提供Test类，测试并显示各个售票窗口的售票情况。</p>
+<pre><code class="java">public class Test5 &#123;
+    public static void main(String[] args) &#123;
+        TicketWindow tw = new TicketWindow();
+        new Thread(tw,&quot;窗口A&quot;).start();
+        new Thread(tw,&quot;窗口B&quot;).start();
+        new Thread(tw,&quot;窗口C&quot;).start();
+    &#125;
+&#125;
+
+class TicketWindow implements Runnable &#123;
+    private static int ticketNumber = 20;
+    @Override
+    public void run() &#123;
+        while (true) &#123;
+            synchronized(this) &#123;
+                if(ticketNumber&gt;0) &#123;
+                    Thread thread = Thread.currentThread();
+                    String threadName = thread.getName();
+                    System.out.println(threadName + &quot;正在售出第&quot; + (ticketNumber--)+ &quot;张票&quot;);
+                &#125;else&#123;
+                    break;
+                &#125;
+                try&#123;
+                    Thread.sleep(1000);
+                &#125; catch (InterruptedException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>52</strong>、求100之内的素数</p>
+<pre><code class="java">public class PrimeNumber &#123;
+public static void main(String[] args) &#123;
+        for(int m=2;m&lt;=100;m++)
+        &#123;
+            boolean flag=true;
+            for(int i=2;i&lt;=m-1;i++)&#123;
+                if(m%i==0)
+                &#123;
+                    flag=false;
+                    break;
+                &#125;
+            &#125;
+            if(flag==true)
+            &#123;
+            System.out.println(m);
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>53</strong>、求两个数的最大公约数</p>
+<pre><code class="java">public class gongyueshu &#123;
+    public static void main(String[] args) &#123;
+        int a=100,b=28,r;
+        r=a%b;
+        while( r!=0) &#123;
+            a=b;
+            b=r;
+            r=a%b;
+        &#125;
+        System.out.println(b);
+    &#125;
+&#125;
+</code></pre>
+<p><strong>54</strong>、定义一个教师类Teacher，包含如下属性：工号（private String id)、姓名（private String name)、薪水(private int salary)。<br>创建若干个教师类的对象，将其加入List集合中。将教师对象按照如下规则输出：<br>1）按照薪水从大到小排列;<br>2)若薪水相同，按照姓名字典从A-Z，a-z排列；<br>3)若前面的属性均相同，按照工号从小到大顺序。</p>
+<pre><code class="java">public class Teacher &#123;
+    private String id,name;
+    int salary;
+    public String getId() &#123;
+        return id;
+    &#125;
+    public void setId(String id) &#123;
+        this.id = id;
+    &#125;
+    public String getName() &#123;
+        return name;
+    &#125;
+    public void setName(String name) &#123;
+        this.name=name;
+    &#125;
+    public int getSalary() &#123;
+        return salary;
+    &#125;
+    public void setSalary(int salary) &#123;
+        this.salary = salary;
+    &#125;
+    public Teacher(String id,String name,int salary) &#123;
+        super();
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+    &#125;
+    @Override
+    public String toString() &#123;
+        return &quot;id=&quot; + id + &quot;,name=&quot; + name+ &quot;,salary=&quot; + salary;
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">import java.util.ArrayList;
+import java.util.Comparator;
+
+public class Test &#123;
+    public static void main(String[] args) &#123;
+        ArrayList&lt;Teacher&gt;list=new ArrayList&lt;Teacher&gt;();
+        list.add(new Teacher(&quot;1001&quot;,&quot;Caoyue&quot;,6900));
+        list.add(new Teacher(&quot;1002&quot;,&quot;zhansa&quot;,8900));
+        list.add(new Teacher(&quot;1003&quot;,&quot;wangli&quot;,9000));
+        list.add(new Teacher(&quot;1004&quot;,&quot;Katefd&quot;,8900));
+        list.add(new Teacher(&quot;1005&quot;,&quot;Caoyue&quot;,6900));
+
+        list.sort(new Comparator&lt;Teacher&gt;()&#123;
+
+            @Override
+            public int compare(Teacher o1,Teacher o2)&#123;
+                if(o1.getSalary()!=o2.getSalary())
+                    return o2.getSalary()-o1.getSalary();
+                else if(!(o1.getName().equals(o2.getName())))
+                    return o1.getName().compareTo(o2.getName());
+                else&#123;
+                    return o1.getId().compareTo(o2.getId());
+                &#125;
+            &#125;
+        &#125;);
+            for (Teacher teacher:list) &#123;
+                System.out.println(teacher);
+            &#125;
+
+
+        &#125;
+    &#125;
+</code></pre>
+<p><strong>55</strong>、定义个抽象类Shape，再构造派生类Circle，要求：<br>1）在Shape类中有形状的名称name（string）；<br>2）在Shape类中提供抽象方法area（），用来输出不同图形的面积。<br>3）Circle类中增加字段圆的半径r（double）；<br>4）体现字段的封装性；<br>5）通过构造方法对所有字段赋值；<br>6）通过构造方法对所有字段赋值，通过重写toSring（）方法显示图形的名称和图形的面积。<br>7）并提供Test类进行测试。</p>
+<pre><code class="java">abstract class Shap &#123;
+            String name;
+            public String getName() &#123;
+                return name;
+            &#125;
+            public void setName(String name) &#123;
+                this.name = name;
+            &#125;
+            public Shap() &#123;
+
+            &#125;
+            public Shap(String name)&#123;
+                setName(name);
+            &#125;
+
+            @Override
+            public String toString() &#123;
+                return &quot;Shap [name=&quot;+ name + &quot;]&quot;;
+            &#125;
+            public abstract double area();
+&#125;
+class Circle extends Shap&#123;
+        double r;
+        public double getR() &#123;
+            return r;
+        &#125;
+
+        public void setR(double r) &#123;
+            this.r = r;
+        &#125;
+        public Circle() &#123;
+
+        &#125;
+        public Circle(String name, double r) &#123;
+            super(name);
+            setR(r);
+        &#125;
+
+        @Override
+        public String toString() &#123;
+            return super.toString()+&quot; [r=&quot; + r + &quot;]&quot;;
+        &#125;
+        @Override
+        public double area() &#123;
+            return 3.14*r*r;
+        &#125;
+&#125;
+</code></pre>
+<pre><code class="java">public class Test &#123;
+    public static void main(String[] args) &#123;
+        Shap shap = new Circle(&quot;circle&quot;,4);
+        System.out.println(shap);
+        System.out.println(&quot;面积为：&quot;+shap.area());
+    &#125;
+&#125;
+</code></pre>
+<p><strong>56</strong>、题目要求：<br>1）新建类WriteDemo从键盘上输入自己的学号，姓名，保存到src目录下的myinfo.config文件中，文件内容参考格式如下：<br>id&#x3D;***  （你的学号）<br>name&#x3D;*** （你的姓名首字母速写）<br>2）新建类ReadDemo，从键盘上输入id和name，读取学号和姓名，并显示出来。</p>
+<pre><code class="java">import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class WriteDemo &#123;
+    public static void main(String[] args) throws IOException &#123;
+        Scanner in =new Scanner(System.in);
+        System.out.print(&quot;请输入学号：&quot;);
+        String id = in.nextLine();
+        System.out.print(&quot;请输入姓名：&quot;);
+        String name = in.nextLine();
+        FileWriter fw = new FileWriter(&quot;src/myInfo.config&quot;);
+        fw.write(&quot;id=&quot;+id);
+        fw.write(&#39;\n&#39;);
+        fw.write(&quot;name=&quot;+name);
+        fw.close();
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">import java.io.IOException;
+import java.io.FileReader;
+import java.util.Properties;
+
+public class ReadDemo &#123;
+    public static void main(String[] args) throws IOException&#123;
+        Properties properties = new Properties();
+        properties.load(new FileReader(&quot;src/myInfo.config&quot;));
+        String id=properties.getProperty(&quot;id&quot;);
+        String name=properties.getProperty(&quot;name&quot;);
+        System.out.println(&quot;学号=&quot;+id+&quot;,姓名=&quot;+name);
+    &#125;
+&#125;
+</code></pre>
+<p><strong>57</strong>、编写一个类Student，要求：<br>1）在Student类中，包含私有字段(String name， int age);<br>2）体现字段的封装<br>3）提供构造方法，对字段赋值<br>4）重写toString方法 ，输出学生的信息<br>5）重写equals方法，比较两个对象的内容是否相等（name和age是否相等）</p>
+<pre><code class="java">public class Student &#123;
+    private String name;
+    private int age;
+
+    public String getNmae()&#123;
+        return name;
+    &#125;
+
+    public void setName(String name) &#123;
+        this.name = name;
+    &#125;
+
+    public int getAge()&#123;
+        return age;
+    &#125;
+
+    public void setAge(int age) &#123;
+        this.age = age;
+    &#125;
+
+    public Student() &#123;
+
+    &#125;
+    
+    public Student(String name, int age) &#123;
+        setName(name);
+        setAge(age);
+    &#125;
+
+    @Override
+    public String toString() &#123;
+        return &quot;Student [name=&quot; + name + &quot;, age=&quot; + age + &quot;]&quot;;
+    &#125;
+
+    @Override
+    public boolean equals(Object obj) &#123;
+        if(this == obj)
+            return true;
+        if(obj instanceof Student) &#123;
+            Student student = (Student) obj;
+            return this.name.equals(student.name) &amp;&amp; this.age == student.age;
+        &#125;
+        return false;
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">public class Test &#123;
+    public static void main(String[] args) &#123;
+    Student stu1 = new Student(&quot;zs&quot;, 18);
+    Student stu2 = new Student(&quot;zs&quot;, 18);
+    System.out.println(stu1.equals(stu2));
+    Student stu3 = new Student(&quot;zs&quot;, 18);
+    Student stu4 = new Student(&quot;ls&quot;, 18);
+    System.out.println(stu3.equals(stu4));
+    &#125;
+    &#125;
+</code></pre>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2024 f4k3r
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+<div id="musicMouseDrag" style="position:fixed; z-index: 9999; bottom: 0; right: 50px;">
+    <div id="musicDragArea" style="position: absolute; top: 0; left: 0; width: 100%;height: 10px;cursor: move; z-index: 10;"></div>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=427606780&auto=0&height=32"></iframe>
+    </div>
+
+<script>
+    var $DOC = $(document)
+    $('#musicMouseDrag').on('mousedown', function (e) {
+      // 阻止文本选中
+      $DOC.bind("selectstart", function () {
+        return false;
+      });
+      $('#musicDragArea').css('height', '100%');
+      var $moveTarget = $('#musicMouseDrag');
+      $moveTarget.css('border', '1px dashed grey')
+      var div_x = e.pageX - $moveTarget.offset().left;
+      var div_y = e.pageY - $moveTarget.offset().top;
+      $DOC.on('mousemove', function (e) {
+        var targetX = e.pageX - div_x;
+        var targetY = e.pageY - div_y;
+        targetX = targetX < 0 ? 0 : (targetX + $moveTarget.outerWidth() >= window.innerWidth) ? window.innerWidth - $moveTarget.outerWidth() : targetX;
+        targetY = targetY < 0 ? 0 : (targetY + $moveTarget.outerHeight() >= window.innerHeight) ? window.innerHeight - $moveTarget.outerHeight() : targetY;
+        $moveTarget.css({'left': targetX + 'px', 'top': targetY + 'px', 'bottom': 'inherit', 'right': 'inherit'})
+      }).on('mouseup', function () {
+        $DOC.unbind("selectstart");
+        $DOC.off('mousemove')
+        $DOC.off('mouseup')
+        $moveTarget.css('border', 'none')
+        $('#musicDragArea').css('height', '10px');
+      })
+    })
+</script>
+
+</html>
