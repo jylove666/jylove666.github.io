@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>绕过姿势收藏 | f4k3r&#39;s blog</title>
-  <meta name="keywords" content=" Web ">
-  <meta name="description" content="绕过姿势收藏 | f4k3r&#39;s blog">
+  <title>java编程题答案汇总 | f4k3r&#39;s blog</title>
+  <meta name="keywords" content=" java ">
+  <meta name="description" content="java编程题答案汇总 | f4k3r&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="abstract class Student &amp;#123;     private String stuID;     private String stuName;     public String getStuID() &amp;#123;         return stuID;     &amp;#125;     public void setStuID(String stuID) &amp;#123;">
 <meta property="og:type" content="article">
@@ -465,9 +465,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-绕过姿势收藏" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-java编程题答案汇总" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">绕过姿势收藏</h1>
+        <h1 class="article-title">java编程题答案汇总</h1>
     
     <div class="article-meta">
         
@@ -477,14 +477,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color4">Web</a>
+            <a class="color5">java</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-04-28 19:57:38'>2024-04-28 19:55</time>
+            发布时间 : <time class="date" title='最后更新: 2024-06-12 09:15:30'>2024-06-12 09:13</time>
         
     </div>
     <div class="article-meta">
@@ -495,7 +495,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#flag%E5%AD%97%E7%AC%A6%E8%A2%AB%E8%BF%87%E6%BB%A4%E6%97%B6"><span class="toc-text">flag字符被过滤时</span></a></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -511,7 +511,353 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="flag字符被过滤时"><a href="#flag字符被过滤时" class="headerlink" title="flag字符被过滤时"></a>flag字符被过滤时</h2><p>①：[^e]表示除了e以外的所有字母，这样可以顺利匹配到flag</p>
+        <pre><code class="java">abstract class Student &#123;
+    private String stuID;
+    private String stuName;
+    public String getStuID() &#123;
+        return stuID;
+    &#125;
+    public void setStuID(String stuID) &#123;
+        this.stuID = stuID;
+    &#125;
+    public String getStuName() &#123;
+        return stuName;
+    &#125;
+    public void setStuName(String stuName) &#123;
+        this.stuName = stuName;
+    &#125;
+   public Student()&#123;
+   
+   &#125;
+   public Student(String stuID, String stuName) &#123;
+           setStuID(stuID);
+           setStuName(stuName);
+   &#125;
+   public abstract double totalScore();
+   
+   @Override
+   public String toString() &#123;
+           return &quot;stuID=&quot; + stuID+&quot;, stuName=&quot; + stuName;&quot;
+   &#125;
+&#125;
+
+class Pupil extends Student &#123;
+    private double chinese, math;
+    
+    public double getChinese() &#123;
+        return chinese;
+    &#125;
+    public void setChinese(double chinese) &#123;
+        this.chinese =chinese;
+    &#125;
+    public double getMath() &#123;
+        return math;
+    &#125;
+    public void setMath(double math) &#123;
+        this.math = math;
+    &#125;
+    public Pupil() &#123;
+    
+    &#125;
+    public Pupil(String stuID, String stuName, double chinese ,double math)&#123;
+        super(stuID,stuName);
+        setChinese(chinese);
+        setMath(math)；
+    &#125;
+    @Override
+    public double totalScore()&#123;
+        return this.chinese + this.math;
+    &#125;
+    @Override
+    public String toString() &#123;
+        return super.toString()+&quot;chinese=&quot;+chinese+&quot;,math=&quot;+math;
+    &#125;
+&#125;
+
+class Test &#123;
+    public static void main(String[] args) &#123;
+        Student student = new Pupil(&quot;1001&quot;,&quot;jack&quot;,90,95);
+            System.out.println(student+&quot;,totalScore=&quot;+student.totalScore());
+    &#125;
+&#125;
+
+public class Test5 &#123;
+    public static void main(String[] args) &#123;
+        TicketWindow tw = new TicketWindow();
+        new Thread(tw,&quot;窗口A&quot;).start();
+        new Thread(tw,&quot;窗口B&quot;).start();
+        new Thread(tw,&quot;窗口C&quot;).start();
+    &#125;
+&#125;
+
+class TicketWindow implements Runnable &#123;
+    private static int ticketNumber = 20;
+    @Override
+    public void run() &#123;
+        while (true) &#123;
+            synchronized(this) &#123;
+                if(ticketNumber&gt;0) &#123;
+                    Thread thread = Thread.currentThread();
+                    String threadName = thread.getName();
+                    System.out.println(threadName + &quot;正在售出第&quot; + (ticketNumber--)+ &quot;张票&quot;);
+                &#125;else&#123;
+                    break;
+                &#125;
+                try&#123;
+                    Thread.sleep(1000);
+                &#125; catch (InterruptedException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+public class PrimeNumber &#123;
+public static void main(String[] args) &#123;
+        for(int m=2;m&lt;=100;m++)
+        &#123;
+            boolean flag=true;
+            for(int i=2;i&lt;=m-1;i++)&#123;
+                if(m%i==0)
+                &#123;
+                    flag=false;
+                    break;
+                &#125;
+            &#125;
+            if(flag==true)
+            &#123;
+            System.out.println(m);
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+public class gongyueshu &#123;
+    public static void main(String[] args) &#123;
+        int a=100,b=28,r;
+        r=a%b;
+        while( r!=0) &#123;
+            a=b;
+            b=r;
+            r=a%b;
+        &#125;
+        System.out.println(b);
+    &#125;
+&#125;
+
+public class Teacher &#123;
+    private String id,name;
+    int salary;
+    public String getId() &#123;
+        return id;
+    &#125;
+    public void setId(String id) &#123;
+        this.id = id;
+    &#125;
+    public String getName() &#123;
+        return name;
+    &#125;
+    public void setName(String name) &#123;
+        this.name=name;
+    &#125;
+    public int getSalary() &#123;
+        return salary;
+    &#125;
+    public void setSalary(int salary) &#123;
+        this.salary = salary;
+    &#125;
+    public Teacher(String id,String name,int salary) &#123;
+        super();
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+    &#125;
+    @Override
+    public String toString() &#123;
+        return &quot;id=&quot; + id + &quot;,name=&quot; + name+ &quot;,salary=&quot; + salary;
+    &#125;
+&#125;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+
+public class Test &#123;
+    public static void main(String[] args) &#123;
+        ArrayList&lt;Teacher&gt;list=new ArrayList&lt;Teacher&gt;();
+        list.add(new Teacher(&quot;1001&quot;,&quot;Caoyue&quot;,6900));
+        list.add(new Teacher(&quot;1002&quot;,&quot;zhansa&quot;,8900));
+        list.add(new Teacher(&quot;1003&quot;,&quot;wangli&quot;,9000));
+        list.add(new Teacher(&quot;1004&quot;,&quot;Katefd&quot;,8900));
+        list.add(new Teacher(&quot;1005&quot;,&quot;Caoyue&quot;,6900));
+
+        list.sort(new Comparator&lt;Teacher&gt;()&#123;
+
+            @Override
+            public int compare(Teacher o1,Teacher o2)&#123;
+                if(o1.getSalary()!=o2.getSalary())
+                    return o2.getSalary()-o1.getSalary();
+                else if(!(o1.getName().equals(o2.getName())))
+                    return o1.getName().compareTo(o2.getName());
+                else&#123;
+                    return o1.getId().compareTo(o2.getId());
+                &#125;
+            &#125;
+        &#125;);
+            for (Teacher teacher:list) &#123;
+                System.out.println(teacher);
+            &#125;
+
+
+        &#125;
+    &#125;
+
+abstract class Shap &#123;
+            String name;
+            public String getName() &#123;
+                return name;
+            &#125;
+            public void setName(String name) &#123;
+                this.name = name;
+            &#125;
+            public Shap() &#123;
+
+            &#125;
+            public Shap(String name)&#123;
+                setName(name);
+            &#125;
+
+            @Override
+            public String toString() &#123;
+                return &quot;Shap [name=&quot;+ name + &quot;]&quot;;
+            &#125;
+            public abstract double area();
+&#125;
+class Circle extends Shap&#123;
+        double r;
+        public double getR() &#123;
+            return r;
+        &#125;
+
+        public void setR(double r) &#123;
+            this.r = r;
+        &#125;
+        public Circle() &#123;
+
+        &#125;
+        public Circle(String name, double r) &#123;
+            super(name);
+            setR(r);
+        &#125;
+
+        @Override
+        public String toString() &#123;
+            return super.toString()+&quot; [r=&quot; + r + &quot;]&quot;;
+        &#125;
+        @Override
+        public double area() &#123;
+            return 3.14*r*r;
+        &#125;
+&#125;
+
+public class Test &#123;
+    public static void main(String[] args) &#123;
+        Shap shap = new Circle(&quot;circle&quot;,4);
+        System.out.println(shap);
+        System.out.println(&quot;面积为：&quot;+shap.area());
+    &#125;
+&#125;
+
+import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class WriteDemo &#123;
+    public static void main(String[] args) throws IOException &#123;
+        Scanner in =new Scanner(System.in);
+        System.out.print(&quot;请输入学号：&quot;);
+        String id = in.nextLine();
+        System.out.print(&quot;请输入姓名：&quot;);
+        String name = in.nextLine();
+        FileWriter fw = new FileWriter(&quot;src/myInfo.config&quot;);
+        fw.write(&quot;id=&quot;+id);
+        fw.write(&#39;\n&#39;);
+        fw.write(&quot;name=&quot;+name);
+        fw.close();
+    &#125;
+&#125;
+
+import java.io.IOException;
+import java.io.FileReader;
+import java.util.Properties;
+
+public class ReadDemo &#123;
+    public static void main(String[] args) throws IOException&#123;
+        Properties properties = new Properties();
+        properties.load(new FileReader(&quot;src/myInfo.config&quot;));
+        String id=properties.getProperty(&quot;id&quot;);
+        String name=properties.getProperty(&quot;name&quot;);
+        System.out.println(&quot;学号=&quot;+id+&quot;,姓名=&quot;+name);
+    &#125;
+&#125;
+
+public class Student &#123;
+    private String name;
+    private int age;
+
+    public String getNmae()&#123;
+        return name;
+    &#125;
+
+    public void setName(String name) &#123;
+        this.name = name;
+    &#125;
+
+    public int getAge()&#123;
+        return age;
+    &#125;
+
+    public void setAge(int age) &#123;
+        this.age = age;
+    &#125;
+
+    public Student() &#123;
+
+    &#125;
+    
+    public Student(String name, int age) &#123;
+        setName(name);
+        setAge(age);
+    &#125;
+
+    @Override
+    public String toString() &#123;
+        return &quot;Student [name=&quot; + name + &quot;, age=&quot; + age + &quot;]&quot;;
+    &#125;
+
+    @Override
+    public boolean equals(Object obj) &#123;
+        if(this == obj)
+            return true;
+        if(obj instanceof Student) &#123;
+            Student student = (Student) obj;
+            return this.name.equals(student.name) &amp;&amp; this.age == student.age;
+        &#125;
+        return false;
+    &#125;
+&#125;
+
+public class Test &#123;
+    public static void main(String[] args) &#123;
+    Student stu1 = new Student(&quot;zs&quot;, 18);
+    Student stu2 = new Student(&quot;zs&quot;, 18);
+    System.out.println(stu1.equals(stu2));
+    Student stu3 = new Student(&quot;zs&quot;, 18);
+    Student stu4 = new Student(&quot;ls&quot;, 18);
+    System.out.println(stu3.equals(stu4));
+    &#125;
+    &#125;
+</code></pre>
 
       
        
