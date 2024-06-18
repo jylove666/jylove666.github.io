@@ -6,54 +6,41 @@
   <meta name="keywords" content=" Web ">
   <meta name="description" content="Web学习4 | f4k3r&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="知识点1、脚本代码与数据库前置知识2、Access数据库注入-简易&amp;偏移 (数据库是通过脚本代码去连接执行的)3、MYSQL数据库注入-简易&amp;权限跨库 前置知识：-SQL注入漏洞产生原理分析-SQL注入漏洞危害利用分析-脚本代码与数据库操作流程-数据库名，表名，列名，数据-数据库类型，数据库用户，用户权限 案例ASP+Access-简易注入-字典猜解ASP+Access-偏移注入-">
+<meta name="description" content="知识点黑盒测试：功能点分析白盒测试：功能点分析&amp;关键代码追踪   1、数据库注入 -access mysql mssql oracle mongodb postgresql等2、数据类型注入 -数字型 字符型 搜索型 加密型（base64 json）等3、提交方式注入 -get post cookie http头等4、查询方式注入 -查询 增加 删除 更新 堆叠 等5、复杂注入利用 -二次">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Web学习24">
-<meta property="og:url" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/index.html">
+<meta property="og:title" content="Web学习28">
+<meta property="og:url" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/index.html">
 <meta property="og:site_name" content="f4k3r&#39;s blog">
-<meta property="og:description" content="知识点1、脚本代码与数据库前置知识2、Access数据库注入-简易&amp;偏移 (数据库是通过脚本代码去连接执行的)3、MYSQL数据库注入-简易&amp;权限跨库 前置知识：-SQL注入漏洞产生原理分析-SQL注入漏洞危害利用分析-脚本代码与数据库操作流程-数据库名，表名，列名，数据-数据库类型，数据库用户，用户权限 案例ASP+Access-简易注入-字典猜解ASP+Access-偏移注入-">
+<meta property="og:description" content="知识点黑盒测试：功能点分析白盒测试：功能点分析&amp;关键代码追踪   1、数据库注入 -access mysql mssql oracle mongodb postgresql等2、数据类型注入 -数字型 字符型 搜索型 加密型（base64 json）等3、提交方式注入 -get post cookie http头等4、查询方式注入 -查询 增加 删除 更新 堆叠 等5、复杂注入利用 -二次">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614120744457.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614164049651.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614165037445.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614165403276.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614165523403.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614165835878.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614165933556.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614165953037.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614170455089.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614170540136.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614171412294.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614173245587.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614173448728.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614173637081.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614174523439.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614174620749.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614174700819.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614174949240.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614175404009.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614175848649.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614175908833.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614180506435.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614180821075.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614181002476.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614181359897.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614181725081.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614181924132.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614182255913.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614182519699.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614182614571.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614182927684.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614183119978.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614183359106.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614184503367.png">
-<meta property="og:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614184824788.png">
-<meta property="article:published_time" content="2024-06-14T03:24:45.000Z">
-<meta property="article:modified_time" content="2024-06-14T11:09:14.915Z">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618120933884.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618130816968.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618131007666.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618130953937.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618131110584.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618131247344.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618131344684.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618131448896.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618132809299.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618132849546.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618132951170.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618133529749.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618133517469.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618133833467.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618133903335.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618134531470.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618140425200.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618140441959.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618141220176.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618141243520.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618141310175.png">
+<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618141839242.png">
+<meta property="article:published_time" content="2024-06-18T03:31:15.000Z">
+<meta property="article:modified_time" content="2024-06-18T06:18:40.711Z">
 <meta property="article:author" content="f4k3r">
 <meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2024/06/14/Web%E5%AD%A6%E4%B9%A024/image-20240614120744457.png">
+<meta name="twitter:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618120933884.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -116,7 +103,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(34)</small>
+                <small>(38)</small>
             
         </div>
     </li>
@@ -136,7 +123,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="34">
+<input type="hidden" id="yelog_site_posts_number" value="38">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -212,6 +199,42 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="NSSCTF平台刷题日记">NSSCTF平台刷题日记</span>
+            <span class="post-date" title="2024-06-18 15:09:22">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/18/Web%E5%AD%A6%E4%B9%A028/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习28">Web学习28</span>
+            <span class="post-date" title="2024-06-18 11:31:15">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/17/Web%E5%AD%A6%E4%B9%A027/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习27">Web学习27</span>
+            <span class="post-date" title="2024-06-17 11:36:01">2024/06/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/15/Web%E5%AD%A6%E4%B9%A026/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习26">Web学习26</span>
+            <span class="post-date" title="2024-06-15 19:45:59">2024/06/15</span>
+        </a>
         
         
         <a  class="全部文章 "
