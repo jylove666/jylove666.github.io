@@ -6,41 +6,61 @@
   <meta name="keywords" content=" WP ">
   <meta name="description" content="NSSCTF平台刷题日记 | f4k3r&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="知识点黑盒测试：功能点分析白盒测试：功能点分析&amp;关键代码追踪   1、数据库注入 -access mysql mssql oracle mongodb postgresql等2、数据类型注入 -数字型 字符型 搜索型 加密型（base64 json）等3、提交方式注入 -get post cookie http头等4、查询方式注入 -查询 增加 删除 更新 堆叠 等5、复杂注入利用 -二次">
+<meta name="description" content="彩蛋~  [SWPUCTF 2021 新生赛]jicao题目源码 &lt;?php highlight_file(&#39;index.php&#39;); include(&quot;flag.php&quot;); $id&#x3D;$_POST[&#39;id&#39;]; $json&#x3D;json_decode($_GET[&#39;json&#39;],true); if ($id&#x3D;&#x3D;&quot;wl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Web学习28">
-<meta property="og:url" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/index.html">
+<meta property="og:title" content="NSSCTF平台刷题日记">
+<meta property="og:url" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/index.html">
 <meta property="og:site_name" content="f4k3r&#39;s blog">
-<meta property="og:description" content="知识点黑盒测试：功能点分析白盒测试：功能点分析&amp;关键代码追踪   1、数据库注入 -access mysql mssql oracle mongodb postgresql等2、数据类型注入 -数字型 字符型 搜索型 加密型（base64 json）等3、提交方式注入 -get post cookie http头等4、查询方式注入 -查询 增加 删除 更新 堆叠 等5、复杂注入利用 -二次">
+<meta property="og:description" content="彩蛋~  [SWPUCTF 2021 新生赛]jicao题目源码 &lt;?php highlight_file(&#39;index.php&#39;); include(&quot;flag.php&quot;); $id&#x3D;$_POST[&#39;id&#39;]; $json&#x3D;json_decode($_GET[&#39;json&#39;],true); if ($id&#x3D;&#x3D;&quot;wl">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618120933884.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618130816968.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618131007666.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618130953937.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618131110584.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618131247344.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618131344684.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618131448896.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618132809299.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618132849546.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618132951170.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618133529749.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618133517469.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618133833467.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618133903335.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618134531470.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618140425200.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618140441959.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618141220176.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618141243520.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618141310175.png">
-<meta property="og:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618141839242.png">
-<meta property="article:published_time" content="2024-06-18T03:31:15.000Z">
-<meta property="article:modified_time" content="2024-06-18T06:18:40.711Z">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620133817908.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240618151745081.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240618152107782.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240618222311348.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619001050831.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619001403469.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619001538626.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619001704564.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619002040885.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619002249808.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619002321364.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619002612131.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619002705389.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619003402473.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619003725460.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619003816906.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240618234446170.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619005521581.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619005748291.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619010639795.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619010715947.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619011114660.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619155622083.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619162319604.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619162227234.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619162501504.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619224515003.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619224805733.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620004355482.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620004957112.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620005344231.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620003616226.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620134106606.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620014433676.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620134217442.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620134242330.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620134438689.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620142600970.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620183232098.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620182456727.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620183522173.png">
+<meta property="og:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620204611928.png">
+<meta property="article:published_time" content="2024-06-18T07:09:22.000Z">
+<meta property="article:modified_time" content="2024-06-20T12:49:48.283Z">
 <meta property="article:author" content="f4k3r">
-<meta property="article:tag" content="Web">
+<meta property="article:tag" content="WP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2024/06/18/Web%E5%AD%A6%E4%B9%A028/image-20240618120933884.png">
+<meta name="twitter:image" content="http://example.com/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620133817908.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -103,7 +123,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(38)</small>
+                <small>(40)</small>
             
         </div>
     </li>
@@ -123,7 +143,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="38">
+<input type="hidden" id="yelog_site_posts_number" value="40">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -199,6 +219,24 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/19/Web%E5%AD%A6%E4%B9%A030/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习30">Web学习30</span>
+            <span class="post-date" title="2024-06-19 19:00:16">2024/06/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/19/Web%E5%AD%A6%E4%B9%A029/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习29">Web学习29</span>
+            <span class="post-date" title="2024-06-19 12:06:31">2024/06/19</span>
+        </a>
         
         
         <a  class="全部文章 "
@@ -579,7 +617,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-06-19 01:11:36'>2024-06-18 15:09</time>
+            发布时间 : <time class="date" title='最后更新: 2024-06-20 20:49:48'>2024-06-18 15:09</time>
         
     </div>
     <div class="article-meta">
@@ -590,7 +628,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-jicao"><span class="toc-text">[SWPUCTF 2021 新生赛]jicao</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-easy-md5"><span class="toc-text">[SWPUCTF 2021 新生赛]easy_md5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-include"><span class="toc-text">[SWPUCTF 2021 新生赛]include</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-easy-sql"><span class="toc-text">[SWPUCTF 2021 新生赛]easy_sql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-easyrce"><span class="toc-text">[SWPUCTF 2021 新生赛]easyrce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-caidao"><span class="toc-text">[SWPUCTF 2021 新生赛]caidao</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-jicao"><span class="toc-text">[SWPUCTF 2021 新生赛]jicao</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-easy-md5"><span class="toc-text">[SWPUCTF 2021 新生赛]easy_md5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-include%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9APHP%E4%BC%AA%E5%8D%8F%E8%AE%AE"><span class="toc-text">[SWPUCTF 2021 新生赛]include	知识点：PHP伪协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-easy-sql"><span class="toc-text">[SWPUCTF 2021 新生赛]easy_sql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-easyrce"><span class="toc-text">[SWPUCTF 2021 新生赛]easyrce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-caidao"><span class="toc-text">[SWPUCTF 2021 新生赛]caidao</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-Do-you-know-http"><span class="toc-text">[SWPUCTF 2021 新生赛]Do_you_know_http</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-babyrce"><span class="toc-text">[SWPUCTF 2021 新生赛]babyrce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4-2021-WebFTP"><span class="toc-text">[第五空间 2021]WebFTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NCTF-2018-%E7%AD%BE%E5%88%B0%E9%A2%98"><span class="toc-text">[NCTF 2018]签到题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NISACTF-2022-easyssrf%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9APHP%E4%BC%AA%E5%8D%8F%E8%AE%AE"><span class="toc-text">[NISACTF 2022]easyssrf	知识点：PHP伪协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BJDCTF-2020-easy-md5-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9ASQL%E4%B8%87%E8%83%BD%E5%AF%86%E7%A0%81"><span class="toc-text">[BJDCTF 2020]easy_md5 知识点：SQL万能密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#suctf-2019-EasySQL-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5"><span class="toc-text">[suctf 2019]EasySQL 知识点：堆叠注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSSCTF-2022-Spring-Recruit-ezgame-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9AJS%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-text">[NSSCTF 2022 Spring Recruit]ezgame 知识点：JS代码分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-hardrce-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E6%97%A0%E5%AD%97%E6%AF%8DRCE-%E5%8F%96%E5%8F%8D"><span class="toc-text">[SWPUCTF 2021 新生赛]hardrce 知识点：无字母RCE&amp;取反</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GXYCTF-2019-Ping-Ping-Ping-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9ARCE-%E7%A9%BA%E6%A0%BC%E7%BB%95%E8%BF%87-%E5%8F%8D%E5%BC%95%E5%8F%B7"><span class="toc-text">[GXYCTF 2019]Ping Ping Ping 知识点：RCE&amp;空格绕过&amp;反引号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-error-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9Asqlmap"><span class="toc-text">[SWPUCTF 2021 新生赛]error 知识点：sqlmap</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -606,7 +644,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="SWPUCTF-2021-新生赛-jicao"><a href="#SWPUCTF-2021-新生赛-jicao" class="headerlink" title="[SWPUCTF 2021 新生赛]jicao"></a>[SWPUCTF 2021 新生赛]jicao</h2><pre><code class="php">题目源码
+        <p>彩蛋~</p>
+<p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620133817908.png"></p>
+<h2 id="SWPUCTF-2021-新生赛-jicao"><a href="#SWPUCTF-2021-新生赛-jicao" class="headerlink" title="[SWPUCTF 2021 新生赛]jicao"></a>[SWPUCTF 2021 新生赛]jicao</h2><pre><code class="php">题目源码
 &lt;?php
 highlight_file(&#39;index.php&#39;);
 include(&quot;flag.php&quot;);
@@ -695,7 +735,7 @@ s1885207154a
 903251147
 0e174510503823932942361353209384
 </code></pre>
-<h2 id="SWPUCTF-2021-新生赛-include"><a href="#SWPUCTF-2021-新生赛-include" class="headerlink" title="[SWPUCTF 2021 新生赛]include"></a>[SWPUCTF 2021 新生赛]include</h2><pre><code class="php">题目源码
+<h2 id="SWPUCTF-2021-新生赛-include知识点：PHP伪协议"><a href="#SWPUCTF-2021-新生赛-include知识点：PHP伪协议" class="headerlink" title="[SWPUCTF 2021 新生赛]include	知识点：PHP伪协议"></a>[SWPUCTF 2021 新生赛]include	知识点：PHP伪协议</h2><pre><code class="php">题目源码
 &lt;?php
 ini_set(&quot;allow_url_include&quot;,&quot;on&quot;);
 header(&quot;Content-type: text/html; charset=utf-8&quot;);
@@ -768,6 +808,208 @@ eval($_GET[&#39;url&#39;]);
 <p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619010715947.png"></p>
 <p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619011114660.png"></p>
 <p>这种成功连接的行为叫做getshell</p>
+<h2 id="SWPUCTF-2021-新生赛-Do-you-know-http"><a href="#SWPUCTF-2021-新生赛-Do-you-know-http" class="headerlink" title="[SWPUCTF 2021 新生赛]Do_you_know_http"></a>[SWPUCTF 2021 新生赛]Do_you_know_http</h2><p>简单的http协议，做过很多遍了，先修改一下UA头也就是浏览器，再伪造一下ip为本地ip就可以获得flag了</p>
+<h2 id="SWPUCTF-2021-新生赛-babyrce"><a href="#SWPUCTF-2021-新生赛-babyrce" class="headerlink" title="[SWPUCTF 2021 新生赛]babyrce"></a>[SWPUCTF 2021 新生赛]babyrce</h2><pre><code class="php">&lt;?php
+error_reporting(0);
+header(&quot;Content-Type:text/html;charset=utf-8&quot;);
+highlight_file(__FILE__);
+if($_COOKIE[&#39;admin&#39;]==1) 
+&#123;
+    include &quot;../next.php&quot;;
+&#125;
+else
+    echo &quot;小饼干最好吃啦！&quot;;
+?&gt; 
+</code></pre>
+<p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619155622083.png"></p>
+<p>在Application里添加一条cookie值就可以完成伪造，name&#x3D;admin，然后value&#x3D;1，得到了rasalghul.php</p>
+<p>访问这个地址得到了一串新的源码</p>
+<pre><code class="php">&lt;?php
+error_reporting(0);
+highlight_file(__FILE__);
+error_reporting(0);
+if (isset($_GET[&#39;url&#39;])) &#123;
+  $ip=$_GET[&#39;url&#39;];
+  if(preg_match(&quot;/ /&quot;, $ip))&#123;
+      die(&#39;nonono&#39;);
+  &#125;
+  $a = shell_exec($ip);
+  echo $a;
+&#125;
+?&gt;
+</code></pre>
+<p>payload:<a target="_blank" rel="noopener" href="http://xx/rasalghul.php?url=cat$%7BIFS%7D/f">http://xx/rasalghul.php?url=cat${IFS}/f</a>*</p>
+<p>${IFS}可以当作空格来绕过</p>
+<h2 id="第五空间-2021-WebFTP"><a href="#第五空间-2021-WebFTP" class="headerlink" title="[第五空间 2021]WebFTP"></a>[第五空间 2021]WebFTP</h2><p>dirsearch -u “<a target="_blank" rel="noopener" href="http://xxxx/?m=login&a%22%E6%89%AB%E4%B8%80%E4%B8%8B%E7%9B%AE%E5%BD%95%E5%8F%91%E7%8E%B0README.md%EF%BC%8C">http://xxxx/?m=login&amp;a&quot;扫一下目录发现README.md，</a></p>
+<p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619162319604.png"></p>
+<p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619162227234.png">发现了后台的账号和密码，但是进去后台后却没有找到flag，反而是读一下phpinfo.php里搜索一下flag就可以找到真正的flag了，这题也是有点无语……，但也是让我知道了原来phpinfo这种地方也是可能会放flag的</p>
+<p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619162501504.png"></p>
+<h2 id="NCTF-2018-签到题"><a href="#NCTF-2018-签到题" class="headerlink" title="[NCTF 2018]签到题"></a>[NCTF 2018]签到题</h2><p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619224515003.png"></p>
+<p>抓个包，然后把&#x2F;serect.php改为&#x2F;index.php就可以得到flag，为啥默认会跳转到百度那个页面啊？我不是很理解</p>
+<p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240619224805733.png"></p>
+<h2 id="NISACTF-2022-easyssrf知识点：PHP伪协议"><a href="#NISACTF-2022-easyssrf知识点：PHP伪协议" class="headerlink" title="[NISACTF 2022]easyssrf	知识点：PHP伪协议"></a>[NISACTF 2022]easyssrf	知识点：PHP伪协议</h2><p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620004355482.png"></p>
+<p>题目是easyssrf，想起来了之前做过类似的题，就是先用ssrf试探一下，输入file:&#x2F;&#x2F;&#x2F;flag可以得到这个提示，然后我们再输入file:&#x2F;&#x2F;&#x2F;fl4g，就又获得了提示（见图）</p>
+<p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620004957112.png"></p>
+<p>提示我们去给的路径访问一下，于是我们看到了一段php代码</p>
+<pre><code class="php">&lt;?php
+
+highlight_file(__FILE__);
+error_reporting(0);
+
+$file = $_GET[&quot;file&quot;];
+if (stristr($file, &quot;file&quot;))&#123;
+  die(&quot;你败了.&quot;);
+&#125;
+
+//flag in /flag
+echo file_get_contents($file);
+</code></pre>
+<p>这里有stristr这个代码，对这个代码的简单介绍：</p>
+<p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620005344231.png"></p>
+<p>这个函数也可以用伪协议读取文件来绕过，所以就感觉一直在考php伪协议……</p>
+<p>最终payload：?file&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;&#x2F;flag，得到flag的base64加密形式，然后解密一下得到flag</p>
+<p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620003616226.png"></p>
+<p>之前没有见到过的知识点……</p>
+<h2 id="BJDCTF-2020-easy-md5-知识点：SQL万能密码"><a href="#BJDCTF-2020-easy-md5-知识点：SQL万能密码" class="headerlink" title="[BJDCTF 2020]easy_md5 知识点：SQL万能密码"></a>[BJDCTF 2020]easy_md5 知识点：SQL万能密码</h2><p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620134106606.png"></p>
+<p>这里有个hint，说明了这里提交的表单是用sql语句进行的，我们可以输入万能密码ffifdyop进行绕过</p>
+<p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620014433676.png"></p>
+<p><strong>ffifdyop这个万能密码，适用于sql注入语句中，之前没遇到过，得记一下</strong></p>
+<p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620134217442.png"></p>
+<p>输入万能密码后，跳转到这个页面，查看一下源代码</p>
+<p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620134242330.png"></p>
+<p>发现源码的路径，直接去levelll4.php看看怎么个事，哦吼，发现了新东西，源码如下</p>
+<pre><code class="php">&lt;?php
+error_reporting(0);
+include &quot;flag.php&quot;;
+
+highlight_file(__FILE__);
+
+if($_POST[&#39;param1&#39;]!==$_POST[&#39;param2&#39;]&amp;&amp;md5($_POST[&#39;param1&#39;])===md5($_POST[&#39;param2&#39;]))&#123;
+    echo $flag;
+</code></pre>
+<p>这很明显三个等于号就是md5的强等于绕过，用一下数组绕过就可以了</p>
+<p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620134438689.png"></p>
+<p>成功得到flag</p>
+<h2 id="suctf-2019-EasySQL-知识点：堆叠注入"><a href="#suctf-2019-EasySQL-知识点：堆叠注入" class="headerlink" title="[suctf 2019]EasySQL 知识点：堆叠注入"></a>[suctf 2019]EasySQL 知识点：堆叠注入</h2><p>正常的sql语句都不太行,order,flag,select,information_schema等等语句都是被过滤掉了，常规的注入肯定是不行的，这就不是道常规的sql注入题目……</p>
+<h2 id="NSSCTF-2022-Spring-Recruit-ezgame-知识点：JS代码分析"><a href="#NSSCTF-2022-Spring-Recruit-ezgame-知识点：JS代码分析" class="headerlink" title="[NSSCTF 2022 Spring Recruit]ezgame 知识点：JS代码分析"></a>[NSSCTF 2022 Spring Recruit]ezgame 知识点：JS代码分析</h2><p>英文单词：console（控制台）</p>
+<p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620142600970.png"></p>
+<p>修改一下分数的参数就可以直接获得flag了，或者把整个js代码复制下来，里面就直接有flag了，也是比较常见的套路</p>
+<p>要先去查看页面的js&#x2F;preload.js文件找到控制分数的变量scorePoint，然后再对具体的参数进行修改。</p>
+<h2 id="SWPUCTF-2021-新生赛-hardrce-知识点：无字母RCE-取反"><a href="#SWPUCTF-2021-新生赛-hardrce-知识点：无字母RCE-取反" class="headerlink" title="[SWPUCTF 2021 新生赛]hardrce 知识点：无字母RCE&amp;取反"></a>[SWPUCTF 2021 新生赛]hardrce 知识点：无字母RCE&amp;取反</h2><pre><code class="php">题目源码
+&lt;?php
+header(&quot;Content-Type:text/html;charset=utf-8&quot;);
+error_reporting(0);
+highlight_file(__FILE__);
+if(isset($_GET[&#39;wllm&#39;]))
+&#123;
+    $wllm = $_GET[&#39;wllm&#39;];
+    $blacklist = [&#39; &#39;,&#39;\t&#39;,&#39;\r&#39;,&#39;\n&#39;,&#39;\+&#39;,&#39;\[&#39;,&#39;\^&#39;,&#39;\]&#39;,&#39;\&quot;&#39;,&#39;\-&#39;,&#39;\$&#39;,&#39;\*&#39;,&#39;\?&#39;,&#39;\&lt;&#39;,&#39;\&gt;&#39;,&#39;\=&#39;,&#39;\`&#39;,];
+    foreach ($blacklist as $blackitem)
+    &#123;
+        if (preg_match(&#39;/&#39; . $blackitem . &#39;/m&#39;, $wllm)) &#123;
+        die(&quot;LTLT说不能用这些奇奇怪怪的符号哦！&quot;);
+    &#125;&#125;
+if(preg_match(&#39;/[a-zA-Z]/is&#39;,$wllm))
+&#123;
+    die(&quot;Ra&#39;s Al Ghul说不能用字母哦！&quot;);
+&#125;
+echo &quot;NoVic4说：不错哦小伙子，可你能拿到flag吗？&quot;;
+eval($wllm);
+&#125;
+else
+&#123;
+    echo &quot;蔡总说：注意审题！！！&quot;;
+&#125;
+?&gt; NoVic4说：不错哦小伙子，可你能拿到flag吗？
+</code></pre>
+<p>粗略的看了下，可以看到它过滤的字符有$ ^ * &lt; &gt; [ ] ? 空格 &#x3D; ，还有任何的字母也是不可以使用的，ban掉了$，也就ban掉了自增这条路，ban掉了^，也就ban掉了异或这条路，所以这题我们可以使用取反来绕过。</p>
+<p>感谢这篇文章提供的脚本思路：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_64201116/article/details/125426239?ops_request_misc=&request_id=&biz_id=102&utm_term=%E6%97%A0%E5%AD%97%E6%AF%8Drce&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-2-125426239.142%5Ev100%5Epc_search_result_base8&spm=1018.2226.3001.4187">https://blog.csdn.net/qq_64201116/article/details/125426239?ops_request_misc=&amp;request_id=&amp;biz_id=102&amp;utm_term=%E6%97%A0%E5%AD%97%E6%AF%8Drce&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-2-125426239.142^v100^pc_search_result_base8&amp;spm=1018.2226.3001.4187</a></p>
+<p><strong>取反脚本</strong>：</p>
+<pre><code class="php">&lt;?php
+//在命令行中运行
+
+fwrite(STDOUT,&#39;[+]your function: &#39;);
+
+$system=str_replace(array(&quot;\r\n&quot;, &quot;\r&quot;, &quot;\n&quot;), &quot;&quot;, fgets(STDIN)); 
+
+fwrite(STDOUT,&#39;[+]your command: &#39;);
+
+$command=str_replace(array(&quot;\r\n&quot;, &quot;\r&quot;, &quot;\n&quot;), &quot;&quot;, fgets(STDIN)); 
+
+echo &#39;[*] (~&#39;.urlencode(~$system).&#39;)(~&#39;.urlencode(~$command).&#39;);&#39;;
+</code></pre>
+<p>使用时在命令行中使用就可以了，命令为php 取反.php(假设文件名为取反)</p>
+<p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620183232098.png"></p>
+<p>利用脚本就可以直接获取到flag了</p>
+<p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620182456727.png"></p>
+<p>一些我也有疑惑的问题：</p>
+<p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620183522173.png"></p>
+<h2 id="GXYCTF-2019-Ping-Ping-Ping-知识点：RCE-空格绕过-反引号"><a href="#GXYCTF-2019-Ping-Ping-Ping-知识点：RCE-空格绕过-反引号" class="headerlink" title="[GXYCTF 2019]Ping Ping Ping 知识点：RCE&amp;空格绕过&amp;反引号"></a>[GXYCTF 2019]Ping Ping Ping 知识点：RCE&amp;空格绕过&amp;反引号</h2><p>这题的疑惑点太多了……，一开始我是进行黑盒测试，发现很多字符都被过滤了，比如说&#x2F; * &lt; &gt; { }，然后空格也是被过滤了，但是很艹的点是，我的payload一开始打的是127.0.0.1;cat$IFSflag.php，结果他一直提示我fuck your space，所以我以为是我的$IFS是没办法绕过的，然后我就一直想啊想啊，各种的空格绕过姿势，结果告诉我其实是我每次复制的时候都一不小心多复制了个空格，然后他优先查询的是你有没有空格，但其实真正需要过滤的点是flag这个东西，这题我不知道为什么直接去cat flag.php是不可以的，必须要先ls一下才可以，也就是哪怕你把flag用拼接成功绕过了，但是还是拿不到flag，这点我很疑惑啊</p>
+<p>127.0.0.1;cat$IFSflag.php这个payload输进去没有任何的反应，正确的payload是ip&#x3D;;cat$IFS$9`ls` ，这里的反引号”&#96;”是这么个用法，他会优先执行反引号里包裹的语句也就是ls，ls出来的内容是index.php 和 flag.php，所以这条语句就相当于执行了 cat index.php flag.php，把这两个内容同时读取了出来，这样就可以成功的得到flag，但至于为什么第一种是不可以的，我也搞不懂。</p>
+<p>另外，这题你执行完语句后要去查看源码才能看到具体的内容，而没有显示在前端的页面上，我也不知道为什么。</p>
+<pre><code class="php+HTML">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;I can ping you!&lt;/title&gt;
+&lt;center&gt;
+    &lt;h2 style=&quot;margin-top: 300&quot;&gt;听说php可以执行系统函数？我来康康&lt;br&gt;&lt;/h2&gt;
+    &lt;form action=&quot;&quot; method=&quot;get&quot; &gt;
+        &lt;input type=&quot;text&quot; name=&quot;ip&quot; placeholder=&quot;Why not try bjut.edu.cn&quot; required&gt;
+        &lt;button style=&quot;margin-left:20;&quot; type=&quot;submit&quot;&gt;确定&lt;/button&gt;
+    &lt;/form&gt;
+
+    &lt;pre&gt;&lt;?php
+    $flag = &quot;NSSCTF&#123;27072cdf-b42f-483c-9503-622dc40ffddd&#125;&quot;;
+?&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;title&gt;I can ping you!&lt;/title&gt;
+&lt;center&gt;
+    &lt;h2 style=&quot;margin-top: 300&quot;&gt;听说php可以执行系统函数？我来康康&lt;br&gt;&lt;/h2&gt;
+    &lt;form action=&quot;&quot; method=&quot;get&quot; &gt;
+        &lt;input type=&quot;text&quot; name=&quot;ip&quot; placeholder=&quot;Why not try bjut.edu.cn&quot; required&gt;
+        &lt;button style=&quot;margin-left:20;&quot; type=&quot;submit&quot;&gt;确定&lt;/button&gt;
+    &lt;/form&gt;
+
+    &lt;?php
+    if(isset($_GET[&#39;ip&#39;]))&#123;
+        $ip = $_GET[&#39;ip&#39;];
+        if(preg_match(&quot;/\&amp;|\/|\?|\*|\&lt;|[\x&#123;00&#125;-\x&#123;1f&#125;]|\&gt;|\&#39;|\&quot;|\\|\(|\)|\[|\]|\&#123;|\&#125;/&quot;, $ip, $match))&#123;
+            print_r($match);
+            print($ip);
+            echo preg_match(&quot;/\&amp;|\/|\?|\*|\&lt;|[\x&#123;00&#125;-\x&#123;20&#125;]|\&gt;|\&#39;|\&quot;|\\|\(|\)|\[|\]|\&#123;|\&#125;/&quot;, $ip, $match);
+            die(&quot;fxck your symbol!&quot;);
+        &#125;
+        else if(preg_match(&quot;/ /&quot;, $ip))&#123; //从这里的源码就可以看出来他是优先匹配空格的，然后再去看你有没有flag。
+            die(&quot;fxck your space!&quot;);
+        &#125;
+        else if(preg_match(&quot;/bash/&quot;, $ip))&#123;
+            die(&quot;fxck your bash!&quot;);
+        &#125;
+        else if(preg_match(&quot;/.*f.*l.*a.*g.*/&quot;, $ip))&#123;
+            die(&quot;fxck your flag!&quot;);
+        &#125;
+        $a = shell_exec(&quot;ping -c 4 &quot;.$ip);
+        echo &quot;&lt;pre&gt;&quot;;
+        print_r($a);
+    &#125;
+
+    ?&gt;
+
+&lt;/center&gt;
+</code></pre>
+<p><strong>总结</strong>：</p>
+<p>①空格绕过姿势：</p>
+<pre><code>&gt; &lt; &lt;&gt; 重定向符
+%20(space)
+%09(tab)
+$IFS$9 
+$&#123;IFS&#125;（最好用这个）
+$IFS  
+%0a  换行符
+&#123;cat,flag.txt&#125; 在大括号中逗号可起分隔作用
+</code></pre>
+<p>②反引号的优先执行规则，``在两个反引号中间的内容会优先执行，例如cat `ls` 就会优先执行ls这个命令再执行cat的命令</p>
+<p>③绕过过滤flag可以使用拼接，譬如b&#x3D;g;cat flab.php，这样就可以绕过flag，但是这题没有用……</p>
+<h2 id="SWPUCTF-2021-新生赛-error-知识点：sqlmap"><a href="#SWPUCTF-2021-新生赛-error-知识点：sqlmap" class="headerlink" title="[SWPUCTF 2021 新生赛]error 知识点：sqlmap"></a>[SWPUCTF 2021 新生赛]error 知识点：sqlmap</h2><p>你说的对，但sqlmap一把梭，感觉一把梭就真的和之前那题没啥区别了，连数据库名 表名都不带换的hhh</p>
+<p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240620204611928.png"></p>
+<p>这就告诉我们post传参可以用#，但是get传参不可以用#</p>
 
       
        
