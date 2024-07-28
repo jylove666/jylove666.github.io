@@ -6,18 +6,28 @@
   <meta name="keywords" content=" WP ">
   <meta name="description" content="NSSCTF平台刷题日记 | f4k3r&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="Node.js前置基础相关文章：w3cschool.cn&#x2F;nodejs&#x2F; Node.js是运行在服务端的JavaScript Express框架Express是一个为Node.js设计的web开发框架，它基于nodejs平台。 Express 简介：Express是一个简洁而灵活的node.js Web应用框架，提供了一系列强大特性帮助你创建各种Web应用，和丰富的HTTP工具">
+<meta name="description" content="Webeasy_php这题考察了php伪协议中filter的一个特性，即当使用filter时，他会自动进行一次urldecode的操作，再加上浏览器本身会进行一次urldecode的操作，所以我们可以通过base64数据流并将b进行两次urlencode，这样就可以成功绕过他对base字符的过滤，同时还能成功读取数据，读取的数据进行base64解码就是flag 具体payload：http:&#x2F;&#x2F;1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="nodejs原型链污染">
-<meta property="og:url" content="http://example.com/2024/07/09/nodejs%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/index.html">
+<meta property="og:title" content="联合训练结营赛WP">
+<meta property="og:url" content="http://example.com/2024/07/28/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP/index.html">
 <meta property="og:site_name" content="f4k3r&#39;s blog">
-<meta property="og:description" content="Node.js前置基础相关文章：w3cschool.cn&#x2F;nodejs&#x2F; Node.js是运行在服务端的JavaScript Express框架Express是一个为Node.js设计的web开发框架，它基于nodejs平台。 Express 简介：Express是一个简洁而灵活的node.js Web应用框架，提供了一系列强大特性帮助你创建各种Web应用，和丰富的HTTP工具">
+<meta property="og:description" content="Webeasy_php这题考察了php伪协议中filter的一个特性，即当使用filter时，他会自动进行一次urldecode的操作，再加上浏览器本身会进行一次urldecode的操作，所以我们可以通过base64数据流并将b进行两次urlencode，这样就可以成功绕过他对base字符的过滤，同时还能成功读取数据，读取的数据进行base64解码就是flag 具体payload：http:&#x2F;&#x2F;1">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-09T13:29:26.000Z">
-<meta property="article:modified_time" content="2024-07-09T17:28:26.577Z">
+<meta property="og:image" content="http://example.com/2024/07/28/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP/image-20240728213322299.png">
+<meta property="og:image" content="http://example.com/2024/07/28/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP/image-20240728213421190.png">
+<meta property="og:image" content="http://example.com/2024/07/28/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP/image-20240728221621403.png">
+<meta property="og:image" content="http://example.com/2024/07/28/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP%5C%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240728223824.png">
+<meta property="og:image" content="http://example.com/2024/07/28/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP%5C%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240728223923.png">
+<meta property="og:image" content="http://example.com/2024/07/28/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP%5C%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240728223927.png">
+<meta property="og:image" content="http://example.com/2024/07/28/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP%5C%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240728223935.png">
+<meta property="og:image" content="http://example.com/2024/07/28/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP%5C%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240728223939.png">
+<meta property="og:image" content="http://example.com/2024/07/28/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP%5C%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240728223942.png">
+<meta property="article:published_time" content="2024-07-28T13:08:17.000Z">
+<meta property="article:modified_time" content="2024-07-28T14:43:22.999Z">
 <meta property="article:author" content="f4k3r">
-<meta property="article:tag" content="Web">
+<meta property="article:tag" content="WP">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/07/28/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP/image-20240728213322299.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -80,7 +90,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(55)</small>
+                <small>(60)</small>
             
         </div>
     </li>
@@ -100,7 +110,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="55">
+<input type="hidden" id="yelog_site_posts_number" value="60">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -147,11 +157,19 @@
     <div class="tag-wrapper">
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>反序列化</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>服务器</a>
             </li>
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>随想</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CTF</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -176,6 +194,51 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/28/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="联合训练结营赛WP">联合训练结营赛WP</span>
+            <span class="post-date" title="2024-07-28 21:08:17">2024/07/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/26/Web%E5%AD%A6%E4%B9%A046/"
+           data-tag="Web,反序列化"
+           data-author="" >
+            <span class="post-title" title="Web学习46">Web学习46</span>
+            <span class="post-date" title="2024-07-26 12:35:09">2024/07/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/22/DASCTF%E5%A4%8D%E7%8E%B0/"
+           data-tag="CTF"
+           data-author="" >
+            <span class="post-title" title="DASCTF复现">DASCTF复现</span>
+            <span class="post-date" title="2024-07-22 12:26:23">2024/07/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/19/Web%E5%AD%A6%E4%B9%A045/"
+           data-tag="Web,CTF,反序列化"
+           data-author="" >
+            <span class="post-title" title="Web学习45">Web学习45</span>
+            <span class="post-date" title="2024-07-19 18:39:28">2024/07/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/10/%E4%B8%8E%E5%8D%97%E8%88%AA%E7%9A%84%E6%9A%91%E6%9C%9F%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="与南航的暑期联合训练WP">与南航的暑期联合训练WP</span>
+            <span class="post-date" title="2024-07-10 16:56:22">2024/07/10</span>
+        </a>
         
         
         <a  class="全部文章 "
@@ -709,7 +772,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-06-20 21:43:04'>2024-06-18 15:09</time>
+            发布时间 : <time class="date" title='最后更新: 2024-07-26 18:16:40'>2024-06-18 15:09</time>
         
     </div>
     <div class="article-meta">
@@ -720,7 +783,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-jicao"><span class="toc-text">[SWPUCTF 2021 新生赛]jicao</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-easy-md5"><span class="toc-text">[SWPUCTF 2021 新生赛]easy_md5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-include%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9APHP%E4%BC%AA%E5%8D%8F%E8%AE%AE"><span class="toc-text">[SWPUCTF 2021 新生赛]include	知识点：PHP伪协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-easy-sql"><span class="toc-text">[SWPUCTF 2021 新生赛]easy_sql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-easyrce"><span class="toc-text">[SWPUCTF 2021 新生赛]easyrce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-caidao"><span class="toc-text">[SWPUCTF 2021 新生赛]caidao</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-Do-you-know-http"><span class="toc-text">[SWPUCTF 2021 新生赛]Do_you_know_http</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-babyrce"><span class="toc-text">[SWPUCTF 2021 新生赛]babyrce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4-2021-WebFTP"><span class="toc-text">[第五空间 2021]WebFTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NCTF-2018-%E7%AD%BE%E5%88%B0%E9%A2%98"><span class="toc-text">[NCTF 2018]签到题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NISACTF-2022-easyssrf%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9APHP%E4%BC%AA%E5%8D%8F%E8%AE%AE"><span class="toc-text">[NISACTF 2022]easyssrf	知识点：PHP伪协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BJDCTF-2020-easy-md5-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9ASQL%E4%B8%87%E8%83%BD%E5%AF%86%E7%A0%81"><span class="toc-text">[BJDCTF 2020]easy_md5 知识点：SQL万能密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#suctf-2019-EasySQL-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5"><span class="toc-text">[suctf 2019]EasySQL 知识点：堆叠注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSSCTF-2022-Spring-Recruit-ezgame-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9AJS%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-text">[NSSCTF 2022 Spring Recruit]ezgame 知识点：JS代码分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-hardrce-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E6%97%A0%E5%AD%97%E6%AF%8DRCE-%E5%8F%96%E5%8F%8D"><span class="toc-text">[SWPUCTF 2021 新生赛]hardrce 知识点：无字母RCE&amp;取反</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GXYCTF-2019-Ping-Ping-Ping-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9ARCE-%E7%A9%BA%E6%A0%BC%E7%BB%95%E8%BF%87-%E5%8F%8D%E5%BC%95%E5%8F%B7"><span class="toc-text">[GXYCTF 2019]Ping Ping Ping 知识点：RCE&amp;空格绕过&amp;反引号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-error-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9Asqlmap"><span class="toc-text">[SWPUCTF 2021 新生赛]error 知识点：sqlmap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-sql"><span class="toc-text">[SWPUCTF 2021 新生赛]sql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-finalrce"><span class="toc-text">[SWPUCTF 2021 新生赛]finalrce</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-jicao"><span class="toc-text">[SWPUCTF 2021 新生赛]jicao</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-easy-md5"><span class="toc-text">[SWPUCTF 2021 新生赛]easy_md5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-include%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9APHP%E4%BC%AA%E5%8D%8F%E8%AE%AE"><span class="toc-text">[SWPUCTF 2021 新生赛]include	知识点：PHP伪协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-easy-sql"><span class="toc-text">[SWPUCTF 2021 新生赛]easy_sql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-easyrce"><span class="toc-text">[SWPUCTF 2021 新生赛]easyrce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-caidao"><span class="toc-text">[SWPUCTF 2021 新生赛]caidao</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-Do-you-know-http"><span class="toc-text">[SWPUCTF 2021 新生赛]Do_you_know_http</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-babyrce"><span class="toc-text">[SWPUCTF 2021 新生赛]babyrce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4-2021-WebFTP"><span class="toc-text">[第五空间 2021]WebFTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NCTF-2018-%E7%AD%BE%E5%88%B0%E9%A2%98"><span class="toc-text">[NCTF 2018]签到题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NISACTF-2022-easyssrf%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9APHP%E4%BC%AA%E5%8D%8F%E8%AE%AE"><span class="toc-text">[NISACTF 2022]easyssrf	知识点：PHP伪协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BJDCTF-2020-easy-md5-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9ASQL%E4%B8%87%E8%83%BD%E5%AF%86%E7%A0%81"><span class="toc-text">[BJDCTF 2020]easy_md5 知识点：SQL万能密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#suctf-2019-EasySQL-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5"><span class="toc-text">[suctf 2019]EasySQL 知识点：堆叠注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSSCTF-2022-Spring-Recruit-ezgame-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9AJS%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-text">[NSSCTF 2022 Spring Recruit]ezgame 知识点：JS代码分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-hardrce-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E6%97%A0%E5%AD%97%E6%AF%8DRCE-%E5%8F%96%E5%8F%8D"><span class="toc-text">[SWPUCTF 2021 新生赛]hardrce 知识点：无字母RCE&amp;取反</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GXYCTF-2019-Ping-Ping-Ping-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9ARCE-%E7%A9%BA%E6%A0%BC%E7%BB%95%E8%BF%87-%E5%8F%8D%E5%BC%95%E5%8F%B7"><span class="toc-text">[GXYCTF 2019]Ping Ping Ping 知识点：RCE&amp;空格绕过&amp;反引号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-error-%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9Asqlmap"><span class="toc-text">[SWPUCTF 2021 新生赛]error 知识点：sqlmap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-sql"><span class="toc-text">[SWPUCTF 2021 新生赛]sql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-finalrce"><span class="toc-text">[SWPUCTF 2021 新生赛]finalrce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-easyupload1-0"><span class="toc-text">[SWPUCTF 2021 新生赛]easyupload1.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-easyupload2-0"><span class="toc-text">[SWPUCTF 2021 新生赛]easyupload2.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-no-wakeup"><span class="toc-text">[SWPUCTF 2021 新生赛]no_wakeup</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1119,6 +1182,49 @@ if(isset($_GET[&#39;url&#39;]))
         exec($url);
     &#125;
 &#125;
+</code></pre>
+<h2 id="SWPUCTF-2021-新生赛-easyupload1-0"><a href="#SWPUCTF-2021-新生赛-easyupload1-0" class="headerlink" title="[SWPUCTF 2021 新生赛]easyupload1.0"></a>[SWPUCTF 2021 新生赛]easyupload1.0</h2><p>进去页面就是上传图片，它过滤了php的后缀，需要用pht，phtml来绕过，它会识别php字符，所以php3，php4也是不可以的。</p>
+<p>然后上传一句话木马就可以了，然后这题还有一个坑，就是它flag.php里面的flag是假的，真正的flag在phpinfo里面搜索一下（很逆天的设计）就有了……</p>
+<h2 id="SWPUCTF-2021-新生赛-easyupload2-0"><a href="#SWPUCTF-2021-新生赛-easyupload2-0" class="headerlink" title="[SWPUCTF 2021 新生赛]easyupload2.0"></a>[SWPUCTF 2021 新生赛]easyupload2.0</h2><p>和上一题打法是一样的，只要上传🐎然后改一下后缀绕过就行了，这题的flag就直接在flag.php里面</p>
+<p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240726174051766.png"></p>
+<h2 id="SWPUCTF-2021-新生赛-no-wakeup"><a href="#SWPUCTF-2021-新生赛-no-wakeup" class="headerlink" title="[SWPUCTF 2021 新生赛]no_wakeup"></a>[SWPUCTF 2021 新生赛]no_wakeup</h2><p><img src="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/image-20240726180619075.png"></p>
+<pre><code class="php">//题目源码
+&lt;?php
+
+header(&quot;Content-type:text/html;charset=utf-8&quot;);
+error_reporting(0);
+show_source(&quot;class.php&quot;);
+
+class HaHaHa&#123;
+
+
+        public $admin;
+        public $passwd;
+
+        public function __construct()&#123;
+            $this-&gt;admin =&quot;user&quot;;
+            $this-&gt;passwd = &quot;123456&quot;;
+        &#125;
+
+        public function __wakeup()&#123;
+            $this-&gt;passwd = sha1($this-&gt;passwd);
+        &#125;
+
+        public function __destruct()&#123;
+            if($this-&gt;admin === &quot;admin&quot; &amp;&amp; $this-&gt;passwd === &quot;wllm&quot;)&#123;
+                include(&quot;flag.php&quot;);
+                echo $flag;
+            &#125;else&#123;
+                echo $this-&gt;passwd;
+                echo &quot;No wake up&quot;;
+            &#125;
+        &#125;
+    &#125;
+
+$Letmeseesee = $_GET[&#39;p&#39;];
+unserialize($Letmeseesee);
+
+?&gt;
 </code></pre>
 
       
