@@ -6,32 +6,25 @@
   <meta name="keywords" content=" WP ">
   <meta name="description" content="BaseCTF_WP | f4k3r&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="Web渗透测试与审计入门指北在本地搭一个环境就可以了  弗拉格之地的入口robots协议   ez_http输入指示的请求头和参数即可  ProveYourLove整个脚本在控制台自动提交300次就可以了，刷新一下就有flag了 for (let i &#x3D; 0; i &lt; 300; i++) &amp;#123;     const formData &#x3D; new FormData(document.ge">
+<meta name="description" content="不一样的数据库_2先是一个6位数字爆破，爆破出来密码是753951  打开以后是个二维码缺了定位符，补全一下扫一下得到一串密码 NRF@WQUKTQ12345&amp;WWWF@WWWFX#WWQXNWXNU 随波一把梭，看到了AES，推测经过凯撒变形了，AES开头的才是密码明文 即AES@JDHXGD12345&amp;JJJS@JJJSK#JJDKAJKAH 压缩包里还有个文件Kee.kdbx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MoeCTF_WP">
-<meta property="og:url" content="http://example.com/2024/08/20/MoeCTF-WP/index.html">
+<meta property="og:title" content="羊城杯WP">
+<meta property="og:url" content="http://example.com/2024/08/28/%E7%BE%8A%E5%9F%8E%E6%9D%AFWP/index.html">
 <meta property="og:site_name" content="f4k3r&#39;s blog">
-<meta property="og:description" content="Web渗透测试与审计入门指北在本地搭一个环境就可以了  弗拉格之地的入口robots协议   ez_http输入指示的请求头和参数即可  ProveYourLove整个脚本在控制台自动提交300次就可以了，刷新一下就有flag了 for (let i &#x3D; 0; i &lt; 300; i++) &amp;#123;     const formData &#x3D; new FormData(document.ge">
+<meta property="og:description" content="不一样的数据库_2先是一个6位数字爆破，爆破出来密码是753951  打开以后是个二维码缺了定位符，补全一下扫一下得到一串密码 NRF@WQUKTQ12345&amp;WWWF@WWWFX#WWQXNWXNU 随波一把梭，看到了AES，推测经过凯撒变形了，AES开头的才是密码明文 即AES@JDHXGD12345&amp;JJJS@JJJSK#JJDKAJKAH 压缩包里还有个文件Kee.kdbx">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2024/08/20/MoeCTF-WP/image-20240820005849354.png">
-<meta property="og:image" content="http://example.com/2024/08/20/MoeCTF-WP/image-20240820010003092.png">
-<meta property="og:image" content="http://example.com/2024/08/20/MoeCTF-WP/image-20240820010032504.png">
-<meta property="og:image" content="http://example.com/2024/08/20/MoeCTF-WP/image-20240820010329415.png">
-<meta property="og:image" content="http://example.com/2024/08/20/MoeCTF-WP/image-20240820010839142.png">
-<meta property="og:image" content="http://example.com/2024/08/20/MoeCTF-WP/image-20240820011009668.png">
-<meta property="og:image" content="http://example.com/2024/08/20/MoeCTF-WP/image-20240820011040551.png">
-<meta property="og:image" content="http://example.com/2024/08/20/MoeCTF-WP/image-20240820013212468.png">
-<meta property="og:image" content="http://example.com/2024/08/20/MoeCTF-WP/image-20240820013334764.png">
-<meta property="og:image" content="http://example.com/2024/08/20/MoeCTF-WP/image-20240820013832423.png">
-<meta property="og:image" content="http://example.com/2024/08/20/MoeCTF-WP/image-20240820014625780.png">
-<meta property="og:image" content="http://example.com/2024/08/20/MoeCTF-WP/image-20240820014655665.png">
-<meta property="og:image" content="http://example.com/2024/08/20/MoeCTF-WP/image-20240820014720463.png">
-<meta property="article:published_time" content="2024-08-19T16:54:19.000Z">
-<meta property="article:modified_time" content="2024-08-19T17:47:23.320Z">
+<meta property="og:image" content="http://example.com/2024/08/28/%E7%BE%8A%E5%9F%8E%E6%9D%AFWP/image-20240828005921728.png">
+<meta property="og:image" content="http://example.com/2024/08/28/%E7%BE%8A%E5%9F%8E%E6%9D%AFWP/image-20240828010212032.png">
+<meta property="og:image" content="http://example.com/2024/08/28/%E7%BE%8A%E5%9F%8E%E6%9D%AFWP/image-20240828010229459.png">
+<meta property="og:image" content="http://example.com/2024/08/28/%E7%BE%8A%E5%9F%8E%E6%9D%AFWP/image-20240828010308821.png">
+<meta property="og:image" content="http://example.com/2024/08/28/%E7%BE%8A%E5%9F%8E%E6%9D%AFWP/image-20240828010329659.png">
+<meta property="og:image" content="http://example.com/2024/08/28/%E7%BE%8A%E5%9F%8E%E6%9D%AFWP/image-20240828010417421.png">
+<meta property="article:published_time" content="2024-08-27T16:55:45.000Z">
+<meta property="article:modified_time" content="2024-08-27T17:06:43.787Z">
 <meta property="article:author" content="f4k3r">
 <meta property="article:tag" content="WP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2024/08/20/MoeCTF-WP/image-20240820005849354.png">
+<meta name="twitter:image" content="http://example.com/2024/08/28/%E7%BE%8A%E5%9F%8E%E6%9D%AFWP/image-20240828005921728.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -94,7 +87,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(67)</small>
+                <small>(69)</small>
             
         </div>
     </li>
@@ -114,7 +107,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="67">
+<input type="hidden" id="yelog_site_posts_number" value="69">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -202,6 +195,24 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/28/%E7%BE%8A%E5%9F%8E%E6%9D%AFWP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="羊城杯WP">羊城杯WP</span>
+            <span class="post-date" title="2024-08-28 00:55:45">2024/08/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/26/NepCTF%E5%A4%8D%E7%8E%B0/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="NepCTF复现">NepCTF复现</span>
+            <span class="post-date" title="2024-08-26 21:15:39">2024/08/26</span>
+        </a>
         
         
         <a  class="全部文章 "
@@ -843,7 +854,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-08-20 00:53:34'>2024-08-19 23:43</time>
+            发布时间 : <time class="date" title='最后更新: 2024-08-27 00:49:10'>2024-08-19 23:43</time>
         
     </div>
     <div class="article-meta">
@@ -854,7 +865,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Week1-HTTP-%E6%98%AF%E4%BB%80%E4%B9%88%E5%91%80"><span class="toc-text">[Week1] HTTP 是什么呀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Week1-%E5%96%B5%E5%96%B5%E5%96%B5%C2%B4%E2%80%A2%EF%BB%8C%E2%80%A2"><span class="toc-text">[Week1] 喵喵喵´•ﻌ•&#96;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Week1-md5%E7%BB%95%E8%BF%87%E6%AC%B8"><span class="toc-text">[Week1] md5绕过欸</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Week1-A-Dark-Room"><span class="toc-text">[Week1] A Dark Room</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Week1-upload"><span class="toc-text">[Week1] upload</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Week1-Aura-%E9%85%B1%E7%9A%84%E7%A4%BC%E7%89%A9"><span class="toc-text">[Week1] Aura 酱的礼物</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Week1-HTTP-%E6%98%AF%E4%BB%80%E4%B9%88%E5%91%80"><span class="toc-text">[Week1] HTTP 是什么呀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Week1-%E5%96%B5%E5%96%B5%E5%96%B5%C2%B4%E2%80%A2%EF%BB%8C%E2%80%A2"><span class="toc-text">[Week1] 喵喵喵´•ﻌ•&#96;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Week1-md5%E7%BB%95%E8%BF%87%E6%AC%B8"><span class="toc-text">[Week1] md5绕过欸</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Week1-A-Dark-Room"><span class="toc-text">[Week1] A Dark Room</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Week1-upload"><span class="toc-text">[Week1] upload</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Week1-Aura-%E9%85%B1%E7%9A%84%E7%A4%BC%E7%89%A9"><span class="toc-text">[Week1] Aura 酱的礼物</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Week2-%E4%BD%A0%E5%90%AC%E4%B8%8D%E5%88%B0%E6%88%91%E7%9A%84%E5%A3%B0%E9%9F%B3"><span class="toc-text">[Week2] 你听不到我的声音</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Week2-RCEisamazingwithspace"><span class="toc-text">[Week2] RCEisamazingwithspace</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Week2-%E4%B8%80%E8%B5%B7%E5%90%83%E8%B1%86%E8%B1%86"><span class="toc-text">[Week2] 一起吃豆豆</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -886,6 +897,39 @@
 <p>考点：SSRF&amp;strpos函数的理解</p>
 <p>最终payload:</p>
 <p>pen&#x3D;data:&#x2F;&#x2F;text&#x2F;plain,Aura&amp;challenge&#x3D;<a target="_blank" rel="noopener" href="http://jasmineaura.github.io@challenge.basectf.fun:23111/&gift=php://filter/read=convert.base64-encode/resource=flag.php">http://jasmineaura.github.io@challenge.basectf.fun:23111/&amp;gift=php://filter/read=convert.base64-encode/resource=flag.php</a></p>
+<h2 id="Week2-你听不到我的声音"><a href="#Week2-你听不到我的声音" class="headerlink" title="[Week2] 你听不到我的声音"></a>[Week2] 你听不到我的声音</h2><pre><code class="php">&lt;?php
+highlight_file(__FILE__);
+shell_exec($_POST[&#39;cmd&#39;]);
+</code></pre>
+<p>shell_exec这个函数可以执行命令，但是会没有回显，这个时候如果题目的环境是出网的话，我们可以利用反弹shell来获取flag，同时我们也可以用重定向符号将执行命令获取的信息写到一个文件里去</p>
+<p>payload：<code> cmd=ls /&gt;1.txt</code></p>
+<p>然后访问1.txt就可以看到命令执行后的内容</p>
+<img src="/2024/08/19/BaseCTF-WP/image-20240827003904547.png" style="zoom:50%;">
+
+<p><img src="/2024/08/19/BaseCTF-WP/image-20240827003939208.png"></p>
+<p>补充：我们还可以通过sleep函数来判断自己的命令有没有被成功执行</p>
+<p><img src="/2024/08/19/BaseCTF-WP/image-20240827004040185.png"></p>
+<p>如果看到页面一直在加载，然后转好了，就说明我们成功执行了命令</p>
+<h2 id="Week2-RCEisamazingwithspace"><a href="#Week2-RCEisamazingwithspace" class="headerlink" title="[Week2] RCEisamazingwithspace"></a>[Week2] RCEisamazingwithspace</h2><pre><code class="php">//题目源码
+&lt;?php
+highlight_file(__FILE__);
+$cmd = $_POST[&#39;cmd&#39;];
+// check if space is present in the command
+// use of preg_match to check if space is present in the command
+if (preg_match(&#39;/\s/&#39;, $cmd)) &#123;
+    echo &#39;Space not allowed in command&#39;;
+    exit;
+&#125;
+
+// execute the command
+system($cmd);
+</code></pre>
+<p>就是个空格绕过</p>
+<p><img src="/2024/08/19/BaseCTF-WP/image-20240827004349081.png"></p>
+<p><img src="/2024/08/19/BaseCTF-WP/image-20240827004506263.png"></p>
+<p>$IFS –&gt;常见的空格绕过字符</p>
+<h2 id="Week2-一起吃豆豆"><a href="#Week2-一起吃豆豆" class="headerlink" title="[Week2] 一起吃豆豆"></a>[Week2] 一起吃豆豆</h2><p><img src="/2024/08/19/BaseCTF-WP/image-20240827004602518.png"></p>
+<p>在index.js源码里发现gameover的函数，base64解密一下就是flag</p>
 
       
        
