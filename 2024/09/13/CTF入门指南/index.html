@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>CTF入门介绍 | f4k3r&#39;s blog</title>
+  <meta name="keywords" content=" CTF ">
+  <meta name="description" content="CTF入门介绍 | f4k3r&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="前言​	Hello，欢迎踏入CTF的大门，这是个值得探索的领域，希望你能在这次CTF比赛中学到新知识，同时感受到CTF的乐趣。 ​	下面，作为新生的你们肯定会疑惑CTF到底是什么，请让我来为你们详细介绍一下。 什么是CTF？「CTF Capture The Flag」中文一般译作夺旗赛，在网络安全领域中指的是网络安全技术人员之间进行技术竞技的一种比赛形式。CTF 起源于 1996 年 DEFCON">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF入门介绍">
+<meta property="og:url" content="http://example.com/2024/09/13/CTF%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="f4k3r&#39;s blog">
+<meta property="og:description" content="前言​	Hello，欢迎踏入CTF的大门，这是个值得探索的领域，希望你能在这次CTF比赛中学到新知识，同时感受到CTF的乐趣。 ​	下面，作为新生的你们肯定会疑惑CTF到底是什么，请让我来为你们详细介绍一下。 什么是CTF？「CTF Capture The Flag」中文一般译作夺旗赛，在网络安全领域中指的是网络安全技术人员之间进行技术竞技的一种比赛形式。CTF 起源于 1996 年 DEFCON">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-13T06:49:47.000Z">
+<meta property="article:modified_time" content="2024-09-13T07:24:24.107Z">
+<meta property="article:author" content="f4k3r">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-dark.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>f4k3r</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(72)</small>
+            
+        </div>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        <a 
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="72">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://www.blog.st4rr.top/">St4rr</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>反序列化</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>生活</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>随想</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CTF</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Web</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WP</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 "
+           href="/2024/09/13/CTF%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"
+           data-tag="CTF"
+           data-author="" >
+            <span class="post-title" title="CTF入门介绍">CTF入门介绍</span>
+            <span class="post-date" title="2024-09-13 14:49:47">2024/09/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/09/12/%E8%AE%B0%E4%B8%80%E6%AC%A1Web%E5%87%BA%E9%A2%98/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="记一次Web出题">记一次Web出题</span>
+            <span class="post-date" title="2024-09-12 22:53:12">2024/09/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/"
+           data-tag="CS"
+           data-author="" >
+            <span class="post-title" title="离散数学复习">离散数学复习</span>
+            <span class="post-date" title="2024-09-01 20:45:04">2024/09/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/28/%E7%BE%8A%E5%9F%8E%E6%9D%AFWP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="羊城杯WP">羊城杯WP</span>
+            <span class="post-date" title="2024-08-28 00:55:45">2024/08/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/26/NepCTF%E5%A4%8D%E7%8E%B0/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="NepCTF复现">NepCTF复现</span>
+            <span class="post-date" title="2024-08-26 21:15:39">2024/08/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/20/MoeCTF-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="MoeCTF_WP">MoeCTF_WP</span>
+            <span class="post-date" title="2024-08-20 00:54:19">2024/08/20</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/19/BaseCTF-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="BaseCTF_WP">BaseCTF_WP</span>
+            <span class="post-date" title="2024-08-19 23:43:44">2024/08/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/19/SSRF%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="SSRF从入门到精通">SSRF从入门到精通</span>
+            <span class="post-date" title="2024-08-19 13:41:33">2024/08/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/05/%E9%A9%BE%E7%85%A7%E9%94%99%E9%A2%98/"
+           data-tag="生活"
+           data-author="" >
+            <span class="post-title" title="驾照错题">驾照错题</span>
+            <span class="post-date" title="2024-08-05 13:20:22">2024/08/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/04/%E8%AD%A6%E9%86%92/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="警醒">警醒</span>
+            <span class="post-date" title="2024-08-04 23:15:04">2024/08/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/04/%E5%A4%8F%E4%BB%A4%E8%90%A5%E8%AE%B2%E7%A8%BF/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="夏令营讲稿">夏令营讲稿</span>
+            <span class="post-date" title="2024-08-04 21:05:16">2024/08/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/03/%E7%9C%81%E6%95%B0%E6%8D%AE%E6%AF%94%E8%B5%9BWP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="省数据比赛WP">省数据比赛WP</span>
+            <span class="post-date" title="2024-08-03 16:14:43">2024/08/03</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/28/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="联合训练结营赛WP">联合训练结营赛WP</span>
+            <span class="post-date" title="2024-07-28 21:08:17">2024/07/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/26/Web%E5%AD%A6%E4%B9%A046/"
+           data-tag="Web,反序列化"
+           data-author="" >
+            <span class="post-title" title="Web学习46">Web学习46</span>
+            <span class="post-date" title="2024-07-26 12:35:09">2024/07/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/22/DASCTF%E5%A4%8D%E7%8E%B0/"
+           data-tag="CTF"
+           data-author="" >
+            <span class="post-title" title="DASCTF复现">DASCTF复现</span>
+            <span class="post-date" title="2024-07-22 12:26:23">2024/07/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/19/Web%E5%AD%A6%E4%B9%A045/"
+           data-tag="Web,CTF,反序列化"
+           data-author="" >
+            <span class="post-title" title="Web学习45">Web学习45</span>
+            <span class="post-date" title="2024-07-19 18:39:28">2024/07/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/10/%E4%B8%8E%E5%8D%97%E8%88%AA%E7%9A%84%E6%9A%91%E6%9C%9F%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="与南航的暑期联合训练WP">与南航的暑期联合训练WP</span>
+            <span class="post-date" title="2024-07-10 16:56:22">2024/07/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/09/nodejs%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="nodejs原型链污染">nodejs原型链污染</span>
+            <span class="post-date" title="2024-07-09 21:29:26">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/04/Web%E5%AD%A6%E4%B9%A044/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习44">Web学习44</span>
+            <span class="post-date" title="2024-07-04 10:34:24">2024/07/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/03/Web%E5%AD%A6%E4%B9%A043/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习43">Web学习43</span>
+            <span class="post-date" title="2024-07-03 11:35:23">2024/07/03</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/02/Web%E5%AD%A6%E4%B9%A042/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习42">Web学习42</span>
+            <span class="post-date" title="2024-07-02 13:29:55">2024/07/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/01/Web%E5%AD%A6%E4%B9%A041/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习41">Web学习41</span>
+            <span class="post-date" title="2024-07-01 17:16:35">2024/07/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/30/Web%E5%AD%A6%E4%B9%A040/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习40">Web学习40</span>
+            <span class="post-date" title="2024-06-30 15:18:47">2024/06/30</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/29/Web%E5%AD%A6%E4%B9%A039/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习39">Web学习39</span>
+            <span class="post-date" title="2024-06-29 13:52:31">2024/06/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/28/Web%E5%AD%A6%E4%B9%A038/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习38">Web学习38</span>
+            <span class="post-date" title="2024-06-28 16:48:11">2024/06/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/27/Web%E5%AD%A6%E4%B9%A037/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习37">Web学习37</span>
+            <span class="post-date" title="2024-06-27 14:01:45">2024/06/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/26/Web%E5%AD%A6%E4%B9%A036/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习36">Web学习36</span>
+            <span class="post-date" title="2024-06-26 00:13:21">2024/06/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/25/Web%E5%AD%A6%E4%B9%A035/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习35">Web学习35</span>
+            <span class="post-date" title="2024-06-25 14:19:25">2024/06/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/24/Web%E5%AD%A6%E4%B9%A034/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习34">Web学习34</span>
+            <span class="post-date" title="2024-06-24 11:58:19">2024/06/24</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/23/Web%E5%AD%A6%E4%B9%A033/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习33">Web学习33</span>
+            <span class="post-date" title="2024-06-23 12:31:12">2024/06/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习32">Web学习32</span>
+            <span class="post-date" title="2024-06-22 00:33:22">2024/06/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/21/Web%E5%AD%A6%E4%B9%A031/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习31">Web学习31</span>
+            <span class="post-date" title="2024-06-21 11:46:42">2024/06/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/19/Web%E5%AD%A6%E4%B9%A030/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习30">Web学习30</span>
+            <span class="post-date" title="2024-06-19 19:00:16">2024/06/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/19/Web%E5%AD%A6%E4%B9%A029/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习29">Web学习29</span>
+            <span class="post-date" title="2024-06-19 12:06:31">2024/06/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="NSSCTF平台刷题日记">NSSCTF平台刷题日记</span>
+            <span class="post-date" title="2024-06-18 15:09:22">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/18/Web%E5%AD%A6%E4%B9%A028/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习28">Web学习28</span>
+            <span class="post-date" title="2024-06-18 11:31:15">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/17/Web%E5%AD%A6%E4%B9%A027/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习27">Web学习27</span>
+            <span class="post-date" title="2024-06-17 11:36:01">2024/06/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/15/Web%E5%AD%A6%E4%B9%A026/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习26">Web学习26</span>
+            <span class="post-date" title="2024-06-15 19:45:59">2024/06/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习25">Web学习25</span>
+            <span class="post-date" title="2024-06-15 13:00:46">2024/06/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/14/Web%E5%AD%A6%E4%B9%A024/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习24">Web学习24</span>
+            <span class="post-date" title="2024-06-14 11:24:45">2024/06/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/13/Web%E5%AD%A6%E4%B9%A023/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习23">Web学习23</span>
+            <span class="post-date" title="2024-06-13 12:01:34">2024/06/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/13/Web%E5%AD%A6%E4%B9%A022/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习22">Web学习22</span>
+            <span class="post-date" title="2024-06-13 11:58:28">2024/06/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/12/Web%E5%AD%A6%E4%B9%A021/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习21">Web学习21</span>
+            <span class="post-date" title="2024-06-12 13:37:15">2024/06/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/11/java%E5%AD%A6%E4%B9%A0/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="java学习">java学习</span>
+            <span class="post-date" title="2024-06-11 18:46:57">2024/06/11</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/11/Web%E5%AD%A6%E4%B9%A020/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习20">Web学习20</span>
+            <span class="post-date" title="2024-06-11 00:24:56">2024/06/11</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/10/Web%E5%AD%A6%E4%B9%A019/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习19">Web学习19</span>
+            <span class="post-date" title="2024-06-10 00:42:13">2024/06/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/08/Web%E5%AD%A6%E4%B9%A018/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习18">Web学习18</span>
+            <span class="post-date" title="2024-06-08 21:20:44">2024/06/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/08/Web%E5%AD%A6%E4%B9%A017/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习17">Web学习17</span>
+            <span class="post-date" title="2024-06-08 19:16:10">2024/06/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/06/Web%E5%AD%A6%E4%B9%A016/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习16">Web学习16</span>
+            <span class="post-date" title="2024-06-06 18:55:59">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/05/Web%E5%AD%A6%E4%B9%A015/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习15">Web学习15</span>
+            <span class="post-date" title="2024-06-05 15:56:07">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/04/Web%E5%AD%A6%E4%B9%A014/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习14">Web学习14</span>
+            <span class="post-date" title="2024-06-04 14:04:03">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/04/Web%E5%AD%A6%E4%B9%A013/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习13">Web学习13</span>
+            <span class="post-date" title="2024-06-04 12:16:20">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/02/Web%E5%AD%A6%E4%B9%A012/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习12">Web学习12</span>
+            <span class="post-date" title="2024-06-02 18:38:10">2024/06/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/02/LitCTF2024-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="LitCTF2024_WP">LitCTF2024_WP</span>
+            <span class="post-date" title="2024-06-02 12:18:25">2024/06/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/30/LitCTF2023_WP/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="LitCTF2023_WP">LitCTF2023_WP</span>
+            <span class="post-date" title="2024-05-30 17:33:08">2024/05/30</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/29/Web%E5%AD%A6%E4%B9%A011/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习11">Web学习11</span>
+            <span class="post-date" title="2024-05-29 20:24:16">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/29/Web%E5%AD%A6%E4%B9%A010/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习10">Web学习10</span>
+            <span class="post-date" title="2024-05-29 18:34:51">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/28/Web%E5%AD%A6%E4%B9%A09/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习9">Web学习9</span>
+            <span class="post-date" title="2024-05-28 17:22:39">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习8">Web学习8</span>
+            <span class="post-date" title="2024-05-28 10:48:57">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习7">Web学习7</span>
+            <span class="post-date" title="2024-05-27 16:27:52">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/27/%E5%85%B3%E4%BA%8EWindows%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A0%E6%B3%95%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5%E4%B9%8B%E9%97%AE/"
+           data-tag="Web,服务器"
+           data-author="" >
+            <span class="post-title" title="关于Windows服务器无法远程桌面连接之问">关于Windows服务器无法远程桌面连接之问</span>
+            <span class="post-date" title="2024-05-27 16:24:10">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/26/Web%E5%AD%A6%E4%B9%A06/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习6">Web学习6</span>
+            <span class="post-date" title="2024-05-26 18:36:19">2024/05/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/26/Web%E5%AD%A6%E4%B9%A05/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习5">Web学习5</span>
+            <span class="post-date" title="2024-05-26 13:10:51">2024/05/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习4">Web学习4</span>
+            <span class="post-date" title="2024-05-25 16:12:43">2024/05/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/23/Web%E5%AD%A6%E4%B9%A03/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习3">Web学习3</span>
+            <span class="post-date" title="2024-05-23 19:38:49">2024/05/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/23/Web%E5%AD%A6%E4%B9%A02/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习2">Web学习2</span>
+            <span class="post-date" title="2024-05-23 12:34:18">2024/05/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/22/Web%E5%AD%A6%E4%B9%A01/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习1">Web学习1</span>
+            <span class="post-date" title="2024-05-22 20:44:54">2024/05/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/29/linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0/"
+           data-tag="Web,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux操作系统学习">Linux操作系统学习</span>
+            <span class="post-date" title="2024-04-29 15:35:19">2024/04/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/28/%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF%E6%94%B6%E8%97%8F/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="绕过姿势收藏">绕过姿势收藏</span>
+            <span class="post-date" title="2024-04-28 19:55:29">2024/04/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/23/XYCTF-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="XYCTF_WP">XYCTF_WP</span>
+            <span class="post-date" title="2024-04-23 12:54:05">2024/04/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/14/faker%E7%9A%84%E5%BF%83%E9%AD%94/"
+           data-tag="随想"
+           data-author="" >
+            <span class="post-title" title="faker的心魔">faker的心魔</span>
+            <span class="post-date" title="2024-04-14 21:23:39">2024/04/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/03/14/sql%E6%B3%A8%E5%85%A5/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="sql注入">sql注入</span>
+            <span class="post-date" title="2024-03-14 19:31:21">2024/03/14</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-CTF入门指南" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">CTF入门介绍</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">CTF</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-09-13 15:24:24'>2024-09-13 14:49</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFCTF%EF%BC%9F"><span class="toc-text">什么是CTF？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFFlag%EF%BC%9F"><span class="toc-text">什么是Flag？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTF%E7%AB%9E%E8%B5%9B%E6%A8%A1%E5%BC%8F%EF%BC%9F"><span class="toc-text">CTF竞赛模式？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTF-%E7%9A%84%E7%AB%9E%E8%B5%9B%E6%96%B9%E5%90%91%EF%BC%9F"><span class="toc-text">CTF 的竞赛方向？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E9%BB%91%E8%AF%9D"><span class="toc-text">常见的黑话</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-WriteUp%EF%BC%9F"><span class="toc-text">什么是 WriteUp？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%80%E6%8A%8A%E6%A2%AD%EF%BC%9F"><span class="toc-text">什么是一把梭？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%A5%97%E5%A8%83%EF%BC%9F"><span class="toc-text">什么是套娃？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0-CTF-%E6%9C%89%E4%BB%80%E4%B9%88%E8%A6%81%E6%B1%82%E4%B9%88%EF%BC%9F"><span class="toc-text">学习 CTF 有什么要求么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E5%B9%B3%E5%8F%B0%E6%8E%A8%E8%8D%90"><span class="toc-text">学习平台推荐</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%B7%E9%A2%98%E5%B9%B3%E5%8F%B0"><span class="toc-text">刷题平台</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E7%A4%BE%E5%8C%BA"><span class="toc-text">技术社区</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-text">结语</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​	Hello，欢迎踏入CTF的大门，这是个值得探索的领域，希望你能在这次CTF比赛中学到新知识，同时感受到CTF的乐趣。</p>
+<p>​	下面，作为新生的你们肯定会疑惑CTF到底是什么，请让我来为你们详细介绍一下。</p>
+<h2 id="什么是CTF？"><a href="#什么是CTF？" class="headerlink" title="什么是CTF？"></a>什么是CTF？</h2><p>「<strong>CTF Capture The Flag</strong>」中文一般译作夺旗赛，在网络安全领域中指的是网络安全技术人员之间进行技术竞技的一种比赛形式。CTF 起源于 1996 年 DEFCON 全球黑客大会，以代替之前黑客们通过相发起真实攻击进行技术比拼的方式；其将安全相关的知识点抽象出来并加入到题目中，我们通过对知识点的理解认知，具体地进行实践来攻克题目。</p>
+<h2 id="什么是Flag？"><a href="#什么是Flag？" class="headerlink" title="什么是Flag？"></a>什么是Flag？</h2><p>参赛团队之间通过进行攻防对抗、程序分析等形式，率先从主办方给出的比赛环境中得到一串具有一定格式的字符串或其他内容，并将其提交给主办方，从而夺得分数。为了方便称呼，我们把这样的内容称之为“Flag”。</p>
+<h2 id="CTF竞赛模式？"><a href="#CTF竞赛模式？" class="headerlink" title="CTF竞赛模式？"></a>CTF竞赛模式？</h2><p>CTF 有个人赛和团队赛，在主流比赛中多为团队赛；</p>
+<p>CTF 赛制分多种，国内常见的为「 <strong>解题模式 Jeopardy</strong> 」「 <strong>攻防模式 | AWD (Attack With Defense)</strong> 」「 <strong>静态攻防 AWDP (Attack With Defence Plus)</strong> 」一般分为线上线下两个阶段，线上通常采用 <strong>解题模式</strong> ，线下通常为 <strong>CTF +( 理论 )+ AWD&#x2F;AWDP</strong> 模式，具体看主办方安排。</p>
+<ul>
+<li>「 <strong>解题模式 Jeopardy</strong> 」目前大多数国内外 CTF 比赛的主流形式，选手自由组队参赛。题目通常在比赛过程中陆续放出。解出一道题目后，提交题目对应的 flag 即可得分，比赛结束时分高者获胜。</li>
+<li>「 <strong>攻防模式 | AWD (Attack With Defense)</strong> 」通常为现场比赛，多数 CTF 决赛的比赛形式，选手自由组队参赛。每个队伍都有自己的 gamebox，其上运行着一些带有漏洞的服务。参赛战队需要找到漏洞对其他队伍 gamebox 发起攻击，也需要通过 patch 服务来加固自己的 gamebox。相比于解题模式，时间更短，比赛中更注重临场反应和解题速度，需要能够快速攻击目标主机的权限，考察团队多方面的综合安全能力。</li>
+<li>「 <strong>静态攻防 AWDP (Attack With Defence Plus)</strong> 」解题 + 加固赛，相比 AWD 赛制取消了 gamebox，主办方会根据出题人设置的脚本判断提交的 patch 是否有效（攻击则和解题模式类似），参赛队伍无法直接攻击其他队伍。每个回合，参赛队伍都会根据自己攻击和加固成功的题目（以及相应题目的解题队伍数）来得分，以累积得分作为排行依据。</li>
+</ul>
+<p>我们这次的线上新生赛呢，就是最传统也最常见的解题模式，我们会陆续为大家放出各个方向的CTF题目，希望大家能仔细研究题目，善用互联网这个丰富的知识库来尽量的解决每一个问题。极少题目可能会较难，有时候需要你有较好的耐心才能解决</p>
+<h2 id="CTF-的竞赛方向？"><a href="#CTF-的竞赛方向？" class="headerlink" title="CTF 的竞赛方向？"></a>CTF 的竞赛方向？</h2><p>由于 CTF 知识面很广，一个人不可能面面俱到，所以选手们通常都会选择一个自己喜欢的方向深入研究，，通常分为五个方向:<strong>MISC</strong>、<strong>CRYPTO</strong>、<strong>WEB</strong>、<strong>REVERSE</strong>、<strong>PWN</strong>：</p>
+<ul>
+<li>「 <strong>杂项 MISC</strong> 」安全杂项涉及到古典密码学、编码、隐写术、电子取证、数据分析等广度极高的安全手段及利用方法，选手需要确定手段或者方法，反向的去破译取证从而拿到 flag，MISC 是 CTF 比赛中广度最高的方向，需要各个方向都有涉猎。 </li>
+<li>「 <strong>密码学 CRYPTO</strong> 」密码学简单讲就古典密码和现代密码，当然大多数古典密码的题目目前都被划分到 MISC 中，目前的密码学反而更偏向现代密码学，常出现分组密码、流密码和公钥密码体制的考察，对初等数学、基本的数论有一定需求。选手通常被给予一个加密程序，抹去明文之后留下的加密过程和输出，要求选手通过密码体制的弱点来还原 flag。 </li>
+<li>「 <strong>网络攻防 WEB</strong> 」着重于 Web 应用程序，框架，浏览器以及各类 Web 服务器的安全问题；挖掘 &#x2F; 利用 &#x2F; 研究各类 Web 系漏洞，探究其形成原理、利用方式及修补方案。题目常见的漏洞类型包括注入、XSS、文件包含、代码执行、上传、SSRF 等，选手通过漏洞直接或者间接拿到 shell 或者得到某些关键文件从而得到 Flag。</li>
+<li>「 <strong>逆向工程 Reverse Engineering</strong> 」研究各类操作系统，编译器，虚拟机的底层架构，以 Windows 和 Linux 为平台，学习可执行程序的逆向分析技术，如软件调试与破解，对已经编译完成的可执行文件进行分析，研究程序的行为和算法，然后以此为依据，计算出出题人想隐藏的 flag </li>
+<li>「 <strong>二进制漏洞利用 Pwn</strong> 」Pwn 在安全领域是「攻破」的意思。主要研究程序漏洞利用技术，例如栈溢出、堆管理器的漏洞利用和其他高阶技巧；挖掘和分析各类基于编译型语言的漏洞。二进制攻击涉及到栈溢出、堆溢出、格式化字符串漏洞等二进制漏洞，选手需要借助这些漏洞获取计算机权限，从而拿到 flag ——<em>PWN!</em>(指声音</li>
+<li><strong>SOMETHING NEW</strong> 随着计算机技术的发展，也有一些新的方向如 「 <strong>区块链 Blockchain</strong> 」「 <strong>AI 安全</strong> 」「 <strong>物联网 IoT</strong> 」等的加入。</li>
+</ul>
+<h2 id="常见的黑话"><a href="#常见的黑话" class="headerlink" title="常见的黑话"></a>常见的黑话</h2><p>每个领域都会有自己的黑话，CTF也不例外，下面为大家介绍一些常见的黑话，如果在群里和其他师傅（噢师傅也是黑话，我们一般称一起学习CTF的朋友为师傅）讨论的时候，你有什么听不懂的，也可以积极地提问，相信大家都会积极地为你解答的。</p>
+<h3 id="什么是-WriteUp？"><a href="#什么是-WriteUp？" class="headerlink" title="什么是 WriteUp？"></a>什么是 WriteUp？</h3><p>又称作 WP，是记录 CTF 比赛中解题过程的文章，通常包含题目描述、解题思路、解题过程、源码分析、脚本分析等内容。当然你也可以简单理解为解题报告 —— 题解。</p>
+<h3 id="什么是一把梭？"><a href="#什么是一把梭？" class="headerlink" title="什么是一把梭？"></a>什么是一把梭？</h3><ul>
+<li><strong>一把梭</strong> 代指一类解题过程或者方法，一般指将题目中给出的对应的附件 &#x2F; 代码 &#x2F; 密文等，直接丢到某个工具或者网站上，就能得到 flag 的解题方法。</li>
+</ul>
+<h3 id="什么是套娃？"><a href="#什么是套娃？" class="headerlink" title="什么是套娃？"></a>什么是套娃？</h3><ul>
+<li><strong>套娃</strong> 一是指一些题目比如说加密题，嵌套了多层的加密，需要多次解密才能得到 flag，即一道题中可能涉及到多个知识点的考察； 二是带有一定贬义意义，通常指出题人只是为了出题而出题，单纯的、一味的、向题目中叠加 tricks，导致本来就不新颖的题目还变得更加复杂，使得题目的难度无意义的变高。</li>
+</ul>
+<h2 id="学习-CTF-有什么要求么？"><a href="#学习-CTF-有什么要求么？" class="headerlink" title="学习 CTF 有什么要求么？"></a>学习 CTF 有什么要求么？</h2><p><strong>信息检索能力</strong> 和 <strong>学习能力</strong> 这两者即可</p>
+<p>说人话就是，会用搜索引擎，知道怎么检索信息，知道怎么验证信息正确性，知道怎么在垃圾场里面翻有用信息；然后就是拿到信息之后，快速学习，知道怎么运用知识点。</p>
+<p>至少，别人的解题报告 (一般我们称之为 WriteUp 简称 WP) 你得看得懂，你会看着跟着复现。</p>
+<p>所以我认为，CTF是欢迎每一位新成员的加入的，只要你对CTF感兴趣，你都可以在这个世界里自由的探索，学长们都会热心地解答你在学习过程中遇到的问题。</p>
+<h2 id="学习平台推荐"><a href="#学习平台推荐" class="headerlink" title="学习平台推荐"></a>学习平台推荐</h2><h3 id="刷题平台"><a href="#刷题平台" class="headerlink" title="刷题平台"></a>刷题平台</h3><p><a target="_blank" rel="noopener" href="https://www.nssctf.cn/index"><strong>NSSCTF</strong></a></p>
+<p><a target="_blank" rel="noopener" href="https://buuoj.cn/"><strong>BUUCTF</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://ctf.show/"><strong>CTFshow</strong></a></p>
+<p><a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/home/index"><strong>攻防世界</strong></a></p>
+<h3 id="技术社区"><a href="#技术社区" class="headerlink" title="技术社区"></a>技术社区</h3><p>学会搜索技巧，可以在上面找到很多师傅为你铺好的路</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/">博客园</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.csdn.net/">CSDN</a></p>
+<p><del>虽然我们戏称看CSDN是在史里淘金</del>，毕竟这是中国知名度最高的技术社区，上面毕竟还是有金的。</p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/tab/1">先知社区</a></p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>​	CTF是很有趣的，但当你一只脚踏进大门时，你也会顿感其中的枯燥与乏味，这是学习知识和技术的过程中必然会经历的事情。希望你能铭记你的第一次FLAG正确的界面，铭记第一次一血的兴奋，铭记踌躇整晚，只为了做出一道难题的午夜，铭记和队友们并排相坐，为了同一个目标奋斗的黄昏，那是你前行路上的内驱力，也是你走之后的路的一以贯之的信念。希望这次新生赛能成为你一次美好的记忆。</p>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2024 f4k3r
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+<div id="musicMouseDrag" style="position:fixed; z-index: 9999; bottom: 0; right: 50px;">
+    <div id="musicDragArea" style="position: absolute; top: 0; left: 0; width: 100%;height: 10px;cursor: move; z-index: 10;"></div>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=478507889&auto=1&height=32"></iframe>
+    </div>
+
+<script>
+    var $DOC = $(document)
+    $('#musicMouseDrag').on('mousedown', function (e) {
+      // 阻止文本选中
+      $DOC.bind("selectstart", function () {
+        return false;
+      });
+      $('#musicDragArea').css('height', '100%');
+      var $moveTarget = $('#musicMouseDrag');
+      $moveTarget.css('border', '1px dashed grey')
+      var div_x = e.pageX - $moveTarget.offset().left;
+      var div_y = e.pageY - $moveTarget.offset().top;
+      $DOC.on('mousemove', function (e) {
+        var targetX = e.pageX - div_x;
+        var targetY = e.pageY - div_y;
+        targetX = targetX < 0 ? 0 : (targetX + $moveTarget.outerWidth() >= window.innerWidth) ? window.innerWidth - $moveTarget.outerWidth() : targetX;
+        targetY = targetY < 0 ? 0 : (targetY + $moveTarget.outerHeight() >= window.innerHeight) ? window.innerHeight - $moveTarget.outerHeight() : targetY;
+        $moveTarget.css({'left': targetX + 'px', 'top': targetY + 'px', 'bottom': 'inherit', 'right': 'inherit'})
+      }).on('mouseup', function () {
+        $DOC.unbind("selectstart");
+        $DOC.off('mousemove')
+        $DOC.off('mouseup')
+        $moveTarget.css('border', 'none')
+        $('#musicDragArea').css('height', '10px');
+      })
+    })
+</script>
+
+</html>

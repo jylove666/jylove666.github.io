@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>离散数学复习 | f4k3r&#39;s blog</title>
+  <meta name="keywords" content=" CS ">
+  <meta name="description" content="离散数学复习 | f4k3r&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="前言​	Hello，欢迎踏入CTF的大门，这是个值得探索的领域，希望你能在这次CTF比赛中学到新知识，同时感受到CTF的乐趣。 ​	下面，作为新生的你们肯定会疑惑CTF到底是什么，请让我来为你们详细介绍一下。 什么是CTF？「CTF Capture The Flag」中文一般译作夺旗赛，在网络安全领域中指的是网络安全技术人员之间进行技术竞技的一种比赛形式。CTF 起源于 1996 年 DEFCON">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF入门介绍">
+<meta property="og:url" content="http://example.com/2024/09/13/CTF%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="f4k3r&#39;s blog">
+<meta property="og:description" content="前言​	Hello，欢迎踏入CTF的大门，这是个值得探索的领域，希望你能在这次CTF比赛中学到新知识，同时感受到CTF的乐趣。 ​	下面，作为新生的你们肯定会疑惑CTF到底是什么，请让我来为你们详细介绍一下。 什么是CTF？「CTF Capture The Flag」中文一般译作夺旗赛，在网络安全领域中指的是网络安全技术人员之间进行技术竞技的一种比赛形式。CTF 起源于 1996 年 DEFCON">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-13T06:49:47.000Z">
+<meta property="article:modified_time" content="2024-09-13T07:24:24.107Z">
+<meta property="article:author" content="f4k3r">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-dark.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>f4k3r</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(72)</small>
+            
+        </div>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        <a 
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="72">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://www.blog.st4rr.top/">St4rr</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>反序列化</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>生活</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>随想</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CTF</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Web</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WP</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 "
+           href="/2024/09/13/CTF%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"
+           data-tag="CTF"
+           data-author="" >
+            <span class="post-title" title="CTF入门介绍">CTF入门介绍</span>
+            <span class="post-date" title="2024-09-13 14:49:47">2024/09/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/09/12/%E8%AE%B0%E4%B8%80%E6%AC%A1Web%E5%87%BA%E9%A2%98/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="记一次Web出题">记一次Web出题</span>
+            <span class="post-date" title="2024-09-12 22:53:12">2024/09/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/"
+           data-tag="CS"
+           data-author="" >
+            <span class="post-title" title="离散数学复习">离散数学复习</span>
+            <span class="post-date" title="2024-09-01 20:45:04">2024/09/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/28/%E7%BE%8A%E5%9F%8E%E6%9D%AFWP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="羊城杯WP">羊城杯WP</span>
+            <span class="post-date" title="2024-08-28 00:55:45">2024/08/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/26/NepCTF%E5%A4%8D%E7%8E%B0/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="NepCTF复现">NepCTF复现</span>
+            <span class="post-date" title="2024-08-26 21:15:39">2024/08/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/20/MoeCTF-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="MoeCTF_WP">MoeCTF_WP</span>
+            <span class="post-date" title="2024-08-20 00:54:19">2024/08/20</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/19/BaseCTF-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="BaseCTF_WP">BaseCTF_WP</span>
+            <span class="post-date" title="2024-08-19 23:43:44">2024/08/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/19/SSRF%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="SSRF从入门到精通">SSRF从入门到精通</span>
+            <span class="post-date" title="2024-08-19 13:41:33">2024/08/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/05/%E9%A9%BE%E7%85%A7%E9%94%99%E9%A2%98/"
+           data-tag="生活"
+           data-author="" >
+            <span class="post-title" title="驾照错题">驾照错题</span>
+            <span class="post-date" title="2024-08-05 13:20:22">2024/08/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/04/%E8%AD%A6%E9%86%92/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="警醒">警醒</span>
+            <span class="post-date" title="2024-08-04 23:15:04">2024/08/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/04/%E5%A4%8F%E4%BB%A4%E8%90%A5%E8%AE%B2%E7%A8%BF/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="夏令营讲稿">夏令营讲稿</span>
+            <span class="post-date" title="2024-08-04 21:05:16">2024/08/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/03/%E7%9C%81%E6%95%B0%E6%8D%AE%E6%AF%94%E8%B5%9BWP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="省数据比赛WP">省数据比赛WP</span>
+            <span class="post-date" title="2024-08-03 16:14:43">2024/08/03</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/28/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="联合训练结营赛WP">联合训练结营赛WP</span>
+            <span class="post-date" title="2024-07-28 21:08:17">2024/07/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/26/Web%E5%AD%A6%E4%B9%A046/"
+           data-tag="Web,反序列化"
+           data-author="" >
+            <span class="post-title" title="Web学习46">Web学习46</span>
+            <span class="post-date" title="2024-07-26 12:35:09">2024/07/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/22/DASCTF%E5%A4%8D%E7%8E%B0/"
+           data-tag="CTF"
+           data-author="" >
+            <span class="post-title" title="DASCTF复现">DASCTF复现</span>
+            <span class="post-date" title="2024-07-22 12:26:23">2024/07/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/19/Web%E5%AD%A6%E4%B9%A045/"
+           data-tag="Web,CTF,反序列化"
+           data-author="" >
+            <span class="post-title" title="Web学习45">Web学习45</span>
+            <span class="post-date" title="2024-07-19 18:39:28">2024/07/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/10/%E4%B8%8E%E5%8D%97%E8%88%AA%E7%9A%84%E6%9A%91%E6%9C%9F%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="与南航的暑期联合训练WP">与南航的暑期联合训练WP</span>
+            <span class="post-date" title="2024-07-10 16:56:22">2024/07/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/09/nodejs%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="nodejs原型链污染">nodejs原型链污染</span>
+            <span class="post-date" title="2024-07-09 21:29:26">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/04/Web%E5%AD%A6%E4%B9%A044/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习44">Web学习44</span>
+            <span class="post-date" title="2024-07-04 10:34:24">2024/07/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/03/Web%E5%AD%A6%E4%B9%A043/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习43">Web学习43</span>
+            <span class="post-date" title="2024-07-03 11:35:23">2024/07/03</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/02/Web%E5%AD%A6%E4%B9%A042/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习42">Web学习42</span>
+            <span class="post-date" title="2024-07-02 13:29:55">2024/07/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/01/Web%E5%AD%A6%E4%B9%A041/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习41">Web学习41</span>
+            <span class="post-date" title="2024-07-01 17:16:35">2024/07/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/30/Web%E5%AD%A6%E4%B9%A040/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习40">Web学习40</span>
+            <span class="post-date" title="2024-06-30 15:18:47">2024/06/30</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/29/Web%E5%AD%A6%E4%B9%A039/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习39">Web学习39</span>
+            <span class="post-date" title="2024-06-29 13:52:31">2024/06/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/28/Web%E5%AD%A6%E4%B9%A038/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习38">Web学习38</span>
+            <span class="post-date" title="2024-06-28 16:48:11">2024/06/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/27/Web%E5%AD%A6%E4%B9%A037/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习37">Web学习37</span>
+            <span class="post-date" title="2024-06-27 14:01:45">2024/06/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/26/Web%E5%AD%A6%E4%B9%A036/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习36">Web学习36</span>
+            <span class="post-date" title="2024-06-26 00:13:21">2024/06/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/25/Web%E5%AD%A6%E4%B9%A035/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习35">Web学习35</span>
+            <span class="post-date" title="2024-06-25 14:19:25">2024/06/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/24/Web%E5%AD%A6%E4%B9%A034/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习34">Web学习34</span>
+            <span class="post-date" title="2024-06-24 11:58:19">2024/06/24</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/23/Web%E5%AD%A6%E4%B9%A033/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习33">Web学习33</span>
+            <span class="post-date" title="2024-06-23 12:31:12">2024/06/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习32">Web学习32</span>
+            <span class="post-date" title="2024-06-22 00:33:22">2024/06/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/21/Web%E5%AD%A6%E4%B9%A031/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习31">Web学习31</span>
+            <span class="post-date" title="2024-06-21 11:46:42">2024/06/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/19/Web%E5%AD%A6%E4%B9%A030/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习30">Web学习30</span>
+            <span class="post-date" title="2024-06-19 19:00:16">2024/06/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/19/Web%E5%AD%A6%E4%B9%A029/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习29">Web学习29</span>
+            <span class="post-date" title="2024-06-19 12:06:31">2024/06/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="NSSCTF平台刷题日记">NSSCTF平台刷题日记</span>
+            <span class="post-date" title="2024-06-18 15:09:22">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/18/Web%E5%AD%A6%E4%B9%A028/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习28">Web学习28</span>
+            <span class="post-date" title="2024-06-18 11:31:15">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/17/Web%E5%AD%A6%E4%B9%A027/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习27">Web学习27</span>
+            <span class="post-date" title="2024-06-17 11:36:01">2024/06/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/15/Web%E5%AD%A6%E4%B9%A026/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习26">Web学习26</span>
+            <span class="post-date" title="2024-06-15 19:45:59">2024/06/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习25">Web学习25</span>
+            <span class="post-date" title="2024-06-15 13:00:46">2024/06/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/14/Web%E5%AD%A6%E4%B9%A024/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习24">Web学习24</span>
+            <span class="post-date" title="2024-06-14 11:24:45">2024/06/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/13/Web%E5%AD%A6%E4%B9%A023/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习23">Web学习23</span>
+            <span class="post-date" title="2024-06-13 12:01:34">2024/06/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/13/Web%E5%AD%A6%E4%B9%A022/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习22">Web学习22</span>
+            <span class="post-date" title="2024-06-13 11:58:28">2024/06/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/12/Web%E5%AD%A6%E4%B9%A021/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习21">Web学习21</span>
+            <span class="post-date" title="2024-06-12 13:37:15">2024/06/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/11/java%E5%AD%A6%E4%B9%A0/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="java学习">java学习</span>
+            <span class="post-date" title="2024-06-11 18:46:57">2024/06/11</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/11/Web%E5%AD%A6%E4%B9%A020/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习20">Web学习20</span>
+            <span class="post-date" title="2024-06-11 00:24:56">2024/06/11</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/10/Web%E5%AD%A6%E4%B9%A019/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习19">Web学习19</span>
+            <span class="post-date" title="2024-06-10 00:42:13">2024/06/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/08/Web%E5%AD%A6%E4%B9%A018/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习18">Web学习18</span>
+            <span class="post-date" title="2024-06-08 21:20:44">2024/06/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/08/Web%E5%AD%A6%E4%B9%A017/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习17">Web学习17</span>
+            <span class="post-date" title="2024-06-08 19:16:10">2024/06/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/06/Web%E5%AD%A6%E4%B9%A016/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习16">Web学习16</span>
+            <span class="post-date" title="2024-06-06 18:55:59">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/05/Web%E5%AD%A6%E4%B9%A015/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习15">Web学习15</span>
+            <span class="post-date" title="2024-06-05 15:56:07">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/04/Web%E5%AD%A6%E4%B9%A014/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习14">Web学习14</span>
+            <span class="post-date" title="2024-06-04 14:04:03">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/04/Web%E5%AD%A6%E4%B9%A013/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习13">Web学习13</span>
+            <span class="post-date" title="2024-06-04 12:16:20">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/02/Web%E5%AD%A6%E4%B9%A012/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习12">Web学习12</span>
+            <span class="post-date" title="2024-06-02 18:38:10">2024/06/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/02/LitCTF2024-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="LitCTF2024_WP">LitCTF2024_WP</span>
+            <span class="post-date" title="2024-06-02 12:18:25">2024/06/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/30/LitCTF2023_WP/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="LitCTF2023_WP">LitCTF2023_WP</span>
+            <span class="post-date" title="2024-05-30 17:33:08">2024/05/30</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/29/Web%E5%AD%A6%E4%B9%A011/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习11">Web学习11</span>
+            <span class="post-date" title="2024-05-29 20:24:16">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/29/Web%E5%AD%A6%E4%B9%A010/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习10">Web学习10</span>
+            <span class="post-date" title="2024-05-29 18:34:51">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/28/Web%E5%AD%A6%E4%B9%A09/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习9">Web学习9</span>
+            <span class="post-date" title="2024-05-28 17:22:39">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习8">Web学习8</span>
+            <span class="post-date" title="2024-05-28 10:48:57">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习7">Web学习7</span>
+            <span class="post-date" title="2024-05-27 16:27:52">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/27/%E5%85%B3%E4%BA%8EWindows%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A0%E6%B3%95%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5%E4%B9%8B%E9%97%AE/"
+           data-tag="Web,服务器"
+           data-author="" >
+            <span class="post-title" title="关于Windows服务器无法远程桌面连接之问">关于Windows服务器无法远程桌面连接之问</span>
+            <span class="post-date" title="2024-05-27 16:24:10">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/26/Web%E5%AD%A6%E4%B9%A06/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习6">Web学习6</span>
+            <span class="post-date" title="2024-05-26 18:36:19">2024/05/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/26/Web%E5%AD%A6%E4%B9%A05/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习5">Web学习5</span>
+            <span class="post-date" title="2024-05-26 13:10:51">2024/05/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习4">Web学习4</span>
+            <span class="post-date" title="2024-05-25 16:12:43">2024/05/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/23/Web%E5%AD%A6%E4%B9%A03/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习3">Web学习3</span>
+            <span class="post-date" title="2024-05-23 19:38:49">2024/05/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/23/Web%E5%AD%A6%E4%B9%A02/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习2">Web学习2</span>
+            <span class="post-date" title="2024-05-23 12:34:18">2024/05/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/22/Web%E5%AD%A6%E4%B9%A01/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习1">Web学习1</span>
+            <span class="post-date" title="2024-05-22 20:44:54">2024/05/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/29/linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0/"
+           data-tag="Web,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux操作系统学习">Linux操作系统学习</span>
+            <span class="post-date" title="2024-04-29 15:35:19">2024/04/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/28/%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF%E6%94%B6%E8%97%8F/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="绕过姿势收藏">绕过姿势收藏</span>
+            <span class="post-date" title="2024-04-28 19:55:29">2024/04/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/23/XYCTF-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="XYCTF_WP">XYCTF_WP</span>
+            <span class="post-date" title="2024-04-23 12:54:05">2024/04/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/14/faker%E7%9A%84%E5%BF%83%E9%AD%94/"
+           data-tag="随想"
+           data-author="" >
+            <span class="post-title" title="faker的心魔">faker的心魔</span>
+            <span class="post-date" title="2024-04-14 21:23:39">2024/04/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/03/14/sql%E6%B3%A8%E5%85%A5/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="sql注入">sql注入</span>
+            <span class="post-date" title="2024-03-14 19:31:21">2024/03/14</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-离散数学复习" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">离散数学复习</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color3">CS</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-09-18 00:51:40'>2024-09-01 20:45</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-text">彩蛋</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E5%91%BD%E9%A2%98%E7%AC%A6%E5%8F%B7%E5%8C%96%E5%8F%8A%E8%81%94%E7%BB%93%E8%AF%8D"><span class="toc-text">1.1命题符号化及联结词</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%94%E7%BB%93%E8%AF%8D%E4%B8%8E%E5%A4%8D%E5%90%88%E5%91%BD%E9%A2%98"><span class="toc-text">联结词与复合命题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E5%91%BD%E9%A2%98%E5%85%AC%E5%BC%8F%E5%8F%8A%E5%88%86%E7%B1%BB"><span class="toc-text">1.2命题公式及分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E9%A2%98%E5%8F%98%E9%A1%B9%E4%B8%8E%E5%90%88%E5%BC%8F%E5%85%AC%E5%BC%8F"><span class="toc-text">命题变项与合式公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AC%E5%BC%8F%E7%9A%84%E8%B5%8B%E5%80%BC"><span class="toc-text">公式的赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AC%E5%BC%8F%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-text">公式的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%90%E5%8F%96%E8%8C%83%E5%BC%8F%E4%B8%8E%E5%90%88%E5%8F%96%E8%8C%83%E5%BC%8F"><span class="toc-text">析取范式与合取范式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%96%E7%AE%80%E6%88%90%E6%9E%90%E5%8F%96%E8%8C%83%E5%BC%8F-%E5%90%88%E5%8F%96%E8%8C%83%E5%BC%8F"><span class="toc-text">化简成析取范式&amp;合取范式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%81%E5%B0%8F%E9%A1%B9%E4%B8%8E%E6%9E%81%E5%A4%A7%E9%A1%B9-m-M"><span class="toc-text">极小项与极大项 m&amp;M</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E8%81%94%E7%BB%93%E8%AF%8D%E7%9A%84%E5%85%A8%E5%8A%9F%E8%83%BD%E9%9B%86"><span class="toc-text">逻辑联结词的全功能集</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E8%81%94%E7%BB%93%E8%AF%8D"><span class="toc-text">复合联结词</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E7%90%86%E7%90%86%E8%AE%BA"><span class="toc-text">推理理论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E6%8E%A8%E7%90%86%E6%98%AF%E5%90%A6%E6%AD%A3%E7%A1%AE%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">判断推理是否正确的方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E7%90%86%E5%AE%9A%E5%BE%8B%E2%80%94%E2%80%94%E9%87%8D%E8%A8%80%E8%95%B4%E5%90%AB%E5%BC%8F"><span class="toc-text">推理定律——重言蕴含式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E8%AF%81%E6%98%8E%E6%B3%95"><span class="toc-text">直接证明法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%99%84%E5%8A%A0%E5%89%8D%E6%8F%90%E8%AF%81%E6%98%8E%E6%B3%95"><span class="toc-text">附加前提证明法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BD%92%E8%B0%AC%E6%B3%95%EF%BC%88%E5%8F%8D%E8%AF%81%E6%B3%95%EF%BC%89"><span class="toc-text">归谬法（反证法）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91"><span class="toc-text">一阶逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%93%E8%AF%8D%E9%80%BB%E8%BE%91%E7%9A%84%E7%AC%A6%E5%8F%B7%E5%8C%96"><span class="toc-text">谓词逻辑的符号化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%96%E5%9F%9F-%E8%87%AA%E7%94%B1%E5%87%BA%E7%8E%B0-%E5%8F%98%E5%85%83%E3%81%AE%E5%88%A4%E6%96%AD"><span class="toc-text">辖域&amp;自由出现&amp;                                                                                                                                  变元の判断</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91%E7%AD%89%E5%80%BC%E5%BC%8F%E4%B8%8E%E5%89%8D%E6%9D%9F%E8%8C%83%E5%BC%8F"><span class="toc-text">一阶逻辑等值式与前束范式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E8%AE%BA"><span class="toc-text">集合论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E6%B0%8F%E5%9B%BE"><span class="toc-text">文氏图</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB%E4%B8%8E%E5%87%BD%E6%95%B0"><span class="toc-text">二元关系与函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E9%80%92%E9%97%AD%E5%8C%85%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-text">传递闭包的计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E6%96%AF%E5%9B%BE%E7%9A%84%E7%BB%98%E5%88%B6"><span class="toc-text">哈斯图的绘制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E5%93%88%E6%96%AF%E5%9B%BE%E5%86%99%E5%87%BA%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text">根据哈斯图写出表达式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%81%E5%B0%8F%E5%85%83%EF%BC%8C%E6%9E%81%E5%A4%A7%E5%85%83%EF%BC%8C%E4%B8%8A%E7%95%8C%EF%BC%8C%E4%B8%8B%E7%95%8C%EF%BC%8C%E4%B8%8A%E7%A1%AE%E7%95%8C%EF%BC%8C%E4%B8%8B%E7%A1%AE%E7%95%8C"><span class="toc-text">极小元，极大元，上界，下界，上确界，下确界</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%B7%AF%E4%B8%8E%E5%9B%9E%E8%B7%AF"><span class="toc-text">通路与回路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%82%B9%E5%89%B2%E9%9B%86"><span class="toc-text">点割集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%B9%E5%89%B2%E9%9B%86"><span class="toc-text">边割集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%90%91%E5%9B%BE%E7%9A%84%E8%BF%9E%E9%80%9A%E6%80%A7"><span class="toc-text">有向图的连通性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA"><span class="toc-text">图的矩阵表示</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E5%90%91%E5%9B%BE%E7%9A%84%E5%85%B3%E8%81%94%E7%9F%A9%E9%98%B5"><span class="toc-text">无向图的关联矩阵</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E5%90%91%E5%9B%BE%E7%9A%84%E5%85%B3%E8%81%94%E7%9F%A9%E9%98%B5"><span class="toc-text">有向图的关联矩阵</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E5%90%91%E5%9B%BE%E7%9A%84%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5"><span class="toc-text">有向图的邻接矩阵</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E8%B7%AF%E5%92%8C%E5%9B%9E%E8%B7%AF%E6%9D%A1%E6%95%B0%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-text">通路和回路条数的计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E5%90%91%E5%9B%BE%E7%9A%84%E5%8F%AF%E8%BE%BE%E7%9F%A9%E9%98%B5"><span class="toc-text">有向图的可达矩阵</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E4%BA%8C%E9%83%A8%E5%9B%BE"><span class="toc-text">判断二部图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E5%9B%BE"><span class="toc-text">欧拉图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E5%9B%BE%E7%9A%84%E5%88%A4%E5%88%AB%E6%B3%95"><span class="toc-text">欧拉图的判别法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%AF%86%E5%B0%94%E9%A1%BF%E5%9B%BE"><span class="toc-text">哈密尔顿图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E5%85%AC%E5%BC%8F"><span class="toc-text">欧拉公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91"><span class="toc-text">树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E5%90%91%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-text">无向树的性质</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h2><p>先无理解的背诵一下吧，感觉离散学起来确实是枯燥</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240909200204572.png"></p>
+<h2 id="1-1命题符号化及联结词"><a href="#1-1命题符号化及联结词" class="headerlink" title="1.1命题符号化及联结词"></a>1.1命题符号化及联结词</h2><p>命题与真值<br>简单命题<br>复合命题<br>联结词</p>
+<p>命题：判断结果惟一的陈述句<br>命题的真值：判断的结果<br>真值的取值：真、假<br>真命题：真值为真的命题<br>假命题：真值为假的命题</p>
+<p>注：<br>1、感叹句、祈使句、疑问句都不是命题<br>2、陈述句中的悖论以及判断结果不唯一的也不是命题</p>
+<p>命题的分类：<br>简单命题（原子命题）：简单陈述句构成的命题<br>复合命题：由简单命题与联结词按一定规则复合而成的命题</p>
+<h3 id="联结词与复合命题"><a href="#联结词与复合命题" class="headerlink" title="联结词与复合命题"></a>联结词与复合命题</h3><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240901205025587.png"></p>
+<p>例：将下列命题符号化<br>（1）王晓既用功又聪明<br>（2）王晓不仅聪明，而且用功<br>（3）王晓虽然聪明，但不用功<br>（4）张辉与王丽都是三好生<br>（5）张辉与王丽是同学</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240901205254945.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240901205314138.png"></p>
+<p>注：<br>描述合取式的灵活性与多样性<br>分清简单命题与复合命题</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240901205641857.png"></p>
+<p>例：将下列命题符号化<br>（1）2或4是素数<br>（2）2或3是素数<br>（3）4或6是素数<br>（4）小元只能拿一个苹果或一个梨<br>（5）王晓红生于1975年或1076年</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240901205817666.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240901205953482.png"></p>
+<p>“如果p，则q”的不同表述很多：</p>
+<p>若p，就q<br>只要p，就q<br>p仅当q<br>只有q才p<br>除非q，才p<br>除非q，否则非p（双重否定）</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240901210247294.png"></p>
+<p>例题：<strong>经典</strong></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240901210312299.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240901210429708.png"></p>
+<h2 id="1-2命题公式及分类"><a href="#1-2命题公式及分类" class="headerlink" title="1.2命题公式及分类"></a>1.2命题公式及分类</h2><p>命题变项与合式公式<br>公式的赋值<br>真值表<br>公式的类型：重言式、矛盾式、可满足式<br>真值函数</p>
+<h3 id="命题变项与合式公式"><a href="#命题变项与合式公式" class="headerlink" title="命题变项与合式公式"></a>命题变项与合式公式</h3><p>命题常项：简单命题<br>命题变项：真值不确定的陈述句<br>定义 合式公式（命题公式，公式）递归定义如下：</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240901211144265.png"></p>
+<h3 id="公式的赋值"><a href="#公式的赋值" class="headerlink" title="公式的赋值"></a>公式的赋值</h3><p>定义 给公式A中的命题变项 p1, p2, … , pn指定<br>一组真值称为对A的一个赋值或解释<br>成真赋值: 使公式A为真的赋值<br>成假赋值: 使公式A为假的赋值</p>
+<h3 id="公式的类型"><a href="#公式的类型" class="headerlink" title="公式的类型"></a>公式的类型</h3><p>定义：设A为一个命题公式<br>（1）若A无成假赋值，则称A为重言式（也称永真式）<br>（2）若A无成真赋值，则称A为矛盾式（也称永假式）<br>（3）若A不是矛盾式，则称A为可满</p>
+<h3 id="析取范式与合取范式"><a href="#析取范式与合取范式" class="headerlink" title="析取范式与合取范式"></a>析取范式与合取范式</h3><p>简单析取式：有限个命题变项或其否定构成的析取式<br>简单合取式：有限个命题变项或其否定构成的合取式</p>
+<p>析取范式：由有限个简单合取式组成的析取式<br>合取范式：由有限个简单析取式组成的合取式</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240907122831692.png"></p>
+<p>范式只有三个符号，合取，析取，和否定，简要来说就是“与或非”</p>
+<p>找范式的步骤：</p>
+<p>①去掉–&gt;和&lt;–&gt;符号</p>
+<p>②德摩根律</p>
+<p>③结合律&amp;分配律</p>
+<h4 id="化简成析取范式-合取范式"><a href="#化简成析取范式-合取范式" class="headerlink" title="化简成析取范式&amp;合取范式"></a>化简成析取范式&amp;合取范式</h4><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240907123856787.png"></p>
+<p>析取范式与合取范式不唯一</p>
+<h3 id="极小项与极大项-m-M"><a href="#极小项与极大项-m-M" class="headerlink" title="极小项与极大项 m&amp;M"></a>极小项与极大项 m&amp;M</h3><p><strong>主</strong>析取范式与<strong>主</strong>合取范式<br>m1的否定就是M1，mi的否定就是Mi</p>
+<p>由极小项构成的析取范式就是主析取范式<br>由极大项构成的合取范式就是主合取范式</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240907130742861.png"></p>
+<p>主析取范式和主合取范式都是唯一的</p>
+<p>第二步是关键 无中生有的操作</p>
+<p>二进制的基本计算方式</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240907132843421.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240907132916517.png"></p>
+<p>找主析取范式&amp;主合取范式的方法：①公式的等值演算 ②真值表</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240907133601257.png"></p>
+<p>找他的成真赋值即可</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240907133707761.png"></p>
+<p>主合取范式求极小项，主析取范式求极大项</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240907141233025.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240907141640814.png"></p>
+<h3 id="逻辑联结词的全功能集"><a href="#逻辑联结词的全功能集" class="headerlink" title="逻辑联结词的全功能集"></a>逻辑联结词的全功能集</h3><p><strong>只有交，并两个联结词是不行的</strong></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240907164917837.png"></p>
+<h4 id="复合联结词"><a href="#复合联结词" class="headerlink" title="复合联结词"></a>复合联结词</h4><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240907165031406.png" alt="                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ">–+</p>
+<p>与非 p↑q </p>
+<p>或非 p↓q</p>
+<p>德摩根律和否定之否定</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240907165545266.png"></p>
+<h3 id="推理理论"><a href="#推理理论" class="headerlink" title="推理理论"></a>推理理论</h3><p>从已知得到结论</p>
+<h4 id="判断推理是否正确的方法"><a href="#判断推理是否正确的方法" class="headerlink" title="判断推理是否正确的方法"></a>判断推理是否正确的方法</h4><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240907170204032.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240907231154124.png"></p>
+<p>这题的解题点，相当于要去证明绿色框框里面的式子是永真式，第一个最直接的方法我们可以使用真值表法来解决 ，第二个方法我们也可以用等值演算去进行推理，最终得出这个式子是永真式。</p>
+<h3 id="推理定律——重言蕴含式"><a href="#推理定律——重言蕴含式" class="headerlink" title="推理定律——重言蕴含式"></a>推理定律——重言蕴含式</h3><p><strong>重要，要记</strong></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240907232720394.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240907233320989.png"></p>
+<p>这些推理成立的本质是什么，比如说这里的假言推理，可以经过之前学过的等值演算进行化简，最后得到的式子其实就是B，A直接都被化简掉了</p>
+<h4 id="直接证明法"><a href="#直接证明法" class="headerlink" title="直接证明法"></a>直接证明法</h4><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240907234040645.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240907235752683.png"></p>
+<h4 id="附加前提证明法"><a href="#附加前提证明法" class="headerlink" title="附加前提证明法"></a>附加前提证明法</h4><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240908000516787.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240908001135462.png"></p>
+<h4 id="归谬法（反证法）"><a href="#归谬法（反证法）" class="headerlink" title="归谬法（反证法）"></a>归谬法（反证法）</h4><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240908001243350.png"></p>
+<h3 id="一阶逻辑"><a href="#一阶逻辑" class="headerlink" title="一阶逻辑"></a>一阶逻辑</h3><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240909190425582.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240909190612364.png"></p>
+<p>表示性质的一般是一元谓词，表示相互关系的一般是多元谓词</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240909190826286.png"> </p>
+<h4 id="谓词逻辑的符号化"><a href="#谓词逻辑的符号化" class="headerlink" title="谓词逻辑的符号化"></a>谓词逻辑的符号化</h4><p>“ 仅当”是蕴含的意思 –&gt;</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240909191727543.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240909191916726.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240909192124487.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240909192451410.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240909192824507.png"></p>
+<h4 id="辖域-自由出现-变元の判断"><a href="#辖域-自由出现-变元の判断" class="headerlink" title="辖域&amp;自由出现&amp;                                                                                                                                  变元の判断"></a>辖域&amp;自由出现&amp;                                                                                                                                  变元の判断</h4><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240909194705597.png"></p>
+<p>例题：</p>
+<p>管辖范围内出现的变量肯定是约束的，看辖域主要就是看括号就可以了</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240909200000589.png"></p>
+<h3 id="一阶逻辑等值式与前束范式"><a href="#一阶逻辑等值式与前束范式" class="headerlink" title="一阶逻辑等值式与前束范式"></a>一阶逻辑等值式与前束范式</h3><p>逻辑有效式–&gt;永真</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240909215554681.png"></p>
+<h3 id="集合论"><a href="#集合论" class="headerlink" title="集合论"></a>集合论</h3><p>空集是任何集合的子集</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240912133723492.png"></p>
+<p>A的所有子集构成的集合</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240912133814369.png"></p>
+<p>空集的幂集就一个元素，也就是空集本身</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240912133924390.png"></p>
+<h4 id="文氏图"><a href="#文氏图" class="headerlink" title="文氏图"></a>文氏图</h4><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240912135233817.png"></p>
+<h3 id="二元关系与函数"><a href="#二元关系与函数" class="headerlink" title="二元关系与函数"></a>二元关系与函数</h3><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240912142346239.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240912142521682.png"></p>
+<p> <img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240912142550351.png"></p>
+<p>笛卡尔积首先是一个集合</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240912142949138.png"></p>
+<p>空集与任何一个集合作笛卡尔积的结果是空集</p>
+<h3 id="传递闭包的计算"><a href="#传递闭包的计算" class="headerlink" title="传递闭包的计算"></a>传递闭包的计算</h3><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240903194527487.png"></p>
+<p>离散数学中与线性代数矩阵相关的计算，这里的R中包含的值，比如说第一行的0100，分别是aa，ab，ac，ad，而在R中只有ab，所以只有第二列是1，是这么个逻辑</p>
+<p>方法：作矩阵的乘法运算</p>
+<h3 id="哈斯图的绘制"><a href="#哈斯图的绘制" class="headerlink" title="哈斯图的绘制"></a>哈斯图的绘制</h3><p>哈斯图针对自反，反对称，传递等性质，自反的圈圈可以省略，反对称肯定是单线，传递的第三条线可以直接省略。</p>
+<p>自反意味着每个点都有自回路<br>反对称意味着两点之间有线的话一定是单线<br>构成一个三角形的回路，ab，bc，ac构成传递</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905103439990.png"></p>
+<p>ab有，bc有，ac就可以省略</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905103714797.png"></p>
+<p><strong>实例</strong>：6和4没有关系，什么叫做覆盖，就是数字在上面</p>
+<p>例题*2： </p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905104203663.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905104145492.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905104608393.png"></p>
+<h4 id="根据哈斯图写出表达式"><a href="#根据哈斯图写出表达式" class="headerlink" title="根据哈斯图写出表达式"></a>根据哈斯图写出表达式</h4><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905104934351.png"></p>
+<p>IA是自回路，传递性生出的第三条边也要记得写上</p>
+<h3 id="极小元，极大元，上界，下界，上确界，下确界"><a href="#极小元，极大元，上界，下界，上确界，下确界" class="headerlink" title="极小元，极大元，上界，下界，上确界，下确界"></a>极小元，极大元，上界，下界，上确界，下确界</h3><p>极小元不一定小于极大元</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905105229683.png"></p>
+<p>对于有穷集，极小元和极大元必存在，可能存在多个。<br>最小元和最大元不一定存在，如果存在一定唯一<br>最小元一定是极小元；最大元一定是极大元</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905105546831.png"><br>（1）<br>极小元：g,a,b,c<br>极大元：a,h,f<br>最大元：不存在<br>最小元：不存在<br>（2）<br>下界：无<br>上界：f,d<br>下确界：无<br>上确界：d</p>
+<h3 id="通路与回路"><a href="#通路与回路" class="headerlink" title="通路与回路"></a>通路与回路</h3><p>G&#x3D;&lt;V,E&gt;，图的表现形式，V是点的集合，E是边的集合</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905110619717.png"></p>
+<p>通路与回路的表示方法</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905111133752.png"></p>
+<p>简单图里面直接用点表示就可以了，简单图是没有重边和圈的图，圈的长度是1</p>
+<p>在无向简单图中，所有圈的长度≥3,；在有向简单图中，所有圈的长度≥2</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905111347168.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905111928534.png"></p>
+<p>0图，只有点的图，空图，什么都没有的图，平凡图，只有一个点的图</p>
+<p>连通关系是一种等价关系<br>等价关系可以做划分，所以连通关系也可以做划分</p>
+<h3 id="点割集"><a href="#点割集" class="headerlink" title="点割集"></a>点割集</h3><p>删掉一个点，不仅要删掉这个点，还要删掉与这个点相邻的两条边<br>删掉一条边，只删掉边，点是要保留的</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905112655677.png"></p>
+<p>点割集：可以将这个图断开来的点的集合</p>
+<h3 id="边割集"><a href="#边割集" class="headerlink" title="边割集"></a>边割集</h3><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905112833927.png"></p>
+<p>比如说上张图里的割边，就有e7，e8，边割集有比如说{e1,e2}</p>
+<p>Kn是什么？是n阶完全图，任何一个节点，都和另外的节点相连</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905113021763.png"></p>
+<p>这是K4图</p>
+<h3 id="有向图的连通性"><a href="#有向图的连通性" class="headerlink" title="有向图的连通性"></a>有向图的连通性</h3><p>自反，传递，但没有对称性，不是等价关系</p>
+<p>基图：有向图去掉方向得到的无向图叫做基图</p>
+<h3 id="图的矩阵表示"><a href="#图的矩阵表示" class="headerlink" title="图的矩阵表示"></a>图的矩阵表示</h3><p>无向图的关联矩阵<br>有向图的关联矩阵<br>有向图的邻接矩阵<br>有向图的可达矩阵</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905113527781.png"></p>
+<p>有三种表示方式，代数表示，图的表示，矩阵表示</p>
+<h4 id="无向图的关联矩阵"><a href="#无向图的关联矩阵" class="headerlink" title="无向图的关联矩阵"></a>无向图的关联矩阵</h4><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905114058435.png"></p>
+<p>关联矩阵表示了图中点和边的关系，每一列中其实就对应了一个边<br>关联矩阵的特点：4*5意味着有4个点和5条边，如果是孤立点，则在矩阵中，这个点所在的行全是0</p>
+<h4 id="有向图的关联矩阵"><a href="#有向图的关联矩阵" class="headerlink" title="有向图的关联矩阵"></a>有向图的关联矩阵</h4><p>有向要区分起点和终点，起点是1，终点是-1</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905114549898.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905114430646.png"></p>
+<p>每一列的和肯定是0，每一行的绝对值的和是这个点的度</p>
+<h4 id="有向图的邻接矩阵"><a href="#有向图的邻接矩阵" class="headerlink" title="有向图的邻接矩阵"></a>有向图的邻接矩阵</h4><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905114819710.png"></p>
+<p>邻接矩阵一定是个方阵，方阵就可以用来计算</p>
+<p>特点：每一行的和是这个点的出度，每一列的和是这个点的入度，将出度和入度相加，就是这个点的度</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905125811749.png"></p>
+<p>从v2到v4长度为2的通路只有1条<br>从v2到v1长度为2的通路有3条</p>
+<p>回路的条数看主对角线</p>
+<h4 id="通路和回路条数的计算"><a href="#通路和回路条数的计算" class="headerlink" title="通路和回路条数的计算"></a>通路和回路条数的计算</h4><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905130201219.png"></p>
+<p>利用矩阵进行计算就行了</p>
+<h4 id="有向图的可达矩阵"><a href="#有向图的可达矩阵" class="headerlink" title="有向图的可达矩阵"></a>有向图的可达矩阵</h4><p>可达矩阵的主对角线全是1</p>
+<p>可达矩阵的计算：</p>
+<p>逻辑的加减运算即可，最后主对角线都是1，说明是可达矩阵</p>
+<p>注：矩阵是一种计数的方式</p>
+<h3 id="判断二部图"><a href="#判断二部图" class="headerlink" title="判断二部图"></a>判断二部图</h3><p> <img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905165025668.png">       </p>
+<p>Kmn一共有m*n条边</p>
+<p>二部图中没有长度为奇数的回路</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905165314250.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905165429962.png"></p>
+<p>回路道路是AECB一共是四条边，如果是二部图，一定是偶数条边0.</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905172718853.png"></p>
+<p>V1的个数和V2的个数是相同的，就可以构成完美匹配</p>
+<h3 id="欧拉图"><a href="#欧拉图" class="headerlink" title="欧拉图"></a>欧拉图</h3><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905183223000.png"></p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905183321878.png"></p>
+<h4 id="欧拉图的判别法"><a href="#欧拉图的判别法" class="headerlink" title="欧拉图的判别法"></a>欧拉图的判别法</h4><p>定理 无向图G为欧拉图当且仅当G连通且无奇度顶点。G是半欧拉图当且仅当G连通且恰有两个奇度顶点</p>
+<p>定理 有向图D是欧拉图当且仅当D连通且每个顶点的入度都等于出度。D是半欧拉图当且仅当D连通且恰有两个奇度顶点，其中一个入度比出度大1，另一个出度比入度大1，其余顶点的入度等于出度</p>
+<p>通俗说法：所有顶点的度都是偶数就是欧拉图；半欧拉图是个通路，它回不去</p>
+<p>如何将半欧拉图变成欧拉图，将两个奇数度的点之间加上一条边，两个点的度就变成了偶数，于是就变成了欧拉图</p>
+<h3 id="哈密尔顿图"><a href="#哈密尔顿图" class="headerlink" title="哈密尔顿图"></a>哈密尔顿图</h3><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905191323925.png"></p>
+<p>判断哈密尔顿图，没有严谨的判断方法</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905195224547.png"></p>
+<h3 id="欧拉公式"><a href="#欧拉公式" class="headerlink" title="欧拉公式"></a>欧拉公式</h3><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905215640672.png"></p>
+<p>VEF 点线面</p>
+<h3 id="树"><a href="#树" class="headerlink" title="树"></a>树</h3><p>树是一种特殊的图</p>
+<p>无向树：无回路的连通无向图<br>平凡树：平凡图<br>森林：每个连通分支都是树的非连通的无向图<br>树叶：树中度数为1的顶点<br>分支点：树中度数≥2的顶点</p>
+<p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240905220443256.png"></p>
+<p>上图为一棵是12阶树</p>
+<h4 id="无向树的性质"><a href="#无向树的性质" class="headerlink" title="无向树的性质"></a>无向树的性质</h4><p><img src="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/image-20240917183542971.png"></p>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2024 f4k3r
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+<div id="musicMouseDrag" style="position:fixed; z-index: 9999; bottom: 0; right: 50px;">
+    <div id="musicDragArea" style="position: absolute; top: 0; left: 0; width: 100%;height: 10px;cursor: move; z-index: 10;"></div>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=478507889&auto=1&height=32"></iframe>
+    </div>
+
+<script>
+    var $DOC = $(document)
+    $('#musicMouseDrag').on('mousedown', function (e) {
+      // 阻止文本选中
+      $DOC.bind("selectstart", function () {
+        return false;
+      });
+      $('#musicDragArea').css('height', '100%');
+      var $moveTarget = $('#musicMouseDrag');
+      $moveTarget.css('border', '1px dashed grey')
+      var div_x = e.pageX - $moveTarget.offset().left;
+      var div_y = e.pageY - $moveTarget.offset().top;
+      $DOC.on('mousemove', function (e) {
+        var targetX = e.pageX - div_x;
+        var targetY = e.pageY - div_y;
+        targetX = targetX < 0 ? 0 : (targetX + $moveTarget.outerWidth() >= window.innerWidth) ? window.innerWidth - $moveTarget.outerWidth() : targetX;
+        targetY = targetY < 0 ? 0 : (targetY + $moveTarget.outerHeight() >= window.innerHeight) ? window.innerHeight - $moveTarget.outerHeight() : targetY;
+        $moveTarget.css({'left': targetX + 'px', 'top': targetY + 'px', 'bottom': 'inherit', 'right': 'inherit'})
+      }).on('mouseup', function () {
+        $DOC.unbind("selectstart");
+        $DOC.off('mousemove')
+        $DOC.off('mouseup')
+        $moveTarget.css('border', 'none')
+        $('#musicDragArea').css('height', '10px');
+      })
+    })
+</script>
+
+</html>
