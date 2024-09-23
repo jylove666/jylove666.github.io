@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>御宛杯WP | f4k3r&#39;s blog</title>
+  <meta name="keywords" content=" WP ">
+  <meta name="description" content="御宛杯WP | f4k3r&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="前言​	Hello，欢迎踏入CTF的大门，这是个值得探索的领域，希望你能在这次CTF比赛中学到新知识，同时感受到CTF的乐趣。 ​	下面，作为新生的你们肯定会疑惑CTF到底是什么，请让我来为你们详细介绍一下。 什么是CTF？「CTF Capture The Flag」中文一般译作夺旗赛，在网络安全领域中指的是网络安全技术人员之间进行技术竞技的一种比赛形式。CTF 起源于 1996 年 DEFCON">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF入门介绍">
+<meta property="og:url" content="http://example.com/2024/09/13/CTF%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="f4k3r&#39;s blog">
+<meta property="og:description" content="前言​	Hello，欢迎踏入CTF的大门，这是个值得探索的领域，希望你能在这次CTF比赛中学到新知识，同时感受到CTF的乐趣。 ​	下面，作为新生的你们肯定会疑惑CTF到底是什么，请让我来为你们详细介绍一下。 什么是CTF？「CTF Capture The Flag」中文一般译作夺旗赛，在网络安全领域中指的是网络安全技术人员之间进行技术竞技的一种比赛形式。CTF 起源于 1996 年 DEFCON">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-13T06:49:47.000Z">
+<meta property="article:modified_time" content="2024-09-13T07:24:24.107Z">
+<meta property="article:author" content="f4k3r">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-dark.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>f4k3r</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(74)</small>
+            
+        </div>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        <a 
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="74">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://www.blog.st4rr.top/">St4rr</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>反序列化</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>生活</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>随想</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CTF</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Web</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WP</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 "
+           href="/2024/09/22/Web%E7%BB%84%E4%BC%9A%E8%AE%B0%E5%BD%95/"
+           data-tag="CTF"
+           data-author="" >
+            <span class="post-title" title="Web组会记录">Web组会记录</span>
+            <span class="post-date" title="2024-09-22 18:23:13">2024/09/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="御宛杯WP">御宛杯WP</span>
+            <span class="post-date" title="2024-09-20 22:55:53">2024/09/20</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/09/13/CTF%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"
+           data-tag="CTF"
+           data-author="" >
+            <span class="post-title" title="CTF入门介绍">CTF入门介绍</span>
+            <span class="post-date" title="2024-09-13 14:49:47">2024/09/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/09/12/%E8%AE%B0%E4%B8%80%E6%AC%A1Web%E5%87%BA%E9%A2%98/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="记一次Web出题">记一次Web出题</span>
+            <span class="post-date" title="2024-09-12 22:53:12">2024/09/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/"
+           data-tag="CS"
+           data-author="" >
+            <span class="post-title" title="离散数学复习">离散数学复习</span>
+            <span class="post-date" title="2024-09-01 20:45:04">2024/09/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/28/%E7%BE%8A%E5%9F%8E%E6%9D%AFWP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="羊城杯WP">羊城杯WP</span>
+            <span class="post-date" title="2024-08-28 00:55:45">2024/08/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/26/NepCTF%E5%A4%8D%E7%8E%B0/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="NepCTF复现">NepCTF复现</span>
+            <span class="post-date" title="2024-08-26 21:15:39">2024/08/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/20/MoeCTF-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="MoeCTF_WP">MoeCTF_WP</span>
+            <span class="post-date" title="2024-08-20 00:54:19">2024/08/20</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/19/BaseCTF-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="BaseCTF_WP">BaseCTF_WP</span>
+            <span class="post-date" title="2024-08-19 23:43:44">2024/08/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/19/SSRF%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="SSRF从入门到精通">SSRF从入门到精通</span>
+            <span class="post-date" title="2024-08-19 13:41:33">2024/08/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/05/%E9%A9%BE%E7%85%A7%E9%94%99%E9%A2%98/"
+           data-tag="生活"
+           data-author="" >
+            <span class="post-title" title="驾照错题">驾照错题</span>
+            <span class="post-date" title="2024-08-05 13:20:22">2024/08/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/04/%E8%AD%A6%E9%86%92/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="警醒">警醒</span>
+            <span class="post-date" title="2024-08-04 23:15:04">2024/08/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/04/%E5%A4%8F%E4%BB%A4%E8%90%A5%E8%AE%B2%E7%A8%BF/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="夏令营讲稿">夏令营讲稿</span>
+            <span class="post-date" title="2024-08-04 21:05:16">2024/08/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/03/%E7%9C%81%E6%95%B0%E6%8D%AE%E6%AF%94%E8%B5%9BWP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="省数据比赛WP">省数据比赛WP</span>
+            <span class="post-date" title="2024-08-03 16:14:43">2024/08/03</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/28/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="联合训练结营赛WP">联合训练结营赛WP</span>
+            <span class="post-date" title="2024-07-28 21:08:17">2024/07/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/26/Web%E5%AD%A6%E4%B9%A046/"
+           data-tag="Web,反序列化"
+           data-author="" >
+            <span class="post-title" title="Web学习46">Web学习46</span>
+            <span class="post-date" title="2024-07-26 12:35:09">2024/07/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/22/DASCTF%E5%A4%8D%E7%8E%B0/"
+           data-tag="CTF"
+           data-author="" >
+            <span class="post-title" title="DASCTF复现">DASCTF复现</span>
+            <span class="post-date" title="2024-07-22 12:26:23">2024/07/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/19/Web%E5%AD%A6%E4%B9%A045/"
+           data-tag="Web,CTF,反序列化"
+           data-author="" >
+            <span class="post-title" title="Web学习45">Web学习45</span>
+            <span class="post-date" title="2024-07-19 18:39:28">2024/07/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/10/%E4%B8%8E%E5%8D%97%E8%88%AA%E7%9A%84%E6%9A%91%E6%9C%9F%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="与南航的暑期联合训练WP">与南航的暑期联合训练WP</span>
+            <span class="post-date" title="2024-07-10 16:56:22">2024/07/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/09/nodejs%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="nodejs原型链污染">nodejs原型链污染</span>
+            <span class="post-date" title="2024-07-09 21:29:26">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/04/Web%E5%AD%A6%E4%B9%A044/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习44">Web学习44</span>
+            <span class="post-date" title="2024-07-04 10:34:24">2024/07/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/03/Web%E5%AD%A6%E4%B9%A043/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习43">Web学习43</span>
+            <span class="post-date" title="2024-07-03 11:35:23">2024/07/03</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/02/Web%E5%AD%A6%E4%B9%A042/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习42">Web学习42</span>
+            <span class="post-date" title="2024-07-02 13:29:55">2024/07/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/01/Web%E5%AD%A6%E4%B9%A041/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习41">Web学习41</span>
+            <span class="post-date" title="2024-07-01 17:16:35">2024/07/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/30/Web%E5%AD%A6%E4%B9%A040/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习40">Web学习40</span>
+            <span class="post-date" title="2024-06-30 15:18:47">2024/06/30</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/29/Web%E5%AD%A6%E4%B9%A039/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习39">Web学习39</span>
+            <span class="post-date" title="2024-06-29 13:52:31">2024/06/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/28/Web%E5%AD%A6%E4%B9%A038/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习38">Web学习38</span>
+            <span class="post-date" title="2024-06-28 16:48:11">2024/06/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/27/Web%E5%AD%A6%E4%B9%A037/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习37">Web学习37</span>
+            <span class="post-date" title="2024-06-27 14:01:45">2024/06/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/26/Web%E5%AD%A6%E4%B9%A036/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习36">Web学习36</span>
+            <span class="post-date" title="2024-06-26 00:13:21">2024/06/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/25/Web%E5%AD%A6%E4%B9%A035/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习35">Web学习35</span>
+            <span class="post-date" title="2024-06-25 14:19:25">2024/06/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/24/Web%E5%AD%A6%E4%B9%A034/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习34">Web学习34</span>
+            <span class="post-date" title="2024-06-24 11:58:19">2024/06/24</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/23/Web%E5%AD%A6%E4%B9%A033/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习33">Web学习33</span>
+            <span class="post-date" title="2024-06-23 12:31:12">2024/06/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习32">Web学习32</span>
+            <span class="post-date" title="2024-06-22 00:33:22">2024/06/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/21/Web%E5%AD%A6%E4%B9%A031/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习31">Web学习31</span>
+            <span class="post-date" title="2024-06-21 11:46:42">2024/06/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/19/Web%E5%AD%A6%E4%B9%A030/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习30">Web学习30</span>
+            <span class="post-date" title="2024-06-19 19:00:16">2024/06/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/19/Web%E5%AD%A6%E4%B9%A029/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习29">Web学习29</span>
+            <span class="post-date" title="2024-06-19 12:06:31">2024/06/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="NSSCTF平台刷题日记">NSSCTF平台刷题日记</span>
+            <span class="post-date" title="2024-06-18 15:09:22">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/18/Web%E5%AD%A6%E4%B9%A028/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习28">Web学习28</span>
+            <span class="post-date" title="2024-06-18 11:31:15">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/17/Web%E5%AD%A6%E4%B9%A027/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习27">Web学习27</span>
+            <span class="post-date" title="2024-06-17 11:36:01">2024/06/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/15/Web%E5%AD%A6%E4%B9%A026/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习26">Web学习26</span>
+            <span class="post-date" title="2024-06-15 19:45:59">2024/06/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习25">Web学习25</span>
+            <span class="post-date" title="2024-06-15 13:00:46">2024/06/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/14/Web%E5%AD%A6%E4%B9%A024/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习24">Web学习24</span>
+            <span class="post-date" title="2024-06-14 11:24:45">2024/06/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/13/Web%E5%AD%A6%E4%B9%A023/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习23">Web学习23</span>
+            <span class="post-date" title="2024-06-13 12:01:34">2024/06/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/13/Web%E5%AD%A6%E4%B9%A022/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习22">Web学习22</span>
+            <span class="post-date" title="2024-06-13 11:58:28">2024/06/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/12/Web%E5%AD%A6%E4%B9%A021/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习21">Web学习21</span>
+            <span class="post-date" title="2024-06-12 13:37:15">2024/06/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/11/java%E5%AD%A6%E4%B9%A0/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="java学习">java学习</span>
+            <span class="post-date" title="2024-06-11 18:46:57">2024/06/11</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/11/Web%E5%AD%A6%E4%B9%A020/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习20">Web学习20</span>
+            <span class="post-date" title="2024-06-11 00:24:56">2024/06/11</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/10/Web%E5%AD%A6%E4%B9%A019/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习19">Web学习19</span>
+            <span class="post-date" title="2024-06-10 00:42:13">2024/06/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/08/Web%E5%AD%A6%E4%B9%A018/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习18">Web学习18</span>
+            <span class="post-date" title="2024-06-08 21:20:44">2024/06/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/08/Web%E5%AD%A6%E4%B9%A017/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习17">Web学习17</span>
+            <span class="post-date" title="2024-06-08 19:16:10">2024/06/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/06/Web%E5%AD%A6%E4%B9%A016/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习16">Web学习16</span>
+            <span class="post-date" title="2024-06-06 18:55:59">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/05/Web%E5%AD%A6%E4%B9%A015/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习15">Web学习15</span>
+            <span class="post-date" title="2024-06-05 15:56:07">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/04/Web%E5%AD%A6%E4%B9%A014/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习14">Web学习14</span>
+            <span class="post-date" title="2024-06-04 14:04:03">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/04/Web%E5%AD%A6%E4%B9%A013/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习13">Web学习13</span>
+            <span class="post-date" title="2024-06-04 12:16:20">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/02/Web%E5%AD%A6%E4%B9%A012/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习12">Web学习12</span>
+            <span class="post-date" title="2024-06-02 18:38:10">2024/06/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/02/LitCTF2024-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="LitCTF2024_WP">LitCTF2024_WP</span>
+            <span class="post-date" title="2024-06-02 12:18:25">2024/06/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/30/LitCTF2023_WP/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="LitCTF2023_WP">LitCTF2023_WP</span>
+            <span class="post-date" title="2024-05-30 17:33:08">2024/05/30</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/29/Web%E5%AD%A6%E4%B9%A011/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习11">Web学习11</span>
+            <span class="post-date" title="2024-05-29 20:24:16">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/29/Web%E5%AD%A6%E4%B9%A010/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习10">Web学习10</span>
+            <span class="post-date" title="2024-05-29 18:34:51">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/28/Web%E5%AD%A6%E4%B9%A09/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习9">Web学习9</span>
+            <span class="post-date" title="2024-05-28 17:22:39">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习8">Web学习8</span>
+            <span class="post-date" title="2024-05-28 10:48:57">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习7">Web学习7</span>
+            <span class="post-date" title="2024-05-27 16:27:52">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/27/%E5%85%B3%E4%BA%8EWindows%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A0%E6%B3%95%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5%E4%B9%8B%E9%97%AE/"
+           data-tag="Web,服务器"
+           data-author="" >
+            <span class="post-title" title="关于Windows服务器无法远程桌面连接之问">关于Windows服务器无法远程桌面连接之问</span>
+            <span class="post-date" title="2024-05-27 16:24:10">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/26/Web%E5%AD%A6%E4%B9%A06/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习6">Web学习6</span>
+            <span class="post-date" title="2024-05-26 18:36:19">2024/05/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/26/Web%E5%AD%A6%E4%B9%A05/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习5">Web学习5</span>
+            <span class="post-date" title="2024-05-26 13:10:51">2024/05/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习4">Web学习4</span>
+            <span class="post-date" title="2024-05-25 16:12:43">2024/05/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/23/Web%E5%AD%A6%E4%B9%A03/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习3">Web学习3</span>
+            <span class="post-date" title="2024-05-23 19:38:49">2024/05/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/23/Web%E5%AD%A6%E4%B9%A02/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习2">Web学习2</span>
+            <span class="post-date" title="2024-05-23 12:34:18">2024/05/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/22/Web%E5%AD%A6%E4%B9%A01/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习1">Web学习1</span>
+            <span class="post-date" title="2024-05-22 20:44:54">2024/05/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/29/linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0/"
+           data-tag="Web,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux操作系统学习">Linux操作系统学习</span>
+            <span class="post-date" title="2024-04-29 15:35:19">2024/04/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/28/%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF%E6%94%B6%E8%97%8F/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="绕过姿势收藏">绕过姿势收藏</span>
+            <span class="post-date" title="2024-04-28 19:55:29">2024/04/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/23/XYCTF-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="XYCTF_WP">XYCTF_WP</span>
+            <span class="post-date" title="2024-04-23 12:54:05">2024/04/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/14/faker%E7%9A%84%E5%BF%83%E9%AD%94/"
+           data-tag="随想"
+           data-author="" >
+            <span class="post-title" title="faker的心魔">faker的心魔</span>
+            <span class="post-date" title="2024-04-14 21:23:39">2024/04/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/03/14/sql%E6%B3%A8%E5%85%A5/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="sql注入">sql注入</span>
+            <span class="post-date" title="2024-03-14 19:31:21">2024/03/14</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-御宛杯WP" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">御宛杯WP</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color3">WP</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-09-23 19:09:47'>2024-09-20 22:55</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A5%E7%AD%BE%E4%B8%AA%E5%88%B0%E5%90%A7"><span class="toc-text">来签个到吧~</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B2%8C%E4%BC%BC%E9%9C%B2%E4%BA%86%E7%82%B9%E4%BB%80%E4%B9%88%EF%BC%9F%EF%BC%81"><span class="toc-text">貌似露了点什么？！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%8E%E5%93%9F%E4%BD%A0%E5%B9%B2%E5%98%9B"><span class="toc-text">哎哟你干嘛~~</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%A9%E4%BC%9A%E5%B0%8F%E6%B8%B8%E6%88%8F%E5%90%A7"><span class="toc-text">玩会小游戏吧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%85%E7%AE%80%E5%8D%95%EF%BC%8C%E4%B8%80%E6%8A%8A%E6%A2%AD"><span class="toc-text">包简单，一把梭</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E6%95%B2%EF%BC%8C%E9%BB%91%E5%AE%A2"><span class="toc-text">我敲，黑客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List-of-file-signatures"><span class="toc-text">List of file signatures</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%99%E8%83%BD%E6%89%A7%E8%A1%8C%E5%90%97%EF%BC%9F"><span class="toc-text">这能执行吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%8A%E5%9B%9E%E5%BF%86%E6%8B%BC%E5%A5%BD%E7%BB%99%E4%BD%A0"><span class="toc-text">把回忆拼好给你</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%8A%E5%9B%9E%E5%BF%86%E6%8B%BC%E5%A5%BD%E7%BB%99%E4%BD%A02-0"><span class="toc-text">把回忆拼好给你2.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E4%BC%9A%E7%9C%9F%E6%9C%89%E4%BA%BA%E4%B8%80%E4%B8%AA%E4%B8%80%E4%B8%AA%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%90%A7%EF%BC%9F"><span class="toc-text">不会真有人一个一个解压缩吧？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A5%E7%AD%BE%E4%B8%AA%E5%88%B0%E5%90%A7%EF%BC%8C%E5%8C%85%E7%AE%80%E5%8D%95%E7%9A%84"><span class="toc-text">来签个到吧，包简单的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%95%A5%E7%8E%A9%E6%84%8F%E5%95%8A%E8%BF%99"><span class="toc-text">啥玩意啊这</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E6%9D%A5%E7%A4%BE%E6%88%91-1"><span class="toc-text">快来社我_1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E6%9D%A5%E7%A4%BE%E6%88%91-2"><span class="toc-text">快来社我_2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E6%9D%A5%E7%A4%BE%E6%88%91-3"><span class="toc-text">快来社我_3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ez-RSA"><span class="toc-text">Ez_RSA</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Block"><span class="toc-text">Block</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse"><span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E4%B8%8D%E4%BC%9A%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97"><span class="toc-text">我不会逻辑运算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pwn"><span class="toc-text">Pwn</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#netcat"><span class="toc-text">netcat</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Forensics"><span class="toc-text">Forensics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E7%94%9F%E4%B9%8B%E6%88%91%E6%98%AF%E4%B8%80%E5%90%8D%E8%AD%A6%E5%AF%9F"><span class="toc-text">重生之我是一名警察</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#task1"><span class="toc-text">task1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#task2"><span class="toc-text">task2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#task3"><span class="toc-text">task3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#task4"><span class="toc-text">task4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#task6"><span class="toc-text">task6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#task8"><span class="toc-text">task8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#task9"><span class="toc-text">task9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#task10"><span class="toc-text">task10</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#task11"><span class="toc-text">task11</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="来签个到吧"><a href="#来签个到吧" class="headerlink" title="来签个到吧~"></a>来签个到吧~</h3><p>考察对八进制和十六进制的理解</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923161534997.png"></p>
+<p>\x69\x64 等于 id</p>
+<p>\150\x65\156\141\156是八进制和十六进制的混合</p>
+<p>\150 \156 \141 \156是八进制 \x65是十六进制，解码得henan，前面还要经过base64加密</p>
+<p>当你成功输入henan的base64形式时，就会输出flag给你</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923162345280.png"></p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923161418966.png"></p>
+<h3 id="貌似露了点什么？！"><a href="#貌似露了点什么？！" class="headerlink" title="貌似露了点什么？！"></a>貌似露了点什么？！</h3><p>考察dirsearch扫描</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923162819372.png"></p>
+<p>扫出来一个<a target="_blank" rel="noopener" href="http://www.zip,打开这个压缩包就是flag/">www.zip，打开这个压缩包就是flag</a></p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923162858561.png"></p>
+<h3 id="哎哟你干嘛"><a href="#哎哟你干嘛" class="headerlink" title="哎哟你干嘛~~"></a>哎哟你干嘛~~</h3><p>前端控制台控制就行，</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923162951917.png"></p>
+<p>这题要正好点击到99999999次</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923163212616.png"></p>
+<p>在index.js中可以看到源码，可以看到点击次数是通过H1这个变量来控制的，我们将其赋值为99999998即可，得到flag的base64形式</p>
+<h3 id="玩会小游戏吧"><a href="#玩会小游戏吧" class="headerlink" title="玩会小游戏吧"></a>玩会小游戏吧</h3><p><code>Runner.instance_.currentSpeed = 1000; // 将游戏速度调到非常快</code></p>
+<p>分析源码可知有一个变量是控制游戏速度的，将游戏速度调到1000，游戏速度就可以变得极快，分数也会迅速上涨，直接获取到flag</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923163752548.png"></p>
+<h3 id="包简单，一把梭"><a href="#包简单，一把梭" class="headerlink" title="包简单，一把梭"></a>包简单，一把梭</h3><p>随便看一个不存在的路径就可以通过报错信息看到框架版本是ThinkPHP的5.0.23，找一篇文章就可以直接找到这个版本存在的rce漏洞</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923163955495.png"></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_53730939/article/details/129660066?ops_request_misc=%257B%2522request%255Fid%2522%253A%25223726E07B-9BF1-4599-88DD-C6DCBF3109E7%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=3726E07B-9BF1-4599-88DD-C6DCBF3109E7&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_click~default-1-129660066-null-null.142%5Ev100%5Epc_search_result_base8&utm_term=ThinkPHP%20V5.0.23&spm=1018.2226.3001.4187">相关文章</a></p>
+<p>Payload</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923164136033.png"></p>
+<h3 id><a href="#" class="headerlink" title></a></h3><p>得看中秋2的提示才可以，这里的zhongqijie的参数控制了天数，然后3本身也给了提示，今天是中秋节的第一天，所以参数zhongqiujie&#x3D;1</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923164220038.png"></p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923164331349.png"></p>
+<p>先随便输一个邮箱进去</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923164404184.png"></p>
+<p>扫码后说不是熟人介绍，我不卖，要去群里找熟人。推测熟人指的是群主，于是复制他的qq号即可。</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923164511343.png"></p>
+<p>又显示今天不是中秋节，于是将zhongqiujie参数为1即可。</p>
+<p>我擦，环境貌似有问题了，我之前就是这么做的，但是复现的时候突然就出问题了。</p>
+<p>按理说改完参数后他还会提示你钱不够，这个时候需要继续添加参数money为100000几个0忘记了，一个个尝试，最后显示支付成功查看源码就是flag</p>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="我敲，黑客"><a href="#我敲，黑客" class="headerlink" title="我敲，黑客"></a>我敲，黑客</h3><p>写个脚本求一下100到1000的素数和就是密码，其实爆破也行因为最后的数字只有6位数，噢不对5位</p>
+<pre><code class="python"># 函数判断是否为质数
+def is_prime(n):
+    if n &lt; 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+# 计算100到1000之间的质数和
+prime_sum = 0
+for num in range(100, 1001):
+    if is_prime(num):
+        prime_sum += num
+
+# 输出质数和
+print(&quot;100到1000之间的质数和为:&quot;, prime_sum)
+</code></pre>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923165129188.png"></p>
+<p>私钥文件里面是图片的base64形式，转一下是个二维码，扫码就是flag</p>
+<img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923165243367.png" style="zoom: 33%;">
+
+<h3 id="List-of-file-signatures"><a href="#List-of-file-signatures" class="headerlink" title="List of file signatures"></a>List of file signatures</h3><p>题目写着让一切反转吧，其实他是每四个字节反转了一下</p>
+<p>比如文件头FF D8 FF E0 翻转成了E0 FF D8 FF，写个脚本将他们再反转回来得到一张图片就是flag</p>
+<pre><code class="python">def fix_byte_order(input_file, output_file):
+    with open(input_file, &#39;rb&#39;) as f:
+        data = f.read()
+
+    # 创建一个空的bytearray，用于存储调整顺序后的数据
+    fixed_data = bytearray()
+
+    # 每4个字节为一组调整顺序
+    for i in range(0, len(data), 4):
+        block = data[i:i+4]
+        fixed_data.extend(block[::-1])  # 颠倒字节顺序
+
+    # 将调整顺序后的数据写入新的文件
+    with open(output_file, &#39;wb&#39;) as f_out:
+        f_out.write(fixed_data)
+
+# 输入文件和输出文件路径
+input_file = &#39;C:\\Users\\13740\\Desktop\\List of file signatures\\fl4g.jpeg&#39;  # 替换为你的输入文件路径
+output_file = &#39;C:\\Users\\13740\\Desktop\\List of file signatures\\fixed_image.png&#39;  # 输出文件名
+
+# 调用函数修正字节顺序
+fix_byte_order(input_file, output_file)
+</code></pre>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/fixed_image.png"></p>
+<h3 id="这能执行吗？"><a href="#这能执行吗？" class="headerlink" title="这能执行吗？"></a>这能执行吗？</h3><p>得到一个exe文件，放进IDA里面，如果你直接查看String类型，可以看到有一个base64形式的图片在里面，但是数据是不全的，也就没有办法成功转成图片，必须在原先的数据里面提取。因此也需要编写一个脚本进行数据整理</p>
+<pre><code class="python">import re
+
+data = &quot;&quot;&quot;‘data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAIAAABEtEj&#39;
+.rdata:0000000000488080                                         db &#39;dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAKT2lDQ1BQaG90b3Nob3AgSUNDIHByb2Zp&#39;
+.rdata:0000000000488102                 db &#39;bGUAAHjanVNnVFPpFj333vRCS4iAlEtvUhUIIFJCi4AUkSYqIQkQSoghodkVUcERR&#39;
+.rdata:0000000000488143                 db &#39;UUEG8igiAOOjoCMFVEsDIoK2AfkIaKOg6OIisr74Xuja9a89+bN/rXXPues852zzw&#39;
+.rdata:0000000000488184                 db &#39;fACAyWSDNRNYAMqUIeEeCDx8TG4eQuQIEKJHAAEAizZCFz/SMBAPh+PDwrIsAHvgA&#39;
+.rdata:00000000004881C5                 db &#39;BeNMLCADATZvAMByH/w/qQplcAYCEAcB0kThLCIAUAEB6jkKmAEBGAYCdmCZTAKAE&#39;
+.rdata:0000000000488206                 db &#39;AGDLY2LjAFAtAGAnf+bTAICd+Jl7AQBblCEVAaCRACATZYhEAGg7AKzPVopFAFgwA&#39;
+.rdata:0000000000488247                 db &#39;BRmS8Q5ANgtADBJV2ZIALC3AMDOEAuyAAgMADBRiIUpAAR7AGDIIyN4AISZABRG8l&#39;
+.rdata:0000000000488288                 db &#39;c88SuuEOcqAAB4mbI8uSQ5RYFbCC1xB1dXLh4ozkkXKxQ2YQJhmkAuwnmZGTKBNA/&#39;
+.rdata:00000000004882C9                 db &#39;g88wAAKCRFRHgg/P9eM4Ors7ONo62Dl8t6r8G/yJiYuP+5c+rcEAAAOF0ftH+LC+z&#39;
+.rdata:000000000048830A                 db &#39;GoA7BoBt/qIl7gRoXgugdfeLZrIPQLUAoOnaV/Nw+H48PEWhkLnZ2eXk5NhKxEJbY&#39;
+.rdata:000000000048834B                 db &#39;cpXff5nwl/AV/1s+X48/Pf14L7iJIEyXYFHBPjgwsz0TKUcz5IJhGLc5o9H/LcL//&#39;
+.rdata:000000000048838C                 db &#39;wd0yLESWK5WCoU41EScY5EmozzMqUiiUKSKcUl0v9k4t8s+wM+3zUAsGo+AXuRLah&#39;
+.rdata:00000000004883CD                 db &#39;dYwP2SycQWHTA4vcAAPK7b8HUKAgDgGiD4c93/+8//UegJQCAZkmScQAAXkQkLlTK&#39;
+.rdata:000000000048840E                 db &#39;sz/HCAAARKCBKrBBG/TBGCzABhzBBdzBC/xgNoRCJMTCQhBCCmSAHHJgKayCQiiGz&#39;
+.rdata:000000000048844F                 db &#39;bAdKmAv1EAdNMBRaIaTcA4uwlW4Dj1wD/phCJ7BKLyBCQRByAgTYSHaiAFiilgjjg&#39;
+.rdata:0000000000488490                 db &#39;gXmYX4IcFIBBKLJCDJiBRRIkuRNUgxUopUIFVIHfI9cgI5h1xGupE7yAAygvyGvEc&#39;
+.rdata:00000000004884D1                 db &#39;xlIGyUT3UDLVDuag3GoRGogvQZHQxmo8WoJvQcrQaPYw2oefQq2gP2o8+Q8cwwOgY&#39;
+.rdata:0000000000488512                 db &#39;BzPEbDAuxsNCsTgsCZNjy7EirAyrxhqwVqwDu4n1Y8+xdwQSgUXACTYEd0IgYR5BS&#39;
+.rdata:0000000000488553                 db &#39;FhMWE7YSKggHCQ0EdoJNwkDhFHCJyKTqEu0JroR+cQYYjIxh1hILCPWEo8TLxB7iE&#39;
+.rdata:0000000000488594                 db &#39;PENyQSiUMyJ7mQAkmxpFTSEtJG0m5SI+ksqZs0SBojk8naZGuyBzmULCAryIXkneT&#39;
+.rdata:00000000004885D5                 db &#39;D5DPkG+Qh8lsKnWJAcaT4U+IoUspqShnlEOU05QZlmDJBVaOaUt2ooVQRNY9aQq2h&#39;
+.rdata:0000000000488616                 db &#39;tlKvUYeoEzR1mjnNgxZJS6WtopXTGmgXaPdpr+h0uhHdlR5Ol9BX0svpR+iX6AP0d&#39;
+.rdata:0000000000488657                 db &#39;wwNhhWDx4hnKBmbGAcYZxl3GK+YTKYZ04sZx1QwNzHrmOeZD5lvVVgqtip8FZHKCp&#39;
+.rdata:0000000000488698                 db &#39;VKlSaVGyovVKmqpqreqgtV81XLVI+pXlN9rkZVM1PjqQnUlqtVqp1Q61MbU2epO6i&#39;
+.rdata:00000000004886D9                 db &#39;Hqmeob1Q/pH5Z/YkGWcNMw09DpFGgsV/jvMYgC2MZs3gsIWsNq4Z1gTXEJrHN2Xx2&#39;
+.rdata:000000000048871A                 db &#39;KruY/R27iz2qqaE5QzNKM1ezUvOUZj8H45hx+Jx0TgnnKKeX836K3hTvKeIpG6Y0T&#39;
+.rdata:000000000048875B                 db &#39;LkxZVxrqpaXllirSKtRq0frvTau7aedpr1Fu1n7gQ5Bx0onXCdHZ4/OBZ3nU9lT3a&#39;
+.rdata:000000000048879C                 db &#39;cKpxZNPTr1ri6qa6UbobtEd79up+6Ynr5egJ5Mb6feeb3n+hx9L/1U/W36p/VHDFg&#39;
+.rdata:00000000004887DD                 db &#39;GswwkBtsMzhg8xTVxbzwdL8fb8VFDXcNAQ6VhlWGX4YSRudE8o9VGjUYPjGnGXOMk&#39;
+.rdata:000000000048881E                 db &#39;423GbcajJgYmISZLTepN7ppSTbmmKaY7TDtMx83MzaLN1pk1mz0x1zLnm+eb15vft&#39;
+.rdata:000000000048885F                 db &#39;2BaeFostqi2uGVJsuRaplnutrxuhVo5WaVYVVpds0atna0l1rutu6cRp7lOk06rnt&#39;
+.rdata:00000000004888A0                 db &#39;Znw7Dxtsm2qbcZsOXYBtuutm22fWFnYhdnt8Wuw+6TvZN9un2N/T0HDYfZDqsdWh1&#39;
+.rdata:00000000004888E1                 db &#39;+c7RyFDpWOt6azpzuP33F9JbpL2dYzxDP2DPjthPLKcRpnVOb00dnF2e5c4PziIuJ&#39;
+.rdata:0000000000488922                 db &#39;S4LLLpc+Lpsbxt3IveRKdPVxXeF60vWdm7Obwu2o26/uNu5p7ofcn8w0nymeWTNz0&#39;
+.rdata:0000000000488963                 db &#39;MPIQ+BR5dE/C5+VMGvfrH5PQ0+BZ7XnIy9jL5FXrdewt6V3qvdh7xc+9j5yn+M+4z&#39;
+.rdata:00000000004889A4                 db &#39;w33jLeWV/MN8C3yLfLT8Nvnl+F30N/I/9k/3r/0QCngCUBZwOJgUGBWwL7+Hp8Ib+&#39;
+.rdata:00000000004889E5                 db &#39;OPzrbZfay2e1BjKC5QRVBj4KtguXBrSFoyOyQrSH355jOkc5pDoVQfujW0Adh5mGL&#39;
+.rdata:0000000000488A26                 db &#39;w34MJ4WHhVeGP45wiFga0TGXNXfR3ENz30T6RJZE3ptnMU85ry1KNSo+qi5qPNo3u&#39;
+.rdata:0000000000488A67                 db &#39;jS6P8YuZlnM1VidWElsSxw5LiquNm5svt/87fOH4p3iC+N7F5gvyF1weaHOwvSFpx&#39;
+.rdata:0000000000488AA8                 db &#39;apLhIsOpZATIhOOJTwQRAqqBaMJfITdyWOCnnCHcJnIi/RNtGI2ENcKh5O8kgqTXq&#39;
+.rdata:0000000000488AE9                 db &#39;S7JG8NXkkxTOlLOW5hCepkLxMDUzdmzqeFpp2IG0yPTq9MYOSkZBxQqohTZO2Z+pn&#39;
+.rdata:0000000000488B2A                 db &#39;5mZ2y6xlhbL+xW6Lty8elQfJa7OQrAVZLQq2QqboVFoo1yoHsmdlV2a/zYnKOZarn&#39;
+.rdata:0000000000488B6B                 db &#39;ivN7cyzytuQN5zvn//tEsIS4ZK2pYZLVy0dWOa9rGo5sjxxedsK4xUFK4ZWBqw8uI&#39;
+.rdata:0000000000488BAC                 db &#39;q2Km3VT6vtV5eufr0mek1rgV7ByoLBtQFr6wtVCuWFfevc1+1dT1gvWd+1YfqGnRs&#39;
+.rdata:0000000000488BED                 db &#39;+FYmKrhTbF5cVf9go3HjlG4dvyr+Z3JS0qavEuWTPZtJm6ebeLZ5bDpaql+aXDm4N&#39;
+.rdata:0000000000488C2E                 db &#39;2dq0Dd9WtO319kXbL5fNKNu7g7ZDuaO/PLi8ZafJzs07P1SkVPRU+lQ27tLdtWHX+&#39;
+.rdata:0000000000488C6F                 db &#39;G7R7ht7vPY07NXbW7z3/T7JvttVAVVN1WbVZftJ+7P3P66Jqun4lvttXa1ObXHtxw&#39;
+.rdata:0000000000488CB0                 db &#39;PSA/0HIw6217nU1R3SPVRSj9Yr60cOxx++/p3vdy0NNg1VjZzG4iNwRHnk6fcJ3/c&#39;
+.rdata:0000000000488CF1                 db &#39;eDTradox7rOEH0x92HWcdL2pCmvKaRptTmvtbYlu6T8w+0dbq3nr8R9sfD5w0PFl5&#39;
+.rdata:0000000000488D32                 db &#39;SvNUyWna6YLTk2fyz4ydlZ19fi753GDborZ752PO32oPb++6EHTh0kX/i+c7vDvOX&#39;
+.rdata:0000000000488D73                 db &#39;PK4dPKy2+UTV7hXmq86X23qdOo8/pPTT8e7nLuarrlca7nuer21e2b36RueN87d9L&#39;
+.rdata:0000000000488DB4                 db &#39;158Rb/1tWeOT3dvfN6b/fF9/XfFt1+cif9zsu72Xcn7q28T7xf9EDtQdlD3YfVP1v&#39;
+.rdata:0000000000488DF5                 db &#39;+3Njv3H9qwHeg89HcR/cGhYPP/pH1jw9DBY+Zj8uGDYbrnjg+OTniP3L96fynQ89k&#39;
+.rdata:0000000000488E36                 db &#39;zyaeF/6i/suuFxYvfvjV69fO0ZjRoZfyl5O/bXyl/erA6xmv28bCxh6+yXgzMV70V&#39;
+.rdata:0000000000488E77                 db &#39;vvtwXfcdx3vo98PT+R8IH8o/2j5sfVT0Kf7kxmTk/8EA5jz/GMzLdsAAAAgY0hSTQ&#39;
+.rdata:0000000000488EB8                 db &#39;AAeiUAAICDAAD5/wAAgOkAAHUwAADqYAAAOpgAABdvkl/FRgAAChxJREFUeNrs3GF&#39;
+.rdata:0000000000488EF9                 db &#39;uGlcCwHFq5QAeWT1ARtZ+3QravYBpeoGZdQ5QaHuAQscHMAo9QNxkDxDLHGDDwgVC&#39;
+.rdata:0000000000488F3A                 db &#39;Qe1XC01OYE0OYI32w1uPWFNjG0PjRr+f+GBjGPAI/efx5sFnOzUAPjXaDiDuAIg7A&#39;
+.rdata:0000000000488F7B                 db &#39;OIOgLgDIO4A4g6AuAMg7gCIOwDiDiDudgGAuAMg7gCIOwDiDoC4A4g7AOIOgLgDIO&#39;
+.rdata:0000000000488FBC                 db &#39;4AiDuAuAMg7gCIOwDiDoC4AyDuAOIOgLgDIO4AiDsA4g4g7gCIOwDiDoC4AyDuAIg&#39;
+.rdata:0000000000488FFD                 db &#39;7gLgDIO4AiDsA4g6AuAOIOwDiDoC4AyDuAIg7AOIOIO4AiDsA4g6AuAMg7gDiDoC4&#39;
+.rdata:000000000048903E                 db &#39;AyDuAIg7AOIOgLgDiDsA4g6AuAMg7gCIO4C4AyDuAIg7AOIOgLgDIO4A4g6AuAMg7&#39;
+.rdata:000000000048907F                 db &#39;gCIOwDiDiDuAIg7AOIOgLgDIO4AiDuAuAMg7gCIOwDiDoC4A4g7AOIOgLgDIO4AiD&#39;
+.rdata:00000000004890C0                 db &#39;sA4g4g7gCIOwDiDoC4AyDuAOIOgLgDIO4AiDsA4g6AuAOIOwDiDoC4AyDuAIg7gLg&#39;
+.rdata:0000000000489101                 db &#39;DIO4AiDsA4g6AuAMg7gDiDoC4AyDuAIg7AOIOIO4AiDsA4g6AuAMg7gCIO4C4AyDu&#39;
+.rdata:0000000000489142                 db &#39;AIg7AOIOgLgDiDsA4g6AuAMg7gCIOwDiDiDuAIg7AOIOgLgDIO4A4g6AuAMg7gCIO&#39;
+.rdata:0000000000489183                 db &#39;wDiDoC4A4g7AOIOgLgDIO4AiDuAuAMg7gCIOwDiDoC4AyDuAOIOgLgDIO4AiDsA4g&#39;
+.rdata:00000000004891C4                 db &#39;4g7gCIOwDiDoC4AyDuAIg7gLgDIO4AiDsA4g6AuAOIOwDiDoC4AyDuAIg7AOIOIO4&#39;
+.rdata:0000000000489205                 db &#39;AiDsA4g6AuAMg7gDiDoC4AyDuAIg7AOIOgLgDiDsA4g6AuAMg7gCIO4C4AyDuAIg7&#39;
+.rdata:0000000000489246                 db &#39;AOIOgLgDIO4A4g6AuAMg7gCIOwDiDiDuAIg7AOIOgLgDIO58aqIoshNA3B+dTrd7P&#39;
+.rdata:0000000000489287                 db &#39;p+/m0y29xD1RuPN6ellWV6W5fl83mq373X3cMfqcj6fd7rdTT23axu/LMuXJyf1Rq&#39;
+.rdata:00000000004892C8                 db &#39;NWqx00m8t/XbzUG40oit4Oh+H2y87n83BLLzP447q7bOnyzzQtr3zZaGzjIfbj+OL&#39;
+.rdata:0000000000489309                 db &#39;iYj6f70XRXhTN5/OyLH/qdu++hfD0fjk52anVvmw0whZ+nUw28vQWN74fx79OJmVZ&#39;
+.rdata:000000000048934A                 db &#39;Xlxc7MfxXhRVN/uu3Q63/LrZXLz7f4bDcPvFG4fLT91utW+90lxc/vDCtiRJMptOw&#39;
+.rdata:000000000048938B                 db &#39;8/NZnMbD/FjpxNF0eDsrCiKoij+9fp1deUaW5tNp2EL9UYjSdPNPtU8z7MsCzMtSZ&#39;
+.rdata:00000000004893CC                 db &#39;oWRXHrXbIsK4riKMuu3TiO4+NezwsMTMt8nMniJE2zLAt9T5JkK8ePNK3Vah8+fAi&#39;
+.rdata:000000000048940D                 db &#39;/jkaj8NAH6x5LpldHo21Mdr/P8/DD7u7uHQ82f9vff/3q1bXrX56ceIGBuH8crXa7&#39;
+.rdata:000000000048944E                 db &#39;KIrxaDQYDMJY+Ka547WFWelarVYNbKt61uv1hx+cNr5Pdq+2WR2NbrU8wG+12wfNZ&#39;
+.rdata:000000000048948F                 db &#39;lEUg7MzLzMQ9z9bkiRhyBlG07X/n5mJ4zicDEzS9N1kclmW4TRmuPK41+t0u9UZzn&#39;
+.rdata:00000000004894D0                 db &#39;qjESYiqr9WG7kpheFP1aNU50hb7Xa45qahfePqCFQ97RX1f3lyEjZendF9c3q6/Kw&#39;
+.rdata:0000000000489511                 db &#39;q1R64Y5ernbD4oOHfX56rAcR968I4PYzZZ9PpipmZavVINR8SIjgajZ7s7IxHoziO&#39;
+.rdata:0000000000489552                 db &#39;3w6HSZoeZdk3z56F5IXZmBWD6/XG3Uma/tjphPjOFp7PTQ8RVuY8ffr0+eHh53t7s&#39;
+.rdata:0000000000489593                 db &#39;+k0SdN/D4c3lbrqcn71DuO+jnu9cI5hea4GEPc/Y9ie53nVxxUzM7Pp9MnOTuh4de&#39;
+.rdata:00000000004895D4                 db &#39;VgMAj3DRGMoqj/4sXirMuK0fF6woj+zelpFEVHWfb88PDu933//n1409Dv98NzWz4&#39;
+.rdata:0000000000489615                 db &#39;Z+24yOe71Bmdnzw8Pw/+yhoNmM0x2HWWZ1xis9sQu2IZWux1F0fIS7GazeW1EPB6P&#39;
+.rdata:0000000000489656                 db &#39;136UFfMS952yeP3q1WAweDscrnHfxQPV/9641OvXJl7+8dVXD9+r4Tzqz/3+2gN/M&#39;
+.rdata:0000000000489697                 									 db &#39;HLnAcP2NI2i6PO9vTAkXxyYf9tqbfCBqsYtT8Kskb/xaBSeZJiZeWziOI7jeDwarT&#39;
+.rdata:00000000004896D8                 db &#39;3wB3HnYXFPktl0em38G0bocRxvcM3M8srCqvKz2WyNDVbzKg/8kOrdF8Pc1+LnWqv&#39;
+.rdata:0000000000489719                 db &#39;P4i6eMQbEfSvC8vYwyb6oWnyywQXv1XLAagr+aRyH68e3rXVZPXg/7vXWOAhVd9nG&#39;
+.rdata:000000000048975A                 db &#39;IsU8zxffCT3Z2anOqR5l2Wit/xfEnbsKw8nl1sym0zBVstlPfoYVgUmahrCGI8fP/&#39;
+.rdata:000000000048979B                 db &#39;X5435DnefghLHuvNxq3Hlp++P778MOb09P79r3T6dQethhmPf0XL25d2wPizoN822&#39;
+.rdata:00000000004897DC                 db &#39;pVax+vqUbZB5v7KoI8z7959mxwdhYWyydpem05yvPDw1D/y7JMkuTW87dhg3mex3H&#39;
+.rdata:000000000048981D                 db &#39;8bjK5y9eQVQvww7HBnDg8Bp+pO+uJ4/h8Pg9DdUEHI3cAxJ2POja/6cvWfXUXPHI+&#39;
+.rdata:000000000048985E                 db &#39;xMSNwgKVFem3i8DIHQBx5y9iPBpNLUOEx8dqGQAjdwDEHQBxB2AzLIXcpN3d3b9/8&#39;
+.rdata:000000000048989F                 db &#39;YX98FH8/ttv2/s2SvjLcUIV4BOk7QDiDoC4AyDuAIg7AOIOIO4AiDsA4g6AuAMg7g&#39;
+.rdata:00000000004898E0                 db &#39;DibhcAiDsA4g6AuAMg7gCIO4C4AyDuAIg7AOIOgLgDiDsA4g6AuAMg7gCIOwDiDiD&#39;
+.rdata:0000000000489921                 db &#39;uAIg7AOIOgLgDIO4A4g6AuAMg7gCIOwDiDoC4A4g7AOIOgLgDIO4AiDuAuAMg7gCI&#39;
+.rdata:0000000000489962                 db &#39;OwDiDoC4AyDuAOIOgLgDIO4AiDsA4g4g7gCIOwDiDoC4AyDuAIg7gLgDIO4AiDsA4&#39;
+.rdata:00000000004899A3                 db &#39;g6AuAOIOwDiDoC4AyDuAIg7AOIOIO4AiDsA4g6AuAMg7gDiDoC4AyDuAIg7AOIOgL&#39;
+.rdata:00000000004899E4                 db &#39;gDiDsA4g6AuAMg7gCIO4C4AyDuAIg7AOIOgLgDIO4A4g6AuAMg7gCIOwDiDiDuAIg&#39;
+.rdata:0000000000489A25                 db &#39;7AOIOgLgDIO4AiDuAuAMg7gCIOwDiDoC4A4g7AOIOgLgDIO4AiDsA4g4g7gCIOwDi&#39;
+.rdata:0000000000489A66                 db &#39;DoC4AyDuAOIOgLgDIO4AiDsA4g6AuAOIOwDiDoC4AyDuAIg7gLgDIO4AiDsA4g6Au&#39;
+.rdata:0000000000489AA7                 db &#39;AMg7gDiDoC4AyDuAIg7AOIOIO4AiDsA4g6AuAMg7gCIO4C4AyDuAIg7AOIOgLgDiD&#39;
+.rdata:0000000000489AE8                 db &#39;sA4g6AuAMg7gCIOwDiDiDuAIg7AOIOgLgDIO4A4g6AuAMg7gCIOwDiDoC4A4g7AOI&#39;
+.rdata:0000000000489B29                 db &#39;OgLgDIO4AiDuAuAMg7gCIOwDiDoC4AyDuAOIOgLgDIO4AiDsA4g4g7gCIOwDiDoC4&#39;
+.rdata:0000000000489B6A                 db &#39;AyDuAIg7gLgDIO4AiDsA4g6AuAOIOwDiDoC4AyDuAIg7AOIOIO4AiDsA4g6AuAMg7&#39;
+.rdata:0000000000489BAB                 db &#39;gDiDoC4AyDuAIg7AOIOgLgDiDsA4g6AuAMg7gCIO4C4AyDuAIg7AOIOgLgDIO4A4g&#39;
+.rdata:0000000000489BEC                 db &#39;6AuAMg7gCIOwDiDiDuAIg7AOIOgLgDIO4AiDuAuAMg7gCIOwDiDoC4A4g7AOIOgLg&#39;
+.rdata:0000000000489C2D                 db &#39;DIO4AiDsA4g4g7gCIOwDiDoC4AyDuAOIOgLgDIO4AiDsA4g6AuAN8gv47AJ+yAqcw&#39;
+.rdata:0000000000489C6E                                                       db           
+&#39;9R6bAAAAAElFTkSuQmCC’&quot;&quot;&quot;
+
+# 使用正则表达式提取所有单引号中的数据
+matches = re.findall(r&quot;&#39;(.*?)&#39;&quot;, data)
+
+# 合并所有提取的数据
+merged_data = &#39;&#39;.join(matches)
+
+print(merged_data)
+</code></pre>
+<p>将进行数据整理的数据转一下图片即可得到flag</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923165856345.png"></p>
+<h3 id="把回忆拼好给你"><a href="#把回忆拼好给你" class="headerlink" title="把回忆拼好给你"></a>把回忆拼好给你</h3><p>简单的stegsolve里的Image Combiner，将两张图片合在一起就是flag</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923170037099.png"></p>
+<p><del>所以这和python有什么关系</del></p>
+<h3 id="把回忆拼好给你2-0"><a href="#把回忆拼好给你2-0" class="headerlink" title="把回忆拼好给你2.0"></a>把回忆拼好给你2.0</h3><p>进去给了我们500个png文件，猜测是要进行拼接，水平拼接不可以，进行垂直拼接后成功得到一张图，图中有16进制编码，进行解码得到flag</p>
+<p>附上垂直拼接的脚本</p>
+<pre><code class="python">from PIL import Image
+import os
+
+# 图片文件夹路径
+image_folder = &#39;C:\\Users\\13740\\Desktop\\confetti&#39;  # 替换为你的实际图片文件夹路径
+output_image = &#39;output_vertical.png&#39;  # 拼接后的图片文件名
+
+# 图片的数量
+num_images = 500  # 从 0.png 到 499.png
+
+# 加载所有图片
+images = []
+for i in range(num_images):
+    image_path = os.path.join(image_folder, f&quot;&#123;i&#125;.png&quot;)
+    img = Image.open(image_path)
+    images.append(img)
+
+# 获取单张图片的尺寸（假设所有图片尺寸相同）
+width, height = images[0].size
+
+# 计算拼接后的总宽度和高度（垂直拼接）
+total_width = width
+total_height = height * num_images
+
+# 创建一张空白的大图片，来放置所有小图片
+result = Image.new(&#39;RGB&#39;, (total_width, total_height))
+
+# 将每一张图片按顺序粘贴到大图片上（垂直方向）
+y_offset = 0
+for img in images:
+    result.paste(img, (0, y_offset))  # 在竖直方向粘贴，(0, y_offset) 表示从顶部粘贴
+    y_offset += height  # 更新 y_offset 以放置下一张图片
+
+# 保存拼接后的图片
+result.save(output_image)
+print(f&quot;垂直拼接完成，图片已保存为 &#123;output_image&#125;&quot;)
+</code></pre>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923170327964.png"></p>
+<h3 id="不会真有人一个一个解压缩吧？"><a href="#不会真有人一个一个解压缩吧？" class="headerlink" title="不会真有人一个一个解压缩吧？"></a>不会真有人一个一个解压缩吧？</h3><p>解完25000个压缩包就给flag，解了一天半吧，<del>也是对资本主义的邪恶产物显卡进行狠狠的鞭打</del></p>
+<p>附上解压脚本</p>
+<pre><code class="python">import pyzipper
+import os
+import concurrent.futures
+
+
+def extract_zip(zip_path, password_path, extract_to):
+    with open(password_path, &#39;r&#39;) as password_file:
+        password = password_file.read().strip().encode()
+
+    with pyzipper.AESZipFile(zip_path, &#39;r&#39;, compression=pyzipper.ZIP_DEFLATED, encryption=pyzipper.WZ_AES) as z:
+        z.extractall(path=extract_to, pwd=password)
+
+
+def process_zip(current_zip_number, base_path):
+    zip_filename = f&#39;zip-&#123;current_zip_number&#125;.zip&#39;
+    password_filename = &#39;password.txt&#39;
+    extract_dir = f&#39;extracted_&#123;current_zip_number&#125;&#39;
+
+    os.makedirs(extract_dir, exist_ok=True)
+
+    zip_path = os.path.join(base_path, zip_filename)
+    password_path = os.path.join(base_path, password_filename)
+    extract_zip(zip_path, password_path, extract_dir)
+
+    return extract_dir
+
+
+def main():
+    current_zip_number = 22251
+    base_path = &#39;./&#39;
+
+    # 使用线程池并行处理压缩包
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
+        while current_zip_number &gt; 0:
+            print(f&quot;Processing zip-&#123;current_zip_number&#125;.zip&quot;)
+
+            base_path = process_zip(current_zip_number, base_path)
+            current_zip_number -= 1
+
+    print(&quot;All zip files have been extracted successfully.&quot;)
+
+
+if __name__ == &#39;__main__&#39;:
+    main()
+</code></pre>
+<h3 id="来签个到吧，包简单的"><a href="#来签个到吧，包简单的" class="headerlink" title="来签个到吧，包简单的"></a>来签个到吧，包简单的</h3><p>stegsolve改一下通道就是flag</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923170621925.png"></p>
+<p>还要Reverse一下再base64即可</p>
+<h3 id="啥玩意啊这"><a href="#啥玩意啊这" class="headerlink" title="啥玩意啊这"></a>啥玩意啊这</h3><p><del>御网杯的史也是搬到御宛杯了</del>，毫无提示的Reverse，就是纯脑洞</p>
+<pre><code class="txt">&amp;#x39;&amp;#x33;&amp;#x36;&amp;#x35;&amp;#x34;&amp;#x34;&amp;#x61;&amp;#x35;&amp;#x35;&amp;#x33;&amp;#x31;&amp;#x34;&amp;#x61;&amp;#x37;&amp;#x65;&amp;#x34;&amp;#x33;&amp;#x33;&amp;#x39;&amp;#x35;&amp;#x34;&amp;#x35;&amp;#x66;&amp;#x34;&amp;#x37;&amp;#x37;&amp;#x37;&amp;#x36;&amp;#x61;&amp;#x36;&amp;#x65;&amp;#x34;&amp;#x31;&amp;#x33;&amp;#x31;&amp;#x35;&amp;#x61;&amp;#x37;&amp;#x64;&amp;#x34;&amp;#x31;&amp;#x33;&amp;#x32;&amp;#x35;&amp;#x37;&amp;#x34;&amp;#x33;&amp;#x35;&amp;#x37;&amp;#x35;&amp;#x36;&amp;#x35;&amp;#x35;&amp;#x34;&amp;#x35;&amp;#x35;&amp;#x62;&amp;#x34;&amp;#x34;&amp;#x37;&amp;#x38;&amp;#x35;&amp;#x31;&amp;#x36;&amp;#x61;&amp;#x36;&amp;#x35;&amp;#x33;&amp;#x37;&amp;#x34;&amp;#x31;&amp;#x36;
+
+谜底就是flag，希望大家享受解码的过程。
+</code></pre>
+<p>上来就是html+reverse+hex+base+凯撒2位 &#x3D; flag</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923171126999.png"></p>
+<img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923171208658.png" style="zoom:50%;">
+
+<p>hnctf大写</p>
+<h3 id="快来社我-1"><a href="#快来社我-1" class="headerlink" title="快来社我_1"></a>快来社我_1</h3><p>谷歌一搜就有</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923171346688.png"></p>
+<p>flag{yuntaishan}</p>
+<h3 id="快来社我-2"><a href="#快来社我-2" class="headerlink" title="快来社我_2"></a>快来社我_2</h3><p>这个野兽以 53 个量子比特运行，最近实现了‘量子至上’。我们相信你知道’它’的名字</p>
+<p>问一下AI就行</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923171448463.png"></p>
+<p>flag{Sycamore}</p>
+<h3 id="快来社我-3"><a href="#快来社我-3" class="headerlink" title="快来社我_3"></a>快来社我_3</h3><p>这题有坑，我一开始以为是country国家……，然后答案就开始浮想联翩了，然而实际上是county也就是县的意思</p>
+<p>图片上的地方也是谷歌一搜就有</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923171738325.png"></p>
+<p>这地方在Lansford，搜一下Lansford属于哪个县即可</p>
+<h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="Ez-RSA"><a href="#Ez-RSA" class="headerlink" title="Ez_RSA"></a>Ez_RSA</h3><pre><code class="python">from Crypto.Util.number import *
+import gmpy2
+m=bytes_to_long(b&#39;NYSEC&#123;.......&#125;&#39;)
+e=65537
+p=getPrime(512)
+q=getPrime(512)
+n=p*q
+not_phi=(p+3)*(q+3)
+c=pow(m,e,n)
+
+print(n)
+print(not_phi)
+print(c)
+
+
+&#39;&#39;&#39;
+97003850850040952844587475437460149663654189201387855024040346139584151510739356074369121470184325592356345533719425034732087985768855378103846599571920819607004695644591231034028585872350731819641620530992562020648337983877420861817386470051601404728847162770341340709409331924083906577836343671751461800641
+97003850850040952844587475437460149663654189201387855024040346139584151510739356074369121470184325592356345533719425034732087985768855378103846599571920879777663593679859238788800713921207765284450610197129070615800306033898076058599156162495376307988618628754841062502962329450466110589828082689175911189124
+31648100885161830950110219017754314322263944256316235264449880700096434928815116220641135916147173391572115158841069491300446654777805507405971457255928030870596026057567702034717781270729367309989423695505283185674132049530706799948557972728933012591037486370001542782395573887256404792664989124714420821017
+&#39;&#39;&#39;
+</code></pre>
+<p>问一下AI即出</p>
+<pre><code class="python">from Crypto.Util.number import long_to_bytes, inverse
+import gmpy2
+
+# 已知的 n, not_phi, c
+n = 97003850850040952844587475437460149663654189201387855024040346139584151510739356074369121470184325592356345533719425034732087985768855378103846599571920819607004695644591231034028585872350731819641620530992562020648337983877420861817386470051601404728847162770341340709409331924083906577836343671751461800641
+not_phi = 97003850850040952844587475437460149663654189201387855024040346139584151510739356074369121470184325592356345533719425034732087985768855378103846599571920879777663593679859238788800713921207765284450610197129070615800306033898076058599156162495376307988618628754841062502962329450466110589828082689175911189124
+c = 31648100885161830950110219017754314322263944256316235264449880700096434928815116220641135916147173391572115158841069491300446654777805507405971457255928030870596026057567702034717781270729367309989423695505283185674132049530706799948557972728933012591037486370001542782395573887256404792664989124714420821017
+e = 65537
+
+# 步骤1：计算 p + q
+p_plus_q = (not_phi - n - 9) // 3
+
+# 步骤2：解二次方程求 p 和 q
+# 方程：x^2 - (p+q)*x + n = 0
+# 利用 gmpy2 求解
+discriminant = gmpy2.isqrt(p_plus_q**2 - 4 * n)
+p = (p_plus_q + discriminant) // 2
+q = (p_plus_q - discriminant) // 2
+
+# 步骤3：计算 phi(n) 和私钥 d
+phi_n = (p - 1) * (q - 1)
+d = inverse(e, phi_n)
+
+# 步骤4：解密密文
+m = pow(c, d, n)
+flag = long_to_bytes(m)
+
+# 输出解密后的 flag
+print(flag.decode())
+</code></pre>
+<p>NYSEC{th1s_is_fake_fl4ggg}</p>
+<h2 id="Block"><a href="#Block" class="headerlink" title="Block"></a>Block</h2><p>熵密杯原题，网上可以找到现成的脚本</p>
+<pre><code class="python">//题目源码
+from sympy import Mod, Integer
+from sympy.core.numbers import mod_inverse
+
+# 模数
+N_HEX = &quot;FFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFF7203DF6B21C6052B53BBF40939D54123&quot;
+MODULUS = Integer(int(N_HEX, 16))
+MSG_PREFIX = &quot;CryptoCup message:&quot;
+
+
+# 加密函数
+def encrypt_message(message, key):
+    # 添加前缀
+    message_with_prefix = MSG_PREFIX + message
+    message_bytes = message_with_prefix.encode(&#39;utf-8&#39;)
+    message_len = len(message_bytes)
+    num_blocks = (message_len + 15) // 16
+    blocks = [message_bytes[i * 16:(i + 1) * 16] for i in range(num_blocks)]
+
+    # 进行0填充
+    blocks[-1] = blocks[-1].ljust(16, b&#39;\x00&#39;)
+
+    encrypted_blocks = []
+
+    k = key
+
+    # 加密每个分组
+    for block in blocks:
+        block_int = int.from_bytes(block, byteorder=&#39;big&#39;)
+        encrypted_block_int = Mod(block_int * k, MODULUS)
+        encrypted_blocks.append(encrypted_block_int)
+        k += 1  # 密钥自增1
+
+    # 将加密后的分组连接成最终的密文
+    encrypted_message = b&#39;&#39;.join(
+        int(block_int).to_bytes(32, byteorder=&#39;big&#39;) for block_int in encrypted_blocks
+    )
+
+    return encrypted_message
+
+
+# 解密函数
+def decrypt_message(encrypted_message, key):
+    num_blocks = len(encrypted_message) // 32
+    blocks = [encrypted_message[i * 32:(i + 1) * 32] for i in range(num_blocks)]
+
+    decrypted_blocks = []
+
+    k = key
+
+    # 解密每个分组
+    for block in blocks:
+        block_int = int.from_bytes(block, byteorder=&#39;big&#39;)
+        key_inv = mod_inverse(k, MODULUS)
+        decrypted_block_int = Mod(block_int * key_inv, MODULUS)
+        decrypted_blocks.append(decrypted_block_int)
+        k += 1  # 密钥自增1
+
+    # 将解密后的分组连接成最终的明文
+    decrypted_message = b&#39;&#39;.join(
+        int(block_int).to_bytes(16, byteorder=&#39;big&#39;) for block_int in decrypted_blocks
+    )
+
+    # 去除前缀
+    if decrypted_message.startswith(MSG_PREFIX.encode(&#39;utf-8&#39;)):
+        decrypted_message = decrypted_message[len(MSG_PREFIX):]
+
+    return decrypted_message.rstrip(b&#39;\x00&#39;).decode(&#39;utf-8&#39;)
+
+
+# 测试
+initial_key = Integer(0x123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0)
+message = &quot;Hello, this is a test message.&quot;
+print(&quot;Original Message:&quot;, message)
+
+# 加密
+encrypted_message = encrypt_message(message, initial_key)
+print(&quot;Encrypted Message (hex):&quot;, encrypted_message.hex())
+
+# 解密
+decrypted_message = decrypt_message(encrypted_message, initial_key)
+print(&quot;Decrypted Message:&quot;, decrypted_message)
+
+
+
+# 请在.exe文件内作答
+</code></pre>
+<pre><code class="python">from sympy import Mod, Integer
+from sympy.core.numbers import mod_inverse
+
+
+def decrypt_message(c, k):
+    # c - ciphertext
+    # k - key
+    # 分组长度256bits，取得密文分组数量，注意这里密文长度为1024bits，共有4个分组
+    num_blocks = len(c) // 32  # 整数除法, 返回整数结果并舍弃小数部分
+    blocks = [c[i * 32:(i + 1) * 32] for i in range(num_blocks)]  # i取值从0-num_blocks
+    # 密文初始化为空
+    decrypted_blocks = []
+    key = k
+    # 解密每个分组
+    for block in blocks:
+        block_int = int.from_bytes(block, byteorder=&#39;big&#39;)
+        # 取得key的逆元
+        key_inv = mod_inverse(key, N)
+        # 解密算法P = C/K mod N
+        decrypted_block_int = Mod(block_int * key_inv, N)
+        # 分组依次连接组合得到明文
+        decrypted_blocks.append(decrypted_block_int)
+        # key累加1
+        key += 1
+    # 将解密后的分组连接成最终的明文
+    decrypted_message = b&#39;&#39;.join(
+        int(block_int).to_bytes(16, byteorder=&#39;big&#39;) for block_int in decrypted_blocks
+    )
+    # 返回明文UTF编码结果
+    return decrypted_message.rstrip(b&#39;\x00&#39;).decode(&#39;utf-8&#39;)
+
+
+# 模数
+N_HEX = &quot;FFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFF7203DF6B21C6052B53BBF40939D54123&quot;
+N = Integer(int(N_HEX, 16))
+# 明文已知部分
+plaintext = &quot;CryptoCup message:...&quot;
+# 密文
+ciphertext_HEX = &#39;0b2fc34f05ad3c92881d10e640ddad25435cba5ef5d82d528c41565033b88d628efdef0c08915f97b86b24687d2ee17d79ef035e29ab73b4f6f4ead994c005e1b15f6647ecc3f1bf016ebe297ae0f62619a23dde5fbc96ffeeb5707675245f571705e993e9345944298b019c08563f007aa99b0ddae0c6386bd1ad618f67ea5c&#39;
+c = bytes.fromhex(ciphertext_HEX)
+# 取密文第一个分组
+block_start = c[:32]
+# 加密算法 C = P * K mod N，那么 K = C/P mod N
+block = plaintext[:16].encode()
+k = Mod(int.from_bytes(block_start, byteorder=&#39;big&#39;) * mod_inverse(int.from_bytes(block, byteorder=&#39;big&#39;), N), N)
+# 输入参数密文和初始密钥，得到明文 CryptoCup message:HOnAWP2d9glfzjeqlVUI2NzKKKkpCd3d
+plaintext = decrypt_message(c, k)
+print(plaintext)
+</code></pre>
+<h2 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h2><h3 id="我不会逻辑运算"><a href="#我不会逻辑运算" class="headerlink" title="我不会逻辑运算"></a>我不会逻辑运算</h3><pre><code class="java">import java.util.*;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.*;
+
+class VaultDoor7 &#123;
+    public static void main(String args[]) &#123;
+        VaultDoor7 vaultDoor = new VaultDoor7();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(&quot;Enter vault password: &quot;);
+        String userInput = scanner.next();
+    String input = userInput.substring(&quot;NYSEC&#123;&quot;.length(),userInput.length()-1);
+    if (vaultDoor.checkPassword(input)) &#123;
+        System.out.println(&quot;Access granted.&quot;);
+    &#125; else &#123;
+        System.out.println(&quot;Access denied!&quot;);
+        &#125;
+    &#125;
+
+  
+    public int[] passwordToIntArray(String hex) &#123;
+        int[] x = new int[8];
+        byte[] hexBytes = hex.getBytes();
+        for (int i=0; i&lt;8; i++) &#123;
+            x[i] = hexBytes[i*4]   &lt;&lt; 24
+                 | hexBytes[i*4+1] &lt;&lt; 16
+                 | hexBytes[i*4+2] &lt;&lt; 8
+                 | hexBytes[i*4+3];
+        &#125;
+        return x;
+    &#125;
+
+    public boolean checkPassword(String password) &#123;
+        if (password.length() != 32) &#123;
+            return false;
+        &#125;
+        int[] x = passwordToIntArray(password);
+        return x[0] == 1096770097
+            &amp;&amp; x[1] == 1952395366
+            &amp;&amp; x[2] == 1600270708
+            &amp;&amp; x[3] == 1601398833
+            &amp;&amp; x[4] == 1716808014
+            &amp;&amp; x[5] == 1734305335
+            &amp;&amp; x[6] == 962749284
+            &amp;&amp; x[7] == 828584245;
+    &#125;
+&#125;
+</code></pre>
+<p>flag被转换为一个整数数组，并且需要检查这8个整数是否与给定的值相等。写个脚本，把给定的8个整数反向解析为原始的32字符密码（16字节的十六进制数），从而获得flag。</p>
+<pre><code class="python">def int_to_bytes(n):
+    return n.to_bytes(4, byteorder=&#39;big&#39;)
+
+
+def main():
+    # 已知的整数数组
+    int_values = [
+        1096770097,
+        1952395366,
+        1600270708,
+        1601398833,
+        1716808014,
+        1734305335,
+        962749284,
+        828584245
+    ]
+
+    # 将整数反向转换为字节
+    flag_bytes = b&#39;&#39;.join([int_to_bytes(i) for i in int_values])
+
+    # 将字节转换为对应的字符串
+    flag = flag_bytes.decode(&#39;utf-8&#39;)
+
+    # 输出完整的 flag
+    print(f&quot;NYSEC&#123;&#123;&#123;flag&#125;&#125;&#125;&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h2 id="Pwn"><a href="#Pwn" class="headerlink" title="Pwn"></a>Pwn</h2><h3 id="netcat"><a href="#netcat" class="headerlink" title="netcat"></a>netcat</h3><p>nc 连一下 cat &#x2F;flag 即可获得flag</p>
+<h2 id="Forensics"><a href="#Forensics" class="headerlink" title="Forensics"></a>Forensics</h2><p>这次比赛收获最大的方向，以前是基本不会取证的，目前12道题做出来了10道，还有两道目前卡的比较久，还需要仔细研究研究，总的来说取证这个方向需要你对操作系统了解的很深才可以很快的找到相关的信息。</p>
+<p>工具：Autopsy，一个很适合新手上手的取证工具</p>
+<h3 id="重生之我是一名警察"><a href="#重生之我是一名警察" class="headerlink" title="重生之我是一名警察"></a>重生之我是一名警察</h3><p>总的题目背景</p>
+<p>有嫌疑人在使用Windows系统，取证人员对该系统进行了硬盘镜像。通过自己的工具软件对档案袋中的镜像文件进行提取、分析、逆向、恢复、破解、查找等 比赛材料记录 比赛的计算机镜像资料镜像名为“windows7disk.E01”. </p>
+<p>此题要求提交附件的哈希校验值SHA256</p>
+<p>可以通过Windows自带的工具即可提取</p>
+<p><code>certutil -hashfile raw.E01 SHA256</code></p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923174431737.png"></p>
+<h3 id="task1"><a href="#task1" class="headerlink" title="task1"></a>task1</h3><p><strong>题目： 请找出嫌疑人的操作系统主机名</strong></p>
+<p>Windows 主机名存储在注册表路径 <code>SYSTEM</code> 中</p>
+<p>存储路径：<code>C:\Windows\System32\Config\SYSTEM</code></p>
+<p>查看注册表中ComputerName的键值即可：<code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName</code></p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923175020098.png"></p>
+<p>操作系统主机名：WIN-49I0SNRJAMF	</p>
+<h3 id="task2"><a href="#task2" class="headerlink" title="task2"></a>task2</h3><p><strong>题目：请找出操作系统中安装的Android模拟器名称和安装日期。 格式：模拟器名时间 例子：雷电模拟器2022年06月23日</strong></p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923175601680.png"></p>
+<p>在路径<code>C:\Program Files (x86)</code>发现了Nox，查询得知这是夜神模拟器的文件夹</p>
+<p>夜神模拟器2021年05月03日</p>
+<h3 id="task3"><a href="#task3" class="headerlink" title="task3"></a>task3</h3><p><strong>题目：请找出操作系统最后登录的用户</strong></p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923175923462.png"></p>
+<p>在路径<code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\LogonUI</code></p>
+<p>在这个键中，会有一个值为 <code>LastLoggedOnUser</code>，它存储了最后一次登录的用户名。</p>
+<p>可以看到最后登录的用户名是poiuy</p>
+<h3 id="task4"><a href="#task4" class="headerlink" title="task4"></a>task4</h3><p><strong>题目：请找出操作系统安装日期。 格式:2022-01-04 12:47:43</strong></p>
+<p>在路径<code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion</code>找到名为<code>InstallDate</code>的键，它的值是以<strong>Unix 时间戳</strong> 的格式存储的，即自 1970 年 1 月 1 日以来的秒数。在网上找一个时间戳转换的工具就可以推算出这个操作系统的安装日期。</p>
+<p>这里的值是16进制，我们得先转换一下</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923180156623.png"></p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923180728463.png"></p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923180710878.png"></p>
+<p>操作系统安装日期：2021-05-03 18:44:28</p>
+<h3 id="task6"><a href="#task6" class="headerlink" title="task6"></a>task6</h3><p><strong>题目：请找出操作系统版本号。</strong></p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923181220474.png"></p>
+<p>在路径<code>SOFTWARE\Microsoft\Windows NT\CurrentVersion</code>记录了详细的Windows版本信息，包括版本号、内部版本号（build number）、产品名称等</p>
+<p>操作系统版本号：6.1</p>
+<h3 id="task8"><a href="#task8" class="headerlink" title="task8"></a>task8</h3><p><strong>请给出源磁盘的大小（字节）。</strong></p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923181427340.png"></p>
+<p>直接看raw.E01的size列就是源磁盘的字节</p>
+<p>源磁盘的字节：32212254720</p>
+<h3 id="task9"><a href="#task9" class="headerlink" title="task9"></a>task9</h3><p><strong>题目：请找出用户“poiuy”的SID。</strong></p>
+<p>在OS Accounts这里找到poiuy，其中的Address这一栏就记录了SID</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923181654093.png"></p>
+<p>SID: S-1 -5-21-435394657-638363951-1066549375-1000</p>
+<h3 id="task10"><a href="#task10" class="headerlink" title="task10"></a>task10</h3><p><strong>题目：请找出使用Bitlocker加密的虚拟磁盘文件恢复密钥文件名是什么。</strong></p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923182800211.png"></p>
+<p>随便乱翻的时候在FIle Views的Plain Text发现了恢复密钥文件</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923182949027.png"></p>
+<p>恢复密钥文件名：666E6292-906B-4A9B-9167-4DB146123BAD.txt</p>
+<h3 id="task11"><a href="#task11" class="headerlink" title="task11"></a>task11</h3><p><strong>题目：请找出用户“poiuy”的登录密码。</strong></p>
+<p>分别将SYSTEM和SAM文件导出来然后使用hashcat即可进行破解</p>
+<p>这两个文件的路径为<code>C:\Windows\System32\config\RegBack</code>，使用Autopsy extract file一下就可以了。</p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923183501088.png"></p>
+<p>然后使用命令<code>samdump2 SYSTEM SAM &gt; hashes.txt</code>提取哈希值</p>
+<p>再用hashcat进行破解即可</p>
+<p><code>hashcat -m 1000 hashes.txt /usr/share/wordlists/rockyou.txt</code></p>
+<p><img src="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/image-20240923190013722.png"></p>
+<p>不知道为什么hashcat突然抽风了，但是用md5解密网站也是可以解密的，反正有平替，很多时候报错都是莫名其妙的，交给时间去解决吧。说不定重启一下就好了hh</p>
+<p>登录密码：09876543</p>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2024 f4k3r
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+<div id="musicMouseDrag" style="position:fixed; z-index: 9999; bottom: 0; right: 50px;">
+    <div id="musicDragArea" style="position: absolute; top: 0; left: 0; width: 100%;height: 10px;cursor: move; z-index: 10;"></div>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=478507889&auto=1&height=32"></iframe>
+    </div>
+
+<script>
+    var $DOC = $(document)
+    $('#musicMouseDrag').on('mousedown', function (e) {
+      // 阻止文本选中
+      $DOC.bind("selectstart", function () {
+        return false;
+      });
+      $('#musicDragArea').css('height', '100%');
+      var $moveTarget = $('#musicMouseDrag');
+      $moveTarget.css('border', '1px dashed grey')
+      var div_x = e.pageX - $moveTarget.offset().left;
+      var div_y = e.pageY - $moveTarget.offset().top;
+      $DOC.on('mousemove', function (e) {
+        var targetX = e.pageX - div_x;
+        var targetY = e.pageY - div_y;
+        targetX = targetX < 0 ? 0 : (targetX + $moveTarget.outerWidth() >= window.innerWidth) ? window.innerWidth - $moveTarget.outerWidth() : targetX;
+        targetY = targetY < 0 ? 0 : (targetY + $moveTarget.outerHeight() >= window.innerHeight) ? window.innerHeight - $moveTarget.outerHeight() : targetY;
+        $moveTarget.css({'left': targetX + 'px', 'top': targetY + 'px', 'bottom': 'inherit', 'right': 'inherit'})
+      }).on('mouseup', function () {
+        $DOC.unbind("selectstart");
+        $DOC.off('mousemove')
+        $DOC.off('mouseup')
+        $moveTarget.css('border', 'none')
+        $('#musicDragArea').css('height', '10px');
+      })
+    })
+</script>
+
+</html>
