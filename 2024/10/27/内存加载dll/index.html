@@ -6,26 +6,20 @@
   <meta name="keywords" content=" Web ">
   <meta name="description" content="内存加载dll | f4k3r&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="Web去年：php&#x2F;ctf php&#x2F;pwn 今年：php&#x2F;ctf java&#x2F;web pwn PHP： 实际上在比赛开始之前，靶场就能访问，没有做限制，比赛之前就看到php，收手机晚，基本大家都动了小心思，之前缺少了一个经验，这次比赛awd需要自己探测发现端口和服务，导致没有这个思维，应该先去扫所有题目端口，扫描不要扫常见端口，扫1-65535，发现服务 比赛">
+<meta name="description" content="&#x2F;&#x2F;题目源码 from flask import Flask, request, jsonify import re import unidecode import string import ast import sys import os import subprocess import importlib.util import json  app &#x3D; Flask(__name__) app">
 <meta property="og:type" content="article">
-<meta property="og:title" content="领航杯线下AWD复盘">
-<meta property="og:url" content="http://example.com/2024/10/27/%E9%A2%86%E8%88%AA%E6%9D%AF%E7%BA%BF%E4%B8%8BAWD%E5%A4%8D%E7%9B%98/index.html">
+<meta property="og:title" content="强网杯WP及复现">
+<meta property="og:url" content="http://example.com/2024/11/03/%E5%BC%BA%E7%BD%91%E6%9D%AFWP%E5%8F%8A%E5%A4%8D%E7%8E%B0/index.html">
 <meta property="og:site_name" content="f4k3r&#39;s blog">
-<meta property="og:description" content="Web去年：php&#x2F;ctf php&#x2F;pwn 今年：php&#x2F;ctf java&#x2F;web pwn PHP： 实际上在比赛开始之前，靶场就能访问，没有做限制，比赛之前就看到php，收手机晚，基本大家都动了小心思，之前缺少了一个经验，这次比赛awd需要自己探测发现端口和服务，导致没有这个思维，应该先去扫所有题目端口，扫描不要扫常见端口，扫1-65535，发现服务 比赛">
+<meta property="og:description" content="&#x2F;&#x2F;题目源码 from flask import Flask, request, jsonify import re import unidecode import string import ast import sys import os import subprocess import importlib.util import json  app &#x3D; Flask(__name__) app">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2024/10/27/%E9%A2%86%E8%88%AA%E6%9D%AF%E7%BA%BF%E4%B8%8BAWD%E5%A4%8D%E7%9B%98/image-20241027221051529.png">
-<meta property="og:image" content="http://example.com/2024/10/27/%E9%A2%86%E8%88%AA%E6%9D%AF%E7%BA%BF%E4%B8%8BAWD%E5%A4%8D%E7%9B%98/image-20241027213412240.png">
-<meta property="og:image" content="http://example.com/2024/10/27/%E9%A2%86%E8%88%AA%E6%9D%AF%E7%BA%BF%E4%B8%8BAWD%E5%A4%8D%E7%9B%98/image-20241027215450392.png">
-<meta property="og:image" content="http://example.com/2024/10/27/%E9%A2%86%E8%88%AA%E6%9D%AF%E7%BA%BF%E4%B8%8BAWD%E5%A4%8D%E7%9B%98/image-20241027215512193.png">
-<meta property="og:image" content="http://example.com/2024/10/27/%E9%A2%86%E8%88%AA%E6%9D%AF%E7%BA%BF%E4%B8%8BAWD%E5%A4%8D%E7%9B%98/image-20241027220009409.png">
-<meta property="og:image" content="http://example.com/2024/10/27/%E9%A2%86%E8%88%AA%E6%9D%AF%E7%BA%BF%E4%B8%8BAWD%E5%A4%8D%E7%9B%98/image-20241027220044907.png">
-<meta property="og:image" content="http://example.com/2024/10/27/%E9%A2%86%E8%88%AA%E6%9D%AF%E7%BA%BF%E4%B8%8BAWD%E5%A4%8D%E7%9B%98/image-20241027220143891.png">
-<meta property="article:published_time" content="2024-10-27T12:30:06.000Z">
-<meta property="article:modified_time" content="2024-10-27T14:10:54.614Z">
+<meta property="og:image" content="http://example.com/2024/11/03/%E5%BC%BA%E7%BD%91%E6%9D%AFWP%E5%8F%8A%E5%A4%8D%E7%8E%B0/image-20241103181036034.png">
+<meta property="article:published_time" content="2024-11-03T09:23:10.000Z">
+<meta property="article:modified_time" content="2024-11-03T10:11:32.497Z">
 <meta property="article:author" content="f4k3r">
-<meta property="article:tag" content="AWD">
+<meta property="article:tag" content="WP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2024/10/27/%E9%A2%86%E8%88%AA%E6%9D%AF%E7%BA%BF%E4%B8%8BAWD%E5%A4%8D%E7%9B%98/image-20241027221051529.png">
+<meta name="twitter:image" content="http://example.com/2024/11/03/%E5%BC%BA%E7%BD%91%E6%9D%AFWP%E5%8F%8A%E5%A4%8D%E7%8E%B0/image-20241103181036034.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -88,7 +82,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(92)</small>
+                <small>(94)</small>
             
         </div>
     </li>
@@ -108,7 +102,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="92">
+<input type="hidden" id="yelog_site_posts_number" value="94">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -167,6 +161,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>渗透</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>生活</a>
             </li>
         
@@ -216,6 +214,24 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 "
+           href="/2024/11/03/%E5%BC%BA%E7%BD%91%E6%9D%AFWP%E5%8F%8A%E5%A4%8D%E7%8E%B0/"
+           data-tag="WP"
+           data-author="" >
+            <span class="post-title" title="强网杯WP及复现">强网杯WP及复现</span>
+            <span class="post-date" title="2024-11-03 17:23:10">2024/11/03</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2024/10/30/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8B%E6%B8%97%E9%80%8F%E8%B5%9B/"
+           data-tag="渗透"
+           data-author="" >
+            <span class="post-title" title="记一次线下渗透赛">记一次线下渗透赛</span>
+            <span class="post-date" title="2024-10-30 20:55:18">2024/10/30</span>
+        </a>
         
         
         <a  class="全部文章 "
@@ -1082,7 +1098,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-10-27 15:00:19'>2024-10-27 14:26</time>
+            发布时间 : <time class="date" title='最后更新: 2024-10-28 16:45:51'>2024-10-27 14:26</time>
         
     </div>
     <div class="article-meta">
@@ -1093,7 +1109,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84DLL"><span class="toc-text">反射DLL</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84DLL"><span class="toc-text">反射DLL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dll%E6%96%87%E4%BB%B6%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">dll文件的定义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PE%E6%96%87%E4%BB%B6%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">PE文件的定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PE%E6%96%87%E4%BB%B6%E7%9A%84%E7%BB%84%E6%88%90-%E7%BB%93%E6%9E%84"><span class="toc-text">PE文件的组成 结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PE%E6%96%87%E4%BB%B6%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%8E%E9%87%8D%E8%A6%81%E6%80%A7"><span class="toc-text">PE文件的应用与重要性</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1130,6 +1146,47 @@
 <p><img src="/2024/10/27/%E5%86%85%E5%AD%98%E5%8A%A0%E8%BD%BDdll/image-20241027145244886.png"></p>
 <p>核心点已经用MemoryLoadLibrary函数将功能点都集成好了</p>
 <p><a target="_blank" rel="noopener" href="https://payloads.online/archivers/2020-01-02/1/#%E7%94%9F%E6%88%90dll">https://payloads.online/archivers/2020-01-02/1/#%E7%94%9F%E6%88%90dll</a></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>首先这次的训练难度对我来说确实很高，之前也没接触过免杀训练，所以我觉得我的视角和小白的视角是一模一样的。</p>
+<p>首先我脑子里冒出来几个问题，<strong>什么是dll文件？</strong>于是我去学习了一下</p>
+<h3 id="dll文件的定义"><a href="#dll文件的定义" class="headerlink" title="dll文件的定义"></a>dll文件的定义</h3><p>在windows系统中，常常能看到这种dll文件，dll全称为Dynamic-Link Libraries，动态链接库</p>
+<p><img src="/2024/10/27/%E5%86%85%E5%AD%98%E5%8A%A0%E8%BD%BDdll/image-20241028161828647.png"></p>
+<p>dll跟exe文件都是PE文件，问题又来了，<strong>什么是PE文件？</strong></p>
+<h4 id="PE文件的定义"><a href="#PE文件的定义" class="headerlink" title="PE文件的定义"></a>PE文件的定义</h4><p>PE文件(Portable Executable File，可移植可执行文件)是Windows操作系统中常见的可执行文件格式。PE文件结构是Windows下所有可执行文件(如.exe和.dll文件)的基础格式，广泛用于运行程序或加载动态链接库。</p>
+<h4 id="PE文件的组成-结构"><a href="#PE文件的组成-结构" class="headerlink" title="PE文件的组成 结构"></a>PE文件的组成 结构</h4><p>PE文件包含多种数据结构，这些结构定义了程序如何加载和执行。以下是PE文件的主要组成部分：</p>
+<p>1、DOS头（MS-DOS Header）</p>
+<p>在PE文件的开头，是一种向下兼容的部分，提供一个简单的DOS程序，通常显示“此程序无法在DOS模式下运行”的消息。</p>
+<p>其中包含了e_lfanew指针，指向PE文件的真正起始位置。</p>
+<p>2、PE头（PE Header）</p>
+<p>包含了文件的基本信息，包括目标CPU架构、操作系统版本、入口点(Entry Point)等信息。</p>
+<p>包含了FIle Header 和 Optional Header；</p>
+<p>File Header：描述文件类型、机器架构、时间戳等</p>
+<p>Optional Header：包含加载时所需的信息，如入口点地址、程序所需的内存空间大小等。</p>
+<p>3、节表（Section Table）</p>
+<p>描述了PE文件的各个“节”（Section）的信息。</p>
+<p>每个节都是文件内容的一个逻辑部分，例如代码、数据、资源等。</p>
+<p>常见的节有：</p>
+<p>.text：包含可执行代码。</p>
+<p>.data：存储程序的全局变量和已初始化的数据。</p>
+<p>.rdata：包含只读数据，如字符串和导入表。</p>
+<p>.rsrc：包含程序资源，如图标、对话框等。</p>
+<p>4、节（Sections）</p>
+<p>节是PE文件的实际数据部分，每个节对应一类数据或代码。</p>
+<p>各节在内存中按其指定的属性进行加载。常见的有：</p>
+<p>可执行节 .text</p>
+<p>数据节 .data</p>
+<p>资源节 .rsrc</p>
+<p>5、导入表（Import Table）</p>
+<p>描述程序需要调用的外部函数或库（如Windows API）的位置</p>
+<p>Windows加载器会根据导入表的信息加载相应的DLL，并填充地址。</p>
+<p>6、导出表（Export Table）</p>
+<p>用于DLL文件，描述DLL文件向其他模块提供的函数和变量。</p>
+<p>允许其他程序通过导出表访问DLL中的特定功能</p>
+<p>7、重定位表（Relocation Table）</p>
+<p>用于当加载地址发生变化时重新定位文件。若PE文件未能在默认地址加载，重定位表会确保代码在新的内存位置上正确运行。</p>
+<h4 id="PE文件的应用与重要性"><a href="#PE文件的应用与重要性" class="headerlink" title="PE文件的应用与重要性"></a>PE文件的应用与重要性</h4><p>PE文件结构非常适合动态加载和执行，是Windows系统在执行可执行文件时所依赖的格式。它不仅适用于.exe和.dll文件，还适用于驱动程序文件（如.sys）、动态库、控制台程序等。理解PE文件的结构在逆向工程、恶意软件分析以及内存分析等领域至关重要。</p>
+<p>理解了什么是PE文件后，我们<strong>继续学习dll文件的概念</strong></p>
+<p>这种文件不能像exe等可执行文件一样直接运行，但是可以被exe，dll文件调用，实现资源，代码（主要是函数）的模块化，复用，动态加载等等。简单来说，可以把dll文件比作魔法书，exe文件比作魔法师，在施法过程中，如果哦需要用到exe没有记住的魔法时，这个exe就可以通过加载dll里面的魔法来施法，所以使用dll可以大幅减少程序文件的 体积以及代码和资源的重复，间接提高开发效率和节省硬盘空间，在多个运行中的程序共用一个dll文件时，只在内存中占用一个dll的空间，这样也节省了物理内存的空间，在进行程序升级迭代时，如果升级内容只涉及到dll文件，就可以只升级dll文件，即所谓的增量更新，可以提高开发效率，减少升级软件时的下载时间，流量，出现bug的概念，排查bug的时间等等。利用dll还可以很方便地做多国语言设计，把不同国家语言字符串和图片等放在不同的dll文件里面。通过替换dll文件或者加载相应的dll文件，就可以进行不同语言的切换。这就可以解释为什么汉化补丁常常是dll格式的。当然dll也是有缺点的，动态链接库需要额外加载，所以速度会慢一点点。另外，dll文件丢失或者版本不匹配时会引起报错。dll文件还可能被劫持，在加载dll文件时，系统会按照一定的顺序加载dll文件。如果在一些优先查询的位置中放置相同名称的带毒dll文件，系统就会优先加载这个带毒的dll文件。一些恶意的病毒软件还能通过dll注入技术，让正在运行的exe进程也加载带毒的dll文件。在这两种情况下，关掉病毒的程序已经没有意义了，病毒的dll已经被注入到很多进程里了，用重启大法可能可以减少感染的进程，但是无法避免二次感染。</p>
+<p>大概了解完了什么是dll，再来具体学习这次免杀训练的内容，内存加载dll</p>
 
       
        
